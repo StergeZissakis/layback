@@ -3,7 +3,7 @@ from DBRow import DBRow
 class DailyMatchRow(DBRow):
 
     def __init__(self):
-        self.table_name = "daily_over_under"
+        self.table_name = "daily_over_2p5"
         self.data = {
                 "home": None,
                 "away": None,

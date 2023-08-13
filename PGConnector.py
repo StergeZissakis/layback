@@ -12,67 +12,19 @@ class PGBase:
     def is_connected(self):
         return self.pg is not None
 
-    def validate_non_sql_string(self, string):
-        try:
-            tp = sqlparse.parse(string)
-            for t in tp:
-                if t.get_type() != "UNKNOWN":
-                    print(t + " is passed for sql")
-                    return False
-        except sqlparse.exceptions.SQLParseError as e:
-            print("sql.parse exception:" + str(e))
-            pass
-
-        return True
-
-
-    def validate_non_sql(self, strings):
-        if isinstance(strings, str):
-            return self.validate_non_sql_string(strings)
-        else:
-            for s in strings:
-                if not self.validate_non_sql_string(s):
-                    print(s + " is passed for sql")
-                    return False
-        return True
-
-
 class PGConnector(PGBase):
 
-    def insert_or_update_team(self, name, english_name):
-        if not self.validate_non_sql((name, english_name)):
-            return None
-
+    def insert(self, row):
+        sql = row.generate_sql_insert_into_values()
+        values = row.generate_sql_insert_values()
         cursor = self.pg.cursor()
-
-        if name is None:
-            cursor.execute( 'INSERT INTO "Team" (english_name) VALUES (%s) ' + 
-                            'ON CONFLICT ("team_pk") DO UPDATE SET english_name = EXCLUDED.english_name ' + 
-                            'RETURNING id; ', (english_name)
-                            )
-
-        elif english_name is None:
-            cursor.execute( 'INSERT INTO "Team" (name) VALUES (%s) ' + 
-                            'ON CONFLICT ("team_pk") DO UPDATE SET name = EXCLUDED.name ' +
-                            'RETURNING id; ', (name)
-                            )
-
-        else:
-            cursor.execute( 'INSERT INTO "Team" (name, english_name) VALUES (%s, %s) ' +
-                            'ON CONFLICT ("team_pk") DO UPDATE SET name = EXCLUDED.name, english_name = EXCLUDED.english_name ' + 
-                            'RETURNING id; ', (name, english_name)
-                            )
-
-        ret = cursor.fetchone()[0]
+        cursor.execute( sql, values )
         self.pg.commit()
         cursor.close()
-        return ret
 
-    def insert_or_update_match(self, match):
-        if not self.validate_non_sql(match.data.values()):
-            return None
+    def insert_or_update(self, row):
 
-        sql = match.generate_sql_insert_into_values() + ' ON CONFLICT ON CONSTRAINT ' + match.table_name + '_unique DO UPDATE SET ' + match.generate_do_update_set();
+        sql = row.generate_sql_insert_into_values() + ' ON CONFLICT ON CONSTRAINT ' + match.table_name + '_unique DO UPDATE SET ' + match.generate_do_update_set();
         values = match.generate_sql_insert_values()
         cursor = self.pg.cursor()
         cursor.execute( sql, values )

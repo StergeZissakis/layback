@@ -82,7 +82,7 @@ if __name__ == "__main__":
     #TODO: resolve URLs
 
     for m in intersection:
-        db.
+        db.insert(m)
  
     if browser.headless:
         browser.quit()
