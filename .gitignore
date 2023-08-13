@@ -1,0 +1,7 @@
+*.swp
+__pycache__
+core
+*.log
+env
+nohup.out
+config/*.pid
