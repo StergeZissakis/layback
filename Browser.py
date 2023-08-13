@@ -47,8 +47,8 @@ class Browser:
         if self.headless:
             self.chrome_options.add_argument('--headless=new')
         
-        service = ChromeService(executable_path="./chromedriver")
-        self.driver = webdriver.Chrome(service=service, options=self.chrome_options, executable_path="/opt/google/chrome/chrome")
+        service = ChromeService(executable_path="/usr/bin/chromedriver")
+        self.driver = webdriver.Chrome(service=service, options=self.chrome_options)
 
         # Load cookies from previous session
         '''
