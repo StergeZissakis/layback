@@ -51,3 +51,8 @@ def get_event_time(section_div, kind):
         return None
 
     return div.text
+
+def add_time_to_date(event_date, event_time):
+    (hour, minute) = str(event_time).split(":")
+    return event_date.replace(hour=int(hour), minute=int(minute), second=0, microsecond=0)
+

@@ -261,10 +261,6 @@ class Browser:
         decimal = (int(nom) / int(denom) + 1)
         return decimal
 
-    def add_time_to_date(self, event_date, event_time):
-        (hour, minute) = str(event_time).split(":")
-        return event_date.replace(hour=int(hour), minute=int(minute), second=0, microsecond=0)
-
     def scroll_to_bottom(self):
         lenOfPage = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
         match=False

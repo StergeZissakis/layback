@@ -11,3 +11,11 @@ class DailyMatchRow(DBRow):
                 "url": None
                 }
 
+    def equals(self, other):
+        if self.data["home"] != other.data["home"]:
+            return False
+        if self.data["away"] != other.data["away"]:
+            return False
+        if self.data["date_time"] != other.data["date_time"]:
+            return False
+        return True

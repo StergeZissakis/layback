@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ExpectedCondition
 from DailyMatchRow import DailyMatchRow
+import Utils
 
 
 def scrapeGoalsNow():
@@ -27,9 +28,7 @@ def scrapeGoalsNow():
         match.set("away", m.find_element(By.CLASS_NAME, 'goalsaway').text.strip())
         now = datetime.now()
         matchTime = m.find_element(By.CLASS_NAME, 'goalstime').text.strip()
-        (h, m) = matchTime.split(':')
-        now.replace(hour=int(h), minute=int(m))
-        match.set("date_time", now)
+        match.set("date_time", Utils.add_time_to_date(event_date = now, event_time = matchTime))
 
         ret.append(match)
 
@@ -44,7 +43,6 @@ def scrapeFootballSuperTips():
     browser.accept_cookies('/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p')
 
     matches = page.find_elements(By.CLASS_NAME, 'poolList')
-    print(len(matches))
     for m in matches:
         browser.scroll_to_visible(m, centre=True)
         over = m.find_element(By.CLASS_NAME, 'prediresults').text.strip()
@@ -56,11 +54,9 @@ def scrapeFootballSuperTips():
         date_time_str = m.find_element(By.CLASS_NAME, "datedisp").text
         date_time = datetime.strptime(date_time_str, "%d/%m/%y %H:%M")
         match.set("date_time", date_time)
-        print(match.data)
 
         ret.append(match)
 
-    print(len(ret))
     return ret
 
 if __name__ == "__main__":
@@ -70,8 +66,23 @@ if __name__ == "__main__":
 
     browser = Browser()
 
-    #goalsNow = scrapeGoalsNow()
+    goalsNow = scrapeGoalsNow()
+    print("GoalsNow matches: " + str(len(goalsNow)))
     superTips = scrapeFootballSuperTips()
+    print("SuperTips matches: " + str(len(superTips)))
 
+    intersection = set()
+    for gn in goalsNow:
+        for st in superTips:
+            if gn.equals(st):
+                intersection.add(gn)
+
+    print("Matches of interest: " + str(len(intersection)))
+
+    #TODO: resolve URLs
+
+    for m in intersection:
+        db.
+ 
     if browser.headless:
         browser.quit()
