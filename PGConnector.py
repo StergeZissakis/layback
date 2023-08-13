@@ -1,7 +1,6 @@
 import psycopg2
 import sqlparse
-from SoccerStatsRow import SoccerStatsRow
-from MatchRow import MatchRow
+from DailyMatchRow import DailyMatchRow
 
 class PGBase:
 

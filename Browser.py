@@ -11,6 +11,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as ExpectedCondition
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 class Browser:
     headless = True
@@ -25,7 +26,7 @@ class Browser:
         if args.headed:
             self.headless = False
 
-        self.chrome_options = Options()
+        self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument('--window-size=1920,1080')
         #self.chrome_options.add_argument("--incognito")
@@ -46,8 +47,8 @@ class Browser:
         if self.headless:
             self.chrome_options.add_argument('--headless=new')
         
-        #self.driver = webdriver.Chrome("./drivers/chromedriver", chrome_options=self.chrome_options)
-        self.driver = webdriver.Chrome(chrome_options=self.chrome_options)
+        service = ChromeService(executable_path="./chromedriver")
+        self.driver = webdriver.Chrome(service=service, options=self.chrome_options, executable_path="/opt/google/chrome/chrome")
 
         # Load cookies from previous session
         '''

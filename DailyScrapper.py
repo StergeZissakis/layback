@@ -1,8 +1,8 @@
 import re
 import time
 import pprint
-from  LayBackPGConnector import LayBackPGConnector
-from LayBackBrowser import LayBackBrowser
+from  PGConnector import PGConnector
+from Browser import Browser
 from datetime import datetime
 from collections import OrderedDict
 from selenium.webdriver.common.by import By
@@ -13,7 +13,7 @@ from DailyMatchRow import DailyMatchRow
 
 def scrapeGoalsNow():
     ret = []
-    browser = LayBackBrowser()
+    browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
 
     matches = wait(page, 5).until(ExpectedCondition.presence_of_all_elements_located((By.XPATH, './div[contains(@class, "with100")]')))
@@ -38,7 +38,7 @@ def scrapeGoalsNow():
 
 def scrapeFootballSuperTips():
     ret = []
-    browser = LayBackBrowser()
+    browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
 
     return ret
