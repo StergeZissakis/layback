@@ -5,7 +5,7 @@
 -- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
 -- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
 
--- Started on 2023-08-16 04:57:13 EEST
+-- Started on 2023-08-16 06:28:35 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3104 (class 0 OID 16417)
+-- TOC entry 3102 (class 0 OID 16417)
 -- Dependencies: 200
 -- Data for Name: OddsPortalMatch; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -27,7 +27,7 @@ SET row_security = off;
 
 
 --
--- TOC entry 3107 (class 0 OID 16429)
+-- TOC entry 3105 (class 0 OID 16429)
 -- Dependencies: 203
 -- Data for Name: OddsPortalOverUnder; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -35,7 +35,7 @@ SET row_security = off;
 
 
 --
--- TOC entry 3108 (class 0 OID 16438)
+-- TOC entry 3106 (class 0 OID 16438)
 -- Dependencies: 204
 -- Data for Name: OddsSafariMatch; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -43,7 +43,7 @@ SET row_security = off;
 
 
 --
--- TOC entry 3109 (class 0 OID 16446)
+-- TOC entry 3107 (class 0 OID 16446)
 -- Dependencies: 205
 -- Data for Name: OddsSafariOverUnder; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -51,7 +51,7 @@ SET row_security = off;
 
 
 --
--- TOC entry 3111 (class 0 OID 16457)
+-- TOC entry 3109 (class 0 OID 16457)
 -- Dependencies: 207
 -- Data for Name: OverUnderHistorical; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -98,6 +98,7 @@ INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_T
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (71, '2023-03-04 18:00:00+00', 'Asteras Tripolis', 'Atromitos', 'Under', '1st Half', 2.55, 0.00, 'Lost', 0.5, 1, 1, 0, 1, 1, 0, '2.83%', '{http://www.sportingbet.gr/,https://sports.bwin.gr/el/sports?wm=5273373,https://affiliatesys.ads-tracking.com/redirect.aspx?pid=30676343&bid=8436}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (60, '2023-02-26 14:00:00+00', 'Ionikos', 'OFI', 'Under', '1st Half', 2.60, 0.00, 'Lost', 0.5, 0, 0, 0, 0, 0, 2, '2.11%', '{https://www.bet365.gr/olp/open-account?affiliate=365_01012107}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (48, '2023-02-25 15:30:00+00', 'AEK', 'Asteras Tripolis', 'Under', '2nd Half', 4.4, 0, 'Lost', 0.5, 2, 2, 1, 1, 0, 0, '4.36%', '{https://www.bet365.gr/olp/open-account?affiliate=365_01012107}');
+INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (249, '2023-05-06 18:00:00+01', 'OFI', 'Ionikos', 'Over', 'Full Time', 2.18, 0.00, 'Lost', 2.5, NULL, NULL, NULL, NULL, NULL, NULL, '4.80%', '{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (15, '2023-02-19 17:30:00+00', 'Panetolikos', 'Ionikos', 'Over', NULL, 2.5, 0, 'Lost', 2.5, 1, 1, 0, 1, 0, 0, '1.70%', '{https://www.bet365.gr/olp/open-account?affiliate=365_01012107,https://partners.opapaffiliates.gr/redirect.aspx?pid=2460&bid=1759,https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (16, '2023-02-19 17:30:00+00', 'Panetolikos', 'Ionikos', 'Over', NULL, 2.5, 0, 'Lost', 2.5, 1, 1, 0, 1, 0, 0, '1.70%', '{https://www.bet365.gr/olp/open-account?affiliate=365_01012107,https://partners.opapaffiliates.gr/redirect.aspx?pid=2460&bid=1759,https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (17, '2023-02-19 17:30:00+00', 'Panetolikos', 'Ionikos', 'Under', NULL, 2.45, 0, 'Lost', 0.5, 1, 1, 0, 1, 0, 0, '3.21%', '{https://affiliatesys.ads-tracking.com/redirect.aspx?pid=30676343&bid=8436}');
@@ -139,7 +140,6 @@ INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_T
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (87, '2023-03-05 17:30:00+00', 'OFI', 'AEK', 'Under', 'Full Time', 1.93, 0.00, 'Lost', 2.5, 0, 0, 0, 0, 1, 2, '1.78%', '{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (247, '2023-05-06 18:00:00+01', 'Lamia', 'Levadiakos', 'Over', 'Full Time', 2.65, 0.05, 'Lost', 2.5, NULL, NULL, NULL, NULL, NULL, NULL, '2.20%', '{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (248, '2023-05-06 18:00:00+01', 'Lamia', 'Levadiakos', 'Over', 'Full Time', 2.65, 0.00, 'Lost', 2.5, NULL, NULL, NULL, NULL, NULL, NULL, '2.20%', '{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}');
-INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (249, '2023-05-06 18:00:00+01', 'OFI', 'Ionikos', 'Over', 'Full Time', 2.18, 0.00, 'Lost', 2.5, NULL, NULL, NULL, NULL, NULL, NULL, '4.80%', '{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (250, '2023-05-06 18:00:00+01', 'PAS Giannina', 'Asteras Tripolis', 'Over', 'Full Time', 3.05, 0.00, 'Lost', 2.5, NULL, NULL, NULL, NULL, NULL, NULL, '3.11%', '{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (251, '2023-05-07 20:00:00+01', 'Aris Salonika', 'AEK', 'Over', 'Full Time', 2.07, 0.00, 'Lost', 2.5, NULL, NULL, NULL, NULL, NULL, NULL, '2.31%', '{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145,https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}');
 INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "Type", "Half", "Odds_bet", "Margin", won, "Goals", "Home_Team_Goals", "Guest_Team_Goals", "Home_Team_Goals_1st_Half", "Home_Team_Goals_2nd_Half", "Guest_Team_Goals_1st_Half", "Guest_Team_Goals_2nd_Half", "Payout", "Bet_link") VALUES (18, '2023-02-19 17:30:00+00', 'Panetolikos', 'Ionikos', 'Under', NULL, 3.25, 0.8, 'Lost', 0.5, 1, 1, 0, 1, 0, 0, '3.63%', '{https://www.bet365.gr/olp/open-account?affiliate=365_01012107}');
@@ -338,28 +338,39 @@ INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_T
 
 
 --
--- TOC entry 3115 (class 0 OID 16850)
+-- TOC entry 3113 (class 0 OID 16850)
 -- Dependencies: 213
 -- Data for Name: daily_over_2p5; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (235, 'Philadelphia Union', 'Inter Miami CF', '2023-08-16 00:00:00+01', NULL);
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (236, 'Man City', 'Sevilla', '2023-08-16 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.215192739');
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (237, 'Boreham Wood', 'Solihull Moors', '2023-08-16 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217030255');
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (238, 'AD San Carlos', 'Escorpiones de Belen FC', '2023-08-16 02:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217146073');
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (239, 'Mushuc Runa', 'Guayaquil City', '2023-08-16 22:30:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (329, 'AD San Carlos', 'Escorpiones de Belen FC', '2023-08-16 02:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217147875');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (330, 'Mushuc Runa', 'Guayaquil City', '2023-08-16 22:30:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217005481');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (331, 'Man City', 'Sevilla', '2023-08-16 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.215192739');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (332, 'Philadelphia Union', 'Inter Miami CF', '2023-08-16 00:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (333, 'Boreham Wood', 'Solihull Moors', '2023-08-16 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217030255');
 
 
 --
--- TOC entry 3116 (class 0 OID 16861)
+-- TOC entry 3114 (class 0 OID 16902)
 -- Dependencies: 214
 -- Data for Name: daily_over_2p5_historical; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (321, 'x', 'y', '2023-08-16 05:58:03.343672+01', 'u');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (322, 'x', 'y', '2023-08-16 05:58:03.798301+01', 'u');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (323, 'x', 'y', '2023-08-16 05:58:04.210902+01', 'u');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (321, 'x', 'y', '2023-08-16 05:58:03.343672+01', 'u');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (322, 'x', 'y', '2023-08-16 05:58:03.798301+01', 'u');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (323, 'x', 'y', '2023-08-16 05:58:04.210902+01', 'u');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (324, 'AD San Carlos', 'Escorpiones de Belen FC', '2023-08-16 02:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217147875');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (325, 'Man City', 'Sevilla', '2023-08-16 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.215192739');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (326, 'Mushuc Runa', 'Guayaquil City', '2023-08-16 22:30:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217005481');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (327, 'Boreham Wood', 'Solihull Moors', '2023-08-16 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217030255');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (328, 'Philadelphia Union', 'Inter Miami CF', '2023-08-16 00:00:00+01', NULL);
 
 
 --
--- TOC entry 3113 (class 0 OID 16586)
+-- TOC entry 3111 (class 0 OID 16586)
 -- Dependencies: 211
 -- Data for Name: soccer_statistics; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -3954,7 +3965,7 @@ INSERT INTO public.soccer_statistics (id, home_team, guest_team, date_time, goal
 
 
 --
--- TOC entry 3122 (class 0 OID 0)
+-- TOC entry 3120 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: Match_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
@@ -3963,7 +3974,7 @@ SELECT pg_catalog.setval('public."Match_id_seq"', 2616, true);
 
 
 --
--- TOC entry 3123 (class 0 OID 0)
+-- TOC entry 3121 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: OverUnderHistorical_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
@@ -3972,7 +3983,7 @@ SELECT pg_catalog.setval('public."OverUnderHistorical_id_seq"', 279, true);
 
 
 --
--- TOC entry 3124 (class 0 OID 0)
+-- TOC entry 3122 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: OverUnder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
@@ -3981,16 +3992,16 @@ SELECT pg_catalog.setval('public."OverUnder_id_seq"', 24889, true);
 
 
 --
--- TOC entry 3125 (class 0 OID 0)
+-- TOC entry 3123 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 239, true);
+SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 333, true);
 
 
 --
--- TOC entry 3126 (class 0 OID 0)
+-- TOC entry 3124 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
@@ -3998,7 +4009,7 @@ SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 239, true);
 SELECT pg_catalog.setval('public.soccer_statistics_id_seq', 4248, true);
 
 
--- Completed on 2023-08-16 04:57:14 EEST
+-- Completed on 2023-08-16 06:28:36 BST
 
 --
 -- PostgreSQL database dump complete

@@ -32,6 +32,9 @@ def scrapeGoalsNow():
 
         ret.append(match)
 
+    if browser.headless:
+        browser.quit()
+        
     return ret
     
 
@@ -57,21 +60,9 @@ def scrapeFootballSuperTips():
 
         ret.append(match)
 
-    return ret
-
-def scrapeOrbitMatches(browser, container):
-    ret = []
-
-    
-    for match in container.find_elements(By.CLASS_NAME, 'biab_group-markets-table-row'): #, 'row', 'rowMarket']): 
-        names = match.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
-        home,away = names.find_elements(By.CSS_SELECTOR, 'p')
-
-        dmr = DailyMatchRow()
-        dmr.set("home", home)
-        dmr.set("away", away)
-        ret.append(dmr)
-
+    if browser.headless:
+        browser.quit()
+        
     return ret
 
 if __name__ == "__main__":
@@ -108,14 +99,13 @@ if __name__ == "__main__":
         browser.scroll_to_visible(todaysMatches[-1], centre=True)
         todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
 
-    print('Total Matches found:' + str(len(todaysMatches)))
+    print('Total Exchange Matches found:' + str(len(todaysMatches)))
 
     urls_found = 0
     for match in todaysMatches:
         names = match.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
         home, away = names.find_elements(By.CSS_SELECTOR, 'p')
         market = match.get_attribute('data-market-id')
-        print(market)
 
         row = DailyMatchRow()
         row.set("home", home.text)
@@ -127,9 +117,9 @@ if __name__ == "__main__":
                 urls_found += 1
                 break
 
-    print("Found [" + str(urls_found) + "] out of [" + str(len(todaysMatches)) + "]")
+    print("Found [" + str(urls_found) + "] out of [" + str(len(intersection)) + "] urls")
 
-    db.delete(DailyMatchRow()) #delete all
+    db.execute("ArchiveDailyOver2p5")
 
     for m in intersection:
         db.insert(m)

@@ -22,13 +22,25 @@ class PGConnector(PGBase):
         self.pg.commit()
         cursor.close()
 
-
     def delete(self, row, where=''):
         sql = row.generate_delete(where)
         cursor = self.pg.cursor()
         cursor.execute( sql )
         self.pg.commit()
         cursor.close()
+
+
+    def execute(self, call):
+        sql = 'SELECT public."' + call + '"();'
+        cursor = self.pg.cursor()
+        cursor.execute( sql )
+        self.pg.commit()
+        cursor.close()
+
+
+
+
+
 
     def insert_or_update(self, row):
 
