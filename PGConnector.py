@@ -22,6 +22,14 @@ class PGConnector(PGBase):
         self.pg.commit()
         cursor.close()
 
+
+    def delete(self, row, where=''):
+        sql = row.generate_delete(where)
+        cursor = self.pg.cursor()
+        cursor.execute( sql )
+        self.pg.commit()
+        cursor.close()
+
     def insert_or_update(self, row):
 
         sql = row.generate_sql_insert_into_values() + ' ON CONFLICT ON CONSTRAINT ' + match.table_name + '_unique DO UPDATE SET ' + match.generate_do_update_set();

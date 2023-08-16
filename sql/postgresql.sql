@@ -5,7 +5,7 @@
 -- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
 -- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
 
--- Started on 2023-08-14 12:46:02 EEST
+-- Started on 2023-08-16 04:57:12 EEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -761,6 +761,7 @@ COPY public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "
 178	2023-04-10 13:15:00+01	Kallithea	Kifisia	Over	2nd Half	2.70	0.00	Lost	1.5	\N	\N	\N	\N	\N	\N	7.37%	{https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}
 179	2023-04-10 13:15:00+01	Kallithea	Kifisia	Over	Full Time	2.60	0.00	Lost	2.5	\N	\N	\N	\N	\N	\N	4.48%	{https://affiliatesys.ads-tracking.com/redirect.aspx?pid=30676343&bid=8436}
 180	2023-04-10 13:15:00+01	Kallithea	Kifisia	Under	1st Half	2.26	0.00	Lost	0.5	\N	\N	\N	\N	\N	\N	7.01%	{https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}
+39	2023-02-24 18:00:00+00	Volos	Lamia	Over	1st Half	2.15	0	Won	2.5	1	1	0	1	1	0	1.73%	{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145}
 160	2023-04-02 19:00:00+01	Olympiacos	Aris Salonika	Under	2nd Half	3.50	0.00	Lost	0.5	2	2	1	1	0	2	5.21%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
 152	2023-04-02 16:00:00+01	Panathinaikos	Volos	Under	2nd Half	4.50	0.00	Lost	0.5	0	0	0	0	0	0	5.26%	{https://affiliatesys.ads-tracking.com/redirect.aspx?pid=30676343&bid=8436}
 153	2023-04-02 16:00:00+01	Panathinaikos	Volos	Under	Full Time	2.10	0.00	Lost	2.5	0	0	0	0	0	0	3.95%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
@@ -780,7 +781,6 @@ COPY public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "
 93	2023-03-05 18:30:00+00	PAOK	Ionikos	Under	Full Time	1.95	0.00	Lost	2.5	6	0	4	2	0	0	3.26%	{https://affiliatesys.ads-tracking.com/redirect.aspx?pid=30676343&bid=8436,https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/,https://www.bet365.gr/olp/open-account?affiliate=365_01012107,https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}
 74	2023-03-05 14:00:00+00	Olympiacos	Levadiakos	Under	1st Half	3.60	0.00	Lost	0.5	6	6	2	4	0	0	2.88%	{https://affiliatesys.ads-tracking.com/redirect.aspx?pid=30676343&bid=8436}
 262	2023-05-13 17:00:00+01	Panetolikos	OFI	Over	Full Time	2.11	0.00	Lost	2.5	0	0	0	0	0	2	2.57%	{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}
-39	2023-02-24 18:00:00+00	Volos	Lamia	Over	1st Half	2.15	0	Won	2.5	1	1	0	1	1	0	1.73%	{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145}
 162	2023-04-08 15:00:00+01	Atromitos	PAS Giannina	Over	Full Time	2.50	0.00	Lost	2.5	1	1	1	0	1	0	3.56%	{https://www.bet365.gr/olp/open-account?affiliate=365_01012107,https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/,https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}
 161	2023-04-02 19:00:00+01	Olympiacos	Aris Salonika	Under	Full Time	1.72	0.00	Lost	2.5	2	2	1	1	0	2	3.47%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
 154	2023-04-02 16:00:00+01	Panathinaikos	Volos	Under	Full Time	2.10	0.00	Lost	2.5	0	0	0	0	0	0	3.95%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
@@ -811,12 +811,12 @@ COPY public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "
 202	2023-04-22 19:00:00+01	Volos	Aris Salonika	Under	Full Time	1.78	0.00	Lost	2.5	\N	\N	\N	\N	\N	\N	3.66%	{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}
 205	2023-04-22 19:15:00+01	Levadiakos	Ionikos	Over	Full Time	2.65	0.00	Lost	2.5	2	2	0	2	1	1	2.20%	{}
 210	2023-04-23 20:00:00+01	PAOK	Panathinaikos	Over	Full Time	2.70	0.00	Lost	2.5	1	1	0	1	1	1	2.34%	{https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}
+114	2023-03-19 15:30:00+00	Volos	Olympiacos	Over	1st Half	1.78	0.00	Won	2.5	0	0	0	0	2	1	1.61%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
 203	2023-04-22 19:15:00+01	Lamia	Atromitos	Over	Full Time	2.40	0.05	Lost	2.5	1	1	0	1	0	0	3.28%	{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}
 212	2023-04-23 21:00:00+01	Olympiacos	AEK	Over	Full Time	2.10	0.00	Lost	2.5	1	3	0	1	1	2	3.37%	{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145}
 207	2023-04-22 19:15:00+01	PAS Giannina	Panetolikos	Over	Full Time	2.44	0.00	Lost	2.5	3	2	1	2	1	1	4.47%	{https://record.affiliates.betshop.gr/_xVrm1kU5pcRLcRLGwHoTKWNd7ZgqdRLk/1/}
 257	2023-05-09 00:00:00+01	Aris Salonika	AEK	Over	Full Time	2.05	0.00	Lost	2.5	\N	\N	\N	\N	\N	\N	2.76%	{https://rt.novibet.partners/o/w3W92s?lpage=2e4NMs&site_id=1000145}
 208	2023-04-23 17:30:00+01	Volos	Aris Salonika	Over	Full Time	2.09	0.00	Lost	2.5	0	0	0	0	1	2	3.87%	{https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}
-114	2023-03-19 15:30:00+00	Volos	Olympiacos	Over	1st Half	1.78	0.00	Won	2.5	0	0	0	0	2	1	1.61%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
 206	2023-04-22 19:15:00+01	OFI	Asteras Tripolis	Over	Full Time	2.50	0.00	Lost	2.5	1	1	1	0	1	0	1.70%	{https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}
 258	2023-05-09 00:00:00+01	Aris Salonika	AEK	Under	Full Time	1.85	0.00	Lost	2.5	\N	\N	\N	\N	\N	\N	2.76%	{https://gml-grp.com/C.ashx?btag=a_11671b_1371c_&affid=3817&siteid=11671&adid=1371&c=}
 211	2023-04-23 20:00:00+01	PAOK	Panathinaikos	Over	Full Time	2.70	0.00	Lost	2.5	1	1	0	1	1	1	2.34%	{https://record.betssongroupaffiliates.com/_WbYFYUdzQPOWzcyEjjoakGNd7ZgqdRLk/1/}
@@ -873,6 +873,11 @@ COPY public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "
 --
 
 COPY public.daily_over_2p5 (id, home, away, date_time, url) FROM stdin;
+235	Philadelphia Union	Inter Miami CF	2023-08-16 00:00:00+01	\N
+236	Man City	Sevilla	2023-08-16 20:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.215192739
+237	Boreham Wood	Solihull Moors	2023-08-16 19:45:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217030255
+238	AD San Carlos	Escorpiones de Belen FC	2023-08-16 02:45:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217146073
+239	Mushuc Runa	Guayaquil City	2023-08-16 22:30:00+01	\N
 \.
 
 
@@ -883,98 +888,6 @@ COPY public.daily_over_2p5 (id, home, away, date_time, url) FROM stdin;
 --
 
 COPY public.daily_over_2p5_historical (id, home, away, date_time, url) FROM stdin;
-93	Pardubice	MFK Karvina	2023-08-13 14:00:00+01	\N
-94	Puszcza Niepolomice	Legia Warsaw	2023-08-13 16:30:00+01	\N
-95	Hobro IK	Vendsyssel FF	2023-08-13 14:00:00+01	\N
-96	Valerenga	Haugesund	2023-08-13 18:15:00+01	\N
-97	Bryne	Hodd	2023-08-13 16:00:00+01	\N
-98	Mlada Boleslav	Slavia Prague	2023-08-13 14:00:00+01	\N
-99	Al Fateh SC	Al Taawon Buraidah	2023-08-13 19:00:00+01	\N
-100	Iwaki SC	Ventforet Kofu	2023-08-13 10:00:00+01	\N
-101	Stal Rzeszow	Arka Gdynia	2023-08-13 14:00:00+01	\N
-102	Aalesund	HamKam	2023-08-13 16:00:00+01	\N
-103	Kongsvinger	Asane	2023-08-13 16:00:00+01	\N
-104	Skeid	Raufoss	2023-08-13 16:00:00+01	\N
-105	Sandnes Ulf	Moss	2023-08-13 16:00:00+01	\N
-106	Mjondalen	Ranheim	2023-08-13 16:00:00+01	\N
-107	Vejle	Midtjylland	2023-08-13 13:00:00+01	\N
-108	Brondby	Lyngby	2023-08-13 15:00:00+01	\N
-109	Kristiansund BK	FK Jerv	2023-08-13 16:00:00+01	\N
-110	Varnsdorf	Sparta Prague B	2023-08-13 16:00:00+01	\N
-111	Randers FC	FC Nordsjaelland	2023-08-13 13:00:00+01	\N
-112	Termalica BB Nieciecza	Motor Lublin	2023-08-13 17:00:00+01	\N
-113	Ceske Budejovice	Viktoria Plzen	2023-08-13 17:00:00+01	\N
-114	IK Start	Sogndal	2023-08-13 16:00:00+01	\N
-115	AGF Aarhus	Silkeborg IF	2023-08-13 17:00:00+01	\N
-116	FC Lok Leipzig	Eintracht Frankfurt	2023-08-13 14:30:00+01	\N
-117	Cerro Porteno	Olimpia Asuncion	2023-08-13 21:30:00+01	\N
-118	Vysocina Jihlava	FC Silon Taborsko	2023-08-13 16:00:00+01	\N
-119	Delfin SC	Barcelona Guayaquil	2023-08-13 00:00:00+01	\N
-120	Naestved IF	Kolding IF	2023-08-13 12:00:00+01	\N
-121	AZ	Go Ahead Eagles	2023-08-13 13:30:00+01	\N
-122	FC Astoria Walldorf	Union Berlin	2023-08-13 17:00:00+01	\N
-123	Feyenoord	Fortuna Sittard	2023-08-13 13:30:00+01	\N
-124	Sporting Cristal	Deportivo Garcilaso	2023-08-13 19:00:00+01	\N
-125	Rot-Weiss Essen	Hamburg	2023-08-13 12:00:00+01	\N
-126	Chelsea	Liverpool	2023-08-13 16:30:00+01	\N
-127	NEC	Excelsior	2023-08-13 11:15:00+01	\N
-128	Lech Poznan	Jagiellonia Bialystok	2023-08-13 19:00:00+01	\N
-129	Villarreal	Real Betis	2023-08-13 18:30:00+01	\N
-130	Pogon Szczecin	Radomiak Radom	2023-08-13 14:00:00+01	\N
-131	Rot-Weiss Koblenz	Kaiserslautern	2023-08-13 14:30:00+01	\N
-132	Ferencvarosi TC	Puskas Academy	2023-08-13 17:45:00+01	\N
-133	Unterhaching	Augsburg	2023-08-13 14:30:00+01	\N
-134	Monza	AC Reggiana	2023-08-13 20:15:00+01	\N
-135	Cottbus	Paderborn	2023-08-13 17:00:00+01	\N
-136	Salernitana	Ternana	2023-08-13 16:45:00+01	\N
-137	FV Illertissen	Fortuna Dusseldorf	2023-08-13 14:30:00+01	\N
-138	Kecskemeti TE	MOL Fehervar FC	2023-08-13 20:00:00+01	\N
-139	Benfica B	CD Mafra	2023-08-13 18:00:00+01	\N
-140	FC Porto B	Tondela	2023-08-13 11:00:00+01	\N
-141	Omiya Ardija	Fagiano Okayama	2023-08-13 11:00:00+01	\N
-142	Almere City FC	FC Twente	2023-08-13 15:45:00+01	\N
-143	Al Riyadh	Al Wahda Mecca	2023-08-13 19:00:00+01	\N
-144	FSV Frankfurt	Hansa Rostock	2023-08-13 17:00:00+01	\N
-145	FC Eindhoven	Willem II	2023-08-13 11:15:00+01	\N
-146	Municipal Perez Zeledon	Alajuelense	2023-08-13 23:00:00+01	\N
-147	VVV	Maastricht	2023-08-13 15:45:00+01	\N
-148	Lillestrom	Viking FK	2023-08-13 16:00:00+01	\N
-149	Brest	Lens	2023-08-13 12:00:00+01	\N
-150	Aberdeen	Celtic	2023-08-13 12:00:00+01	\N
-151	Strasbourg	Lyon	2023-08-13 19:45:00+01	\N
-152	Basel	Lausanne Sports	2023-08-13 13:15:00+01	\N
-153	Sirius	Kalmar FF	2023-08-13 14:00:00+01	\N
-154	Oakleigh Cannons	Melbourne City	2023-08-13 05:00:00+01	\N
-155	Clermont Foot	Monaco	2023-08-13 14:00:00+01	\N
-156	Hammarby	Elfsborg	2023-08-13 16:30:00+01	\N
-157	Charleroi	Standard Liege	2023-08-13 17:30:00+01	\N
-158	Nantes	Toulouse	2023-08-13 14:00:00+01	\N
-159	BK Hacken	Varbergs BoIS FC	2023-08-13 16:30:00+01	\N
-160	Westerlo	Gent	2023-08-13 18:15:00+01	\N
-161	FC Salzburg	FK Austria Vienna	2023-08-13 16:00:00+01	\N
-162	Fenerbahce	Gaziantep FK	2023-08-13 19:45:00+01	\N
-163	Adana Demirspor	Caykur Rizespor	2023-08-13 19:45:00+01	\N
-164	Lucerne	Young Boys	2023-08-13 15:30:00+01	\N
-165	Sydney FC	Central Coast Mariners	2023-08-13 06:00:00+01	\N
-166	Rapid Vienna	Hartberg	2023-08-13 16:00:00+01	\N
-167	Wuhan Three Towns	Shanghai Shenhua	2023-08-13 12:35:00+01	\N
-168	Eupen	Club Brugge	2023-08-13 15:00:00+01	\N
-169	Västerås SK FK	Helsingborg	2023-08-13 14:00:00+01	\N
-170	GIF Sundsvall	Trelleborgs FF	2023-08-13 14:00:00+01	\N
-171	Cercle Brugge	Genk	2023-08-13 15:00:00+01	\N
-172	Lugano	Yverdon Sport FC	2023-08-13 15:30:00+01	\N
-173	Genk II	SK Beveren	2023-08-13 12:30:00+01	\N
-174	KV Oostende	Lommel	2023-08-13 15:00:00+01	\N
-175	Zulte-Waregem	Francs Borains	2023-08-13 18:15:00+01	\N
-176	Bohemians 1905	Slovacko	2023-08-13 14:00:00+01	\N
-177	Erzurum BB	Bandirmaspor	2023-08-13 17:15:00+01	\N
-178	Sigma Olomouc	FK Teplice	2023-08-13 14:00:00+01	\N
-179	Levski Sofia	Botev Vratsa	2023-08-13 16:45:00+01	\N
-180	Brentford	Tottenham	2023-08-13 14:00:00+01	\N
-181	Shandong Taishan	Cangzhou Mighty Lions	2023-08-13 12:35:00+01	\N
-182	Dalian Pro	Shenzhen	2023-08-13 12:35:00+01	\N
-183	Nantong Zhiyun	Beijing Guoan	2023-08-13 12:35:00+01	\N
-184	Istra 1961	NK Osijek	2023-08-13 17:55:00+01	\N
 \.
 
 
@@ -4608,7 +4521,7 @@ SELECT pg_catalog.setval('public."OverUnder_id_seq"', 24889, true);
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 184, true);
+SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 239, true);
 
 
 --
@@ -4911,7 +4824,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-08-14 12:46:02 EEST
+-- Completed on 2023-08-16 04:57:13 EEST
 
 --
 -- PostgreSQL database dump complete

@@ -253,14 +253,6 @@ class Browser:
             self.sleep_for_millis_random(150)
         return self.reset_page_to_current()
 
-    def ratio_odds_to_decimal(self, odds):
-        if odds.find('/') == -1:
-            return odds
-
-        (nom, denom) = odds.split('/')
-        decimal = (int(nom) / int(denom) + 1)
-        return decimal
-
     def scroll_to_bottom(self):
         lenOfPage = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
         match=False

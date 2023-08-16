@@ -50,3 +50,11 @@ class DBRow:
             ret = ret + ' ' + k + '="' + v + '" and'
         ret = ret[:-4] + ';'
         return ret
+
+    def generate_delete(self, where=''):
+        ret = 'DELETE FROM ' + self.table_name
+        if len(where):
+            ret += ' ' + where
+        ret += ";"
+        return ret
+
