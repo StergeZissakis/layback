@@ -5,7 +5,7 @@
 -- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
 -- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
 
--- Started on 2023-08-16 06:28:35 BST
+-- Started on 2023-08-17 16:00:29 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -343,11 +343,29 @@ INSERT INTO public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_T
 -- Data for Name: daily_over_2p5; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (329, 'AD San Carlos', 'Escorpiones de Belen FC', '2023-08-16 02:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217147875');
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (330, 'Mushuc Runa', 'Guayaquil City', '2023-08-16 22:30:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217005481');
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (331, 'Man City', 'Sevilla', '2023-08-16 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.215192739');
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (332, 'Philadelphia Union', 'Inter Miami CF', '2023-08-16 00:00:00+01', NULL);
-INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (333, 'Boreham Wood', 'Solihull Moors', '2023-08-16 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217030255');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (358, 'Debreceni VSC', 'Rapid Vienna', '2023-08-17 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217028151');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (359, 'Damac FC', 'Al Riyadh', '2023-08-17 16:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (360, 'Pogon Szczecin', 'Gent', '2023-08-17 17:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.216982362');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (361, 'NK Maribor', 'Fenerbahce', '2023-08-17 19:15:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217026380');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (362, 'CS Uruguay de Coronado', 'Sporting San Jose', '2023-08-17 03:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (363, 'FK Austria Vienna', 'Legia Warsaw', '2023-08-17 18:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217024730');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (364, 'NK Osijek', 'Adana Demirspor', '2023-08-17 19:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217025162');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (365, 'Hearts', 'Rosenborg', '2023-08-17 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217026880');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (366, 'KA Akureyri', 'Club Brugge', '2023-08-17 19:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217025054');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (367, 'Lucerne', 'Hibernian', '2023-08-17 19:45:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (368, 'HNK Rijeka', 'B36 Torshavn', '2023-08-17 19:15:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217026152');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (369, 'Libertad FC', 'Delfin SC', '2023-08-17 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217017775');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (370, 'Dnipro-1', 'Slavia Prague', '2023-08-17 19:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.216982254');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (371, 'Gzira Utd', 'Viktoria Plzen', '2023-08-17 18:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.216983653');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (372, 'Riga FC', 'FC Twente', '2023-08-17 18:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217024622');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (373, 'Breidablik', 'Zrinjski Mostar', '2023-08-17 18:30:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217012569');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (374, 'Ferencvarosi TC', 'Hamrun Spartans', '2023-08-17 18:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (375, 'Pyunik Yerevan', 'Bodo/Glimt', '2023-08-17 17:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (376, 'Genk', 'Olympiakos', '2023-08-17 19:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217014431');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (377, 'BK Hacken', 'FK Zalgiris Vilnius', '2023-08-17 18:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217012797');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (378, 'Spartak Trnava', 'Lech Poznan', '2023-08-17 19:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217025270');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (379, 'Deportivo Binacional', 'Cesar Vallejo', '2023-08-17 21:15:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217147965');
+INSERT INTO public.daily_over_2p5 (id, home, away, date_time, url) VALUES (357, 'Lincoln Red Imps FC', 'KF Ballkani', '2023-08-17 17:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217024514');
 
 
 --
@@ -367,6 +385,11 @@ INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VA
 INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (326, 'Mushuc Runa', 'Guayaquil City', '2023-08-16 22:30:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217005481');
 INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (327, 'Boreham Wood', 'Solihull Moors', '2023-08-16 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217030255');
 INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (328, 'Philadelphia Union', 'Inter Miami CF', '2023-08-16 00:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (329, 'AD San Carlos', 'Escorpiones de Belen FC', '2023-08-16 02:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217147875');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (330, 'Mushuc Runa', 'Guayaquil City', '2023-08-16 22:30:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217005481');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (331, 'Man City', 'Sevilla', '2023-08-16 20:00:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.215192739');
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (332, 'Philadelphia Union', 'Inter Miami CF', '2023-08-16 00:00:00+01', NULL);
+INSERT INTO public.daily_over_2p5_historical (id, home, away, date_time, url) VALUES (333, 'Boreham Wood', 'Solihull Moors', '2023-08-16 19:45:00+01', 'https://www.orbitxch.com/customer/sport/1/market/1.217030255');
 
 
 --
@@ -3997,7 +4020,7 @@ SELECT pg_catalog.setval('public."OverUnder_id_seq"', 24889, true);
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 333, true);
+SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 379, true);
 
 
 --
@@ -4009,7 +4032,7 @@ SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 333, true);
 SELECT pg_catalog.setval('public.soccer_statistics_id_seq', 4248, true);
 
 
--- Completed on 2023-08-16 06:28:36 BST
+-- Completed on 2023-08-17 16:00:30 BST
 
 --
 -- PostgreSQL database dump complete

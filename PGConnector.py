@@ -38,9 +38,20 @@ class PGConnector(PGBase):
         cursor.close()
 
 
+    def select(self, sql):
+        cursor = self.pg.cursor()
+        cursor.execute( sql )
+        ret = cursor.fetchall()
+        cursor.close()
+        return ret
 
-
-
+    def archive(self, table_name, id):
+        insert = 'INSERT INTO %s_historical SELECT * FROM %s WHERE id = %s;' % (table_name + "_historical", table_name, id)
+        delete = 'DELETE FROM %s WHERE id = %s' % (table_name, id)
+        for sql in (insert, delete):
+            cursor = self.pg.cursor()
+            cursor.execute( sql )
+            cursor.close()
 
     def insert_or_update(self, row):
 
