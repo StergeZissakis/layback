@@ -46,7 +46,7 @@ class PGConnector(PGBase):
         return ret
 
     def archive(self, table_name, id):
-        insert = 'INSERT INTO %s_historical SELECT * FROM %s WHERE id = %s;' % (table_name + "_historical", table_name, id)
+        insert = 'INSERT INTO %s_historical SELECT * FROM %s WHERE id = %s;' % (table_name, table_name, id)
         delete = 'DELETE FROM %s WHERE id = %s' % (table_name, id)
         for sql in (insert, delete):
             cursor = self.pg.cursor()

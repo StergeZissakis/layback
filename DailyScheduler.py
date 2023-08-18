@@ -25,4 +25,9 @@ if __name__ == "__main__":
             p = Process(target=monitorMatch, args=(mid,))
             p.start()
             print("Spawn match id [%s] @ [%s] with starting time [%s]" % (mid, now, dateTime))
-            db.archive(dummy.table_name, mid)
+    
+
+
+
+
+    #db.archive(dummy.table_name, mid)

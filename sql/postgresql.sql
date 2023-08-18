@@ -5,7 +5,7 @@
 -- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
 -- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
 
--- Started on 2023-08-17 16:00:28 BST
+-- Started on 2023-08-18 05:39:13 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -871,29 +871,51 @@ COPY public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "
 --
 
 COPY public.daily_over_2p5 (id, home, away, date_time, url) FROM stdin;
-358	Debreceni VSC	Rapid Vienna	2023-08-17 20:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217028151
-359	Damac FC	Al Riyadh	2023-08-17 16:00:00+01	\N
-360	Pogon Szczecin	Gent	2023-08-17 17:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216982362
-361	NK Maribor	Fenerbahce	2023-08-17 19:15:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217026380
-362	CS Uruguay de Coronado	Sporting San Jose	2023-08-17 03:00:00+01	\N
-363	FK Austria Vienna	Legia Warsaw	2023-08-17 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217024730
-364	NK Osijek	Adana Demirspor	2023-08-17 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217025162
-365	Hearts	Rosenborg	2023-08-17 19:45:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217026880
-366	KA Akureyri	Club Brugge	2023-08-17 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217025054
-367	Lucerne	Hibernian	2023-08-17 19:45:00+01	\N
-368	HNK Rijeka	B36 Torshavn	2023-08-17 19:15:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217026152
-369	Libertad FC	Delfin SC	2023-08-17 20:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217017775
-370	Dnipro-1	Slavia Prague	2023-08-17 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216982254
-371	Gzira Utd	Viktoria Plzen	2023-08-17 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216983653
-372	Riga FC	FC Twente	2023-08-17 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217024622
-373	Breidablik	Zrinjski Mostar	2023-08-17 18:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217012569
-374	Ferencvarosi TC	Hamrun Spartans	2023-08-17 18:00:00+01	\N
-375	Pyunik Yerevan	Bodo/Glimt	2023-08-17 17:00:00+01	\N
-376	Genk	Olympiakos	2023-08-17 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217014431
-377	BK Hacken	FK Zalgiris Vilnius	2023-08-17 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217012797
-378	Spartak Trnava	Lech Poznan	2023-08-17 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217025270
-379	Deportivo Binacional	Cesar Vallejo	2023-08-17 21:15:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217147965
-357	Lincoln Red Imps FC	KF Ballkani	2023-08-17 17:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217024514
+380	Utsiktens BK	Västerås SK FK	2023-08-18 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216931805
+381	Metz	Marseille	2023-08-18 20:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216940204
+382	Suwon Bluewings	Jeju United	2023-08-18 11:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217020664
+383	NAC	AZ Reserves	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217055520
+384	AaB	Naestved IF	2023-08-18 17:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217023132
+385	JJK	MP	2023-08-18 16:30:00+01	\N
+386	Defensa y Justicia	Godoy Cruz	2023-08-18 20:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216920673
+387	Antalyaspor	Konyaspor	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216551896
+388	Zaglebie Lubin	Puszcza Niepolomice	2023-08-18 17:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216995755
+389	Telstar	Cambuur Leeuwarden	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217055068
+390	B93 Copenhagen	FC Fredericia	2023-08-18 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217023222
+391	OH Leuven	Antwerp	2023-08-18 19:45:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216995524
+392	Hvidovre IF	FC Copenhagen	2023-08-18 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216976289
+393	HIFK	EIF	2023-08-18 16:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216992799
+394	FCV Dender EH	Anderlecht II	2023-08-18 19:00:00+01	\N
+395	AC Horsens	FC Helsingor	2023-08-18 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217023402
+396	Maritimo	AVS	2023-08-18 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217076650
+397	Breitenrain	Young Boys	2023-08-18 18:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217219753
+398	Maastricht	FC Eindhoven	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217055428
+399	Willem II	FC Dordrecht	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217055338
+400	LDU Quito	El Nacional	2023-08-18 23:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217020340
+401	Deportivo Maldonado	Plaza Colonia	2023-08-18 23:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217152154
+402	ADO Den Haag	Roda JC	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217055248
+403	Alianza Atletico	Union Comercio	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217227087
+404	Top Oss	PSV Reserves	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217054888
+405	Wisla Krakow	Odra Opole	2023-08-18 19:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216981097
+406	Lommel	Club Brugge II	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217071942
+407	Al Akhdoud	Al Fateh SC	2023-08-18 16:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217213019
+408	Gornik Zabrze	Widzew Lodz	2023-08-18 19:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216992443
+409	Puskas Academy	MOL Fehervar FC	2023-08-18 17:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217076028
+410	Leeds	West Brom	2023-08-18 20:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216838262
+411	Werder Bremen	Bayern Munich	2023-08-18 19:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.215651423
+412	Zalaegerszegi TE	Diosgyori VTK	2023-08-18 19:15:00+01	\N
+413	Kolding IF	Sonderjyske	2023-08-18 18:00:00+01	\N
+414	Al-Nassr Riyadh	Al Taawon Buraidah	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217115944
+415	Etoile Carouge	FC Sion	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217218909
+416	Wehen SV	Karlsruher SC	2023-08-18 17:30:00+01	\N
+417	Zhejiang	Qingdao Hainiu	2023-08-18 12:35:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217027536
+418	FC Emmen	VVV	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217054978
+419	Istanbulspor	Kayserispor	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217208560
+420	Heracles	NEC	2023-08-18 19:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216876851
+421	Puntarenas	AD Carmelita	2023-08-18 03:00:00+01	\N
+422	Kaiserslautern	Elversberg	2023-08-18 17:30:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216610184
+423	Sandhausen	Dynamo Dresden	2023-08-18 18:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.216995845
+424	Shanghai Port	Meizhou Hakka	2023-08-18 12:35:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217110456
 \.
 
 
@@ -920,6 +942,7 @@ COPY public.daily_over_2p5_historical (id, home, away, date_time, url) FROM stdi
 331	Man City	Sevilla	2023-08-16 20:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.215192739
 332	Philadelphia Union	Inter Miami CF	2023-08-16 00:00:00+01	\N
 333	Boreham Wood	Solihull Moors	2023-08-16 19:45:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217030255
+357	Lincoln Red Imps FC	KF Ballkani	2023-08-17 17:00:00+01	https://www.orbitxch.com/customer/sport/1/market/1.217191417
 \.
 
 
@@ -4553,7 +4576,7 @@ SELECT pg_catalog.setval('public."OverUnder_id_seq"', 24889, true);
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 379, true);
+SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 424, true);
 
 
 --
@@ -4848,7 +4871,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-08-17 16:00:29 BST
+-- Completed on 2023-08-18 05:39:13 BST
 
 --
 -- PostgreSQL database dump complete

@@ -28,7 +28,7 @@
 
 #0  7 * * * cd /home/bettor/projects/bettor/logs;./backup_logs.bash > /dev/null 2>&1
 
-* 7  * * * sleep $((RANDOM%3600)); cd /home/bettor/projects/layback;./runDailyScraper.bash >> logs/cron.log 2>&1
+* 5  * * * sleep $((RANDOM%3600)); cd /home/bettor/projects/layback;./runDailyScraper.bash >> logs/cron.log 2>&1
 
-#15 * * * * cd /home/bettor/projects/layback;./runDailyScheduler.bash >> log/cron.log 2>&1
+00,15,30,45 * * * * cd /home/bettor/projects/layback;./runDailyScheduler.bash >> log/cron.log 2>&1
 
