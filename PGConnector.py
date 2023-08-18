@@ -53,6 +53,17 @@ class PGConnector(PGBase):
             cursor.execute( sql )
             cursor.close()
 
+    def execSql(self, sql):
+        cursor =- self.pg.cursor()
+        cursor.execute(sql)
+        cusrsor.close()
+
+
+
+
+
+
+
     def insert_or_update(self, row):
 
         sql = row.generate_sql_insert_into_values() + ' ON CONFLICT ON CONSTRAINT ' + match.table_name + '_unique DO UPDATE SET ' + match.generate_do_update_set();
