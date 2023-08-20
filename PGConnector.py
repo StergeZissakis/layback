@@ -54,7 +54,7 @@ class PGConnector(PGBase):
             cursor.close()
 
     def execSql(self, sql):
-        cursor =- self.pg.cursor()
+        cursor = self.pg.cursor()
         cursor.execute(sql)
         cusrsor.close()
 

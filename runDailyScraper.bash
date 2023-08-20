@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export DISPLAY=:0
-source ../../env/bin/activate
+source ./env/bin/activate
 
 
 echo "*** Running Daily Scraper Stats..."

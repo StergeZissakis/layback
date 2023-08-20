@@ -1,4 +1,5 @@
 import time
+import difflib
 from selenium.webdriver.common.by import By
 from datetime import datetime, date, timedelta
 from selenium.webdriver.support.wait import WebDriverWait
@@ -17,13 +18,9 @@ def ratio_odds_to_decimal(self, odds):
     return decimal
 
 def replaceSpecialChars(s):
-    return s.translate ({ord(c): " " for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+"}).strip()
+    return s.translate ({ord(c): '' for c in " !@#$%^&*()[]{};:,./<>?\|`~-=_+"}).strip()
 
 def compare_team_names(a, b):
-    ca, cb = replaceSpecialChars(a), replaceSpecialChars(b)
-    pa, pb = a.split(' '), b.split(' ')
-    matches = 0
-    for s in pa:
-        if s in pb:
-            matches += 1
-    return matches
+    #ca = replaceSpecialChars(a).strip().lower()
+    #cb = replaceSpecialChars(b).strip().lower()
+    return difflib.SequenceMatcher(a.lower(), b.lower()).ratio() > 0.8

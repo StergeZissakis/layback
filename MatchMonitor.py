@@ -22,24 +22,11 @@ def sleep(x=60):
 def getMatchTime(page):
     while check_exists_by_xpath(page, '//div[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[2]/div[2]') is False:
         sleep()
+
     rootElement = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]')
-    while rootElement.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[2]') is None:
-        sleep()
+    tm = rootElement.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[2]').text.split("'")[0]
 
-    tm = rootElement.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[2]').text
-    if ':' in tm:
-        parts = tm.split(":")
-    if '\'' in tm:
-        parts = tm.split("'").split(":")
-
-    if len(parts) == 1:
-        hour = None
-        minute = parts[0]
-    if len(parts) > 1:
-        hour = parts[1]
-        minute = parts[0]
-
-    return minute, hour
+    return tm
 
 def getTotalGoals(page):
     root = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]')
@@ -47,76 +34,83 @@ def getTotalGoals(page):
     away_goals = root.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[1]/span[3]').text
     return int(home_goals) + int(away_goals)
 
+ou1p5Tab = None
+ou2p5Tab = None
+def expandTabsOfInterest(page, browser):
+    global ou2p5Tab, ou1p5Tab
+    for i in range(1, 10):
+        tab = None
+        try:
+            tab = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i)
+        except:
+            continue
+        tabText = tab.text.strip()
+        if tabText == 'Over/Under 2.5 Goals':
+            browser.scroll_move_left_click(tab)
+            ou2p5Tab = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div' % i)
+        if tabText == 'Over/Under 1.5 Goals':
+            browser.scroll_move_left_click(tab)
+            ou1p5Tab = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div' % i)
+
+
+def logBet(db, mid, layback, overUnder, goals, amount):
+    sql = "INSERT INTO public.over2p5bets(match_id, action, OverUnder, Goals, odds, amount) VALUES (%s, %s, %s, %s, %s, %s)" % (mid, layBack, overUnder, goals, odds, amount)
+    db.execSql(sql) 
 
 def layUnder1p5at1p5(page, db, mid):
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Lay', 'Under', 1.5, 1.50, 50)
-    db.execSql(sql) 
-    print('%s betted Lay Under 1.5 @ 1.5odds' % datetime.now())
-    print('%s SQL: %s' % sql)
+    logBet(db, mid, 'Lay', 'Under', 1.5, 1.5, 50)
+    print('[%s] betted Lay Under 1.5 @ 1.5 odds' % mid)
 
 def layUnder2p5at1p5(page, db, mid):
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Lay', 'Under', 2.5, 1,50, 50)
-    db.execSql(sql) 
-    print('%s betted Lay Under 2.5 @ 1.5odds' % datetime.now())
-    print('%s SQL: %s' % sql)
+    logBet(db, mid, 'Lay', 'Under', 2.5, 1.5, 50)
+    print('[%s] betted Lay Under 2.5 @ 1.5odds' % mid)
 
 def backUnder1p5at1p5(page, db, mid):
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Back', 'Under', 1.5, 1,50, 50)
-    db.execSql(sql) 
-    print('%s betted Back Under 1.5 @ 1.5odds' % datetime.now())
+    logBet(db, mid, 'Back', 'Under', 1.5, 1.5, 50)
+    print('[%s] betted Back Under 1.5 @ 1.5odds' % mid)
 
 def backUnder2p5at1p5(page, db, mid):
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Back', 'Under', 2.5, 1,50, 50)
-    db.execSql(sql) 
-    print('%s betted Back Under 2.5 @ 1.5odds' % datetime.now())
+    logBet(db, mid, 'Back', 'Under', 2.5, 1.5, 50)
+    print('[%s] betted Back Under 2.5 @ 1.5odds' % mid)
 
 def backUnder1p5(page, db, mid):
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Back', 'Under', 1.5, odds, 50)
-    db.execSql(sql) 
-    print('%s betted Back Under 1.5 @ any odds' % datetime.now())
+    odds = getBackUnder1p5Odds(page)
+    logBet(db, mid, 'Back', 'Under', 1.5, odds, 50)
+    print('[%s] betted Back Under 1.5 @ any odds [%s]' % (mid, odds))
 
 def getLayUnder1p5Odds(page):
-    root = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]')
-    tabs = root.find_elements(By.XPATH, './div[@data-market-prices="true"]')
-    for t in tabs:
-        if t.text == 'Over/Under 1.5 Goals':
-            browser.scroll_move_left_click(t)
-            return t.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[2]/button').text
-    return None
+    global ou1p5Tab
+    return float(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button').text)
 
 def layUnder1p5(page, db, mid):
     odds = getLayUnder1p5Odds(page)
-    print('%s Lay Under 1.5 odds [%s]' % (datetime.now(), str(odds)))
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Lay', 'Under', 1.5, odds, 50)
-    db.execSql(sql) 
-    return float(odds)
+    logBet(db, mid, 'Lay', 'Under', 1.5, odds, 50)
+    print("[%s] betted Lay Under 1.5 @ any odds [%s]" % (mind, odds))
 
-def getLayUnder2p5Odds(page, db, mid):
-    root = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]')
-    tabs = root.find_elements(By.XPATH, './div[@data-market-prices="true"]')
-    for t in tabs:
-        if t.text == 'Over/Under 2.5 Goals':
-            browser.scroll_move_left_click(t)
-            return t.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[2]/button').text
-    return None
+def getLayUnder2p5Odds(page):
+    global ou2p5Tab
+    return float(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
 def backUnder2p5(page, db, mid):
-    odds = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]').find_element(By.XPATH, './div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]') .text
-    print('%s Back Under 2.5 at any odds' % (datetime.now(), str(odds)))
-    sql = "INSERT INTO over2p5bets(match_id, type, over_under, ratio, odds, amount) VALUES (%s, %s, %s, %s)" % (mid, 'Back', 'Under', 2.5, odds, 50)
-    db.execSql(sql) 
+    odds = getBackUnder2p5Odds(page)
+    logBet(db, mid, 'Back', 'Under', 2.5, odds, 50)
+    print("[%s] betted Back Under 2.5 @ any odds %s" % (mind, odds))
     return float(odds)
     
-def getBackUnder1p5Odds():
-    pass 
+def getBackUnder1p5Odds(page):
+    global ou1p5Tab
+    return float(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
-def getBackUnder2p5Odds():
-    pass
+def getBackUnder2p5Odds(page):
+    global ou2p5Tab
+    return float(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
+
 
 def monitorMatch(mid):
     db = PGConnector("postgres", "localhost")
     if not db.is_connected():
         exit(-1)
+    global ou2p5Tab, ou1p5Tab
 
     browser = Browser()
     dummy = DailyMatchRow()
@@ -124,38 +118,37 @@ def monitorMatch(mid):
     url = str(match[0][0])
     page = browser.get(url)
     time.sleep(5)
+    expandTabsOfInterest(page, browser)
 
     print('%s Starting match id [%s] with url: %s' % (datetime.now(), str(mid),  url))
-    inPlayText = ''
-    root = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]')
-    while len(inPlayText) == 0:
-        browser.wait_for_element_to_appear('//div[@id="multiMarketContainer"]/div[3]/div/div[1]/div[1]/div', timeout = 60)
+    if not check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]'):
+        print("Match porbably missed")
+        return
+
+    while True:
         try:
-            elem = root.find_element(By.XPATH, './div[3]/div/div[1]/div[1]/div')
-            inPlayText = elem.text
+            elem = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[3]/div/div[1]/div[1]/div')
+            if elem.text == "In-Play":
+                break
         except:
-            inPlayText = ''
-
-     
-    mt = getMatchTime(page)
-    while mt[0] == 'Half Time':
+            pass
         sleep()
-        mt = getMatchTime(page)
 
-    mt = getMatchTime(page)
-    (minute, hour) = (mt[0], mt[1])
-    while minute < 45 and hour is None:
+    print("Checking for half time")
+    minute = getMatchTime(page)
+    while minute != 'Half Time' and int(minute) <= 45:
         sleep()
-        mt = getMatchTime(page)
-        while mt[0] == 'Half Time':
-            sleep()
-            mt = getMatchTime(page)
-        hour = mt[1]
-        if hour is not None:
-            hour = int(hour)
-        minute = int(mt[0])
+        minute = getMatchTime(page)
 
     print('45 minutes passed')
+    print('Goals: ' + str(getTotalGoals(page)))
+    
+    minute = getMatchTime(page)
+    while minute == 'Half Time':
+        sleep()
+        minute = getMatchTime(page)
+
+    print("Half time passed")
     print('Goals: ' + str(getTotalGoals(page)))
 
     if getTotalGoals(page) == 0:
@@ -165,27 +158,36 @@ def monitorMatch(mid):
     else:
         return
 
-    while True:
-        while getTotalGoals(page) == 0:
-            if getBackUnder1p5Odds(page) <= 1.52:
-                backUnder1p5at1p5(page, db, mid)
-                return
-        
-            if getLayUnder1p5Odds(page) <= 1.15 and getTotalGoals(page) == 0:
-                backUnder1p5(page, db, mid)
-                return 
-    
-        while getTotalGoals(page) == 1:
-            if getBackUnder2p5Odds(page) <= 1.52:
-                backUnder2p5at1p5(page, db, mid)
-        
-            if getLayUnder2p5Odds(page) <= 1.15 and getTotalGoals(page) == 1:
-                backUnder2p5(page, db, mid)
-                return 
-    
-            if getTotalGoals(page) > 1:
-                #TODO update the DB, it's a win
-                return
-        
-        if getTotalGoals(page) > 1:
+    print("Initial bet played")
+
+    while getTotalGoals(page) == 0:
+        if getBackUnder1p5Odds(page) <= 1.52:
+            backUnder1p5at1p5(page, db, mid)
+            print("Back Under 1.5 Odds dropped below 1.52")
             return
+        
+        if getLayUnder1p5Odds(page) <= 1.15:
+            backUnder1p5(page, db, mid)
+            print("Lay Under 1.5 Odds dropped below 1.15")
+            return 
+        sleep()
+        if getMatchTime(page) > 90 or getTotalGoals(page) > 0:
+            break;
+    
+    while getTotalGoals(page) == 1:
+        if getBackUnder2p5Odds(page) <= 1.52:
+            backUnder2p5at1p5(page, db, mid)
+            print("Back Under 2.5 Odds dropped below 1.52")
+            return 
+        
+        if getLayUnder2p5Odds(page) <= 1.15:
+            backUnder2p5(page, db, mid)
+            print("Lay Under 2.5 Odds dropped below 1.15")
+            return 
+        sleep()
+        if getMatchTime(page) > 90 or getTotalGoals(page) > 1:
+            break;
+
+    print("Game finished")
+# SUSPENDED XPATH
+#//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div

@@ -90,11 +90,11 @@ if __name__ == "__main__":
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[3]'))
     time.sleep(1)
 
-    root = page.find_element(By.CLASS_NAME, 'biab_group-markets')
+    root = page.find_element(By.CLASS_NAME, 'rowsContainer')
 
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
     last = 0
-    while last < len(todaysMatches):
+    while len(todaysMatches) > last:
         last = len(todaysMatches) 
         browser.scroll_to_visible(todaysMatches[-1], centre=True)
         todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
