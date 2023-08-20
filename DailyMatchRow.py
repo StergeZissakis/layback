@@ -1,5 +1,6 @@
 from DBRow import DBRow
 from Utils import compare_team_names
+from difflib import SequenceMatcher
 
 class DailyMatchRow(DBRow):
 
@@ -13,11 +14,11 @@ class DailyMatchRow(DBRow):
                 }
 
     def equals(self, other):
-        if self.data["date_time"] != other.data["date_time"]:
+        if self.data["date_time"].time() != other.data["date_time"].time():
             return False
         return self.equals_no_datetime(other)
     
     def equals_no_datetime(self, other):
-        home_matches = compare_team_names(self.data["home"], other.data["home"])
-        away_matches = compare_team_names(self.data["away"], other.data["away"])
-        return home_matches > 0 and away_matches > 0
+        home = compare_team_names(self.data["home"], other.data["home"])
+        away = compare_team_names(self.data["away"], other.data["away"])
+        return home > 0 and away > 0

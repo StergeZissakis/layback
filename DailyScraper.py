@@ -70,7 +70,6 @@ if __name__ == "__main__":
     if not db.is_connected():
         exit(-1)
 
-    browser = Browser()
     goalsNow = scrapeGoalsNow()
     print("GoalsNow matches: " + str(len(goalsNow)))
     superTips = scrapeFootballSuperTips()
@@ -85,20 +84,42 @@ if __name__ == "__main__":
     print("Matches of interest: " + str(len(intersection)))
 
 
+    browser = Browser()
     page = browser.get("https://www.orbitxch.com/customer/sport/1")
-    time.sleep(1)
+    time.sleep(3)
+
+    #Login first
+    #form = page.find_element(By.XPATH, '//div[@id="biab_login-block"]/form')
+    #form.find_element(By.XPATH, './div/input[1]').send_keys("voyager2007")
+    #form.find_element(By.XPATH, './div/input[2]').send_keys("Stergios777&&&")
+    #form.find_element(By.XPATH, './div/button').click()
+    #browser.wait_for_element_to_appear('//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
+    #page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
+
+    time.sleep(3)
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[3]'))
-    time.sleep(1)
+    time.sleep(3)
 
     root = page.find_element(By.CLASS_NAME, 'rowsContainer')
-
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
+    initialMatches = todaysMatches.copy()
+    print(len(todaysMatches))
     last = 0
     while len(todaysMatches) > last:
         last = len(todaysMatches) 
         browser.scroll_to_visible(todaysMatches[-1], centre=True)
-        todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
+        time.sleep(3) 
+        footer = page.find_element(By.XPATH, '//*[@id="biab_footer"]/div/ul')
+        browser.scroll_to_visible(footer, centre=True)
+        time.sleep(2)
 
+        root = page.find_elements(By.CLASS_NAME, 'rowsContainer')[-1]
+        todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
+        print(len(todaysMatches))
+        if len(todaysMatches) < last:
+            last = len(todaysMatches) -1
+    todaysMatches = initialMatches + todaysMatches
+        
     print('Total Exchange Matches found:' + str(len(todaysMatches)))
 
     urls_found = 0
@@ -110,9 +131,17 @@ if __name__ == "__main__":
         row = DailyMatchRow()
         row.set("home", home.text)
         row.set("away", away.text)
+        try:
+            now = datetime.now()
+            matchTime = match.find_element(By.XPATH, './div[1]/div/span').text.strip()
+            row.set("date_time", Utils.add_time_to_date(event_date = now, event_time = matchTime))
+        except:
+            continue
+
         for m in intersection:
-            if m.equals_no_datetime(row):
+            if m.equals(row):
                 url = 'https://www.orbitxch.com/customer/sport/1/market/' + market
+                print(url)
                 m.set("url", url)
                 urls_found += 1
                 break
