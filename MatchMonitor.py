@@ -2,12 +2,14 @@ import re
 import time
 import Utils
 from  PGConnector import PGConnector
+from BetRow import BetRow
 from Browser import Browser
 from datetime import datetime
 from DailyMatchRow import DailyMatchRow
 from selenium.webdriver.common.by import By
 from threading import Thread
 from selenium.common.exceptions import NoSuchElementException
+import pprint
 
 def check_exists_by_xpath(element, xpath):
         try:
@@ -53,50 +55,79 @@ def expandTabsOfInterest(page, browser):
             ou1p5Tab = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div' % i)
 
 
-def logBet(db, mid, layback, overUnder, goals, amount):
-    sql = "INSERT INTO public.over2p5bets(match_id, action, OverUnder, Goals, odds, amount) VALUES (%s, %s, %s, %s, %s, %s)" % (mid, layBack, overUnder, goals, odds, amount)
-    db.execSql(sql) 
+def logBet(db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
+    bet = BetRow()
+    bet.set("match_id", mid)
+    bet.set("action", layback)
+    bet.set("OverUnder", overUnder)
+    bet.set("Goals", goals)
+    bet.set("odds", odds)
+    bet.set("odds_recorded", odds_recorded)
+    bet.set("amount", amount)
+    db.insert(bet)
+
+def placeBet(page, odds_input_xpath, stake_input_xpath, button_input_xpath, db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
+    time.sleep(1)
+    odds_input = page.find_element(By.XPATH, odds_input_xpath).send_keys(str(odds))
+    page.find_element(By.XPATH, stake_input_xpath).send_keys(str(amount))
+    page.find_element(By.XPATH, button_input_xpath).click()
+    #TODO: Monitor for when the bet Wins
+    logBet(db, mid, layback, overUnder, goals, odds, odds_recorded, amount)
+
 
 def layUnder1p5at1p5(page, db, mid):
-    logBet(db, mid, 'Lay', 'Under', 1.5, 1.5, 50)
+    odds = getLayUnder1p5Odds(page)
+    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[4]/div/div[3]/div[1]/div[2]/div[2]/div[2]/button')
+                                          #//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[4]/div/div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input
+    element.click()
+    placeBet(element, db, mid, 'Lay', 'Under', 1.5, 1.5, odds, 1)
     print('[%s] betted Lay Under 1.5 @ 1.5 odds' % mid)
 
 def layUnder2p5at1p5(page, db, mid):
-    logBet(db, mid, 'Lay', 'Under', 2.5, 1.5, 50)
+    odds = getLayUnder2p5Odds(page)
+    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[2]/button')
+    element.click()
+    placeBet(element, db, mid, 'Lay', 'Under', 2.5, 1.5, odds, 1)
+
     print('[%s] betted Lay Under 2.5 @ 1.5odds' % mid)
 
 def backUnder1p5at1p5(page, db, mid):
-    logBet(db, mid, 'Back', 'Under', 1.5, 1.5, 50)
+    odds = getBackUnder1p5Odds(page)
+    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
+    element.click()
+    placeBet(element, db, mid, 'Back', 'Under', 1.5, 1.5, odds, 1)
     print('[%s] betted Back Under 1.5 @ 1.5odds' % mid)
 
 def backUnder2p5at1p5(page, db, mid):
-    logBet(db, mid, 'Back', 'Under', 2.5, 1.5, 50)
+    odds = getBackUnder2p5Odds(page)
+    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
+    element.click()
+    placeBet(element, db, mid, 'Back', 'Under', 2.5, 1, odds, 1)
     print('[%s] betted Back Under 2.5 @ 1.5odds' % mid)
 
 def backUnder1p5(page, db, mid):
     odds = getBackUnder1p5Odds(page)
-    logBet(db, mid, 'Back', 'Under', 1.5, odds, 50)
+    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
+    element.click()
+    placeBet(element, db, mid, 'Back', 'Under', 1.5, 1, odds, 1)
     print('[%s] betted Back Under 1.5 @ any odds [%s]' % (mid, odds))
 
+def backUnder2p5(page, db, mid):
+    odds = getBackUnder2p5Odds(page)
+    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
+    element.click()
+    placeBet(element, db, mid, 'Back', 'Under', 2.5, 1, odds, 1)
+    print("[%s] betted Back Under 2.5 @ any odds %s" % (mind, odds))
+    return float(odds)
+    
 def getLayUnder1p5Odds(page):
     global ou1p5Tab
-    return float(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button').text)
-
-def layUnder1p5(page, db, mid):
-    odds = getLayUnder1p5Odds(page)
-    logBet(db, mid, 'Lay', 'Under', 1.5, odds, 50)
-    print("[%s] betted Lay Under 1.5 @ any odds [%s]" % (mind, odds))
+    return float(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button').text.split('\n')[0].strip())
 
 def getLayUnder2p5Odds(page):
     global ou2p5Tab
     return float(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
-def backUnder2p5(page, db, mid):
-    odds = getBackUnder2p5Odds(page)
-    logBet(db, mid, 'Back', 'Under', 2.5, odds, 50)
-    print("[%s] betted Back Under 2.5 @ any odds %s" % (mind, odds))
-    return float(odds)
-    
 def getBackUnder1p5Odds(page):
     global ou1p5Tab
     return float(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
@@ -106,16 +137,19 @@ def getBackUnder2p5Odds(page):
     return float(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
 
-def monitorMatch(mid):
+def monitorMatch(mid, url = ''):
     db = PGConnector("postgres", "localhost")
     if not db.is_connected():
         exit(-1)
     global ou2p5Tab, ou1p5Tab
 
     browser = Browser()
-    dummy = DailyMatchRow()
-    match = db.select("SELECT url FROM " + dummy.table_name + " WHERE id = '%s';" % mid)
-    url = str(match[0][0])
+    if not len(url):
+        dummy = DailyMatchRow()
+        match = db.select("SELECT url FROM " + dummy.table_name + " WHERE id = '%s';" % mid)
+        url = str(match[0][0])
+    else:
+        pass
     page = browser.get(url)
     time.sleep(5)
     expandTabsOfInterest(page, browser)
