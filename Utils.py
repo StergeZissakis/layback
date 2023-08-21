@@ -1,5 +1,7 @@
 import time
 import difflib
+import pprint
+from difflib import SequenceMatcher
 from selenium.webdriver.common.by import By
 from datetime import datetime, date, timedelta
 from selenium.webdriver.support.wait import WebDriverWait
@@ -24,12 +26,15 @@ def replaceSpecialChars(s):
             c = ' '
         ret += c
     return ret.lower().strip()
+    #ca, cb = replaceSpecialChars(a.strip().lower()), replaceSpecialChars(b.strip().lower())
 
 def compare_team_names(a, b):
-    ca, cb = replaceSpecialChars(a.strip().lower()), replaceSpecialChars(b.strip().lower())
+    pp = pprint.PrettyPrinter(indent=4)
     pa, pb = a.split(' '), b.split(' ')
     matches = 0
-    for s in pa:
-        if s in pb:
-            matches += 1
+    for A in pa:
+        for B in pb:
+            if  A == B or A in B or B in A or SequenceMatcher(None, A, B).ratio() >= 0.8:
+                matches += 1
+    pp.pprint("[" + a + "] vs [" + b + "] = " + str(matches))
     return matches

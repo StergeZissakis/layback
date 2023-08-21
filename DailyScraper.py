@@ -42,8 +42,9 @@ def scrapeFootballSuperTips():
     ret = []
     browser = Browser()
     page = browser.get("https://www.footballsuper.tips/todays-over-under-football-super-tips/")
+    time.sleep(2)
 
-    browser.accept_cookies('/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p')
+    browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
 
     matches = page.find_elements(By.CLASS_NAME, 'poolList')
     for m in matches:
@@ -95,30 +96,29 @@ if __name__ == "__main__":
     #form.find_element(By.XPATH, './div/button').click()
     #browser.wait_for_element_to_appear('//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
     #page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
-
     time.sleep(3)
-    browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[3]'))
+    browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[1]'))
     time.sleep(3)
 
     root = page.find_element(By.CLASS_NAME, 'rowsContainer')
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
     initialMatches = todaysMatches.copy()
-    print(len(todaysMatches))
-    last = 0
-    while len(todaysMatches) > last:
+
+    groupNode = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div')
+    while len(groupNode.find_elements(By.XPATH, './div')) < 2:
         last = len(todaysMatches) 
         browser.scroll_to_visible(todaysMatches[-1], centre=True)
-        time.sleep(3) 
+        time.sleep(2) 
         footer = page.find_element(By.XPATH, '//*[@id="biab_footer"]/div/ul')
         browser.scroll_to_visible(footer, centre=True)
-        time.sleep(2)
 
         root = page.find_elements(By.CLASS_NAME, 'rowsContainer')[-1]
         todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
         print(len(todaysMatches))
         if len(todaysMatches) < last:
             last = len(todaysMatches) -1
-    todaysMatches = initialMatches + todaysMatches
+        groupNode = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div')
+    todaysMatches = initialMatches + root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
         
     print('Total Exchange Matches found:' + str(len(todaysMatches)))
 
@@ -132,12 +132,13 @@ if __name__ == "__main__":
         row.set("home", home.text)
         row.set("away", away.text)
         try:
-            now = datetime.now()
             matchTime = match.find_element(By.XPATH, './div[1]/div/span').text.strip()
-            row.set("date_time", Utils.add_time_to_date(event_date = now, event_time = matchTime))
+            if len(matchTime.split(':')) == 2 and len(str(matchTime)) == 5:
+                event_date_time = Utils.add_time_to_date(event_date = datetime.now(), event_time = matchTime)
+                row.set("date_time", event_date_time)
         except:
-            continue
-
+            pass
+    
         for m in intersection:
             if m.equals(row):
                 url = 'https://www.orbitxch.com/customer/sport/1/market/' + market
