@@ -58,7 +58,7 @@ def expandTabsOfInterest(page, browser):
 def logBet(db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
     bet = BetRow()
     bet.set("match_id", mid)
-    bet.set("Action", layback)
+    bet.set("LayBack", layback)
     bet.set("OverUnder", overUnder)
     bet.set("Goals", goals)
     bet.set("odds", odds)
@@ -101,7 +101,7 @@ def layUnder2p5at1p5(page, db, mid):
 def backUnder1p5at1p5(page, db, mid):
     global ou1p5Tab
     odds = getBackUnder1p5Odds(page)
-    page.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
     placeBet(page,
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),

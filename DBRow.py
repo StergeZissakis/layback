@@ -21,7 +21,11 @@ class DBRow:
         return None
 
     def generate_sql_insert_into_values(self):
-        return 'INSERT INTO ' + self.table_name + ' (' + ", ".join(self.data.keys()) + ' ) VALUES ( ' + '%s, ' * (len(self.data.keys()) - 1) + '%s)'
+        sql = 'INSERT INTO ' + self.table_name + ' ('
+        for k in self.data.keys():
+            sql += '"' + k + '",'
+        sql = sql[0:-1] + ') VALUES ( ' + '%s, ' * (len(self.data.keys()) - 1) + '%s) '
+        return sql
 
     def generate_do_update_set(self):
         ret = ""
