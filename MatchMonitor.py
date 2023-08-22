@@ -58,7 +58,7 @@ def expandTabsOfInterest(page, browser):
 def logBet(db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
     bet = BetRow()
     bet.set("match_id", mid)
-    bet.set("action", layback)
+    bet.set("Action", layback)
     bet.set("OverUnder", overUnder)
     bet.set("Goals", goals)
     bet.set("odds", odds)
@@ -66,57 +66,80 @@ def logBet(db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
     bet.set("amount", amount)
     db.insert(bet)
 
-def placeBet(page, odds_input_xpath, stake_input_xpath, button_input_xpath, db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
+def placeBet(page, odds_input, stake_input, bet_button, db, mid, layback, overUnder, goals, odds, odds_recorded, amount):
     time.sleep(1)
-    odds_input = page.find_element(By.XPATH, odds_input_xpath).send_keys(str(odds))
-    page.find_element(By.XPATH, stake_input_xpath).send_keys(str(amount))
-    page.find_element(By.XPATH, button_input_xpath).click()
+    odds_input.send_keys(str(odds))
+    stake_input.send_keys(str(amount))
+    bet_button.click()
     #TODO: Monitor for when the bet Wins
     logBet(db, mid, layback, overUnder, goals, odds, odds_recorded, amount)
 
 
 def layUnder1p5at1p5(page, db, mid):
+    global ou1p5Tab
     odds = getLayUnder1p5Odds(page)
-    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[4]/div/div[3]/div[1]/div[2]/div[2]/div[2]/button')
-                                          #//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[4]/div/div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input
-    element.click()
-    placeBet(element, db, mid, 'Lay', 'Under', 1.5, 1.5, odds, 1)
+    ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button').click()
+    placeBet(page,
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
+             db, mid, 'Lay', 'Under', 1.5, 1.5, odds, 1)
     print('[%s] betted Lay Under 1.5 @ 1.5 odds' % mid)
 
 def layUnder2p5at1p5(page, db, mid):
+    global ou2p5Tab
     odds = getLayUnder2p5Odds(page)
-    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[2]/button')
-    element.click()
-    placeBet(element, db, mid, 'Lay', 'Under', 2.5, 1.5, odds, 1)
+    ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button').click()
+    placeBet(page,
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
+             db, mid, 'Lay', 'Under', 2.5, 1.5, odds, 1)
 
     print('[%s] betted Lay Under 2.5 @ 1.5odds' % mid)
 
 def backUnder1p5at1p5(page, db, mid):
+    global ou1p5Tab
     odds = getBackUnder1p5Odds(page)
-    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
-    element.click()
-    placeBet(element, db, mid, 'Back', 'Under', 1.5, 1.5, odds, 1)
+    page.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    placeBet(page,
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
+             db, mid, 'Back', 'Under', 1.5, 1.5, odds, 1)
     print('[%s] betted Back Under 1.5 @ 1.5odds' % mid)
 
 def backUnder2p5at1p5(page, db, mid):
+    global ou2p5Tab
     odds = getBackUnder2p5Odds(page)
-    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
-    element.click()
-    placeBet(element, db, mid, 'Back', 'Under', 2.5, 1, odds, 1)
+    ou2p5Tab.find_element(By.XPATH, './div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    placeBet(page,
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
+             db, mid, 'Back', 'Under', 2.5, 1, odds, 1)
     print('[%s] betted Back Under 2.5 @ 1.5odds' % mid)
 
 def backUnder1p5(page, db, mid):
+    global ou1p5Tab
     odds = getBackUnder1p5Odds(page)
-    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
-    element.click()
-    placeBet(element, db, mid, 'Back', 'Under', 1.5, 1, odds, 1)
+    ou1p5Tab.find_element(By.XPATH, './div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    placeBet(page,
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
+             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
+             db, mid, 'Back', 'Under', 1.5, 1, odds, 1)
     print('[%s] betted Back Under 1.5 @ any odds [%s]' % (mid, odds))
 
 def backUnder2p5(page, db, mid):
+    global ou2p5Tab
     odds = getBackUnder2p5Odds(page)
-    element = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button')
-    element.click()
-    placeBet(element, db, mid, 'Back', 'Under', 2.5, 1, odds, 1)
+    ou2p5Tab.find_element(By.XPATH, './div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    placeBet(page,
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
+             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
+             db, mid, 'Back', 'Under', 2.5, 1, odds, 1)
     print("[%s] betted Back Under 2.5 @ any odds %s" % (mind, odds))
     return float(odds)
     
@@ -170,6 +193,10 @@ def monitorMatch(mid, url = ''):
 
     print("Checking for half time")
     minute = getMatchTime(page)
+    if str(minute) == 'Finished':
+        print("Match finished")
+        return
+
     while minute != 'Half Time' and int(minute) <= 45:
         sleep()
         minute = getMatchTime(page)

@@ -96,16 +96,20 @@ if __name__ == "__main__":
     #form.find_element(By.XPATH, './div/button').click()
     #browser.wait_for_element_to_appear('//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
     #page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
-    time.sleep(3)
+    time.sleep(2)
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[1]'))
     time.sleep(3)
+    #browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_header"]/div[2]/div[2]/div[1]/div'))
+    #time.sleep(1)
+    #browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="-60"]')) # GMT+1
+    #time.sleep(3)
 
     root = page.find_element(By.CLASS_NAME, 'rowsContainer')
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
     initialMatches = todaysMatches.copy()
 
     groupNode = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div')
-    while len(groupNode.find_elements(By.XPATH, './div')) < 2:
+    while len(groupNode.find_elements(By.XPATH, './div'))  == 1:
         last = len(todaysMatches) 
         browser.scroll_to_visible(todaysMatches[-1], centre=True)
         time.sleep(2) 

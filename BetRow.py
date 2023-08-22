@@ -6,7 +6,7 @@ class BetRow(DBRow):
         self.table_name = "over2p5bets"
         self.data = {
                 "match_id": None,
-                "action": None,
+                "Action": None,
                 "OverUnder": None,
                 "Goals": None,
                 "odds": None,
