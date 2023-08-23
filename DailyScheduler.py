@@ -16,18 +16,20 @@ if __name__ == "__main__":
     browser = Browser()
     dummy = DailyMatchRow()
 
-    matches = db.select("SELECT * FROM " + dummy.table_name + " WHERE url is not Null ORDER BY date_time ASC, id ASC;")
-    now = datetime.now(timezone.utc)
+    processes = []
+
+    matches = db.select("SELECT * FROM " + dummy.table_name + " WHERE url is not Null and date_time < now()  ORDER BY date_time ASC, id ASC;")
     for m in matches:
         mid = m[0]
         dateTime = m[3]
-        if now > dateTime:
-            p = Process(target=monitorMatch, args=(mid,))
-            p.start()
-            print("Spawn match id [%s] @ [%s] with starting time [%s]" % (mid, now, dateTime))
-            #db.archive(dummy.table_name, mid)
-    
+        p = Process(target=monitorMatch, args=(mid,))
+        p.start()
+        processes.append(p)
+        print("Spawn match id [%s] @ [%s] with starting time [%s]" % (mid, datetime.now(), dateTime))
+        time.sleep(40)
 
-
-
-
+    for p in processes:
+        try:
+            p.join()
+        except:
+            pass

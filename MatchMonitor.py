@@ -12,6 +12,8 @@ import pprint
 
 db = None
 match = None
+ou1p5Tab = None
+ou2p5Tab = None
 
 def check_exists_by_xpath(element, xpath):
         try:
@@ -38,8 +40,6 @@ def getTotalGoals(page):
     away_goals = root.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[1]/span[3]').text
     return int(home_goals) + int(away_goals)
 
-ou1p5Tab = None
-ou2p5Tab = None
 def expandTabsOfInterest(page, browser):
     global ou2p5Tab, ou1p5Tab
     for i in range(1, 10):
@@ -72,7 +72,8 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     db.insert(bet)
 
 def placeBet(odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
-    time.sleep(1)
+    while check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[3]/div/div'):
+        sleep(1)
     odds_input.send_keys(str(odds))
     stake_input.send_keys(str(amount))
     bet_button.click()
@@ -166,13 +167,13 @@ def monitorMatch(match_id, url = ''):
     global ou2p5Tab, ou1p5Tab
 
     match = DailyMatchRow()
-    if not len(url):
-        match = DailyMatchRow()
-        row = db.select("SELECT home, away, url FROM " + match.table_name + " WHERE id = '%s';" % match_id)
-        match.set("home", str(match[0][0]))
-        match.set("away", str(match[0][1]))
-        match.set("url",  str(match[0][2]))
+    if len(url) == 0:
+        row = db.select("SELECT home, away, url FROM " + match.table_name + " WHERE id = '%s';" % (match_id,))
+        match.set("home", str(row[0][0]))
+        match.set("away", str(row[0][1]))
+        match.set("url",  str(row[0][2]))
         url = match.get("url")
+        db.archive(match.table_name, match_id)
     else:
         pass
 
@@ -185,8 +186,8 @@ def monitorMatch(match_id, url = ''):
     page = browser.get(url)
 
     if len(url) and not match_id:
-        match.set("home", "dummy")
-        match.set("away", "dummy")
+        match.set("home", page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[1]/div[1]/div').text)
+        match.set("away", page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[1]/div[1]/div').text)
         match.set("url",  url)
 
     expandTabsOfInterest(page, browser)
@@ -196,6 +197,7 @@ def monitorMatch(match_id, url = ''):
         print("Match porbably missed")
         return
 
+    timeout = 60
     while True:
         try:
             elem = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[3]/div/div[1]/div[1]/div')
@@ -204,6 +206,10 @@ def monitorMatch(match_id, url = ''):
         except:
             break
         sleep()
+        timeout -= 1
+        if timeout <= 0:
+           print("Match not loaded properly.")
+           return
 
     print("Checking for half time")
     minute = getMatchTime(page)
@@ -250,12 +256,12 @@ def monitorMatch(match_id, url = ''):
             break;
     
     while getTotalGoals(page) == 1:
-        if getBackUnder2p5Odds() <= 1.52:
+        if getBackUnder2p5Odds() < 1.52:
             backUnder2p5at1p5()
             print("Back Under 2.5 Odds dropped below 1.52")
             return 
         
-        if getLayUnder2p5Odds() <= 1.15:
+        if getLayUnder2p5Odds() < 1.15:
             backUnder2p5()
             print("Lay Under 2.5 Odds dropped below 1.15")
             return 
