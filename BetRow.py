@@ -12,6 +12,6 @@ class BetRow(DBRow):
                 "OverUnder": None,
                 "Goals": None,
                 "Odds": None,
-                "PddsRecorded": None,
-                "amount": None
+                "OddsRecorded": None,
+                "Amount": None
                 }

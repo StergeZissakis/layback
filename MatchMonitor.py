@@ -66,9 +66,9 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     bet.set("LayBack", layback)
     bet.set("OverUnder", overUnder)
     bet.set("Goals", goals)
-    bet.set("odds", odds)
-    bet.set("odds_recorded", odds_recorded)
-    bet.set("amount", amount)
+    bet.set("Odds", odds)
+    bet.set("OddsRecorded", odds_recorded)
+    bet.set("Amount", amount)
     db.insert(bet)
 
 def placeBet(odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
@@ -113,7 +113,7 @@ def backUnder1p5at1p5():
 def backUnder2p5at1p5():
     global ou2p5Tab, match
     odds = getBackUnder2p5Odds()
-    ou2p5Tab.find_element(By.XPATH, './div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
     placeBet(ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
              ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
              ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
@@ -123,7 +123,7 @@ def backUnder2p5at1p5():
 def backUnder1p5():
     global ou1p5Tab, match
     odds = getBackUnder1p5Odds()
-    ou1p5Tab.find_element(By.XPATH, './div[3]/div/div[5]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
     placeBet(ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
@@ -133,7 +133,7 @@ def backUnder1p5():
 def backUnder2p5():
     global ou2p5Tab, match
     odds = getBackUnder2p5Odds()
-    ou2p5Tab.find_element(By.XPATH, './div[3]/div/div[6]/div/div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
+    ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button').click()
     placeBet(ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input'),
              ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input'),
              ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
@@ -165,6 +165,7 @@ def monitorMatch(match_id, url = ''):
         exit(-1)
     global ou2p5Tab, ou1p5Tab
 
+    match = DailyMatchRow()
     if not len(url):
         match = DailyMatchRow()
         row = db.select("SELECT home, away, url FROM " + match.table_name + " WHERE id = '%s';" % match_id)
@@ -182,6 +183,11 @@ def monitorMatch(match_id, url = ''):
     sleep(2)
     browser = Browser()
     page = browser.get(url)
+
+    if len(url) and not match_id:
+        match.set("home", "dummy")
+        match.set("away", "dummy")
+        match.set("url",  url)
 
     expandTabsOfInterest(page, browser)
 
@@ -230,31 +236,31 @@ def monitorMatch(match_id, url = ''):
     print("Initial bet played")
 
     while getTotalGoals(page) == 0:
-        if getBackUnder1p5Odds(page) <= 1.52:
+        if getBackUnder1p5Odds() <= 1.52:
             backUnder1p5at1p5()
             print("Back Under 1.5 Odds dropped below 1.52")
             return
         
-        if getLayUnder1p5Odds(page) <= 1.15:
-            backUnder1p5(page, db, match)
+        if getLayUnder1p5Odds() <= 1.15:
+            backUnder1p5()
             print("Lay Under 1.5 Odds dropped below 1.15")
             return 
         sleep()
-        if getMatchTime(page) >= 90 or getTotalGoals(page) > 0:
+        if int(getMatchTime(page)) >= 90 or getTotalGoals(page) > 0:
             break;
     
     while getTotalGoals(page) == 1:
-        if getBackUnder2p5Odds(page) <= 1.52:
+        if getBackUnder2p5Odds() <= 1.52:
             backUnder2p5at1p5()
             print("Back Under 2.5 Odds dropped below 1.52")
             return 
         
-        if getLayUnder2p5Odds(page) <= 1.15:
+        if getLayUnder2p5Odds() <= 1.15:
             backUnder2p5()
             print("Lay Under 2.5 Odds dropped below 1.15")
             return 
         sleep()
-        if getMatchTime(page) >= 90 or getTotalGoals(page) > 1:
+        if int(getMatchTime(page)) >= 90 or getTotalGoals(page) > 1:
             break;
 
     print("Game finished")
