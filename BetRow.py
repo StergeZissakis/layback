@@ -5,11 +5,13 @@ class BetRow(DBRow):
     def __init__(self):
         self.table_name = "over2p5bets"
         self.data = {
-                "match_id": None,
+                "MatchDateTime": None,
+                "Home": None,
+                "Away": None,
                 "LayBack": None,
                 "OverUnder": None,
                 "Goals": None,
-                "odds": None,
-                "odds_recorded": None,
+                "Odds": None,
+                "PddsRecorded": None,
                 "amount": None
                 }

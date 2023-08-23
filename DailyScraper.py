@@ -99,30 +99,19 @@ if __name__ == "__main__":
     time.sleep(2)
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[1]'))
     time.sleep(3)
-    #browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_header"]/div[2]/div[2]/div[1]/div'))
-    #time.sleep(1)
-    #browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="-60"]')) # GMT+1
-    #time.sleep(3)
+    browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_header"]/div[2]/div[2]/div[1]/div'))
+    time.sleep(1)
+    browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="-60"]')) # GMT+1
+    time.sleep(3)
+
+
+    #loop until tommorrow appears on the list
+    while browser.wait_for_element_to_appear('//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[2]/div[1]', 1) == None:
+        browser.scroll_to_visible(page.find_element(By.XPATH, '//*[@id="biab_footer"]/div/ul'), centre=True)
+        time.sleep(2) 
 
     root = page.find_element(By.CLASS_NAME, 'rowsContainer')
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
-    initialMatches = todaysMatches.copy()
-
-    groupNode = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div')
-    while len(groupNode.find_elements(By.XPATH, './div'))  == 1:
-        last = len(todaysMatches) 
-        browser.scroll_to_visible(todaysMatches[-1], centre=True)
-        time.sleep(2) 
-        footer = page.find_element(By.XPATH, '//*[@id="biab_footer"]/div/ul')
-        browser.scroll_to_visible(footer, centre=True)
-
-        root = page.find_elements(By.CLASS_NAME, 'rowsContainer')[-1]
-        todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
-        print(len(todaysMatches))
-        if len(todaysMatches) < last:
-            last = len(todaysMatches) -1
-        groupNode = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div')
-    todaysMatches = initialMatches + root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
         
     print('Total Exchange Matches found:' + str(len(todaysMatches)))
 
