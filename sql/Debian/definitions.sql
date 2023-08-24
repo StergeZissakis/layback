@@ -5,7 +5,7 @@
 -- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
 -- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
 
--- Started on 2023-08-23 21:47:38 BST
+-- Started on 2023-08-24 21:40:44 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -50,7 +50,7 @@ COMMENT ON DATABASE postgres IS 'default administrative connection database';
 
 
 --
--- TOC entry 703 (class 1247 OID 33698)
+-- TOC entry 701 (class 1247 OID 33698)
 -- Name: ActionType; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -372,7 +372,7 @@ CREATE TABLE public.daily_over_2p5 (
     id bigint NOT NULL,
     home character varying NOT NULL,
     away character varying NOT NULL,
-    date_time timestamp with time zone NOT NULL,
+    date_time timestamp without time zone NOT NULL,
     url character varying
 );
 
@@ -383,10 +383,10 @@ CREATE TABLE public.daily_over_2p5 (
 --
 
 CREATE TABLE public.daily_over_2p5_historical (
-    id bigint NOT NULL,
+    id bigint,
     home character varying NOT NULL,
     away character varying NOT NULL,
-    date_time timestamp with time zone NOT NULL,
+    date_time timestamp without time zone NOT NULL,
     url character varying
 );
 
@@ -456,10 +456,10 @@ ALTER SEQUENCE public.daily_over_under_id_seq OWNED BY public.daily_over_under.i
 
 CREATE TABLE public.over2p5bets (
     id bigint NOT NULL,
-    "MatchDateTime" timestamp with time zone,
+    "MatchDateTime" timestamp without time zone,
     "Home" character varying NOT NULL,
     "Away" character varying NOT NULL,
-    "BetDateTime" timestamp with time zone DEFAULT now() NOT NULL,
+    "BetDateTime" timestamp without time zone DEFAULT now() NOT NULL,
     "LayBack" public."ActionType" NOT NULL,
     "OverUnder" public."OverUnderType" NOT NULL,
     "Goals" numeric(3,2) NOT NULL,
@@ -732,7 +732,7 @@ ALTER TABLE ONLY public.daily_over_2p5
 
 
 --
--- TOC entry 2987 (class 2606 OID 33728)
+-- TOC entry 2987 (class 2606 OID 33788)
 -- Name: daily_over_2p5 daily_over_2p5_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -962,7 +962,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-08-23 21:47:38 BST
+-- Completed on 2023-08-24 21:40:44 BST
 
 --
 -- PostgreSQL database dump complete
