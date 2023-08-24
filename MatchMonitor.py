@@ -72,7 +72,8 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     db.insert(bet)
 
 def placeBet(odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
-    while check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[3]/div/div'):
+    while check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[3]/div/div') or \
+        check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'):
         sleep(1)
     odds_input.send_keys(str(odds))
     stake_input.send_keys(str(amount))
@@ -173,17 +174,13 @@ def monitorMatch(match_id, url = ''):
         match.set("away", str(row[0][1]))
         match.set("url",  str(row[0][2]))
         url = match.get("url")
-        db.archive(match.table_name, match_id)
+        db.delete(match, 'where id = %s' %(match_id,))
     else:
         pass
 
     browser = Browser()
     page = browser.get(url)
-    time.sleep(5)
-    browser.quit()
-    sleep(2)
-    browser = Browser()
-    page = browser.get(url)
+    sleep(4)
 
     if len(url) and not match_id:
         match.set("home", page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[1]/div[1]/div').text)
@@ -234,41 +231,42 @@ def monitorMatch(match_id, url = ''):
 
     if getTotalGoals(page) == 0:
         layUnder1p5at1p5()
+        print("Initial bet played")
+
+        while getTotalGoals(page) == 0:
+            if getLayUnder1p5Odds() <= 1.15:
+                backUnder1p5()
+                print("Lay Under 1.5 Odds dropped below 1.15")
+                return 
+            sleep()
+
+        while getTotalGoals(page) == 1:
+            if getBackUnder1p5Odds() <= 1.52:
+                backUnder1p5at1p5()
+                print("Back Under 1.5 Odds dropped below 1.52")
+                return
+
     elif getTotalGoals(page) == 1:
         layUnder2p5at1p5()
+        print("Initial bet played")
+        
+        while getTotalGoals(page) == 1:
+            if getLayUnder2p5Odds() <= 1.15:
+                backUnder2p5()
+                print("Lay Under 2.5 Odds dropped below 1.15")
+                return 
+            sleep()
+
+        while getTotalGoals(page) == 2:
+            if getBackUnder2p5Odds() <= 1.52:
+                backUnder2p5at1p5()
+                print("Back Under 2.5 Odds dropped below 1.52")
+                return 
+            sleep()
     else:
+        print("2 or more goals scored already")
         return
 
-    print("Initial bet played")
 
-    while getTotalGoals(page) == 0:
-        if getBackUnder1p5Odds() <= 1.52:
-            backUnder1p5at1p5()
-            print("Back Under 1.5 Odds dropped below 1.52")
-            return
-        
-        if getLayUnder1p5Odds() <= 1.15:
-            backUnder1p5()
-            print("Lay Under 1.5 Odds dropped below 1.15")
-            return 
-        sleep()
-        if int(getMatchTime(page)) >= 90 or getTotalGoals(page) > 0:
-            break;
     
-    while getTotalGoals(page) == 1:
-        if getBackUnder2p5Odds() < 1.52:
-            backUnder2p5at1p5()
-            print("Back Under 2.5 Odds dropped below 1.52")
-            return 
-        
-        if getLayUnder2p5Odds() < 1.15:
-            backUnder2p5()
-            print("Lay Under 2.5 Odds dropped below 1.15")
-            return 
-        sleep()
-        if int(getMatchTime(page)) >= 90 or getTotalGoals(page) > 1:
-            break;
-
     print("Game finished")
-# SUSPENDED XPATH
-#//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div

@@ -22,19 +22,22 @@ def ratio_odds_to_decimal(self, odds):
 def replaceSpecialChars(s):
     ret = ''
     for c in s:
-        if c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+":
+        if c == '-': #if c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+":
             c = ' '
         ret += c
     return ret.lower().strip()
-    #ca, cb = replaceSpecialChars(a.strip().lower()), replaceSpecialChars(b.strip().lower())
 
 def compare_team_names(a, b):
     #pp = pprint.PrettyPrinter(indent=4)
-    pa, pb = a.split(' '), b.split(' ')
+    ca, cb = replaceSpecialChars(a.strip().lower()), replaceSpecialChars(b.strip().lower())
+    pa, pb = ca.split(' '), cb.split(' ')
     matches = 0
     for A in pa:
         for B in pb:
-            if  A == B or A in B or B in A or SequenceMatcher(None, A, B).ratio() >= 0.8:
+            #if  A == B or A in B or B in A or A in pb or B in pa:
+            if  A == B or A in B or SequenceMatcher(None, A, B).ratio() >= 0.5:
                 matches += 1
+    if matches == 0 and SequenceMatcher(None, ca, cb).ratio() >= 0.5:
+        matches += 1
     #pp.pprint("[" + a + "] vs [" + b + "] = " + str(matches))
     return matches

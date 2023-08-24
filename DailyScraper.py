@@ -110,7 +110,7 @@ if __name__ == "__main__":
         browser.scroll_to_visible(page.find_element(By.XPATH, '//*[@id="biab_footer"]/div/ul'), centre=True)
         time.sleep(2) 
 
-    root = page.find_element(By.CLASS_NAME, 'rowsContainer')
+    root = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[2]');
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
         
     print('Total Exchange Matches found:' + str(len(todaysMatches)))
@@ -144,7 +144,20 @@ if __name__ == "__main__":
 
     db.execute("ArchiveDailyOver2p5")
 
+    finalSet = set()
+    excludedSet = []
+
     for m in intersection:
+        if m.get("url") is None or len(m.get("url")) == 0: 
+            excludedSet.append(m)
+        else:
+            finalSet.add(m)
+
+    for m in finalSet:
+        db.insert(m)
+
+    for m in excludedSet:
+        m.table_name += "_historical"
         db.insert(m)
 
     if browser.headless:
