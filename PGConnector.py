@@ -8,6 +8,10 @@ class PGBase:
         self.pg = psycopg2.connect(database=db, host=db_host, user=db_user, password=db_pass, port=str(db_port))
         if self.pg is None:
             print("DatabasE::CTOR [Failed to connect to databse]")
+        else:
+            cursor = self.pg.cursor()
+            cursor.execute("SET timezone TO 'Europe/London'")
+            cursor.close()
 
     def is_connected(self):
         return self.pg is not None
