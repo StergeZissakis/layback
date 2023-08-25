@@ -5,7 +5,7 @@
 -- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
 -- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
 
--- Started on 2023-08-24 21:40:44 BST
+-- Started on 2023-08-25 17:30:34 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -48,6 +48,27 @@ SET row_security = off;
 
 COMMENT ON DATABASE postgres IS 'default administrative connection database';
 
+
+--
+-- TOC entry 3133 (class 0 OID 0)
+-- Name: postgres; Type: DATABASE PROPERTIES; Schema: -; Owner: -
+--
+
+ALTER DATABASE postgres SET "TimeZone" TO 'GMT+1';
+
+
+\connect postgres
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- TOC entry 701 (class 1247 OID 33698)
@@ -219,7 +240,7 @@ CREATE SEQUENCE public."Match_id_seq"
 
 
 --
--- TOC entry 3134 (class 0 OID 0)
+-- TOC entry 3135 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: Match_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -405,7 +426,7 @@ CREATE SEQUENCE public.daily_over_2p5_id_seq
 
 
 --
--- TOC entry 3143 (class 0 OID 0)
+-- TOC entry 3144 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -441,7 +462,7 @@ CREATE SEQUENCE public.daily_over_under_id_seq
 
 
 --
--- TOC entry 3145 (class 0 OID 0)
+-- TOC entry 3146 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: daily_over_under_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -484,7 +505,7 @@ CREATE SEQUENCE public.over2p5bets_id_seq
 
 
 --
--- TOC entry 3147 (class 0 OID 0)
+-- TOC entry 3148 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: over2p5bets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -545,7 +566,7 @@ CREATE SEQUENCE public.soccer_statistics_id_seq
 
 
 --
--- TOC entry 3149 (class 0 OID 0)
+-- TOC entry 3150 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -835,7 +856,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 3133 (class 0 OID 0)
+-- TOC entry 3134 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: TABLE "OddsPortalMatch"; Type: ACL; Schema: public; Owner: -
 --
@@ -844,7 +865,7 @@ REVOKE ALL ON TABLE public."OddsPortalMatch" FROM postgres;
 
 
 --
--- TOC entry 3135 (class 0 OID 0)
+-- TOC entry 3136 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: TABLE "OddsPortalOverUnder"; Type: ACL; Schema: public; Owner: -
 --
@@ -854,7 +875,7 @@ GRANT ALL ON TABLE public."OddsPortalOverUnder" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3136 (class 0 OID 0)
+-- TOC entry 3137 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: TABLE "OddsSafariMatch"; Type: ACL; Schema: public; Owner: -
 --
@@ -864,7 +885,7 @@ GRANT ALL ON TABLE public."OddsSafariMatch" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3137 (class 0 OID 0)
+-- TOC entry 3138 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: TABLE "OddsSafariOverUnder"; Type: ACL; Schema: public; Owner: -
 --
@@ -874,7 +895,7 @@ GRANT ALL ON TABLE public."OddsSafariOverUnder" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3138 (class 0 OID 0)
+-- TOC entry 3139 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: TABLE "OverUnderHistorical"; Type: ACL; Schema: public; Owner: -
 --
@@ -884,7 +905,7 @@ GRANT ALL ON TABLE public."OverUnderHistorical" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3139 (class 0 OID 0)
+-- TOC entry 3140 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: TABLE "PortalSafariMatch"; Type: ACL; Schema: public; Owner: -
 --
@@ -894,7 +915,7 @@ GRANT ALL ON TABLE public."PortalSafariMatch" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3140 (class 0 OID 0)
+-- TOC entry 3141 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: TABLE "PortalSafariBets"; Type: ACL; Schema: public; Owner: -
 --
@@ -904,7 +925,7 @@ GRANT ALL ON TABLE public."PortalSafariBets" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3141 (class 0 OID 0)
+-- TOC entry 3142 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: TABLE daily_over_2p5; Type: ACL; Schema: public; Owner: -
 --
@@ -914,7 +935,7 @@ GRANT ALL ON TABLE public.daily_over_2p5 TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3142 (class 0 OID 0)
+-- TOC entry 3143 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: TABLE daily_over_2p5_historical; Type: ACL; Schema: public; Owner: -
 --
@@ -924,7 +945,7 @@ GRANT ALL ON TABLE public.daily_over_2p5_historical TO postgres WITH GRANT OPTIO
 
 
 --
--- TOC entry 3144 (class 0 OID 0)
+-- TOC entry 3145 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: TABLE daily_over_under; Type: ACL; Schema: public; Owner: -
 --
@@ -934,7 +955,7 @@ GRANT ALL ON TABLE public.daily_over_under TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3146 (class 0 OID 0)
+-- TOC entry 3147 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: TABLE over2p5bets; Type: ACL; Schema: public; Owner: -
 --
@@ -944,7 +965,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3148 (class 0 OID 0)
+-- TOC entry 3149 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: TABLE soccer_statistics; Type: ACL; Schema: public; Owner: -
 --
@@ -962,7 +983,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-08-24 21:40:44 BST
+-- Completed on 2023-08-25 17:30:34 BST
 
 --
 -- PostgreSQL database dump complete

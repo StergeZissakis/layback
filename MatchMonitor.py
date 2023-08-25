@@ -11,6 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 import pprint
 
 db = None
+page = None
 match = None
 ou1p5Tab = None
 ou2p5Tab = None
@@ -72,6 +73,7 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     db.insert(bet)
 
 def placeBet(odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
+    global page
     while check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[3]/div/div') or \
         check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'):
         sleep(1)
@@ -161,7 +163,7 @@ def getBackUnder2p5Odds():
 
 
 def monitorMatch(match_id, url = ''):
-    global db, match
+    global db, match, page
     db = PGConnector("postgres", "localhost")
     if not db.is_connected():
         exit(-1)
@@ -189,9 +191,9 @@ def monitorMatch(match_id, url = ''):
 
     expandTabsOfInterest(page, browser)
 
-    print('Starting match with url: %s' % url)
+    print('Starting match [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
     if not check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]'):
-        print("Match porbably missed")
+        print('Possibly missed starting match [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
         return
 
     timeout = 60
@@ -205,68 +207,68 @@ def monitorMatch(match_id, url = ''):
         sleep()
         timeout -= 1
         if timeout <= 0:
-           print("Match not loaded properly.")
-           return
+            print('Match not loaded properly. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
+            return
 
     print("Checking for half time")
     minute = getMatchTime(page)
     if str(minute) == 'Finished':
-        print("Match finished")
+        print('Match finished. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
         return
 
     while minute != 'Half Time' and int(minute) <= 45:
         sleep()
         minute = getMatchTime(page)
 
-    print('45 minutes passed')
-    print('Goals: ' + str(getTotalGoals(page)))
+    print('45 minutes passed. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
+    print('Goals [%s] of [%s VS %s] with url: %s' % (str(getTotalGoals(page)),match.get("home"), match.get("away"), url))
     
     minute = getMatchTime(page)
     while minute == 'Half Time':
         sleep()
         minute = getMatchTime(page)
 
-    print("Half time passed")
-    print('Goals: ' + str(getTotalGoals(page)))
+    print('Half time passed. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
+    print('Goals [%s] of [%s VS %s] with url: %s' % (str(getTotalGoals(page)),match.get("home"), match.get("away"), url))
 
     if getTotalGoals(page) == 0:
         layUnder1p5at1p5()
-        print("Initial bet played")
+        print('Initial bet played. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
 
         while getTotalGoals(page) == 0:
             if getLayUnder1p5Odds() <= 1.15:
                 backUnder1p5()
-                print("Lay Under 1.5 Odds dropped below 1.15")
+                print('Lay Under 1.5 Odds dropped below 1.15. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
                 return 
             sleep()
 
         while getTotalGoals(page) == 1:
             if getBackUnder1p5Odds() <= 1.52:
                 backUnder1p5at1p5()
-                print("Back Under 1.5 Odds dropped below 1.52")
+                print('Back Under 1.5 Odds dropped below 1.15. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
                 return
 
     elif getTotalGoals(page) == 1:
         layUnder2p5at1p5()
-        print("Initial bet played")
+        print('Initial bet played. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
         
         while getTotalGoals(page) == 1:
             if getLayUnder2p5Odds() <= 1.15:
                 backUnder2p5()
-                print("Lay Under 2.5 Odds dropped below 1.15")
+                print('Lay Under 2.5 Odds dropped below 1.15. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
                 return 
             sleep()
 
         while getTotalGoals(page) == 2:
             if getBackUnder2p5Odds() <= 1.52:
                 backUnder2p5at1p5()
-                print("Back Under 2.5 Odds dropped below 1.52")
+                print('Back Under 2.5 Odds dropped below 1.52. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
                 return 
             sleep()
     else:
-        print("2 or more goals scored already")
+        print('2 or more goals scored already. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
         return
 
 
     
-    print("Game finished")
+    print('Game finished. [%s VS %s] with url: %s' % (match.get("home"), match.get("away"), url))
