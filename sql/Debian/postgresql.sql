@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.11 (Debian 13.11-0+deb11u1)
--- Dumped by pg_dump version 13.11 (Debian 13.11-0+deb11u1)
+-- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
+-- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
--- Started on 2023-08-25 17:30:33 BST
+-- Started on 2023-08-26 09:28:18 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,11 +20,11 @@ SET row_security = off;
 
 DROP DATABASE IF EXISTS postgres;
 --
--- TOC entry 3148 (class 1262 OID 33455)
+-- TOC entry 3490 (class 1262 OID 5)
 -- Name: postgres; Type: DATABASE; Schema: -; Owner: -
 --
 
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_GB.UTF-8';
+CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_GB.UTF-8';
 
 
 \connect postgres
@@ -41,8 +41,8 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3149 (class 0 OID 0)
--- Dependencies: 3148
+-- TOC entry 3491 (class 0 OID 0)
+-- Dependencies: 3490
 -- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: -
 --
 
@@ -50,7 +50,7 @@ COMMENT ON DATABASE postgres IS 'default administrative connection database';
 
 
 --
--- TOC entry 3150 (class 0 OID 0)
+-- TOC entry 3492 (class 0 OID 0)
 -- Name: postgres; Type: DATABASE PROPERTIES; Schema: -; Owner: -
 --
 
@@ -71,7 +71,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 701 (class 1247 OID 33698)
+-- TOC entry 860 (class 1247 OID 16389)
 -- Name: ActionType; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -82,7 +82,7 @@ CREATE TYPE public."ActionType" AS ENUM (
 
 
 --
--- TOC entry 646 (class 1247 OID 33457)
+-- TOC entry 863 (class 1247 OID 16394)
 -- Name: BetResult; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -93,7 +93,7 @@ CREATE TYPE public."BetResult" AS ENUM (
 
 
 --
--- TOC entry 649 (class 1247 OID 33462)
+-- TOC entry 866 (class 1247 OID 16400)
 -- Name: MatchTime; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -105,7 +105,7 @@ CREATE TYPE public."MatchTime" AS ENUM (
 
 
 --
--- TOC entry 652 (class 1247 OID 33470)
+-- TOC entry 869 (class 1247 OID 16408)
 -- Name: OverUnderType; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -116,7 +116,7 @@ CREATE TYPE public."OverUnderType" AS ENUM (
 
 
 --
--- TOC entry 223 (class 1255 OID 33643)
+-- TOC entry 233 (class 1255 OID 16413)
 -- Name: ArchiveDailyOver2p5(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -133,7 +133,7 @@ $$;
 
 
 --
--- TOC entry 219 (class 1255 OID 33475)
+-- TOC entry 234 (class 1255 OID 16414)
 -- Name: ArchivePastMatches(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -150,7 +150,7 @@ DELETE FROM public."OddsSafariMatch" where date_time + interval '5 hours' < now(
 
 
 --
--- TOC entry 220 (class 1255 OID 33476)
+-- TOC entry 235 (class 1255 OID 16415)
 -- Name: CalculateOverUnderResults(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -178,7 +178,7 @@ $$;
 
 
 --
--- TOC entry 221 (class 1255 OID 33477)
+-- TOC entry 236 (class 1255 OID 16416)
 -- Name: update_updated_on_Match(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -193,7 +193,7 @@ $$;
 
 
 --
--- TOC entry 222 (class 1255 OID 33478)
+-- TOC entry 237 (class 1255 OID 16417)
 -- Name: update_updated_on_OverUnder(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -212,7 +212,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 200 (class 1259 OID 33489)
+-- TOC entry 214 (class 1259 OID 16418)
 -- Name: OddsPortalMatch; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -227,7 +227,7 @@ CREATE TABLE public."OddsPortalMatch" (
 
 
 --
--- TOC entry 201 (class 1259 OID 33497)
+-- TOC entry 215 (class 1259 OID 16425)
 -- Name: Match_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -240,8 +240,8 @@ CREATE SEQUENCE public."Match_id_seq"
 
 
 --
--- TOC entry 3152 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 3494 (class 0 OID 0)
+-- Dependencies: 215
 -- Name: Match_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -249,7 +249,7 @@ ALTER SEQUENCE public."Match_id_seq" OWNED BY public."OddsPortalMatch".id;
 
 
 --
--- TOC entry 202 (class 1259 OID 33499)
+-- TOC entry 216 (class 1259 OID 16426)
 -- Name: OverUnder_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -262,7 +262,7 @@ CREATE SEQUENCE public."OverUnder_id_seq"
 
 
 --
--- TOC entry 203 (class 1259 OID 33501)
+-- TOC entry 217 (class 1259 OID 16427)
 -- Name: OddsPortalOverUnder; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -281,7 +281,7 @@ CREATE TABLE public."OddsPortalOverUnder" (
 
 
 --
--- TOC entry 204 (class 1259 OID 33510)
+-- TOC entry 218 (class 1259 OID 16435)
 -- Name: OddsSafariMatch; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -291,7 +291,7 @@ INHERITS (public."OddsPortalMatch");
 
 
 --
--- TOC entry 205 (class 1259 OID 33518)
+-- TOC entry 219 (class 1259 OID 16442)
 -- Name: OddsSafariOverUnder; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -301,7 +301,7 @@ INHERITS (public."OddsPortalOverUnder");
 
 
 --
--- TOC entry 206 (class 1259 OID 33527)
+-- TOC entry 220 (class 1259 OID 16450)
 -- Name: OverUnderHistorical_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -314,7 +314,7 @@ CREATE SEQUENCE public."OverUnderHistorical_id_seq"
 
 
 --
--- TOC entry 207 (class 1259 OID 33529)
+-- TOC entry 221 (class 1259 OID 16451)
 -- Name: OverUnderHistorical; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -341,7 +341,7 @@ CREATE TABLE public."OverUnderHistorical" (
 
 
 --
--- TOC entry 208 (class 1259 OID 33537)
+-- TOC entry 222 (class 1259 OID 16458)
 -- Name: PortalSafariMatch; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -361,7 +361,7 @@ CREATE VIEW public."PortalSafariMatch" AS
 
 
 --
--- TOC entry 209 (class 1259 OID 33541)
+-- TOC entry 223 (class 1259 OID 16462)
 -- Name: PortalSafariBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -385,7 +385,7 @@ CREATE VIEW public."PortalSafariBets" AS
 
 
 --
--- TOC entry 214 (class 1259 OID 33644)
+-- TOC entry 224 (class 1259 OID 16467)
 -- Name: daily_over_2p5; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -399,7 +399,7 @@ CREATE TABLE public.daily_over_2p5 (
 
 
 --
--- TOC entry 215 (class 1259 OID 33650)
+-- TOC entry 225 (class 1259 OID 16472)
 -- Name: daily_over_2p5_historical; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -413,7 +413,7 @@ CREATE TABLE public.daily_over_2p5_historical (
 
 
 --
--- TOC entry 216 (class 1259 OID 33656)
+-- TOC entry 226 (class 1259 OID 16477)
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -426,8 +426,8 @@ CREATE SEQUENCE public.daily_over_2p5_id_seq
 
 
 --
--- TOC entry 3161 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3503 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -435,7 +435,7 @@ ALTER SEQUENCE public.daily_over_2p5_id_seq OWNED BY public.daily_over_2p5.id;
 
 
 --
--- TOC entry 213 (class 1259 OID 33634)
+-- TOC entry 227 (class 1259 OID 16478)
 -- Name: daily_over_under; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -449,7 +449,7 @@ CREATE TABLE public.daily_over_under (
 
 
 --
--- TOC entry 212 (class 1259 OID 33632)
+-- TOC entry 228 (class 1259 OID 16483)
 -- Name: daily_over_under_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -462,8 +462,8 @@ CREATE SEQUENCE public.daily_over_under_id_seq
 
 
 --
--- TOC entry 3163 (class 0 OID 0)
--- Dependencies: 212
+-- TOC entry 3505 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: daily_over_under_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -471,7 +471,7 @@ ALTER SEQUENCE public.daily_over_under_id_seq OWNED BY public.daily_over_under.i
 
 
 --
--- TOC entry 218 (class 1259 OID 33746)
+-- TOC entry 229 (class 1259 OID 16484)
 -- Name: over2p5bets; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -492,7 +492,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 217 (class 1259 OID 33744)
+-- TOC entry 230 (class 1259 OID 16490)
 -- Name: over2p5bets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -505,8 +505,8 @@ CREATE SEQUENCE public.over2p5bets_id_seq
 
 
 --
--- TOC entry 3165 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3507 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: over2p5bets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -514,7 +514,7 @@ ALTER SEQUENCE public.over2p5bets_id_seq OWNED BY public.over2p5bets.id;
 
 
 --
--- TOC entry 210 (class 1259 OID 33546)
+-- TOC entry 231 (class 1259 OID 16491)
 -- Name: soccer_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -553,7 +553,7 @@ CREATE TABLE public.soccer_statistics (
 
 
 --
--- TOC entry 211 (class 1259 OID 33553)
+-- TOC entry 232 (class 1259 OID 16497)
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -566,8 +566,8 @@ CREATE SEQUENCE public.soccer_statistics_id_seq
 
 
 --
--- TOC entry 3167 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3509 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -575,7 +575,7 @@ ALTER SEQUENCE public.soccer_statistics_id_seq OWNED BY public.soccer_statistics
 
 
 --
--- TOC entry 2939 (class 2604 OID 33622)
+-- TOC entry 3267 (class 2604 OID 16498)
 -- Name: OddsPortalMatch id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -583,7 +583,7 @@ ALTER TABLE ONLY public."OddsPortalMatch" ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2943 (class 2604 OID 33623)
+-- TOC entry 3273 (class 2604 OID 16499)
 -- Name: OddsSafariMatch id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -591,7 +591,7 @@ ALTER TABLE ONLY public."OddsSafariMatch" ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2944 (class 2604 OID 33624)
+-- TOC entry 3274 (class 2604 OID 16500)
 -- Name: OddsSafariMatch created; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -599,7 +599,7 @@ ALTER TABLE ONLY public."OddsSafariMatch" ALTER COLUMN created SET DEFAULT CURRE
 
 
 --
--- TOC entry 2945 (class 2604 OID 33625)
+-- TOC entry 3275 (class 2604 OID 16501)
 -- Name: OddsSafariMatch updated; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -607,7 +607,7 @@ ALTER TABLE ONLY public."OddsSafariMatch" ALTER COLUMN updated SET DEFAULT CURRE
 
 
 --
--- TOC entry 2946 (class 2604 OID 33626)
+-- TOC entry 3276 (class 2604 OID 16502)
 -- Name: OddsSafariOverUnder id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -615,7 +615,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder" ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 2947 (class 2604 OID 33627)
+-- TOC entry 3277 (class 2604 OID 16503)
 -- Name: OddsSafariOverUnder created; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -623,7 +623,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder" ALTER COLUMN created SET DEFAULT C
 
 
 --
--- TOC entry 2948 (class 2604 OID 33628)
+-- TOC entry 3278 (class 2604 OID 16504)
 -- Name: OddsSafariOverUnder updated; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -631,7 +631,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder" ALTER COLUMN updated SET DEFAULT C
 
 
 --
--- TOC entry 2954 (class 2604 OID 33658)
+-- TOC entry 3281 (class 2604 OID 16505)
 -- Name: daily_over_2p5 id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -639,7 +639,7 @@ ALTER TABLE ONLY public.daily_over_2p5 ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2953 (class 2604 OID 33637)
+-- TOC entry 3282 (class 2604 OID 16506)
 -- Name: daily_over_under id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -647,7 +647,7 @@ ALTER TABLE ONLY public.daily_over_under ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 2955 (class 2604 OID 33749)
+-- TOC entry 3283 (class 2604 OID 16507)
 -- Name: over2p5bets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -655,7 +655,7 @@ ALTER TABLE ONLY public.over2p5bets ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2952 (class 2604 OID 33629)
+-- TOC entry 3285 (class 2604 OID 16508)
 -- Name: soccer_statistics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -663,8 +663,8 @@ ALTER TABLE ONLY public.soccer_statistics ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3126 (class 0 OID 33489)
--- Dependencies: 200
+-- TOC entry 3468 (class 0 OID 16418)
+-- Dependencies: 214
 -- Data for Name: OddsPortalMatch; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -681,8 +681,8 @@ COPY public."OddsPortalMatch" (id, home_team, guest_team, date_time, created, up
 
 
 --
--- TOC entry 3129 (class 0 OID 33501)
--- Dependencies: 203
+-- TOC entry 3471 (class 0 OID 16427)
+-- Dependencies: 217
 -- Data for Name: OddsPortalOverUnder; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -979,8 +979,8 @@ COPY public."OddsPortalOverUnder" (id, goals, odds, match_id, half, payout, crea
 
 
 --
--- TOC entry 3130 (class 0 OID 33510)
--- Dependencies: 204
+-- TOC entry 3472 (class 0 OID 16435)
+-- Dependencies: 218
 -- Data for Name: OddsSafariMatch; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -999,8 +999,8 @@ COPY public."OddsSafariMatch" (id, home_team, guest_team, date_time, created, up
 
 
 --
--- TOC entry 3131 (class 0 OID 33518)
--- Dependencies: 205
+-- TOC entry 3473 (class 0 OID 16442)
+-- Dependencies: 219
 -- Data for Name: OddsSafariOverUnder; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -1029,8 +1029,8 @@ COPY public."OddsSafariOverUnder" (id, goals, odds, match_id, half, payout, crea
 
 
 --
--- TOC entry 3133 (class 0 OID 33529)
--- Dependencies: 207
+-- TOC entry 3475 (class 0 OID 16451)
+-- Dependencies: 221
 -- Data for Name: OverUnderHistorical; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -1295,37 +1295,115 @@ COPY public."OverUnderHistorical" (id, "Date_Time", "Home_Team", "Guest_Team", "
 
 
 --
--- TOC entry 3138 (class 0 OID 33644)
--- Dependencies: 214
+-- TOC entry 3476 (class 0 OID 16467)
+-- Dependencies: 224
 -- Data for Name: daily_over_2p5; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.daily_over_2p5 (id, home, away, date_time, url) FROM stdin;
-4940	FC Dordrecht	Maastricht	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217339130
-4941	Nantes	Monaco	2023-08-25 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217058034
-4942	Konyaspor	Gaziantep FK	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217319409
-4944	De Graafschap	FC Emmen	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217498814
-4945	Lechia Gdansk	Podbeskidzie Bielsko Biala	2023-08-25 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217493623
-4946	Cambuur Leeuwarden	Ajax Reserves	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217306372
-4947	RFC Seraing	Zulte-Waregem	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217450418
-4948	RB Leipzig	VfB Stuttgart	2023-08-25 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.215652027
-4949	UCD	St Patricks Athletic	2023-08-25 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.217192189
-4950	Widzew Lodz	Slask Wroclaw	2023-08-25 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217219179
-4951	Al Taawon Buraidah	Abha	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217481803
-4952	MSV Duisburg	SSV Ulm 1846	2023-08-25 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217368790
-4953	FC Eindhoven	NAC	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217272289
-4954	Roda JC	Top Oss	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217339587
-4955	AC Horsens	Naestved IF	2023-08-25 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217443432
-4958	Schalke	Holstein Kiel	2023-08-25 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217041949
-4959	Drogheda United	Cork City	2023-08-25 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.217275084
-4961	FC Den Bosch	ADO Den Haag	2023-08-25 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217339359
-4962	FC U Craiova 1948	Rapid Bucuresti	2023-08-25 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217077031
+4964	Gangwon FC	Pohang Steelers	2023-08-26 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217317920
+4965	Unterhaching	FC Viktoria Köln	2023-08-26 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217368430
+4966	Machida Zelvia	Montedio Yamagata	2023-08-26 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217175210
+4967	Bradford	Crewe	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217309613
+4968	SK Prostejov	FC Brno	2023-08-26 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217301412
+4969	Rotherham	Leicester	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217076923
+4970	Kawasaki Frontale	Consadole Sapporo	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217173948
+4971	Ross County	Rangers	2023-08-26 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217107975
+4972	Brighton	West Ham	2023-08-26 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217056630
+4974	GKS Katowice	Resovia Rzeszow	2023-08-26 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217257919
+4975	SC Farense	Chaves	2023-08-26 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217278488
+4976	FC Tokyo	Vissel Kobe	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217175300
+4977	Kecskemeti TE	Puskas Academy	2023-08-26 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217316091
+4978	PSG	Lens	2023-08-26 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217057914
+4979	Arsenal	Fulham	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217057053
+4980	Yverdon Sport FC	Servette	2023-08-26 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217124539
+4981	Kolding IF	FC Helsingor	2023-08-26 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217443522
+4982	Yokohama FC	Yokohama F-Marinos	2023-08-26 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217173407
+4983	Hertha Berlin	Greuther Furth	2023-08-26 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217541591
+4984	Monza	Empoli	2023-08-26 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.216826059
+4985	Sevilla	Girona	2023-08-26 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217058154
+4986	KV Kortrijk	Standard Liege	2023-08-26 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.217179611
+4987	Omiya Ardija	V-Varen Nagasaki	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217173317
+4988	Sagan Tosu	Gamba Osaka	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217345655
+4989	Hartlepool	AFC Fylde	2023-08-26 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217304166
+4990	Orebro SK	Västerås SK FK	2023-08-26 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217470899
+4991	SC Bastia	Troyes	2023-08-26 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217320349
+4992	Partick	Queens Park	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217314331
+4993	Vfb Lubeck	Erzgebirge Aue	2023-08-26 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217368880
+4994	Cardiff	Sheff Wed	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217077679
+4995	Oxford Utd	Charlton	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217391389
+4996	SK Lisen	Hanacka Slavia Kromeriz	2023-08-26 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217317086
+4997	Cerezo Osaka	Nagoya Grampus	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217174309
+4998	Altrincham	Chesterfield	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217308965
+4999	Como	AC Reggiana	2023-08-26 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217321105
+5000	Gyeongnam FC	Seongnam FC	2023-08-26 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217388327
+5001	Verl	SC Freiburg II	2023-08-26 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217368340
+5002	Krumovgrad	Lokomotiv 1929 Sofia	2023-08-26 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217297232
+5003	Ujpest	Zalaegerszegi TE	2023-08-26 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217318471
+5004	Eupen	OH Leuven	2023-08-26 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.217179743
+5005	Ipswich	Leeds	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217078111
+5006	Burton Albion	Bolton	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217304526
+5007	West Brom	Middlesbrough	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217077355
+5008	SK Sturm Graz	FC Blau Weiss Linz	2023-08-26 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217059372
+5009	Sportivo Trinidense	Tacuary	2023-08-26 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217560985
+5010	Hibernian	Livingston	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217108084
+5011	Bournemouth	Tottenham	2023-08-26 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217056489
+5012	Southampton	QPR	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217077787
+5013	Swindon	Crawley Town	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217304436
+5014	FC Zurich	St Gallen	2023-08-26 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217124355
+5015	Frosinone	Atalanta	2023-08-26 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.216826179
+5016	Tianjin Jinmen Tigers	Meizhou Hakka	2023-08-26 12:35:00	https://www.orbitxch.com/customer/sport/1/market/1.217303755
+5017	NK Zrinski Jurjevac	NK Solin	2023-08-26 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217544898
+5018	Ebbsfleet United	Kidderminster	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217304256
+5019	Sandhausen	1860 Munich	2023-08-26 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217368610
+5020	Westerlo	KV Mechelen	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217179933
+5021	Patro Eisden Maasmechelen	SK Beveren	2023-08-26 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217450328
+5022	Maccabi Netanya	Maccabi Bnei Raina	2023-08-26 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217310949
+5023	Jubilo Iwata	JEF Utd Chiba	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217174038
+5024	Bochum	Borussia Dortmund	2023-08-26 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.215730347
+5025	Aldershot	Wealdstone	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217309736
+5026	Hannover 96	Hamburg	2023-08-26 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.217055794
+5027	Power Dynamos	African Stars Windhoek	2023-08-26 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217570211
+5028	Borussia Mgladbach	Bayer Leverkusen	2023-08-26 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.215730468
+5029	Dorking	York	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217309916
+5030	Harrogate Town	Morecambe	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217322120
+5031	Kasimpasa	Pendikspor	2023-08-26 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.217322458
+5032	Lommel	Deinze	2023-08-26 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217319014
+5033	Gimcheon Sangmu FC	Chungnam Asan FC	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217474701
+5034	Gateshead	Woking	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217309646
+5035	Elversberg	Fortuna Dusseldorf	2023-08-26 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217055904
+5036	Sarpsborg	Tromso	2023-08-26 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217103621
+5037	AD Grecia	Municipal Perez Zeledon	2023-08-26 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217470238
+5038	Milton Keynes Dons	Doncaster	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217321940
+5039	Banik Ostrava	Ceske Budejovice	2023-08-26 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217223479
+5040	KaPa	KPV	2023-08-26 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217316001
+5041	US Quevilly	Laval	2023-08-26 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217313500
+5042	Excelsior	Fortuna Sittard	2023-08-26 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217172640
+5043	Darmstadt	Union Berlin	2023-08-26 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.215762426
+5044	Zhejiang	Dalian Pro	2023-08-26 12:35:00	https://www.orbitxch.com/customer/sport/1/market/1.217303515
+5045	Newport County	Sutton Utd	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217309397
+5046	B93 Copenhagen	Vendsyssel FF	2023-08-26 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217570021
+5047	Trabzonspor	Caykur Rizespor	2023-08-26 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.217322246
+5048	Wolfsberger AC	FC Salzburg	2023-08-26 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217059156
+5049	Pardubice	Slovacko	2023-08-26 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217223365
+5050	NEC	RKC	2023-08-26 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.217172748
+5051	Celtic	St Johnstone	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217304346
+5052	FC Copenhagen	Silkeborg IF	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217334731
+5053	Cangzhou Mighty Lions	Beijing Guoan	2023-08-26 12:35:00	https://www.orbitxch.com/customer/sport/1/market/1.217381104
+5054	FC Ingolstadt	Saarbrucken	2023-08-26 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217368700
+5055	Diosgyori VTK	Kisvarda FC	2023-08-26 16:45:00	https://www.orbitxch.com/customer/sport/1/market/1.217317177
+5056	Airdrieonians	Inverness CT	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217305267
+5057	Heidenheim	TSG Hoffenheim	2023-08-26 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.215730588
+5058	Salford City	Accrington Stanley	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217056912
+5059	SC Freiburg	Werder Bremen	2023-08-26 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.215653587
+5060	Academico Viseu	Feirense	2023-08-26 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217301592
+5061	Maidenhead Utd	Oxford City	2023-08-26 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.217056348
 \.
 
 
 --
--- TOC entry 3139 (class 0 OID 33650)
--- Dependencies: 215
+-- TOC entry 3477 (class 0 OID 16472)
+-- Dependencies: 225
 -- Data for Name: daily_over_2p5_historical; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -1489,12 +1567,20 @@ COPY public.daily_over_2p5_historical (id, home, away, date_time, url) FROM stdi
 \N	Henan Songshan Longmen	Shanghai Port	2023-08-25 12:35:00	\N
 \N	Suwon FC	Incheon Utd	2023-08-25 11:00:00	\N
 \N	Shenzhen	Shandong Taishan	2023-08-25 12:35:00	\N
+\N	Marseille	Brest	2023-08-26 16:00:00	\N
+\N	Sportivo Ameliano	Guairena FC	2023-08-26 00:00:00	\N
+\N	El Nacional	Cumbaya FC	2023-08-26 01:00:00	\N
+\N	Sydney United 58	Brisbane Roar	2023-08-26 05:00:00	\N
+\N	Once Caldas	Atletico Bucaramanga	2023-08-26 00:15:00	\N
+\N	Standard Liege II	KFCO Beerschot Wilrijk	2023-08-26 15:00:00	\N
+\N	Tijuana	Mazatlan FC	2023-08-26 04:10:00	\N
+\N	Coventry	Sunderland	2023-08-26 15:00:00	\N
 \.
 
 
 --
--- TOC entry 3137 (class 0 OID 33634)
--- Dependencies: 213
+-- TOC entry 3479 (class 0 OID 16478)
+-- Dependencies: 227
 -- Data for Name: daily_over_under; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -1503,8 +1589,8 @@ COPY public.daily_over_under (id, home, away, date_time, url) FROM stdin;
 
 
 --
--- TOC entry 3142 (class 0 OID 33746)
--- Dependencies: 218
+-- TOC entry 3481 (class 0 OID 16484)
+-- Dependencies: 229
 -- Data for Name: over2p5bets; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -1518,12 +1604,15 @@ COPY public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "La
 11	\N	dummy	dummy	2023-08-23 22:11:21.875465	Back	Under	2.50	1.00	1.26	1	\N
 12	\N	dummy	dummy	2023-08-23 22:35:37.360146	Lay	Under	1.50	1.50	4.70	1	\N
 13	\N	dummy	dummy	2023-08-23 22:48:46.640338	Lay	Under	2.50	1.50	2.60	1	\N
+15	\N	FC Eindhoven	NAC	2023-08-25 20:05:26.785306	Lay	Under	2.50	1.50	2.10	1	\N
+16	\N	FC Eindhoven	NAC	2023-08-25 20:42:36.56641	Back	Under	2.50	1.00	1.10	1	\N
+14	\N	Schalke	Holstein Kiel	2023-08-25 18:35:23.3757	Lay	Under	2.50	1.50	2.40	1	\N
 \.
 
 
 --
--- TOC entry 3134 (class 0 OID 33546)
--- Dependencies: 210
+-- TOC entry 3483 (class 0 OID 16491)
+-- Dependencies: 231
 -- Data for Name: soccer_statistics; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -5116,8 +5205,8 @@ COPY public.soccer_statistics (id, home_team, guest_team, date_time, goals_home,
 
 
 --
--- TOC entry 3168 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 3510 (class 0 OID 0)
+-- Dependencies: 215
 -- Name: Match_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5125,8 +5214,8 @@ SELECT pg_catalog.setval('public."Match_id_seq"', 2563, true);
 
 
 --
--- TOC entry 3169 (class 0 OID 0)
--- Dependencies: 206
+-- TOC entry 3511 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: OverUnderHistorical_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5134,8 +5223,8 @@ SELECT pg_catalog.setval('public."OverUnderHistorical_id_seq"', 279, true);
 
 
 --
--- TOC entry 3170 (class 0 OID 0)
--- Dependencies: 202
+-- TOC entry 3512 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: OverUnder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5143,17 +5232,17 @@ SELECT pg_catalog.setval('public."OverUnder_id_seq"', 24889, true);
 
 
 --
--- TOC entry 3171 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3513 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 4963, true);
+SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 5061, true);
 
 
 --
--- TOC entry 3172 (class 0 OID 0)
--- Dependencies: 212
+-- TOC entry 3514 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: daily_over_under_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5161,17 +5250,17 @@ SELECT pg_catalog.setval('public.daily_over_under_id_seq', 1, false);
 
 
 --
--- TOC entry 3173 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3515 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: over2p5bets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5bets_id_seq', 13, true);
+SELECT pg_catalog.setval('public.over2p5bets_id_seq', 16, true);
 
 
 --
--- TOC entry 3174 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3516 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5179,7 +5268,7 @@ SELECT pg_catalog.setval('public.soccer_statistics_id_seq', 4227, true);
 
 
 --
--- TOC entry 2958 (class 2606 OID 33569)
+-- TOC entry 3288 (class 2606 OID 16510)
 -- Name: OddsPortalMatch OddsPortalMatch_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5188,7 +5277,7 @@ ALTER TABLE ONLY public."OddsPortalMatch"
 
 
 --
--- TOC entry 2960 (class 2606 OID 33571)
+-- TOC entry 3290 (class 2606 OID 16512)
 -- Name: OddsPortalMatch OddsPortalMatch_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5197,7 +5286,7 @@ ALTER TABLE ONLY public."OddsPortalMatch"
 
 
 --
--- TOC entry 2962 (class 2606 OID 33573)
+-- TOC entry 3292 (class 2606 OID 16514)
 -- Name: OddsPortalOverUnder OddsPortalOverUnder_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5206,7 +5295,7 @@ ALTER TABLE ONLY public."OddsPortalOverUnder"
 
 
 --
--- TOC entry 2964 (class 2606 OID 33575)
+-- TOC entry 3294 (class 2606 OID 16516)
 -- Name: OddsPortalOverUnder OddsPortalOverUnder_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5215,7 +5304,7 @@ ALTER TABLE ONLY public."OddsPortalOverUnder"
 
 
 --
--- TOC entry 2967 (class 2606 OID 33577)
+-- TOC entry 3297 (class 2606 OID 16518)
 -- Name: OddsSafariMatch OddsSafariMatch_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5224,7 +5313,7 @@ ALTER TABLE ONLY public."OddsSafariMatch"
 
 
 --
--- TOC entry 2969 (class 2606 OID 33579)
+-- TOC entry 3299 (class 2606 OID 16520)
 -- Name: OddsSafariMatch OddsSafariMatch_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5233,7 +5322,7 @@ ALTER TABLE ONLY public."OddsSafariMatch"
 
 
 --
--- TOC entry 2971 (class 2606 OID 33581)
+-- TOC entry 3301 (class 2606 OID 16522)
 -- Name: OddsSafariOverUnder OddsSafariOverUnder_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5242,7 +5331,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 2973 (class 2606 OID 33583)
+-- TOC entry 3303 (class 2606 OID 16524)
 -- Name: OddsSafariOverUnder OddsSafariOverUnder_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5251,7 +5340,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 2977 (class 2606 OID 33585)
+-- TOC entry 3307 (class 2606 OID 16526)
 -- Name: OverUnderHistorical OverUnderHistorical_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5260,7 +5349,7 @@ ALTER TABLE ONLY public."OverUnderHistorical"
 
 
 --
--- TOC entry 2985 (class 2606 OID 33660)
+-- TOC entry 3309 (class 2606 OID 16528)
 -- Name: daily_over_2p5 daily_over_2p5_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5269,7 +5358,7 @@ ALTER TABLE ONLY public.daily_over_2p5
 
 
 --
--- TOC entry 2987 (class 2606 OID 33788)
+-- TOC entry 3311 (class 2606 OID 16530)
 -- Name: daily_over_2p5 daily_over_2p5_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5278,7 +5367,7 @@ ALTER TABLE ONLY public.daily_over_2p5
 
 
 --
--- TOC entry 2983 (class 2606 OID 33642)
+-- TOC entry 3313 (class 2606 OID 16532)
 -- Name: daily_over_under daily_over_under_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5287,7 +5376,7 @@ ALTER TABLE ONLY public.daily_over_under
 
 
 --
--- TOC entry 2989 (class 2606 OID 33755)
+-- TOC entry 3315 (class 2606 OID 16534)
 -- Name: over2p5bets over2p5bets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5296,7 +5385,7 @@ ALTER TABLE ONLY public.over2p5bets
 
 
 --
--- TOC entry 2979 (class 2606 OID 33587)
+-- TOC entry 3317 (class 2606 OID 16536)
 -- Name: soccer_statistics soccer_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5305,7 +5394,7 @@ ALTER TABLE ONLY public.soccer_statistics
 
 
 --
--- TOC entry 2981 (class 2606 OID 33589)
+-- TOC entry 3319 (class 2606 OID 16538)
 -- Name: soccer_statistics soccer_statistics_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5314,7 +5403,7 @@ ALTER TABLE ONLY public.soccer_statistics
 
 
 --
--- TOC entry 2965 (class 1259 OID 33590)
+-- TOC entry 3295 (class 1259 OID 16539)
 -- Name: fki_OddsPortalOverUnder_Match_fk; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5322,7 +5411,7 @@ CREATE INDEX "fki_OddsPortalOverUnder_Match_fk" ON public."OddsPortalOverUnder" 
 
 
 --
--- TOC entry 2974 (class 1259 OID 33591)
+-- TOC entry 3304 (class 1259 OID 16540)
 -- Name: fki_OddsSafariOverUnder_Match_fk; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5330,7 +5419,7 @@ CREATE INDEX "fki_OddsSafariOverUnder_Match_fk" ON public."OddsSafariOverUnder" 
 
 
 --
--- TOC entry 2975 (class 1259 OID 33592)
+-- TOC entry 3305 (class 1259 OID 16541)
 -- Name: fki_OddsSafariOverUnder_match_id_fk; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5338,7 +5427,7 @@ CREATE INDEX "fki_OddsSafariOverUnder_match_id_fk" ON public."OddsSafariOverUnde
 
 
 --
--- TOC entry 2992 (class 2620 OID 33593)
+-- TOC entry 3322 (class 2620 OID 16542)
 -- Name: OddsPortalOverUnder update_updated_Match_trigger; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -5346,7 +5435,7 @@ CREATE TRIGGER "update_updated_Match_trigger" AFTER UPDATE ON public."OddsPortal
 
 
 --
--- TOC entry 2993 (class 2620 OID 33594)
+-- TOC entry 3323 (class 2620 OID 16543)
 -- Name: OddsPortalOverUnder update_updated_OverUnder_trigger; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -5354,7 +5443,7 @@ CREATE TRIGGER "update_updated_OverUnder_trigger" AFTER UPDATE ON public."OddsPo
 
 
 --
--- TOC entry 2990 (class 2606 OID 33595)
+-- TOC entry 3320 (class 2606 OID 16544)
 -- Name: OddsPortalOverUnder OddsPortalOverUnder_Match_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5363,7 +5452,7 @@ ALTER TABLE ONLY public."OddsPortalOverUnder"
 
 
 --
--- TOC entry 2991 (class 2606 OID 33600)
+-- TOC entry 3321 (class 2606 OID 16549)
 -- Name: OddsSafariOverUnder OddsSafariOverUnder_Match_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5372,8 +5461,8 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 3151 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 3493 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: TABLE "OddsPortalMatch"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5381,8 +5470,8 @@ REVOKE ALL ON TABLE public."OddsPortalMatch" FROM postgres;
 
 
 --
--- TOC entry 3153 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 3495 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: TABLE "OddsPortalOverUnder"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5391,8 +5480,8 @@ GRANT ALL ON TABLE public."OddsPortalOverUnder" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3154 (class 0 OID 0)
--- Dependencies: 204
+-- TOC entry 3496 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: TABLE "OddsSafariMatch"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5401,8 +5490,8 @@ GRANT ALL ON TABLE public."OddsSafariMatch" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3155 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3497 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: TABLE "OddsSafariOverUnder"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5411,8 +5500,8 @@ GRANT ALL ON TABLE public."OddsSafariOverUnder" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3156 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 3498 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: TABLE "OverUnderHistorical"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5421,8 +5510,8 @@ GRANT ALL ON TABLE public."OverUnderHistorical" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3157 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 3499 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: TABLE "PortalSafariMatch"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5431,8 +5520,8 @@ GRANT ALL ON TABLE public."PortalSafariMatch" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3158 (class 0 OID 0)
--- Dependencies: 209
+-- TOC entry 3500 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: TABLE "PortalSafariBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5441,8 +5530,8 @@ GRANT ALL ON TABLE public."PortalSafariBets" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3159 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3501 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: TABLE daily_over_2p5; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5451,8 +5540,8 @@ GRANT ALL ON TABLE public.daily_over_2p5 TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3160 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3502 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: TABLE daily_over_2p5_historical; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5461,8 +5550,8 @@ GRANT ALL ON TABLE public.daily_over_2p5_historical TO postgres WITH GRANT OPTIO
 
 
 --
--- TOC entry 3162 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3504 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: TABLE daily_over_under; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5471,8 +5560,8 @@ GRANT ALL ON TABLE public.daily_over_under TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3164 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3506 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: TABLE over2p5bets; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5481,8 +5570,8 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3166 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 3508 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: TABLE soccer_statistics; Type: ACL; Schema: public; Owner: -
 --
 
@@ -5491,7 +5580,7 @@ GRANT ALL ON TABLE public.soccer_statistics TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 1794 (class 826 OID 33605)
+-- TOC entry 2102 (class 826 OID 16554)
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: -; Owner: -
 --
 
@@ -5499,7 +5588,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-08-25 17:30:33 BST
+-- Completed on 2023-08-26 09:28:18 BST
 
 --
 -- PostgreSQL database dump complete

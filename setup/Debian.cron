@@ -22,7 +22,7 @@
 # 
 # m h  dom mon dow   command
 
-0    3 * * * cd /home/sterge/projects/layback/ && ./kill_chrome.bash 2>&1 > /dev/null
-0    4 * * * cd /home/sterge/projects/layback/logs && ./backup_logs.bash 2>&1 > /dev/null
-*    5 * * * cd /home/sterge/projects/layback && ./runDailyScraper.bash >> logs/scraper_cron.log 2>&1
-*/15 * * * * cd /home/sterge/projects/layback && ./runDailyScheduler.bash >> logs/scheduler_cron.log 2>&1
+0    3 * * * cd /home/sterge/projects/layback/     && ./kill_all.bash          2>&1 > /dev/null
+0    4 * * * cd /home/sterge/projects/layback/logs && ./backup_logs.bash       2>&1 > /dev/null
+*    5 * * * cd /home/sterge/projects/layback      && ./runDailyScraper.bash   2>&1 > /dev/null
+*/15 * * * * cd /home/sterge/projects/layback      && ./runDailyScheduler.bash 2>&1 > /dev/null

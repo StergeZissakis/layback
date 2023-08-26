@@ -60,6 +60,7 @@ def expandTabsOfInterest(page, browser):
 
 def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     global db, match
+    pp = pprint.PrettyPrinter(indent=4)
     bet = BetRow()
     bet.set("MatchDateTime", match.get("date_time"))
     bet.set("Home", match.get("home"))
@@ -70,6 +71,7 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     bet.set("Odds", odds)
     bet.set("OddsRecorded", odds_recorded)
     bet.set("Amount", amount)
+    pp.pprint(bet)
     db.insert(bet)
 
 def placeBet(odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
