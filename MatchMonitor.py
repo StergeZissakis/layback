@@ -174,11 +174,12 @@ def monitorMatch(match_id, url = ''):
     match = DailyMatchRow()
     if len(url) == 0:
         row = db.select("SELECT home, away, url FROM " + match.table_name + " WHERE id = '%s';" % (match_id,))
-        match.set("home", str(row[0][0]))
-        match.set("away", str(row[0][1]))
-        match.set("url",  str(row[0][2]))
-        url = match.get("url")
-        db.delete(match, 'where id = %s' %(match_id,))
+        if row and len(row) > 0:
+            match.set("home", str(row[0][0]))
+            match.set("away", str(row[0][1]))
+            match.set("url",  str(row[0][2]))
+            url = match.get("url")
+            db.delete(match, 'where id = %s' %(match_id,))
     else:
         pass
 

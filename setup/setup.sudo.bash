@@ -1,7 +1,2 @@
-apt-get install -y postgresql-all openvpn
-
-pip install wheel
-
-pip install -r Requirements.txt
-
+apt-get install -y postgresql-all openvpn python3.8-venv chromium-browser chromium-browser-l10n chromium-chromedriver
 
