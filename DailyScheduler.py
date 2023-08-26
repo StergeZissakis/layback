@@ -18,8 +18,8 @@ if __name__ == "__main__":
 
     processes = []
 
-    #matches = db.select("SELECT * FROM " + dummy.table_name + " WHERE url is not Null and date_time between (now() - interval '60 minutes') AND (now() - interval '36 minutes') ORDER BY date_time ASC, id ASC;")
-    matches = db.select("SELECT * FROM " + dummy.table_name + " WHERE url is not Null and date_time < now()  ORDER BY date_time ASC, id ASC;")
+    #matches = db.select("SELECT * FROM " + dummy.table_name + " WHERE url is not Null and date_time < now()  ORDER BY date_time ASC, id ASC;")
+    matches = db.select("SELECT * FROM " + dummy.table_name + " WHERE url is not Null and date_time between (now() - interval '60 minutes') AND (now() - interval '36 minutes') ORDER BY date_time ASC, id ASC;")
     for m in matches:
         mid = m[0]
         dateTime = m[3]
