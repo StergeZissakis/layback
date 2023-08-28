@@ -74,15 +74,15 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     #pp.pprint(bet)
     db.insert(bet)
 
-def placeBet(bet_button, odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
+def placeBet(betslip_button, odds_input, stake_input, place_bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
     global page
     suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div/text()'
-    while check_exists_by_xpath(page, suspended_xpath) and page.find_element(By.XPATH, suspended_xpath).text() == "SUSPENDED"):
+    while check_exists_by_xpath(page, suspended_xpath) and page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
         sleep(2)
-    bet_button.click()
+    betslip_button.click()
     odds_input.send_keys(str(odds))
     stake_input.send_keys(str(6))
-    bet_button.click()
+    place_bet_button.click()
     #TODO: Monitor for when the bet Wins
     logBet(layback, overUnder, goals, odds, odds_recorded, amount)
 
@@ -110,7 +110,7 @@ def layUnder2p5at1p5():
 def backUnder1p5at1p5():
     global ou1p5Tab, match
     odds = getBackUnder1p5Odds()
-    placeBet(ou1p5Tab.find_element(By.XPATH  './div[3]/div[1]/div[2]/div[2]/div[1]/button'            ),
+    placeBet(ou1p5Tab.find_element(By.XPATH,  './div[3]/div[1]/div[2]/div[2]/div[1]/button'            ),
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
              ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
