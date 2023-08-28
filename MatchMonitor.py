@@ -76,9 +76,9 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
 
 def placeBet(odds_input, stake_input, bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
     global page
-    #while check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[5]/div/div[3]/div[3]/div/div') or \
-    #check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'):
-    #sleep(10)
+    suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div/text()'
+    while check_exists_by_xpath(page, suspended_xpath) and page.find_element(By.XPATH, suspended_xpath).text() == "SUSPENDED"):
+        sleep(2)
     odds_input.send_keys(str(odds))
     stake_input.send_keys(str(6))
     bet_button.click()
