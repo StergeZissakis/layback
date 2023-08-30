@@ -74,15 +74,18 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
     #pp.pprint(bet)
     db.insert(bet)
 
-def placeBet(betslip_button, odds_input, stake_input, place_bet_button, layback, overUnder, goals, odds, odds_recorded, amount):
+def placeBet(tab, layback, overUnder, goals, odds, odds_recorded, amount):
     global page
     suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div/text()'
     while check_exists_by_xpath(page, suspended_xpath) and page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
         sleep(2)
-    betslip_button.click()
-    odds_input.send_keys(str(odds))
-    stake_input.send_keys(str(6))
-    place_bet_button.click()
+    div_palce_bet_button = 1
+    if layback == 'Lay': 
+        div_palce_bet_button = 2
+    tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[' + str(div_palce_bet_button) + ']/button' ).click() #Place bet button
+    tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ).send_keys(str(odds))  #odds
+    tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ).send_keys(str(6))  #stake
+    tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  #bet button
     #TODO: Monitor for when the bet Wins
     logBet(layback, overUnder, goals, odds, odds_recorded, amount)
 
@@ -90,61 +93,37 @@ def placeBet(betslip_button, odds_input, stake_input, place_bet_button, layback,
 def layUnder1p5at1p5():
     global ou1p5Tab, match
     odds = getLayUnder1p5Odds()
-    placeBet(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button'            ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
-             'Lay', 'Under', 1.5, 1.5, odds, 1)
+    placeBet(ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, odds, 1)
     print('[%s VS %s] betted Lay Under 1.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
 
 def layUnder2p5at1p5():
     global ou2p5Tab, match
     odds = getLayUnder2p5Odds()
-    placeBet(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button'            ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
-             'Lay', 'Under', 2.5, 1.5, odds, 1)
+    placeBet(ou2p5Tab,  'Lay', 'Under', 2.5, 1.5, odds, 1)
     print('[%s VS %s] betted Lay Under 2.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
 
 def backUnder1p5at1p5():
     global ou1p5Tab, match
     odds = getBackUnder1p5Odds()
-    placeBet(ou1p5Tab.find_element(By.XPATH,  './div[3]/div[1]/div[2]/div[2]/div[1]/button'            ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
-             'Back', 'Under', 1.5, 1.5, odds, 1)
+    placeBet(ou1p5Tab, 'Back', 'Under', 1.5, 1.5, odds, 1)
     print('[%s VS %s] betted Back Under 1.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
 
 def backUnder2p5at1p5():
     global ou2p5Tab, match
     odds = getBackUnder2p5Odds()
-    placeBet(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button'            ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
-             'Back', 'Under', 2.5, 1, odds, 1)
+    placeBet(ou2p5Tab, 'Back', 'Under', 2.5, 1, odds, 1)
     print('[%s VS %s] betted Back Under 2.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
 
 def backUnder1p5():
     global ou1p5Tab, match
     odds = getBackUnder1p5Odds()
-    placeBet(ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button'            ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
-             ou1p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
-             'Back', 'Under', 1.5, 1, odds, 1)
+    placeBet(ou1p5Tab, 'Back', 'Under', 1.5, 1, odds, 1)
     print('[%s VS %s] betted Back Under 1.5 @ any odds [%s]' % (match.get("home"), match.get("away"), odds))
 
 def backUnder2p5():
     global ou2p5Tab, match
     odds = getBackUnder2p5Odds()
-    placeBet(ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button'            ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ),
-             ou2p5Tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button'),
-             'Back', 'Under', 2.5, 1, odds, 1)
+    placeBet(ou2p5Tab, 'Back', 'Under', 2.5, 1, odds, 1)
     print('[%s VS %s] betted Back Under 2.5 @ any odds [%s]' % (match.get("home"), match.get("away"), odds))
     return float(odds)
     
@@ -198,6 +177,7 @@ def monitorMatch(match_id, url = ''):
         sleep(6)
         page.refresh()
         sleep(10)
+        browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
     else:
         print('[%s VS %s] Failure: URL is blank')
         return
