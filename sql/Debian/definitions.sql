@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-08-27 23:25:29 BST
+-- Started on 2023-09-02 02:32:25 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,11 +20,11 @@ SET row_security = off;
 
 DROP DATABASE IF EXISTS postgres;
 --
--- TOC entry 3123 (class 1262 OID 13463)
+-- TOC entry 3125 (class 1262 OID 13465)
 -- Name: postgres; Type: DATABASE; Schema: -; Owner: -
 --
 
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_GB.UTF-8' LC_CTYPE = 'en_GB.UTF-8';
 
 
 \connect postgres
@@ -41,8 +41,8 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3124 (class 0 OID 0)
--- Dependencies: 3123
+-- TOC entry 3126 (class 0 OID 0)
+-- Dependencies: 3125
 -- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: -
 --
 
@@ -50,7 +50,7 @@ COMMENT ON DATABASE postgres IS 'default administrative connection database';
 
 
 --
--- TOC entry 3125 (class 0 OID 0)
+-- TOC entry 3127 (class 0 OID 0)
 -- Name: postgres; Type: DATABASE PROPERTIES; Schema: -; Owner: -
 --
 
@@ -71,7 +71,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 1 (class 3079 OID 32768)
+-- TOC entry 1 (class 3079 OID 16584)
 -- Name: adminpack; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -79,7 +79,7 @@ CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 3126 (class 0 OID 0)
+-- TOC entry 3128 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: -
 --
@@ -88,7 +88,7 @@ COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
 
 
 --
--- TOC entry 653 (class 1247 OID 32778)
+-- TOC entry 563 (class 1247 OID 16385)
 -- Name: ActionType; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -99,7 +99,7 @@ CREATE TYPE public."ActionType" AS ENUM (
 
 
 --
--- TOC entry 656 (class 1247 OID 32784)
+-- TOC entry 566 (class 1247 OID 16390)
 -- Name: BetResult; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -110,7 +110,7 @@ CREATE TYPE public."BetResult" AS ENUM (
 
 
 --
--- TOC entry 659 (class 1247 OID 32790)
+-- TOC entry 654 (class 1247 OID 16396)
 -- Name: MatchTime; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -122,7 +122,7 @@ CREATE TYPE public."MatchTime" AS ENUM (
 
 
 --
--- TOC entry 662 (class 1247 OID 32798)
+-- TOC entry 657 (class 1247 OID 16404)
 -- Name: OverUnderType; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -133,7 +133,7 @@ CREATE TYPE public."OverUnderType" AS ENUM (
 
 
 --
--- TOC entry 225 (class 1255 OID 32803)
+-- TOC entry 225 (class 1255 OID 16409)
 -- Name: ArchiveDailyOver2p5(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -150,7 +150,7 @@ $$;
 
 
 --
--- TOC entry 226 (class 1255 OID 32804)
+-- TOC entry 226 (class 1255 OID 16410)
 -- Name: ArchivePastMatches(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -167,7 +167,7 @@ DELETE FROM public."OddsSafariMatch" where date_time + interval '5 hours' < now(
 
 
 --
--- TOC entry 227 (class 1255 OID 32805)
+-- TOC entry 227 (class 1255 OID 16411)
 -- Name: CalculateOverUnderResults(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -195,7 +195,7 @@ $$;
 
 
 --
--- TOC entry 228 (class 1255 OID 32806)
+-- TOC entry 228 (class 1255 OID 16412)
 -- Name: update_updated_on_Match(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -210,7 +210,7 @@ $$;
 
 
 --
--- TOC entry 229 (class 1255 OID 32807)
+-- TOC entry 229 (class 1255 OID 16413)
 -- Name: update_updated_on_OverUnder(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -229,7 +229,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 205 (class 1259 OID 32808)
+-- TOC entry 203 (class 1259 OID 16414)
 -- Name: OddsPortalMatch; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -244,7 +244,7 @@ CREATE TABLE public."OddsPortalMatch" (
 
 
 --
--- TOC entry 206 (class 1259 OID 32816)
+-- TOC entry 204 (class 1259 OID 16422)
 -- Name: Match_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -257,8 +257,8 @@ CREATE SEQUENCE public."Match_id_seq"
 
 
 --
--- TOC entry 3128 (class 0 OID 0)
--- Dependencies: 206
+-- TOC entry 3130 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: Match_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -266,7 +266,7 @@ ALTER SEQUENCE public."Match_id_seq" OWNED BY public."OddsPortalMatch".id;
 
 
 --
--- TOC entry 207 (class 1259 OID 32818)
+-- TOC entry 205 (class 1259 OID 16424)
 -- Name: OverUnder_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -279,7 +279,7 @@ CREATE SEQUENCE public."OverUnder_id_seq"
 
 
 --
--- TOC entry 208 (class 1259 OID 32820)
+-- TOC entry 206 (class 1259 OID 16426)
 -- Name: OddsPortalOverUnder; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -298,7 +298,7 @@ CREATE TABLE public."OddsPortalOverUnder" (
 
 
 --
--- TOC entry 209 (class 1259 OID 32829)
+-- TOC entry 207 (class 1259 OID 16435)
 -- Name: OddsSafariMatch; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -308,7 +308,7 @@ INHERITS (public."OddsPortalMatch");
 
 
 --
--- TOC entry 210 (class 1259 OID 32837)
+-- TOC entry 208 (class 1259 OID 16443)
 -- Name: OddsSafariOverUnder; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -318,7 +318,7 @@ INHERITS (public."OddsPortalOverUnder");
 
 
 --
--- TOC entry 211 (class 1259 OID 32846)
+-- TOC entry 209 (class 1259 OID 16452)
 -- Name: OverUnderHistorical_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -331,7 +331,7 @@ CREATE SEQUENCE public."OverUnderHistorical_id_seq"
 
 
 --
--- TOC entry 212 (class 1259 OID 32848)
+-- TOC entry 210 (class 1259 OID 16454)
 -- Name: OverUnderHistorical; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -358,7 +358,7 @@ CREATE TABLE public."OverUnderHistorical" (
 
 
 --
--- TOC entry 213 (class 1259 OID 32856)
+-- TOC entry 211 (class 1259 OID 16462)
 -- Name: PortalSafariMatch; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -378,7 +378,7 @@ CREATE VIEW public."PortalSafariMatch" AS
 
 
 --
--- TOC entry 214 (class 1259 OID 32860)
+-- TOC entry 212 (class 1259 OID 16466)
 -- Name: PortalSafariBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -402,7 +402,7 @@ CREATE VIEW public."PortalSafariBets" AS
 
 
 --
--- TOC entry 220 (class 1259 OID 32887)
+-- TOC entry 218 (class 1259 OID 16493)
 -- Name: over2p5bets; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -423,7 +423,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 224 (class 1259 OID 32992)
+-- TOC entry 222 (class 1259 OID 16593)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -447,7 +447,7 @@ CREATE VIEW public."TodaysBets" AS
 
 
 --
--- TOC entry 215 (class 1259 OID 32865)
+-- TOC entry 213 (class 1259 OID 16471)
 -- Name: daily_over_2p5; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -461,7 +461,7 @@ CREATE TABLE public.daily_over_2p5 (
 
 
 --
--- TOC entry 216 (class 1259 OID 32871)
+-- TOC entry 214 (class 1259 OID 16477)
 -- Name: daily_over_2p5_historical; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -475,7 +475,7 @@ CREATE TABLE public.daily_over_2p5_historical (
 
 
 --
--- TOC entry 217 (class 1259 OID 32877)
+-- TOC entry 215 (class 1259 OID 16483)
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -488,8 +488,8 @@ CREATE SEQUENCE public.daily_over_2p5_id_seq
 
 
 --
--- TOC entry 3139 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3141 (class 0 OID 0)
+-- Dependencies: 215
 -- Name: daily_over_2p5_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -497,7 +497,7 @@ ALTER SEQUENCE public.daily_over_2p5_id_seq OWNED BY public.daily_over_2p5.id;
 
 
 --
--- TOC entry 218 (class 1259 OID 32879)
+-- TOC entry 216 (class 1259 OID 16485)
 -- Name: daily_over_under; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -511,7 +511,7 @@ CREATE TABLE public.daily_over_under (
 
 
 --
--- TOC entry 219 (class 1259 OID 32885)
+-- TOC entry 217 (class 1259 OID 16491)
 -- Name: daily_over_under_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -524,8 +524,8 @@ CREATE SEQUENCE public.daily_over_under_id_seq
 
 
 --
--- TOC entry 3141 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3143 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: daily_over_under_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -533,7 +533,7 @@ ALTER SEQUENCE public.daily_over_under_id_seq OWNED BY public.daily_over_under.i
 
 
 --
--- TOC entry 204 (class 1259 OID 16386)
+-- TOC entry 223 (class 1259 OID 16598)
 -- Name: hePublicKeys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -545,7 +545,7 @@ CREATE TABLE public."hePublicKeys" (
 
 
 --
--- TOC entry 203 (class 1259 OID 16384)
+-- TOC entry 224 (class 1259 OID 16605)
 -- Name: hePublicKeys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -558,8 +558,8 @@ CREATE SEQUENCE public."hePublicKeys_id_seq"
 
 
 --
--- TOC entry 3142 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 3145 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: hePublicKeys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -567,7 +567,7 @@ ALTER SEQUENCE public."hePublicKeys_id_seq" OWNED BY public."hePublicKeys".id;
 
 
 --
--- TOC entry 221 (class 1259 OID 32894)
+-- TOC entry 219 (class 1259 OID 16500)
 -- Name: over2p5bets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -580,8 +580,8 @@ CREATE SEQUENCE public.over2p5bets_id_seq
 
 
 --
--- TOC entry 3143 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 3146 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: over2p5bets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -589,7 +589,7 @@ ALTER SEQUENCE public.over2p5bets_id_seq OWNED BY public.over2p5bets.id;
 
 
 --
--- TOC entry 222 (class 1259 OID 32896)
+-- TOC entry 220 (class 1259 OID 16502)
 -- Name: soccer_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -628,7 +628,7 @@ CREATE TABLE public.soccer_statistics (
 
 
 --
--- TOC entry 223 (class 1259 OID 32903)
+-- TOC entry 221 (class 1259 OID 16509)
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -641,8 +641,8 @@ CREATE SEQUENCE public.soccer_statistics_id_seq
 
 
 --
--- TOC entry 3145 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3148 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: soccer_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -650,7 +650,7 @@ ALTER SEQUENCE public.soccer_statistics_id_seq OWNED BY public.soccer_statistics
 
 
 --
--- TOC entry 2932 (class 2604 OID 32905)
+-- TOC entry 2932 (class 2604 OID 16607)
 -- Name: OddsPortalMatch id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -658,7 +658,7 @@ ALTER TABLE ONLY public."OddsPortalMatch" ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2936 (class 2604 OID 32906)
+-- TOC entry 2936 (class 2604 OID 16608)
 -- Name: OddsSafariMatch id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -666,7 +666,7 @@ ALTER TABLE ONLY public."OddsSafariMatch" ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2937 (class 2604 OID 32907)
+-- TOC entry 2937 (class 2604 OID 16609)
 -- Name: OddsSafariMatch created; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -674,7 +674,7 @@ ALTER TABLE ONLY public."OddsSafariMatch" ALTER COLUMN created SET DEFAULT CURRE
 
 
 --
--- TOC entry 2938 (class 2604 OID 32908)
+-- TOC entry 2938 (class 2604 OID 16610)
 -- Name: OddsSafariMatch updated; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -682,7 +682,7 @@ ALTER TABLE ONLY public."OddsSafariMatch" ALTER COLUMN updated SET DEFAULT CURRE
 
 
 --
--- TOC entry 2939 (class 2604 OID 32909)
+-- TOC entry 2939 (class 2604 OID 16611)
 -- Name: OddsSafariOverUnder id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -690,7 +690,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder" ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 2940 (class 2604 OID 32910)
+-- TOC entry 2940 (class 2604 OID 16612)
 -- Name: OddsSafariOverUnder created; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -698,7 +698,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder" ALTER COLUMN created SET DEFAULT C
 
 
 --
--- TOC entry 2941 (class 2604 OID 32911)
+-- TOC entry 2941 (class 2604 OID 16613)
 -- Name: OddsSafariOverUnder updated; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -706,7 +706,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder" ALTER COLUMN updated SET DEFAULT C
 
 
 --
--- TOC entry 2944 (class 2604 OID 32912)
+-- TOC entry 2944 (class 2604 OID 16614)
 -- Name: daily_over_2p5 id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -714,7 +714,7 @@ ALTER TABLE ONLY public.daily_over_2p5 ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2945 (class 2604 OID 32913)
+-- TOC entry 2945 (class 2604 OID 16615)
 -- Name: daily_over_under id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -722,7 +722,7 @@ ALTER TABLE ONLY public.daily_over_under ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 2928 (class 2604 OID 16389)
+-- TOC entry 2951 (class 2604 OID 16616)
 -- Name: hePublicKeys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -730,7 +730,7 @@ ALTER TABLE ONLY public."hePublicKeys" ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2947 (class 2604 OID 32914)
+-- TOC entry 2947 (class 2604 OID 16617)
 -- Name: over2p5bets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -738,7 +738,7 @@ ALTER TABLE ONLY public.over2p5bets ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2949 (class 2604 OID 32915)
+-- TOC entry 2949 (class 2604 OID 16618)
 -- Name: soccer_statistics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -746,7 +746,7 @@ ALTER TABLE ONLY public.soccer_statistics ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2953 (class 2606 OID 32917)
+-- TOC entry 2953 (class 2606 OID 16523)
 -- Name: OddsPortalMatch OddsPortalMatch_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -755,7 +755,7 @@ ALTER TABLE ONLY public."OddsPortalMatch"
 
 
 --
--- TOC entry 2955 (class 2606 OID 32919)
+-- TOC entry 2955 (class 2606 OID 16525)
 -- Name: OddsPortalMatch OddsPortalMatch_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -764,7 +764,7 @@ ALTER TABLE ONLY public."OddsPortalMatch"
 
 
 --
--- TOC entry 2957 (class 2606 OID 32921)
+-- TOC entry 2957 (class 2606 OID 16527)
 -- Name: OddsPortalOverUnder OddsPortalOverUnder_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -773,7 +773,7 @@ ALTER TABLE ONLY public."OddsPortalOverUnder"
 
 
 --
--- TOC entry 2959 (class 2606 OID 32923)
+-- TOC entry 2959 (class 2606 OID 16529)
 -- Name: OddsPortalOverUnder OddsPortalOverUnder_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -782,7 +782,7 @@ ALTER TABLE ONLY public."OddsPortalOverUnder"
 
 
 --
--- TOC entry 2962 (class 2606 OID 32925)
+-- TOC entry 2962 (class 2606 OID 16531)
 -- Name: OddsSafariMatch OddsSafariMatch_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -791,7 +791,7 @@ ALTER TABLE ONLY public."OddsSafariMatch"
 
 
 --
--- TOC entry 2964 (class 2606 OID 32927)
+-- TOC entry 2964 (class 2606 OID 16533)
 -- Name: OddsSafariMatch OddsSafariMatch_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -800,7 +800,7 @@ ALTER TABLE ONLY public."OddsSafariMatch"
 
 
 --
--- TOC entry 2966 (class 2606 OID 32929)
+-- TOC entry 2966 (class 2606 OID 16535)
 -- Name: OddsSafariOverUnder OddsSafariOverUnder_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -809,7 +809,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 2968 (class 2606 OID 32931)
+-- TOC entry 2968 (class 2606 OID 16537)
 -- Name: OddsSafariOverUnder OddsSafariOverUnder_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -818,7 +818,7 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 2972 (class 2606 OID 32933)
+-- TOC entry 2972 (class 2606 OID 16539)
 -- Name: OverUnderHistorical OverUnderHistorical_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -827,7 +827,7 @@ ALTER TABLE ONLY public."OverUnderHistorical"
 
 
 --
--- TOC entry 2974 (class 2606 OID 32935)
+-- TOC entry 2974 (class 2606 OID 16541)
 -- Name: daily_over_2p5 daily_over_2p5_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -836,7 +836,7 @@ ALTER TABLE ONLY public.daily_over_2p5
 
 
 --
--- TOC entry 2976 (class 2606 OID 32937)
+-- TOC entry 2976 (class 2606 OID 16543)
 -- Name: daily_over_2p5 daily_over_2p5_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -845,7 +845,7 @@ ALTER TABLE ONLY public.daily_over_2p5
 
 
 --
--- TOC entry 2978 (class 2606 OID 32939)
+-- TOC entry 2978 (class 2606 OID 16545)
 -- Name: daily_over_under daily_over_under_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -854,7 +854,7 @@ ALTER TABLE ONLY public.daily_over_under
 
 
 --
--- TOC entry 2951 (class 2606 OID 16394)
+-- TOC entry 2986 (class 2606 OID 16620)
 -- Name: hePublicKeys hePublicKeys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -863,7 +863,7 @@ ALTER TABLE ONLY public."hePublicKeys"
 
 
 --
--- TOC entry 2980 (class 2606 OID 32941)
+-- TOC entry 2980 (class 2606 OID 16547)
 -- Name: over2p5bets over2p5bets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -872,7 +872,7 @@ ALTER TABLE ONLY public.over2p5bets
 
 
 --
--- TOC entry 2982 (class 2606 OID 32943)
+-- TOC entry 2982 (class 2606 OID 16549)
 -- Name: soccer_statistics soccer_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -881,7 +881,7 @@ ALTER TABLE ONLY public.soccer_statistics
 
 
 --
--- TOC entry 2984 (class 2606 OID 32945)
+-- TOC entry 2984 (class 2606 OID 16551)
 -- Name: soccer_statistics soccer_statistics_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -890,7 +890,7 @@ ALTER TABLE ONLY public.soccer_statistics
 
 
 --
--- TOC entry 2960 (class 1259 OID 32946)
+-- TOC entry 2960 (class 1259 OID 16552)
 -- Name: fki_OddsPortalOverUnder_Match_fk; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -898,7 +898,7 @@ CREATE INDEX "fki_OddsPortalOverUnder_Match_fk" ON public."OddsPortalOverUnder" 
 
 
 --
--- TOC entry 2969 (class 1259 OID 32947)
+-- TOC entry 2969 (class 1259 OID 16553)
 -- Name: fki_OddsSafariOverUnder_Match_fk; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -906,7 +906,7 @@ CREATE INDEX "fki_OddsSafariOverUnder_Match_fk" ON public."OddsSafariOverUnder" 
 
 
 --
--- TOC entry 2970 (class 1259 OID 32948)
+-- TOC entry 2970 (class 1259 OID 16554)
 -- Name: fki_OddsSafariOverUnder_match_id_fk; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -914,7 +914,7 @@ CREATE INDEX "fki_OddsSafariOverUnder_match_id_fk" ON public."OddsSafariOverUnde
 
 
 --
--- TOC entry 2987 (class 2620 OID 32949)
+-- TOC entry 2989 (class 2620 OID 16555)
 -- Name: OddsPortalOverUnder update_updated_Match_trigger; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -922,7 +922,7 @@ CREATE TRIGGER "update_updated_Match_trigger" AFTER UPDATE ON public."OddsPortal
 
 
 --
--- TOC entry 2988 (class 2620 OID 32950)
+-- TOC entry 2990 (class 2620 OID 16556)
 -- Name: OddsPortalOverUnder update_updated_OverUnder_trigger; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -930,7 +930,7 @@ CREATE TRIGGER "update_updated_OverUnder_trigger" AFTER UPDATE ON public."OddsPo
 
 
 --
--- TOC entry 2985 (class 2606 OID 32951)
+-- TOC entry 2987 (class 2606 OID 16557)
 -- Name: OddsPortalOverUnder OddsPortalOverUnder_Match_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -939,7 +939,7 @@ ALTER TABLE ONLY public."OddsPortalOverUnder"
 
 
 --
--- TOC entry 2986 (class 2606 OID 32956)
+-- TOC entry 2988 (class 2606 OID 16562)
 -- Name: OddsSafariOverUnder OddsSafariOverUnder_Match_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -948,8 +948,8 @@ ALTER TABLE ONLY public."OddsSafariOverUnder"
 
 
 --
--- TOC entry 3127 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 3129 (class 0 OID 0)
+-- Dependencies: 203
 -- Name: TABLE "OddsPortalMatch"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -957,8 +957,8 @@ REVOKE ALL ON TABLE public."OddsPortalMatch" FROM postgres;
 
 
 --
--- TOC entry 3129 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 3131 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: TABLE "OddsPortalOverUnder"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -967,8 +967,8 @@ GRANT ALL ON TABLE public."OddsPortalOverUnder" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3130 (class 0 OID 0)
--- Dependencies: 209
+-- TOC entry 3132 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: TABLE "OddsSafariMatch"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -977,8 +977,8 @@ GRANT ALL ON TABLE public."OddsSafariMatch" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3131 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 3133 (class 0 OID 0)
+-- Dependencies: 208
 -- Name: TABLE "OddsSafariOverUnder"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -987,8 +987,8 @@ GRANT ALL ON TABLE public."OddsSafariOverUnder" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3132 (class 0 OID 0)
--- Dependencies: 212
+-- TOC entry 3134 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: TABLE "OverUnderHistorical"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -997,8 +997,8 @@ GRANT ALL ON TABLE public."OverUnderHistorical" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3133 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3135 (class 0 OID 0)
+-- Dependencies: 211
 -- Name: TABLE "PortalSafariMatch"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1007,8 +1007,8 @@ GRANT ALL ON TABLE public."PortalSafariMatch" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3134 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3136 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: TABLE "PortalSafariBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1017,8 +1017,8 @@ GRANT ALL ON TABLE public."PortalSafariBets" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3135 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3137 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: TABLE over2p5bets; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1027,8 +1027,8 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3136 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3138 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1037,8 +1037,8 @@ GRANT ALL ON TABLE public."TodaysBets" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3137 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3139 (class 0 OID 0)
+-- Dependencies: 213
 -- Name: TABLE daily_over_2p5; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1047,8 +1047,8 @@ GRANT ALL ON TABLE public.daily_over_2p5 TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3138 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3140 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: TABLE daily_over_2p5_historical; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1057,8 +1057,8 @@ GRANT ALL ON TABLE public.daily_over_2p5_historical TO postgres WITH GRANT OPTIO
 
 
 --
--- TOC entry 3140 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3142 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: TABLE daily_over_under; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1068,7 +1068,17 @@ GRANT ALL ON TABLE public.daily_over_under TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3144 (class 0 OID 0)
--- Dependencies: 222
+-- Dependencies: 223
+-- Name: TABLE "hePublicKeys"; Type: ACL; Schema: public; Owner: -
+--
+
+REVOKE ALL ON TABLE public."hePublicKeys" FROM postgres;
+GRANT ALL ON TABLE public."hePublicKeys" TO postgres WITH GRANT OPTION;
+
+
+--
+-- TOC entry 3147 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: TABLE soccer_statistics; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1077,7 +1087,7 @@ GRANT ALL ON TABLE public.soccer_statistics TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 1784 (class 826 OID 32961)
+-- TOC entry 1784 (class 826 OID 16567)
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: -; Owner: -
 --
 
@@ -1085,7 +1095,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-08-27 23:25:30 BST
+-- Completed on 2023-09-02 02:32:25 BST
 
 --
 -- PostgreSQL database dump complete
