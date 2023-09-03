@@ -146,12 +146,11 @@ def getBackUnder2p5Odds():
 def loginToExchange(page, browser):
     form = page.find_element(By.XPATH, '//div[@id="biab_login-block"]/form') # Login
     form.find_element(By.XPATH, './div/input[1]').send_keys("voyager2007")
-    form.find_element(By.XPATH, './div/input[2]').send_keys("Stergios777&&&")
+    form.find_element(By.XPATH, './div/input[2]').send_keys("Zisis1975€€€")
     form.find_element(By.XPATH, './div/button').click()
-    browser.wait_for_element_to_appear('//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
-    page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
+    if browser.wait_for_element_to_appear('//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button') is not None:
+        page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
     sleep(6)
-
 
 def monitorMatch(match_id, url = ''):
     global db, match, page
@@ -177,7 +176,7 @@ def monitorMatch(match_id, url = ''):
     if len(url):
         page = browser.get(url)
         sleep(4)
-        loginToExchange(page. browser)
+        loginToExchange(page, browser)
         page.refresh()
         sleep(10)
         browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
