@@ -13,6 +13,7 @@ import Utils
 
 
 def scrapeGoalsNow():
+    leagues = ["england premier league", "germany bundesliga i", "belgium first division a", "belgium first division b", "denmark superligaen", "netherlands eredivisie", "netherlands eerste divisie", "austria bundesliga"]
     ret = []
     browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
@@ -23,6 +24,12 @@ def scrapeGoalsNow():
         tip = tip_div.find_element(By.XPATH, './span').text.strip()
         if tip != "Over 2.5":
             continue
+
+        league = m.find_elements(By.XPATH, 'preceding::div[@class="goalsleague"]')[-1]
+        league_name = league.find_element(By.CLASS_NAME, 'league-name').text.lower().strip()
+        if league_name not in leagues:
+            continue
+
         match = DailyMatchRow()
         match.set("home", m.find_element(By.CLASS_NAME, 'goalshome').text.strip())
         match.set("away", m.find_element(By.CLASS_NAME, 'goalsaway').text.strip())
@@ -40,6 +47,7 @@ def scrapeGoalsNow():
 
 def scrapeFootballSuperTips():
     ret = []
+    leagues = ["england premier league", "germany bundesliga i", "belgium first division a", "belgium first division b", "denmark superligaen", "netherlands eredivisie", "netherlands eerste divisie", "austria bundesliga"]
     browser = Browser()
     page = browser.get("https://www.footballsuper.tips/todays-over-under-football-super-tips/")
     time.sleep(2)
@@ -52,6 +60,12 @@ def scrapeFootballSuperTips():
         over = m.find_element(By.CLASS_NAME, 'prediresults').text.strip()
         if over != "OVER":
             continue
+
+        league = m.find_elements(By.XPATH, 'preceding-sibling::div[@class="pool-list-group"]')[-1]
+        league_name = league.find_element(By.XPATH, './div/strong').text.lower().strip()
+        if league_name not in leagues:
+            continue
+
         match = DailyMatchRow()
         match.set("home", m.find_element(By.CLASS_NAME, 'homedisp').text.strip())
         match.set("away", m.find_element(By.CLASS_NAME, 'awaydisp').text.strip())
