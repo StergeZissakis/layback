@@ -35,9 +35,9 @@ def compare_team_names(a, b):
     for A in pa:
         for B in pb:
             #if  A == B or A in B or B in A or A in pb or B in pa:
-            if  A == B or A in B or SequenceMatcher(None, A, B).ratio() >= 0.5:
+            if  A == B or A in B or SequenceMatcher(None, A, B).ratio() >= 0.8:
                 matches += 1
-    if matches == 0 and SequenceMatcher(None, ca, cb).ratio() >= 0.5:
+    if matches == 0 and SequenceMatcher(None, ca, cb).ratio() >= 0.8:
         matches += 1
     #pp.pprint("[" + a + "] vs [" + b + "] = " + str(matches))
     return matches

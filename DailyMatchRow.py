@@ -14,14 +14,16 @@ class DailyMatchRow(DBRow):
                 }
 
     def equals(self, other):
-        ret = self.equals_no_datetime(other)
-        if ret and self.data["date_time"] is not None and isinstance(self.data["date_time"], datetime.datetime) and other.data["date_time"] is not None and isinstance(other.data["date_time"], datetime.datetime):
+        if self.data["date_time"] is not None and isinstance(self.data["date_time"], datetime.datetime) and \
+           other.data["date_time"] is not None and isinstance(other.data["date_time"], datetime.datetime):
             sdate, odate = self.data["date_time"], other.data["date_time"]
-            time_diff = sdate - odate if sdate > odate else odate - sdate
-            if( (time_diff.total_seconds() / 60) >= 15 ):
-                return False
+            if sdate == odate:
+                return self.equals_no_datetime(other)
+            #time_diff = sdate - odate if sdate > odate else odate - sdate
+            #if( (time_diff.total_seconds() / 60) >= 15 ):
+            #return False
             
-        return ret
+        return False
     
     def equals_no_datetime(self, other):
         if other is None:

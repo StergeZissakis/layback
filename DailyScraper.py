@@ -103,14 +103,6 @@ if __name__ == "__main__":
     page = browser.get("https://www.orbitxch.com/customer/sport/1")
     time.sleep(3)
 
-    #Login first
-    #form = page.find_element(By.XPATH, '//div[@id="biab_login-block"]/form')
-    #form.find_element(By.XPATH, './div/input[1]').send_keys("voyager2007")
-    #form.find_element(By.XPATH, './div/input[2]').send_keys("Stergios777&&&")
-    #form.find_element(By.XPATH, './div/button').click()
-    #browser.wait_for_element_to_appear('//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
-    #page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
-    time.sleep(2)
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[1]/div/ul/li[1]'))
     time.sleep(3)
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_header"]/div[2]/div[2]/div[1]/div'))
