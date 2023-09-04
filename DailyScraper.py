@@ -13,7 +13,27 @@ import Utils
 
 
 def scrapeGoalsNow():
-    leagues = ["england premier league", "germany bundesliga i", "belgium first division a", "belgium first division b", "denmark superligaen", "netherlands eredivisie", "netherlands eerste divisie", "austria bundesliga"]
+    leagues = [
+            "england premier league", 
+            "germany bundesliga i", 
+            "belgium first division a", 
+            "belgium first division b", 
+            "denmark superligaen", 
+            "netherlands eredivisie", 
+            "netherlands eerste divisie", 
+            "austria bundesliga",
+            "usa mls",
+            "usl championship",
+            "usa championship",
+            "canadian premier league",
+            "canada premier league",
+            "denmark division 1",
+            "denmark division 2",
+            "eufa",
+            "euro",
+            "eurpean",
+            "uefa european championship qualifying"
+            ]
     ret = []
     browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
@@ -47,7 +67,27 @@ def scrapeGoalsNow():
 
 def scrapeFootballSuperTips():
     ret = []
-    leagues = ["england premier league", "germany bundesliga i", "belgium first division a", "belgium first division b", "denmark superligaen", "netherlands eredivisie", "netherlands eerste divisie", "austria bundesliga"]
+    leagues = [
+            "england premier league", 
+            "germany bundesliga i", 
+            "belgium first division a", 
+            "belgium first division b", 
+            "denmark superligaen", 
+            "netherlands eredivisie", 
+            "netherlands eerste divisie", 
+            "austria bundesliga",
+            "usa mls",
+            "usl championship",
+            "usa championship",
+            "canadian premier league",
+            "canada premier league",
+            "denmark division 1",
+            "denmark division 2",
+            "eufa",
+            "euro",
+            "eurpean",
+            "uefa european championship qualifying"
+            ]
     browser = Browser()
     page = browser.get("https://www.footballsuper.tips/todays-over-under-football-super-tips/")
     time.sleep(2)

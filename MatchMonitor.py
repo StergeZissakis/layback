@@ -26,19 +26,12 @@ def check_exists_by_xpath(element, xpath):
 def sleep(x=60):
     time.sleep(x)
 
-def getMatchTime(page):
-    if check_exists_by_xpath(page, '//div[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[2]/div[2]') is False:
-        return None
-    rootElement = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]')
-    text = rootElement.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[2]').text
-    if "'" in text:
-        text = text.split("'")[0]
-    return  text.strip()
+def getMatchTime(match_element):
+    return match_element.find_element(By.XPATH, './a/div/div[1]/div').text.strip()
 
-def getTotalGoals(page):
-    root = page.find_element(By.XPATH, '//div[@id="multiMarketContainer"]')
-    home_goals = root.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[1]/span[1]').text
-    away_goals = root.find_element(By.XPATH, './div[1]/div[1]/div/div[2]/div[2]/div[1]/span[3]').text
+def getTotalGoals(live_match):
+    score_element = live_match.find_element(By.XPATH, './a/div/div[3]/span').text.strip()
+    home_goals,away_goals = score_element.split('-')
     return int(home_goals) + int(away_goals)
 
 def expandTabsOfInterest(page, browser):
@@ -194,32 +187,33 @@ def monitorMatch(match_id, url = ''):
     expandTabsOfInterest(page, browser)
 
     print('[%s VS %s] Starting match : %s' % (match.get("home"), match.get("away"), url))
-    if not check_exists_by_xpath(page, '//*[@id="multiMarketContainer"]'):
-        print('[%s VS %s] Possibly missed starting match : %s' % (match.get("home"), match.get("away"), url))
-        return
-
     print('[%s VS %s] Waiting to go In-Play : %s' % (match.get("home"), match.get("away"), url))
-    timeout = 30
-    while True:
-        try:
-            elem = page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[3]/div/div[1]/div[1]/div')
-            if elem.text == "In-Play":
-                break
-        except:
-            page.refresh()
-            sleep(10)
-            continue
-        sleep()
-        timeout -= 1
-        if timeout <= 0:
-            print('[%s VS %s] Match not loaded properly. : %s' % (match.get("home"), match.get("away"), url))
-            return
-
     print('[%s VS %s] Checking/Waiting for half time. : %s' % (match.get("home"), match.get("away"), url))
 
 
+    live_browser = Browser()
+    live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+    live_browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
+
+    live_match = None
+
+    live_games = live_page.find_elements(By.CLASS_NAME, 'poolList')
+    for lg in live_games:
+        home = lg.find_element(By.XPATH, './a/div/div[2]')
+        away = lg.find_element(By.XPATH, './a/div/div[4]')
+        tmp_match = DailyMatchRow()
+        tmp_match.set("home", home)
+        tmp_match.set("away", away)
+        if tmp_match.equals(match):
+            live_match = lg
+            break
+
+    if live_match is None:
+        print("Failed to get live match")
+        return
+
     timeout = 15
-    while getMatchTime(page) is None:
+    while getMatchTime(live_match) is None:
         timeout -= 1
         if timeout <= 0:
             print('[%s VS %s] Failed to get match time. : %s' % (match.get("home"), match.get("away"), url))
@@ -228,59 +222,59 @@ def monitorMatch(match_id, url = ''):
 
     print('[%s VS %s] Time is not None : %s' % (match.get("home"), match.get("away"), url))
 
-    if getMatchTime(page).isnumeric():
-        while getMatchTime(page).isnumeric() and int(getMatchTime(page)) <= 45:
+    if getMatchTime(live_match).isnumeric():
+        while getMatchTime(live_match).isnumeric() and int(getMatchTime(live_match)) <= 45:
             sleep()
 
     sleep()
-    while not getMatchTime(page).isnumeric():
+    while not getMatchTime(live_match).isnumeric():
         sleep()
     
     print('[%s VS %s] Time is numeric : %s' % (match.get("home"), match.get("away"), url))
 
-    minute = getMatchTime(page)
+    minute = getMatchTime(live_match)
     while int(minute) <= 46:
         sleep()
-        minute = getMatchTime(page)
+        minute = getMatchTime(live_match)
 
-    print('[%s VS %s] Half time passed. Goals @ 46 mins [%s] : %s' % (match.get("home"), match.get("away"), str(getTotalGoals(page)), url))
+    print('[%s VS %s] Half time passed. Goals @ 46 mins [%s] : %s' % (match.get("home"), match.get("away"), str(getTotalGoals(live_match)), url))
     
-    if getTotalGoals(page) == 0:
+    if getTotalGoals(live_match) == 0:
         layUnder1p5at1p5()
         print('[%s VS %s] Initial bet played : %s' % (match.get("home"), match.get("away"), url))
 
-        while getTotalGoals(page) == 0 and str(getMatchTime(page)) != 'Finished':
+        while getTotalGoals(live_match) == 0 and str(getMatchTime(live_match)) != 'Finished':
             if getLayUnder1p5Odds() <= 1.15:
                 backUnder1p5()
                 print('[%s VS %s] Lay Under 1.5 Odds dropped below 1.15. : %s' % (match.get("home"), match.get("away"), url))
                 return 
             sleep()
 
-        if str(getMatchTime(page)) != 'Finished':
+        if str(getMatchTime(live_match)) != 'Finished':
                 print('[%s VS %s] Goal detected. : %s' % (match.get("home"), match.get("away"), url))
 
-        while getTotalGoals(page) == 1 and str(getMatchTime(page)) != 'Finished':
+        while getTotalGoals(live_match) == 1 and str(getMatchTime(live_match)) != 'Finished':
             if getBackUnder1p5Odds() <= 1.52:
                 backUnder1p5at1p5()
                 print('[%s VS %s] Back Under 1.5 Odds dropped below 1.52. : %s' % (match.get("home"), match.get("away"), url))
                 return
             sleep()
 
-    elif getTotalGoals(page) == 1:
+    elif getTotalGoals(live_match) == 1:
         layUnder2p5at1p5()
         print('[%s VS %s] Initial bet played. : %s' % (match.get("home"), match.get("away"), url))
         
-        while getTotalGoals(page) == 1 and str(getMatchTime(page)) != 'Finished':
+        while getTotalGoals(live_match) == 1 and str(getMatchTime(live_match)) != 'Finished':
             if getLayUnder2p5Odds() <= 1.15:
                 backUnder2p5()
                 print('[%s VS %s] Lay Under 2.5 Odds dropped below 1.15. : %s' % (match.get("home"), match.get("away"), url))
                 return 
             sleep()
 
-        if str(getMatchTime(page)) != 'Finished':
+        if str(getMatchTime(live_match)) != 'Finished':
                 print('[%s VS %s] Goal detected. : %s' % (match.get("home"), match.get("away"), url))
 
-        while getTotalGoals(page) == 2 and str(getMatchTime(page)) != 'Finished':
+        while getTotalGoals(live_match) == 2 and str(getMatchTime(live_match)) != 'Finished':
             if getBackUnder2p5Odds() <= 1.52:
                 backUnder2p5at1p5()
                 print('[%s VS %s] Back Under 2.5 Odds dropped below 1.52. : %s' % (match.get("home"), match.get("away"), url))
@@ -292,4 +286,4 @@ def monitorMatch(match_id, url = ''):
 
 
     
-    print('[%s VS %s] Game finished with [%s] goals : %s' % (match.get("home"), match.get("away"), url, getTotalGoals(page)))
+    print('[%s VS %s] Game finished with [%s] goals : %s' % (match.get("home"), match.get("away"), url, getTotalGoals(live_match)))
