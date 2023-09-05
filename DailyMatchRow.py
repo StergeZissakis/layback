@@ -1,6 +1,7 @@
 from DBRow import DBRow
 from Utils import compare_team_names
 import datetime
+import logging
 
 class DailyMatchRow(DBRow):
 
@@ -27,7 +28,7 @@ class DailyMatchRow(DBRow):
     
     def equals_no_datetime(self, other):
         if other is None:
-            print("other None detected")
+            logging.info("other None detected")
             return False
         home = compare_team_names(self.data["home"], other.data["home"])
         away = compare_team_names(self.data["away"], other.data["away"])

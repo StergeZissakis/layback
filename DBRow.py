@@ -1,5 +1,6 @@
 from itertools import islice
 from collections import defaultdict
+import logging
 
 class DBRow:
 
@@ -25,6 +26,7 @@ class DBRow:
         for k in self.data.keys():
             sql += '"' + k + '",'
         sql = sql[0:-1] + ') VALUES ( ' + '%s, ' * (len(self.data.keys()) - 1) + '%s) '
+        logging.debug("sql_insert_into_values: %s", (sql,))
         return sql
 
     def generate_do_update_set(self):
@@ -33,6 +35,7 @@ class DBRow:
         for k in islice(self.data.keys(), 3, None):  
             ret += ' ' + k + ' = EXCLUDED.' + k + ', '
 
+        logging.debug("do_update_set: %s", (ret[0:-2],))
         return ret[0:-2]
 
     def generate_sql_insert_values(self):
@@ -43,6 +46,7 @@ class DBRow:
             else:
                 vals.append( v )
 
+        logging.debug("sql_insert_values: %s", (vals,))
         return vals
 
     def generate_select(self, columns = []):
@@ -53,6 +57,7 @@ class DBRow:
         for k, v in self.data:
             ret = ret + ' ' + k + '="' + v + '" and'
         ret = ret[:-4] + ';'
+        logging.debug("generate select: %s", (ret,))
         return ret
 
     def generate_delete(self, where=''):
@@ -60,5 +65,6 @@ class DBRow:
         if len(where):
             ret += ' ' + where
         ret += ";"
+        logging.debug("generate delete: %s", (ret,))
         return ret
 

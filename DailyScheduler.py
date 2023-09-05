@@ -1,5 +1,6 @@
 import time
 import Utils
+import logging
 from  PGConnector import PGConnector
 from Browser import Browser
 from datetime import datetime, timezone
@@ -26,7 +27,7 @@ if __name__ == "__main__":
         p = Process(target=monitorMatch, args=(mid,))
         p.start()
         processes.append(p)
-        print("Spawn match id [%s] @ [%s] with starting time [%s]" % (mid, datetime.now(), dateTime))
+        logging.info("Spawn match id [%s] @ [%s] with starting time [%s]" % (mid, datetime.now(), dateTime))
         time.sleep(15)
 
     for p in processes:

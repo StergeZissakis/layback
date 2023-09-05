@@ -1,5 +1,6 @@
 import psycopg2
 import sqlparse
+import logging
 from DailyMatchRow import DailyMatchRow
 
 class PGBase:
@@ -63,12 +64,6 @@ class PGConnector(PGBase):
         cursor.execute(sql)
         self.pg.commit()
         cusrsor.close()
-
-
-
-
-
-
 
     def insert_or_update(self, row):
 

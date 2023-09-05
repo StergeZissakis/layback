@@ -1,6 +1,7 @@
 import time
 import difflib
 import pprint
+import logging
 from difflib import SequenceMatcher
 from selenium.webdriver.common.by import By
 from datetime import datetime, date, timedelta
@@ -39,5 +40,4 @@ def compare_team_names(a, b):
                 matches += 1
     if matches == 0 and SequenceMatcher(None, ca, cb).ratio() >= 0.8:
         matches += 1
-    #pp.pprint("[" + a + "] vs [" + b + "] = " + str(matches))
     return matches

@@ -3,6 +3,7 @@ import time
 import pickle
 import random
 import argparse
+import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -48,23 +49,11 @@ class Browser:
         service = ChromeService(executable_path="/usr/bin/chromedriver")
         self.driver = webdriver.Chrome(service=service, options=self.chrome_options)
 
-        # Load cookies from previous session
-        '''
-        self.cookies_file = "./config/chrome.cookies.pkl"
-        if(os.path.isfile(self.cookies_file)):
-            cookies = pickle.load(open(self.cookies_file, "rb"))
-            for cookie in cookies:
-                self.driver.add_cookie(cookie)
-        '''
-
     def __del__(self):
-        # Save cookies for next session
-        #pickle.dump(self.driver.get_cookies(), open(self.cookies_file, "wb"))
-        #if self.headless:
-            #self.quit()
         pass
 
     def quit(self):
+        logging.debug('Quiting...')
         self.driver.quit()
 
     def get(self, url):
@@ -107,6 +96,7 @@ class Browser:
 
     def get_interactible_child(self, element):
         if element and element.is_displayed() and element.is_enabled():
+            logging.debug('Element not displayed or not enabled')
             return element
 
         ret = None

@@ -1,6 +1,7 @@
 import re
 import time
 import pprint
+import logging
 from  PGConnector import PGConnector
 from Browser import Browser
 from datetime import datetime
@@ -126,9 +127,9 @@ if __name__ == "__main__":
         exit(-1)
 
     goalsNow = scrapeGoalsNow()
-    print("GoalsNow matches: " + str(len(goalsNow)))
+    logging.info("GoalsNow matches: " + str(len(goalsNow)))
     superTips = scrapeFootballSuperTips()
-    print("SuperTips matches: " + str(len(superTips)))
+    logging.info("SuperTips matches: " + str(len(superTips)))
 
     intersection = set()
     for gn in goalsNow:
@@ -136,7 +137,7 @@ if __name__ == "__main__":
             if gn.equals(st):
                 intersection.add(gn)
 
-    print("Matches of interest: " + str(len(intersection)))
+    logging.info("Matches of interest: " + str(len(intersection)))
 
 
     browser = Browser()
@@ -163,7 +164,7 @@ if __name__ == "__main__":
 
     todaysMatches = root.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
         
-    print('Total Exchange Matches found:' + str(len(todaysMatches)))
+    logging.info('Total Exchange Matches found:' + str(len(todaysMatches)))
 
     urls_found = 0
     for match in todaysMatches:
@@ -185,12 +186,12 @@ if __name__ == "__main__":
         for m in intersection:
             if m.equals(row):
                 url = 'https://www.orbitxch.com/customer/sport/1/market/' + market
-                print(url)
                 m.set("url", url)
+                logging.info("%s vs %s -> %s" % (m.get("home"), m.get("away"), url))
                 urls_found += 1
                 break
 
-    print("Found [" + str(urls_found) + "] out of [" + str(len(intersection)) + "] urls")
+    logging.info("Found [" + str(urls_found) + "] out of [" + str(len(intersection)) + "] urls")
 
     db.execute("ArchiveDailyOver2p5")
 
