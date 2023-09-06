@@ -8,10 +8,7 @@ class DBRow:
     table_name = str()
 
     def __str__(self):
-        ret = ""
-        for key, value in self.data.items():
-            ret += f"{key} = '{value}'\n"
-        return ret
+        return '[%s:%s]->{[%s VS %s] @ [%s] of [%s]' % (self.table_name, self.data["id"], self.get["home"], self.get["away"], self.get["date_time"], self.get["url"])
 
     def set(self, key, value):
         self.data[key] = value
@@ -22,49 +19,75 @@ class DBRow:
         return None
 
     def generate_sql_insert_into_values(self):
+        local_data = self.data.copy()
         sql = 'INSERT INTO ' + self.table_name + ' ('
-        for k in self.data.keys():
-            sql += '"' + k + '",'
-        sql = sql[0:-1] + ') VALUES ( ' + '%s, ' * (len(self.data.keys()) - 1) + '%s) '
-        logging.debug("sql_insert_into_values: %s", (sql,))
+        to_pop = []
+        for k in local_data.keys():
+            if local_data[k] is not None:
+                sql += '"%s", ' % (k,)
+            else:
+                to_pop.append(k)
+        for p in to_pop:
+            local_data.pop(p)
+        sql = sql[0:-2] + ') VALUES ( ' + '%s, ' * (len(local_data.keys()) - 1) + '%s) '
+        logging.debug("sql_insert_into_values: %s" % (sql,))
         return sql
 
     def generate_do_update_set(self):
-        ret = ""
-
+        sql = ""
         for k in islice(self.data.keys(), 3, None):  
-            ret += ' ' + k + ' = EXCLUDED.' + k + ', '
-
-        logging.debug("do_update_set: %s", (ret[0:-2],))
-        return ret[0:-2]
+            if self.data[k] is not None:
+                sql += ' %s = EXCLUDED.%s, ' % (k, k)
+        sql = sql[0:-2]
+        logging.debug("do_update_set: %s" % (sql,))
+        return sql
 
     def generate_sql_insert_values(self):
         vals = []
         for v in self.data.values():
             if isinstance(v, list) and len(v) == 0: 
                 pass
-            else:
+            elif v is not None:
                 vals.append( v )
 
-        logging.debug("sql_insert_values: %s", (vals,))
+        logging.debug("sql_insert_values: %s" % (vals,))
         return vals
 
     def generate_select(self, columns = []):
         cols = ','.join(columns)
         if not (cols and len(cols)):
             cols = '*' 
-        ret = 'SELECT ' + cols + ' FROM "' + self.table_name + '" where ' 
-        for k, v in self.data:
-            ret = ret + ' ' + k + '="' + v + '" and'
-        ret = ret[:-4] + ';'
-        logging.debug("generate select: %s", (ret,))
-        return ret
+        sql = 'SELECT %s FROM "%s" ' % (cols, self.table_name)
+        where = ''
+        for k, v in self.data.items():
+            if v is not None:
+                where += ' %s="%s" and' % (k, v)
+        if len(where):
+            where = " where " + where
+        else:
+            where = '    '
+        sql = sql[:-4] + ';'
+        logging.debug("generate select: %s" % (sql,))
+        return sql
+
+    def generate_update(self):
+        sets = ''
+        for k, v in self.data.items():
+            if v is not None and k != 'id':
+                sets += " %s = '%s'," % (str(k), str(v))
+        if len(sets):
+            sets = sets[0:-1]
+            return 'UPDATE public."%s" SET %s WHERE id=%s;' % (self.table_name, sets, self.data["id"])
+        
+        return None
 
     def generate_delete(self, where=''):
-        ret = 'DELETE FROM ' + self.table_name
+        sql = 'DELETE FROM ' + self.table_name
         if len(where):
-            ret += ' ' + where
-        ret += ";"
-        logging.debug("generate delete: %s", (ret,))
-        return ret
-
+            if not where.lower().contains("where "):
+                where = " where " + where
+        elif self.data["id"] is not None:
+            where = " where id = %s" % (self.data["id"],)
+        sql += where + ";"
+        logging.debug("generate delete: %s" % (sql,))
+        return sql

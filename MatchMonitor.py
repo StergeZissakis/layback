@@ -28,12 +28,29 @@ def sleep(x=60):
     time.sleep(x)
 
 def getMatchTime(live_match):
-    return live_match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
+    try:
+        return live_match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
+    except:
+        sleep(2)
+    finally:
+        return live_match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
 
 def getTotalGoals(live_match):
     score_element = live_match.find_element(By.XPATH, './a/div/div[3]/span').text.strip()
     home_goals, away_goals = score_element.split('-')
     return int(home_goals) + int(away_goals)
+
+def find_live_match(live_page):
+    global match
+    live_games = live_page.find_elements(By.CLASS_NAME, 'poolList')
+    for lg in live_games:
+        home = lg.find_element(By.XPATH, './a/div/div[2]').text.strip().lower()
+        away = lg.find_element(By.XPATH, './a/div/div[4]').text.strip().lower()
+        if home == match.get("home").lower() or away == match.get("away").lower():
+            return lg
+
+    logging.error("Failed to get live match")
+    return None
 
 def expandTabsOfInterest(page, browser):
     global ou2p5Tab, ou1p5Tab
@@ -72,14 +89,15 @@ def logBet(layback, overUnder, goals, odds, odds_recorded, amount):
 
 def placeBet(tab, layback, overUnder, goals, odds, odds_recorded, amount):
     global page
-    suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div/text()'
-    while check_exists_by_xpath(page, suspended_xpath) and page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
+    suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'
+    while check_exists_by_xpath(page, suspended_xpath): #and page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
         logging.debug("Supsension detected")
         sleep(2)
     div_palce_bet_button = 1
     if layback == 'Lay': 
         div_palce_bet_button = 2
-    tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[' + str(div_palce_bet_button) + ']/button' ).click() #Place bet button
+    tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[%s]/button' % (str(div_palce_bet_button),) ).click() #Place bet button
+    sleep(1)
     tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input' ).send_keys(str(odds))  #odds
     tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input' ).send_keys(str(6))  #stake
     tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  #bet button
@@ -91,37 +109,37 @@ def layUnder1p5at1p5():
     global ou1p5Tab, match
     odds = getLayUnder1p5Odds()
     placeBet(ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, odds, 1)
-    logging.info('[%s VS %s] betted Lay Under 1.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
+    logging.info('%s betted Lay Under 1.5 @ 1.5 odds' % (str(match)))
 
 def layUnder2p5at1p5():
     global ou2p5Tab, match
     odds = getLayUnder2p5Odds()
     placeBet(ou2p5Tab,  'Lay', 'Under', 2.5, 1.5, odds, 1)
-    logging.info('[%s VS %s] betted Lay Under 2.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
+    logging.info('%s betted Lay Under 2.5 @ 1.5 odds' % (str(match)))
 
 def backUnder1p5at1p5():
     global ou1p5Tab, match
     odds = getBackUnder1p5Odds()
     placeBet(ou1p5Tab, 'Back', 'Under', 1.5, 1.5, odds, 1)
-    logging.info('[%s VS %s] betted Back Under 1.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
+    logging.info('%s betted Back Under 1.5 @ 1.5 odds' % (str(match)))
 
 def backUnder2p5at1p5():
     global ou2p5Tab, match
     odds = getBackUnder2p5Odds()
     placeBet(ou2p5Tab, 'Back', 'Under', 2.5, 1, odds, 1)
-    logging.info('[%s VS %s] betted Back Under 2.5 @ 1.5 odds' % (match.get("home"), match.get("away")))
+    logging.info('%s betted Back Under 2.5 @ 1.5 odds' % (str(match)))
 
 def backUnder1p5():
     global ou1p5Tab, match
     odds = getBackUnder1p5Odds()
     placeBet(ou1p5Tab, 'Back', 'Under', 1.5, 1, odds, 1)
-    logging.info('[%s VS %s] betted Back Under 1.5 @ any odds [%s]' % (match.get("home"), match.get("away"), odds))
+    logging.info('%s betted Back Under 1.5 @ any odds [%s]' % (str(match), odds))
 
 def backUnder2p5():
     global ou2p5Tab, match
     odds = getBackUnder2p5Odds()
     placeBet(ou2p5Tab, 'Back', 'Under', 2.5, 1, odds, 1)
-    logging.info('[%s VS %s] betted Back Under 2.5 @ any odds [%s]' % (match.get("home"), match.get("away"), odds))
+    logging.info('%s betted Back Under 2.5 @ any odds [%s]' % (str(match), odds))
     return float(odds)
     
 def getLayUnder1p5Odds():
@@ -149,23 +167,17 @@ def loginToExchange(page, browser):
         page.find_element(By.XPATH, '//div[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button').click()
     sleep(6)
 
-def monitorMatch(match_id, url = ''):
+def monitorMatch(m, url = ''):
     global db, match, page
     db = PGConnector("postgres", "localhost")
     if not db.is_connected():
         exit(-1)
     global ou2p5Tab, ou1p5Tab
 
-    match = DailyMatchRow()
+    match = m
     if len(url) == 0:
-        row = db.select("SELECT date_time, home, away, url FROM " + match.table_name + " WHERE id = '%s';" % (match_id,))
-        if row and len(row) > 0:
-            match.set("date_time", str(row[0][0]))
-            match.set("home",      str(row[0][1]))
-            match.set("away",      str(row[0][2]))
-            match.set("url",       str(row[0][3]))
-            url = match.get("url")
-            db.delete(match, 'where id = %s' %(match_id,))
+        url = m.get("url")
+        #db.delete(match, 'where id = %s' %(match_id,))
     else:
         pass
 
@@ -183,110 +195,112 @@ def monitorMatch(match_id, url = ''):
 
 
 
-    if len(url) and not match_id:
+    if len(url) and not m:
         match.set("home", page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[1]/div[1]/div').text)
         match.set("away", page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[1]/div[1]/div').text)
         match.set("url",  url)
 
     expandTabsOfInterest(page, browser)
 
-    logging.info('[%s VS %s] Starting match : %s' % (match.get("home"), match.get("away"), url))
+    logging.info('Starting match : %s' % (str(match),))
 
     live_browser = Browser()
     live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
     live_browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
 
-    live_match = None
-
-    live_games = live_page.find_elements(By.CLASS_NAME, 'poolList')
-    for lg in live_games:
-        home = lg.find_element(By.XPATH, './a/div/div[2]')
-        away = lg.find_element(By.XPATH, './a/div/div[4]')
-        tmp_match = DailyMatchRow()
-        tmp_match.set("home", home)
-        tmp_match.set("away", away)
-        if tmp_match.equals(match):
-            live_match = lg
-            break
-
-    if live_match is None:
-        logging.error("Failed to get live match")
-        return
-
-    time_strings = ['ST', 'HT', 'FT']
-    while getMatchTime(live_match) in time_strings:
-        sleep()
-
-    logging.info('[%s VS %s] Time is not in strings : %s' % (match.get("home"), match.get("away"), url))
+    live_match = find_live_match(live_page)
 
     timeout = 15
     while not getMatchTime(live_match).isnumeric(): # in case the time has not appeared yet
+        logging.info('Time is not numeric : %s' % (str(match),))
         sleep()
         timeout -= 1
         if timeout <= 0:
-            logging.error('[%s VS %s] Failed to get match time after 15 mins. : %s' % (match.get("home"), match.get("away"), url))
+            logging.error('Failed to get match time after 15 mins. : %s' % (str(match),))
             return
+        live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        live_match = find_live_match(live_page)
     
-    logging.info('[%s VS %s] Time is numeric : %s' % (match.get("home"), match.get("away"), url))
+    logging.info('Time is numeric : %s' % (str(match),))
 
     while getMatchTime(live_match).isnumeric() and int(getMatchTime(live_match)) <= 45:
         sleep()
+        live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        live_match = find_live_match(live_page)
 
-    logging.info('[%s VS %s] Half Time passed : %s' % (match.get("home"), match.get("away"), url))
+    logging.info('Half Time passed : %s' % (str(match),))
     sleep()
+    live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+    live_match = find_live_match(live_page)
     while not getMatchTime(live_match).isnumeric():
         sleep()
+        live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        live_match = find_live_match(live_page)
     
     minute = getMatchTime(live_match)
     while int(minute) <= 46:
         sleep()
+        live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        live_match = find_live_match(live_page)
         minute = getMatchTime(live_match)
 
-    logging.info('[%s VS %s] Goals @ 46 mins [%s] : %s' % (match.get("home"), match.get("away"), str(getTotalGoals(live_match)), url))
+    logging.info('Goals of %s  @ 46 mins : %s' % (str(match), str(getTotalGoals(live_match))))
     
     if getTotalGoals(live_match) == 0:
         layUnder1p5at1p5()
-        logging.info('[%s VS %s] Initial bet played : %s' % (match.get("home"), match.get("away"), url))
+        logging.info('Initial bet played : %s' % (str(match),))
 
+        live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        live_match = find_live_match(live_page)
         while getTotalGoals(live_match) == 0 and str(getMatchTime(live_match)) != 'FT':
             if getLayUnder1p5Odds() <= 1.15:
                 backUnder1p5()
-                logging.info('[%s VS %s] Lay Under 1.5 Odds dropped below 1.15. : %s' % (match.get("home"), match.get("away"), url))
+                logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % (str(match),))
                 return 
             sleep()
+            live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+            live_match = find_live_match(live_page)
 
         if str(getMatchTime(live_match)) != 'FT':
-                logging.info('[%s VS %s] Goal detected. : %s' % (match.get("home"), match.get("away"), url))
+                logging.info('Goal detected : %s' % (str(match),))
 
         while getTotalGoals(live_match) == 1 and str(getMatchTime(live_match)) != 'FT':
             if getBackUnder1p5Odds() <= 1.52:
                 backUnder1p5at1p5()
-                logging.info('[%s VS %s] Back Under 1.5 Odds dropped below 1.52. : %s' % (match.get("home"), match.get("away"), url))
+                logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % (str(match),))
                 return
             sleep()
+            live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+            live_match = find_live_match(live_page)
 
     elif getTotalGoals(live_match) == 1:
         layUnder2p5at1p5()
-        logging.info('[%s VS %s] Initial bet played. : %s' % (match.get("home"), match.get("away"), url))
+        logging.info('Initial bet played. : %s' % (str(match),))
         
+        live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        live_match = find_live_match(live_page)
         while getTotalGoals(live_match) == 1 and str(getMatchTime(live_match)) != 'FT':
             if getLayUnder2p5Odds() <= 1.15:
                 backUnder2p5()
-                logging.info('[%s VS %s] Lay Under 2.5 Odds dropped below 1.15. : %s' % (match.get("home"), match.get("away"), url))
+                logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % (str(match),))
                 return 
             sleep()
+            live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+            live_match = find_live_match(live_page)
 
         if str(getMatchTime(live_match)) != 'FT':
-                logging.info('[%s VS %s] Goal detected. : %s' % (match.get("home"), match.get("away"), url))
+                logging.info('Goal detected. : %s' % (str(match),))
 
         while getTotalGoals(live_match) == 2 and str(getMatchTime(live_match)) != 'FT':
             if getBackUnder2p5Odds() <= 1.52:
                 backUnder2p5at1p5()
-                logging.info('[%s VS %s] Back Under 2.5 Odds dropped below 1.52. : %s' % (match.get("home"), match.get("away"), url))
+                logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % (str(match),))
                 return 
             sleep()
+            live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+            live_match = find_live_match(live_page)
     else:
-        logging.info('[%s VS %s] 2 or more goals scored already. : %s' % (match.get("home"), match.get("away"), url))
+        logging.info('2 or more goals scored already. : %s' % (str(match),))
         return
 
-    logging.info('[%s VS %s] Game finished with [%s] goals : %s' % (match.get("home"), match.get("away"), url, getTotalGoals(live_match)))
+    logging.info('Game %s finished with goals : %s' % (str(match), getTotalGoals(live_match)))

@@ -2,6 +2,7 @@ import re
 import time
 import pprint
 import logging
+from Utils import initialise_logger
 from  PGConnector import PGConnector
 from Browser import Browser
 from datetime import datetime
@@ -13,7 +14,7 @@ from DailyMatchRow import DailyMatchRow
 import Utils
 
 
-def scrapeGoalsNow():
+def scrapeGoalsNow(db):
     leagues = [
             "england premier league", 
             "germany bundesliga i", 
@@ -33,9 +34,10 @@ def scrapeGoalsNow():
             "eufa",
             "euro",
             "eurpean",
-            "uefa european championship qualifying"
+            "uefa european championship qualifying",
+            "denmark cup"
             ]
-    ret = []
+    count = 0
     browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
 
@@ -51,23 +53,22 @@ def scrapeGoalsNow():
         if league_name not in leagues:
             continue
 
-        match = DailyMatchRow()
+        match = DailyMatchRow("over2p5goalsnow")
         match.set("home", m.find_element(By.CLASS_NAME, 'goalshome').text.strip())
         match.set("away", m.find_element(By.CLASS_NAME, 'goalsaway').text.strip())
         now = datetime.now()
         matchTime = m.find_element(By.CLASS_NAME, 'goalstime').text.strip()
         match.set("date_time", Utils.add_time_to_date(event_date = now, event_time = matchTime))
 
-        ret.append(match)
+        db.insert_or_update(match)
+        count += 1
 
     if browser.headless:
         browser.quit()
-        
-    return ret
-    
 
-def scrapeFootballSuperTips():
-    ret = []
+    return count
+
+def scrapeFootballSuperTips(db):
     leagues = [
             "england premier league", 
             "germany bundesliga i", 
@@ -87,8 +88,10 @@ def scrapeFootballSuperTips():
             "eufa",
             "euro",
             "eurpean",
-            "uefa european championship qualifying"
+            "uefa european championship qualifying",
+            "denmark cup"
             ]
+    count = 0
     browser = Browser()
     page = browser.get("https://www.footballsuper.tips/todays-over-under-football-super-tips/")
     time.sleep(2)
@@ -107,39 +110,22 @@ def scrapeFootballSuperTips():
         if league_name not in leagues:
             continue
 
-        match = DailyMatchRow()
+        match = DailyMatchRow("over2p5footballsupertips")
         match.set("home", m.find_element(By.CLASS_NAME, 'homedisp').text.strip())
         match.set("away", m.find_element(By.CLASS_NAME, 'awaydisp').text.strip())
         date_time_str = m.find_element(By.CLASS_NAME, "datedisp").text
         date_time = datetime.strptime(date_time_str, "%d/%m/%y %H:%M")
         match.set("date_time", date_time)
 
-        ret.append(match)
+        db.insert_or_update(match)
+        count += 1
 
     if browser.headless:
         browser.quit()
+
+    return count
         
-    return ret
-
-if __name__ == "__main__":
-    db = PGConnector("postgres", "localhost")
-    if not db.is_connected():
-        exit(-1)
-
-    goalsNow = scrapeGoalsNow()
-    logging.info("GoalsNow matches: " + str(len(goalsNow)))
-    superTips = scrapeFootballSuperTips()
-    logging.info("SuperTips matches: " + str(len(superTips)))
-
-    intersection = set()
-    for gn in goalsNow:
-        for st in superTips:
-            if gn.equals(st):
-                intersection.add(gn)
-
-    logging.info("Matches of interest: " + str(len(intersection)))
-
-
+def scrapeOrbitxch(db):
     browser = Browser()
     page = browser.get("https://www.orbitxch.com/customer/sport/1")
     time.sleep(3)
@@ -166,50 +152,47 @@ if __name__ == "__main__":
         
     logging.info('Total Exchange Matches found:' + str(len(todaysMatches)))
 
-    urls_found = 0
+    count = 0
     for match in todaysMatches:
         names = match.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
         home, away = names.find_elements(By.CSS_SELECTOR, 'p')
         market = match.get_attribute('data-market-id')
+        url = 'https://www.orbitxch.com/customer/sport/1/market/' + market
 
-        row = DailyMatchRow()
+        row = DailyMatchRow("over2p5orbitxch")
         row.set("home", home.text)
         row.set("away", away.text)
+        row.set("url", url)
         try:
-            matchTime = match.find_element(By.XPATH, './div[1]/div/span').text.strip()
+            matchTime = match.find_element(By.XPATH, './div[1]/div/span')
+            matchTime  = matchTime.text.strip()
             if len(matchTime.split(':')) == 2 and len(str(matchTime)) == 5:
                 event_date_time = Utils.add_time_to_date(event_date = datetime.now(), event_time = matchTime)
                 row.set("date_time", event_date_time)
         except:
-            pass
+            logging.error("Failed to extract start time: %s of %s " % ('match./div[1]/div/span', str(row)))
+            continue
     
-        for m in intersection:
-            if m.equals(row):
-                url = 'https://www.orbitxch.com/customer/sport/1/market/' + market
-                m.set("url", url)
-                logging.info("%s vs %s -> %s" % (m.get("home"), m.get("away"), url))
-                urls_found += 1
-                break
-
-    logging.info("Found [" + str(urls_found) + "] out of [" + str(len(intersection)) + "] urls")
-
-    db.execute("ArchiveDailyOver2p5")
-
-    finalSet = set()
-    excludedSet = []
-
-    for m in intersection:
-        if m.get("url") is None or len(m.get("url")) == 0: 
-            excludedSet.append(m)
-        else:
-            finalSet.add(m)
-
-    for m in finalSet:
-        db.insert(m)
-
-    for m in excludedSet:
-        m.table_name += "_historical"
-        db.insert(m)
+        if row.get("date_time") is not None:
+            db.insert_or_update(row)
+        count += 1
 
     if browser.headless:
         browser.quit()
+
+    return count
+        
+
+
+if __name__ == "__main__":
+    initialise_logger("DailyScraper")
+    db = PGConnector("postgres", "localhost")
+    if not db.is_connected():
+        exit(-1)
+
+    goalsNow = scrapeGoalsNow(db)
+    logging.info("GoalsNow matches: " + str((goalsNow)))
+    superTips = scrapeFootballSuperTips(db)
+    logging.info("SuperTips matches: " + str((superTips)))
+    orbitxch = scrapeOrbitxch(db)
+    logging.info("OrbitXCH matches: " + str((orbitxch)))

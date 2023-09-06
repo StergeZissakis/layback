@@ -207,6 +207,7 @@ class Browser:
             self.wait_for_element_to_appear(button_xpath)
             button = self.driver.find_element(By.XPATH, button_xpath )
         except:
+            logging.error("accept_cookies failed: %s" % (button_xpath,))
             return
 
         if button:
@@ -218,6 +219,7 @@ class Browser:
             try:
                 return WebDriverWait(self.driver, timeout).until(ExpectedCondition.presence_of_element_located((By.XPATH, element_xpath)))
             except:
+                logging.debug("Element has not appeared yet: %s" % (element_xpath,))
                 pass
         return None
 
