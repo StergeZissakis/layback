@@ -203,7 +203,7 @@ def monitorMatch(m, url = ''):
 
     expandTabsOfInterest(page, browser)
 
-    logging.info('Starting match : %s' % (str(match),))
+    logging.info('Starting match : %s' % (match,))
 
     live_browser = Browser()
     live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')

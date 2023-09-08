@@ -8,13 +8,7 @@ class DBRow:
     table_name = str()
 
     def __str__(self):
-        ret = '{%s-' % (self.table_name,)
-        
-        for k, v in self.data.items:
-            if v is not None:
-                ret += "[%s=%s]-" % (k, v)
-        
-        return ret[0:-1] + '}'
+        return '{%s-[%s]}' % (self.table_name,self.data) 
 
     def set(self, key, value):
         self.data[key] = value
