@@ -16,8 +16,6 @@ if __name__ == "__main__":
     if not db.is_connected():
         exit(-1)
 
-    browser = Browser()
-
     processes = []
 
     matches = db.select('select * from "TodayMatches" where date_time < now() - interval \'15 minutes\' and plaied = false;')

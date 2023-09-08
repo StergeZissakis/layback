@@ -8,7 +8,13 @@ class DBRow:
     table_name = str()
 
     def __str__(self):
-        return '[%s:%s]->{[%s VS %s] @ [%s] of [%s]' % (self.table_name, self.data["id"], self.get["home"], self.get["away"], self.get["date_time"], self.get["url"])
+        ret = '{%s-' % (self.table_name,)
+        
+        for k, v in self.data.items:
+            if v is not None:
+                ret += "[%s=%s]-" % (k, v)
+        
+        return ret[0:-1] + '}'
 
     def set(self, key, value):
         self.data[key] = value

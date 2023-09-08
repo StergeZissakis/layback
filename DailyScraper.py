@@ -35,8 +35,9 @@ def scrapeGoalsNow(db):
             "euro",
             "eurpean",
             "uefa european championship qualifying",
-            "denmark cup"
+            "euro 2024 qualifying"
             ]
+    #leagues.append("denmark cup")
     count = 0
     browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
@@ -63,8 +64,7 @@ def scrapeGoalsNow(db):
         db.insert_or_update(match)
         count += 1
 
-    if browser.headless:
-        browser.quit()
+    if browser.headless: browser.quit()
 
     return count
 
@@ -89,8 +89,9 @@ def scrapeFootballSuperTips(db):
             "euro",
             "eurpean",
             "uefa european championship qualifying",
-            "denmark cup"
+            "euro 2024 qualifying"
             ]
+    #leagues.append("denmark cup")
     count = 0
     browser = Browser()
     page = browser.get("https://www.footballsuper.tips/todays-over-under-football-super-tips/")
@@ -120,8 +121,7 @@ def scrapeFootballSuperTips(db):
         db.insert_or_update(match)
         count += 1
 
-    if browser.headless:
-        browser.quit()
+    if browser.headless: browser.quit()
 
     return count
         
@@ -177,8 +177,7 @@ def scrapeOrbitxch(db):
             db.insert_or_update(row)
         count += 1
 
-    if browser.headless:
-        browser.quit()
+    if browser.headless: browser.quit()
 
     return count
         

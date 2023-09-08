@@ -191,6 +191,7 @@ def monitorMatch(m, url = ''):
         browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
     else:
         logging.error('[%s VS %s] Failure: URL is blank')
+        if browser.headless: browser.quit()
         return
 
 
@@ -217,6 +218,7 @@ def monitorMatch(m, url = ''):
         timeout -= 1
         if timeout <= 0:
             logging.error('Failed to get match time after 15 mins. : %s' % (str(match),))
+            if browser.headless: browser.quit()
             return
         live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
         live_match = find_live_match(live_page)
@@ -256,6 +258,7 @@ def monitorMatch(m, url = ''):
             if getLayUnder1p5Odds() <= 1.15:
                 backUnder1p5()
                 logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % (str(match),))
+                if browser.headless: browser.quit()
                 return 
             sleep()
             live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
@@ -268,6 +271,7 @@ def monitorMatch(m, url = ''):
             if getBackUnder1p5Odds() <= 1.52:
                 backUnder1p5at1p5()
                 logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % (str(match),))
+                if browser.headless: browser.quit()
                 return
             sleep()
             live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
@@ -283,6 +287,7 @@ def monitorMatch(m, url = ''):
             if getLayUnder2p5Odds() <= 1.15:
                 backUnder2p5()
                 logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % (str(match),))
+                if browser.headless: browser.quit()
                 return 
             sleep()
             live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
@@ -295,12 +300,15 @@ def monitorMatch(m, url = ''):
             if getBackUnder2p5Odds() <= 1.52:
                 backUnder2p5at1p5()
                 logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % (str(match),))
+                if browser.headless: browser.quit()
                 return 
             sleep()
             live_page = live_browser.get('https://www.footballsuper.tips/live-scores/live/')
             live_match = find_live_match(live_page)
     else:
         logging.info('2 or more goals scored already. : %s' % (str(match),))
+        if browser.headless: browser.quit()
         return
 
     logging.info('Game %s finished with goals : %s' % (str(match), getTotalGoals(live_match)))
+    if browser.headless: browser.quit()

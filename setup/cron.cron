@@ -21,8 +21,8 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-0    3 * * * cd /home/sterge/projects/layback/     && ./kill_all.bash          2>&1 >> logs/cron.log
-*/20 * * * * cd /home/sterge/projects/layback/     && ./kill_old.bash          2>&1 >> logs/cron.log
-0    4 * * * cd /home/sterge/projects/layback/logs && ./backup_logs.bash       2>&1 >> logs/cron.log
-30   5 * * * cd /home/sterge/projects/layback      && ./runDailyScraper.bash   2>&1 >> logs/cron.log 
-*/15 * * * * cd /home/sterge/projects/layback      && ./runDailyScheduler.bash 2>&1 >> logs/cron.log
+30    3 * * * cd /home/sterge/projects/layback/     && ./kill_all.bash          2>&1 >> logs/cron.log
+*/20  * * * * cd /home/sterge/projects/layback/     && ./kill_old.bash          2>&1 >> logs/cron.log
+30    4 * * * cd /home/sterge/projects/layback/logs && ./backup_logs.bash       #2>&1 >> logs/cron.log
+30    5 * * * cd /home/sterge/projects/layback      && ./runDailyScraper.bash   2>&1 >> logs/cron.log 
+*/15  * * * * cd /home/sterge/projects/layback      && ./runDailyScheduler.bash 2>&1 >> logs/cron.log
