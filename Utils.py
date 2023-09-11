@@ -2,6 +2,7 @@ import time
 import difflib
 import pprint
 import logging
+import math
 from difflib import SequenceMatcher
 from selenium.webdriver.common.by import By
 from datetime import datetime, date, timedelta
@@ -54,3 +55,19 @@ def compare_team_names(a, b):
 def initialise_logger(process_name):
     fmt = "%(process)d %(levelname)s %(asctime)s - %(message)s"
     logging.basicConfig(level=logging.INFO, filename="./logs/"+str(process_name)+".log", format=fmt)
+
+def calculateStakeFor(euros, odds):
+    return str( math.ceil(float(euros) / (float(odds) - 1.0)) )
+
+def sleep_for_millis(millis):
+    time.sleep(millis / 1000)
+
+def sleep_for_millis_random(limit):
+    sleep_for_millis(random.randint(100, limit))
+
+def sleep_for_seconds(seconds):
+    time.sleep(seconds)
+    
+def sleep_for_seconds_random(limit):
+    sleep_for_seconds(random.randint(1, limit))
+

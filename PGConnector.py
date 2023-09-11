@@ -72,10 +72,10 @@ class PGConnector(PGBase):
         finally:
             id = rid[0]
 
-        if id:
-            match.set("id", id)
-        else:
+        if match.get("id") is not None:
             id = match.get("id")
+        else:
+            match.set("id", id)
         return id
 
     def delete(self, match, where=''):

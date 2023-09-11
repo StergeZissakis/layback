@@ -211,7 +211,7 @@ class Browser:
             return
 
         if button:
-            self.sleep_for_millis_random(200)
+            self.sleep_for_millis_random(700)
             self.move_to_element_and_left_click(button)
 
     def wait_for_element_to_appear(self, element_xpath, timeout = 10):
