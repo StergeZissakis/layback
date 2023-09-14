@@ -2,11 +2,11 @@ import time
 import Utils
 import logging
 from Utils import initialise_logger
-from  PGConnector import PGConnector
+from PGConnector import PGConnector
 from Browser import Browser
 from datetime import datetime, timezone
 from DailyMatchRow import DailyMatchRow
-from MatchMonitor import MatchMonitor
+from MatchMonitor import monitor
 from multiprocessing import Process
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     processes = []
 
-    matches = db.select('select * from "TodayMatches" where date_time < now() - interval \'15 minutes\' and plaied = false;')
+    matches = db.select('select * from "TodayMatches" where plaied = false and (date_time, date_time) OVERLAPS ((now()::timestamp - interval \'45 minutes\') , (now()::timestamp - interval \'15 minutes\'))')
     for m in matches:
         match = DailyMatchRow('TodayMatches')
         match.set("id", m[0])
@@ -26,8 +26,7 @@ if __name__ == "__main__":
         match.set("away", m[2])
         match.set("date_time", m[3])
         match.set("url", m[4])
-        monitor = MatchMonitor(match)
-        p = Process(target=monitor.monitorMatch, args=(monitor,match))
+        p = Process(target=monitor, args=(match,))
         p.start()
         processes.append(p)
         logging.info("Spawned match [%s]" % match)
@@ -35,7 +34,7 @@ if __name__ == "__main__":
         update_match.set("id", m[0])
         update_match.set("plaied", True)
         db.update(update_match)
-        time.sleep(10)
+        time.sleep(5)
 
     for p in processes:
         try:

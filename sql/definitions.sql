@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-09-08 12:39:57 BST
+-- Started on 2023-09-14 21:40:18 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -251,7 +251,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 215 (class 1259 OID 17015)
+-- TOC entry 214 (class 1259 OID 17015)
 -- Name: over2p5footballsupertips; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -265,7 +265,7 @@ CREATE TABLE public.over2p5footballsupertips (
 
 
 --
--- TOC entry 219 (class 1259 OID 17082)
+-- TOC entry 218 (class 1259 OID 17082)
 -- Name: footballsupertips_today; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -276,12 +276,12 @@ CREATE VIEW public.footballsupertips_today AS
     over2p5footballsupertips.date_time,
     over2p5footballsupertips.url
    FROM public.over2p5footballsupertips
-  WHERE (over2p5footballsupertips.date_time >= CURRENT_DATE)
+  WHERE ((over2p5footballsupertips.date_time)::date >= CURRENT_DATE)
   ORDER BY over2p5footballsupertips.date_time, over2p5footballsupertips.id;
 
 
 --
--- TOC entry 213 (class 1259 OID 17004)
+-- TOC entry 212 (class 1259 OID 17004)
 -- Name: over2p5goalsnow; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -295,7 +295,7 @@ CREATE TABLE public.over2p5goalsnow (
 
 
 --
--- TOC entry 218 (class 1259 OID 17078)
+-- TOC entry 217 (class 1259 OID 17078)
 -- Name: goalsnow_today; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -306,12 +306,12 @@ CREATE VIEW public.goalsnow_today AS
     over2p5goalsnow.date_time,
     over2p5goalsnow.url
    FROM public.over2p5goalsnow
-  WHERE (over2p5goalsnow.date_time >= CURRENT_DATE)
+  WHERE ((over2p5goalsnow.date_time)::date >= CURRENT_DATE)
   ORDER BY over2p5goalsnow.date_time, over2p5goalsnow.id;
 
 
 --
--- TOC entry 217 (class 1259 OID 17026)
+-- TOC entry 216 (class 1259 OID 17026)
 -- Name: over2p5orbitxch; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -326,7 +326,7 @@ CREATE TABLE public.over2p5orbitxch (
 
 
 --
--- TOC entry 220 (class 1259 OID 17086)
+-- TOC entry 219 (class 1259 OID 17086)
 -- Name: orbitxch_today; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -338,12 +338,12 @@ CREATE VIEW public.orbitxch_today AS
     over2p5orbitxch.url,
     over2p5orbitxch.plaied
    FROM public.over2p5orbitxch
-  WHERE (over2p5orbitxch.date_time >= CURRENT_DATE)
+  WHERE ((over2p5orbitxch.date_time)::date >= CURRENT_DATE)
   ORDER BY over2p5orbitxch.date_time, over2p5orbitxch.id;
 
 
 --
--- TOC entry 221 (class 1259 OID 17090)
+-- TOC entry 220 (class 1259 OID 17090)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -377,12 +377,13 @@ CREATE TABLE public.over2p5bets (
     "Odds" numeric(3,2) NOT NULL,
     "OddsRecorded" numeric(3,2) NOT NULL,
     "Amount" numeric NOT NULL,
-    "BetResult" public."BetResult"
+    "BetResult" public."BetResult",
+    "BetMatchTime" timestamp without time zone
 );
 
 
 --
--- TOC entry 209 (class 1259 OID 16593)
+-- TOC entry 221 (class 1259 OID 17110)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -398,9 +399,10 @@ CREATE VIEW public."TodaysBets" AS
     a."Odds",
     a."OddsRecorded",
     a."Amount",
+    a."BetMatchTime",
     a."BetResult"
    FROM public.over2p5bets a
-  WHERE (a."BetDateTime" >= CURRENT_DATE)
+  WHERE ((a."BetDateTime")::date >= CURRENT_DATE)
   ORDER BY a."BetDateTime", a.id;
 
 
@@ -441,7 +443,7 @@ ALTER SEQUENCE public.daily_over_2p5_id_seq OWNED BY public.daily_over_2p5.id;
 
 
 --
--- TOC entry 211 (class 1259 OID 16985)
+-- TOC entry 210 (class 1259 OID 16985)
 -- Name: match_table_prototype; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -455,7 +457,7 @@ CREATE TABLE public.match_table_prototype (
 
 
 --
--- TOC entry 210 (class 1259 OID 16983)
+-- TOC entry 209 (class 1259 OID 16983)
 -- Name: match_table_prototype_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -469,7 +471,7 @@ CREATE SEQUENCE public.match_table_prototype_id_seq
 
 --
 -- TOC entry 3085 (class 0 OID 0)
--- Dependencies: 210
+-- Dependencies: 209
 -- Name: match_table_prototype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -499,7 +501,7 @@ ALTER SEQUENCE public.over2p5bets_id_seq OWNED BY public.over2p5bets.id;
 
 
 --
--- TOC entry 214 (class 1259 OID 17013)
+-- TOC entry 213 (class 1259 OID 17013)
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -513,7 +515,7 @@ CREATE SEQUENCE public.over2p5footballsupertips_id_seq
 
 --
 -- TOC entry 3087 (class 0 OID 0)
--- Dependencies: 214
+-- Dependencies: 213
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -521,7 +523,7 @@ ALTER SEQUENCE public.over2p5footballsupertips_id_seq OWNED BY public.over2p5foo
 
 
 --
--- TOC entry 212 (class 1259 OID 17002)
+-- TOC entry 211 (class 1259 OID 17002)
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -535,7 +537,7 @@ CREATE SEQUENCE public.over2p5goalsnow_id_seq
 
 --
 -- TOC entry 3088 (class 0 OID 0)
--- Dependencies: 212
+-- Dependencies: 211
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -543,7 +545,7 @@ ALTER SEQUENCE public.over2p5goalsnow_id_seq OWNED BY public.over2p5goalsnow.id;
 
 
 --
--- TOC entry 216 (class 1259 OID 17024)
+-- TOC entry 215 (class 1259 OID 17024)
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -557,7 +559,7 @@ CREATE SEQUENCE public.over2p5orbitxch_id_seq
 
 --
 -- TOC entry 3089 (class 0 OID 0)
--- Dependencies: 216
+-- Dependencies: 215
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -677,7 +679,7 @@ ALTER TABLE ONLY public.over2p5orbitxch
 
 --
 -- TOC entry 3073 (class 0 OID 0)
--- Dependencies: 215
+-- Dependencies: 214
 -- Name: TABLE over2p5footballsupertips; Type: ACL; Schema: public; Owner: -
 --
 
@@ -687,7 +689,7 @@ GRANT ALL ON TABLE public.over2p5footballsupertips TO postgres WITH GRANT OPTION
 
 --
 -- TOC entry 3074 (class 0 OID 0)
--- Dependencies: 219
+-- Dependencies: 218
 -- Name: TABLE footballsupertips_today; Type: ACL; Schema: public; Owner: -
 --
 
@@ -697,7 +699,7 @@ GRANT ALL ON TABLE public.footballsupertips_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3075 (class 0 OID 0)
--- Dependencies: 213
+-- Dependencies: 212
 -- Name: TABLE over2p5goalsnow; Type: ACL; Schema: public; Owner: -
 --
 
@@ -707,7 +709,7 @@ GRANT ALL ON TABLE public.over2p5goalsnow TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3076 (class 0 OID 0)
--- Dependencies: 218
+-- Dependencies: 217
 -- Name: TABLE goalsnow_today; Type: ACL; Schema: public; Owner: -
 --
 
@@ -717,7 +719,7 @@ GRANT ALL ON TABLE public.goalsnow_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3077 (class 0 OID 0)
--- Dependencies: 217
+-- Dependencies: 216
 -- Name: TABLE over2p5orbitxch; Type: ACL; Schema: public; Owner: -
 --
 
@@ -727,7 +729,7 @@ GRANT ALL ON TABLE public.over2p5orbitxch TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3078 (class 0 OID 0)
--- Dependencies: 220
+-- Dependencies: 219
 -- Name: TABLE orbitxch_today; Type: ACL; Schema: public; Owner: -
 --
 
@@ -737,7 +739,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3079 (class 0 OID 0)
--- Dependencies: 221
+-- Dependencies: 220
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -757,7 +759,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3081 (class 0 OID 0)
--- Dependencies: 209
+-- Dependencies: 221
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -777,7 +779,7 @@ GRANT ALL ON TABLE public.daily_over_2p5 TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3084 (class 0 OID 0)
--- Dependencies: 211
+-- Dependencies: 210
 -- Name: TABLE match_table_prototype; Type: ACL; Schema: public; Owner: -
 --
 
@@ -794,7 +796,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-08 12:39:57 BST
+-- Completed on 2023-09-14 21:40:18 BST
 
 --
 -- PostgreSQL database dump complete

@@ -3,6 +3,7 @@ import difflib
 import pprint
 import logging
 import math
+import random
 from difflib import SequenceMatcher
 from selenium.webdriver.common.by import By
 from datetime import datetime, date, timedelta

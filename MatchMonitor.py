@@ -1,7 +1,7 @@
 import time
 import logging
 import pprint
-from Utils import *
+import Utils 
 from PGConnector import PGConnector
 from BetRow import BetRow
 from Browser import Browser
@@ -27,14 +27,16 @@ class MatchMonitor:
     eurosToBet = None
 
     def __init__(self, match):
-        self.self.match = match
+        self.match = match
         self.browser = Browser()
         self.liveBrowser = Browser()
         self.eurosToBet = 5
 
     def __del__(self):
-        if browser.headless: 
-            browser.quit()
+        if self.browser and self.browser.headless: 
+            self.browser.quit()
+        if self.liveBrowser and self.liveBrowser.headless:
+            self.liveBrowser.quit()
 
     def check_exists_by_xpath(self, element, xpath):
             try:
@@ -78,14 +80,15 @@ class MatchMonitor:
             tab = None
             if not self.check_exists_by_xpath(self.page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i):
                 continue
-            tabText = self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i).text.strip()
+            tab = self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i)
+            tabText = tab.text.strip()
             if tabText == 'Over/Under 2.5 Goals' and self.ou2p5Tab is None:
                 self.browser.scroll_move_left_click(tab)
                 self.ou2p5Tab = self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div' % i)
                 logging.debug("ou2p5Tab found")
             if tabText == 'Over/Under 1.5 Goals' and self.ou1p5Tab is None:
                 self.browser.scroll_move_left_click(tab)
-                ou1p5Tab = self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div' % i)
+                self.ou1p5Tab = self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div' % i)
                 logging.debug("ou1p5Tab found")
             if self.ou2p5Tab is not None and self.ou1p5Tab is not None:
                 break
@@ -136,7 +139,7 @@ class MatchMonitor:
         bet.set("Odds", odds)
         bet.set("OddsRecorded", odds_recorded)
         bet.set("Amount", amount)
-        db.insert_or_update(bet)
+        self.db.insert_or_update(bet)
         logging.debug("Bet placed: %s", str(bet))
         return bet
 
@@ -170,7 +173,7 @@ class MatchMonitor:
 
     def backUnder2p5(self, euros):
         odds = self.getBackUnder2p5Odds()
-        self.placeBet(ou2p5Tab, 'Back', 'Under', 2.5, odds, odds, euros)
+        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, odds, odds, euros)
         logging.info('%s betted Back Under 2.5 @ any [%s] odds ' % (self.match, odds))
         return float(odds)
     
@@ -190,132 +193,136 @@ class MatchMonitor:
         self.checkForSupspendedAndWait()
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
-def loginToExchange(self):
-    form = self.page.find_element(By.XPATH, '//div[@id="biab_login-block"]/form') # Login
-    form.find_element(By.XPATH, './div/input[1]').send_keys(self.username)
-    Utils.sleep_for_millis_random(500)
-    form.find_element(By.XPATH, './div/input[2]').send_keys(self.password)
-    Utils.sleep_for_millis_random(500)
-    form.find_element(By.XPATH, './div/button').click()
-    #Click the OK tha appears
-    self.browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
-
-def refreshLiveMatch(self):
-    self.livePage = self.liveBrowser.get('https://www.footballsuper.tips/live-scores/live/')
-    self.liveMatch = self.find_liveMatch()
-
-def monitorMatch():
-    self.db = PGConnector("postgres", "localhost")
-    if not self.db.is_connected():
-        logging.error("%s - Failed to connect to DB" % self.match)
-        exit(-1)
-    
-    self.page = browser.get(self.match.get("url"))
-    Utils.sleep_for_seconds(3)
-    self.loginToExchange()
-    #self.page.refresh()
-    #Utils.sleep_for_seconds(3)
-    if self.check_exists_by_xpath(self.page, '//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button'):
+    def loginToExchange(self):
+        form = self.page.find_element(By.XPATH, '//div[@id="biab_login-block"]/form') # Login
+        form.find_element(By.XPATH, './div/input[1]').send_keys(self.username)
+        Utils.sleep_for_millis_random(500)
+        form.find_element(By.XPATH, './div/input[2]').send_keys(self.password)
+        Utils.sleep_for_millis_random(500)
+        form.find_element(By.XPATH, './div/button').click()
+        #Click the OK tha appears
         self.browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
-
-    if self.expandTabsOfInterest(page, browser) == False:
-        logging.error('Match failed : %s' % self.match)
-        return
-
-    logging.info('Starting self.match : %s' % self.match)
-
-    self.live_browser = Browser()
-    self.livePage = self.live_browser.get('https://www.footballsuper.tips/live-scores/live/')
-    self.live_browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
-
-    self.liveMatch = self.find_liveMatch()
-    if self.liveMatch is None:
-        logging.error('Live Match failed : %s' % self.match)
-        return
-
-    timeout = 15
-    while not self.getMatchTime().isnumeric(): # in case the time has not appeared yet
-        logging.info('Time is not numeric : %s' % self.match)
-        self.sleep()
-        timeout -= 1
-        if timeout == 0:
-            logging.error('Failed to get self.match time after 15 mins. : %s' % self.match)
-            return
-        self.refreshLiveMatch()
     
-    logging.info('Time is numeric : %s' % self.match)
-
-    matchTime = self.getMatchTime()
-    while matchTime.isnumeric() and int(matchTime) <= 45:
-        self.sleep()
-        self.refreshLiveMatch()
-
-    logging.info('1st Half passed : %s' % self.match)
-    self.sleep(30)
-    self.refreshLiveMatch()
-
-    while not self.getMatchTime().isnumeric():
-        self.sleep(30)
-        self.refreshLiveMatch()
+    def refreshLiveMatch(self):
+        self.livePage = self.liveBrowser.get('https://www.footballsuper.tips/live-scores/live/')
+        self.liveMatch = self.find_liveMatch()
     
-    logging.info('Beginning of 2nd Half : %s' % self.match)
-
-    while int(self.getMatchTime()) <= 46:
-        self.sleep(30)
-        self.refreshLiveMatch()
-
-    logging.info('Goals of %s  @ 46\' : %s' % (self.match, str(self.getTotalGoals())))
-    
-    if self.getTotalGoals() == 0:
-        self.layUnder1p5at1p5(eurosToBet)
-        logging.info('Initial bet played : %s' % self.match)
-
-        self.refreshLiveMatch()
-        while self.getTotalGoals() == 0 and str(self.getMatchTime()) != 'FT':
-            if self.getLayUnder1p5Odds() <= 1.15:
-                self.backUnder1p5(eurosToBet)
-                logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % self.match)
-                return 
-            self.sleep()
-            self.refreshLiveMatch()
-
-        if str(self.getMatchTime()) != 'FT':
-            logging.info('Goal detected : %s' % self.match)
-
-        while self.getTotalGoals() == 1 and str(self.getMatchTime()) != 'FT':
-            if self.getBackUnder1p5Odds() <= 1.52:
-                self.backUnder1p5at1p5(eurosToBet)
-                logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % self.match)
-                return
-            self.sleep()
-            self.refreshLiveMatch()
-
-    elif self.getTotalGoals() == 1:
-        self.layUnder2p5at1p5(eurosToBet)
-        logging.info('Initial bet played. : %s' % self.match)
+    def startMonitor(self):
+        self.db = PGConnector("postgres", "localhost")
+        if not self.db.is_connected():
+            logging.error("%s - Failed to connect to DB" % self.match)
+            exit(-1)
         
+        self.page = self.browser.get(self.match.get("url"))
+        Utils.sleep_for_seconds(3)
+        self.loginToExchange()
+        #self.page.refresh()
+        #Utils.sleep_for_seconds(3)
+        if self.check_exists_by_xpath(self.page, '//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button'):
+            self.browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
+    
+        if self.expandTabsOfInterest() == False:
+            logging.error('Match failed : %s' % self.match)
+            return
+    
+        logging.info('Starting self.match : %s' % self.match)
+    
+        self.live_browser = Browser()
+        self.livePage = self.live_browser.get('https://www.footballsuper.tips/live-scores/live/')
+        self.live_browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
+    
+        self.liveMatch = self.find_liveMatch()
+        if self.liveMatch is None:
+            logging.error('Live Match failed : %s' % self.match)
+            return
+    
+        timeout = 15
+        while not self.getMatchTime().isnumeric(): # in case the time has not appeared yet
+            logging.info('Time is not numeric : %s' % self.match)
+            self.sleep()
+            timeout -= 1
+            if timeout == 0:
+                logging.error('Failed to get self.match time after 15 mins. : %s' % self.match)
+                return
+            self.refreshLiveMatch()
+        
+        logging.info('Time is numeric : %s' % self.match)
+    
+        matchTime = self.getMatchTime()
+        while matchTime.isnumeric() and int(matchTime) <= 45:
+            self.sleep()
+            self.refreshLiveMatch()
+    
+        logging.info('1st Half passed : %s' % self.match)
+        self.sleep(30)
         self.refreshLiveMatch()
-        while self.getTotalGoals() == 1 and str(self.getMatchTime()) != 'FT':
-            if self.getLayUnder2p5Odds() <= 1.15:
-                self.backUnder2p5(eurosToBet)
-                logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % self.match)
-                return 
-            self.sleep()
+    
+        while not self.getMatchTime().isnumeric():
+            self.sleep(30)
             self.refreshLiveMatch()
-
-        if str(self.getMatchTime()) != 'FT':
-            logging.info('Goal detected. : %s' % self.match)
-
-        while self.getTotalGoals() == 2 and str(self.getMatchTime()) != 'FT':
-            if self.getBackUnder2p5Odds() <= 1.52:
-                self.backUnder2p5at1p5(eurosToBet)
-                logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % self.match)
-                return 
-            self.sleep()
+        
+        logging.info('Beginning of 2nd Half : %s' % self.match)
+    
+        while int(self.getMatchTime()) <= 46:
+            self.sleep(30)
             self.refreshLiveMatch()
-
-    else:
-        logging.info('2 or more goals scored already. : %s' % self.match)
-        return
-
-    logging.info('Game %s finished with goals : %s' % (self.match, self.getTotalGoals()))
+    
+        logging.info('Goals of %s  @ 46\' : %s' % (self.match, str(self.getTotalGoals())))
+        
+        if self.getTotalGoals() == 0:
+            self.layUnder1p5at1p5(self.eurosToBet)
+            logging.info('Initial bet played : %s' % self.match)
+    
+            self.refreshLiveMatch()
+            while self.getTotalGoals() == 0 and str(self.getMatchTime()) != 'FT':
+                if self.getLayUnder1p5Odds() <= 1.15:
+                    self.backUnder1p5(self.eurosToBet)
+                    logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % self.match)
+                    return 
+                self.sleep()
+                self.refreshLiveMatch()
+    
+            if str(self.getMatchTime()) != 'FT':
+                logging.info('Goal detected : %s' % self.match)
+    
+            while self.getTotalGoals() == 1 and str(self.getMatchTime()) != 'FT':
+                if self.getBackUnder1p5Odds() <= 1.52:
+                    self.backUnder1p5at1p5(self.eurosToBet)
+                    logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % self.match)
+                    return
+                self.sleep()
+                self.refreshLiveMatch()
+    
+        elif self.getTotalGoals() == 1:
+            self.layUnder2p5at1p5(self.eurosToBet)
+            logging.info('Initial bet played. : %s' % self.match)
+            
+            self.refreshLiveMatch()
+            while self.getTotalGoals() == 1 and str(self.getMatchTime()) != 'FT':
+                if self.getLayUnder2p5Odds() <= 1.15:
+                    self.backUnder2p5(self.eurosToBet)
+                    logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % self.match)
+                    return 
+                self.sleep()
+                self.refreshLiveMatch()
+    
+            if str(self.getMatchTime()) != 'FT':
+                logging.info('Goal detected. : %s' % self.match)
+    
+            while self.getTotalGoals() == 2 and str(self.getMatchTime()) != 'FT':
+                if self.getBackUnder2p5Odds() <= 1.52:
+                    self.backUnder2p5at1p5(self.eurosToBet)
+                    logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % self.match)
+                    return 
+                self.sleep()
+                self.refreshLiveMatch()
+    
+        else:
+            logging.info('2 or more goals scored already. : %s' % self.match)
+            return
+    
+        logging.info('Game %s finished with goals : %s' % (self.match, self.getTotalGoals()))
+    
+def monitor(match):
+    mm = MatchMonitor(match)
+    mm.startMonitor()

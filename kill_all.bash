@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Cleaning up all chrome leftovers..."
+#echo "Cleaning up all chrome leftovers..."
 killall -r "chrom.*"
 killall python
 killall python3

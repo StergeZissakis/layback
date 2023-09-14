@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Cleaning up old chrome instances..."
+#echo "Cleaning up old chrome instances..."
 rm -f /tmp/killold
 touch /tmp/killold
 for name in python python3 chromium chrom
