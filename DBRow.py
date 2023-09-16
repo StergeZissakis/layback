@@ -2,13 +2,14 @@ from itertools import islice
 from collections import defaultdict
 import logging
 
+
 class DBRow:
 
     data = defaultdict(dict)
     table_name = str()
 
     def __str__(self):
-        return '{%s-[%s]}' % (self.table_name,self.data) 
+        return '{%s-[%s]}' % (self.table_name, self.data)
 
     def set(self, key, value):
         self.data[key] = value
@@ -48,25 +49,25 @@ class DBRow:
             if isinstance(v, list) and len(v) == 0: 
                 pass
             elif v is not None:
-                vals.append( v )
+                vals.append(v)
 
         logging.debug("sql_insert_values: %s" % (vals,))
         return vals
 
-    def generate_select(self, columns = []):
+    def generate_select(self, columns=None):
+        if columns is None:
+            columns = []
         cols = ','.join(columns)
         if not (cols and len(cols)):
             cols = '*' 
         sql = 'SELECT %s FROM "%s" ' % (cols, self.table_name)
-        where = ''
+        where = '    '
         for k, v in self.data.items():
             if v is not None:
                 where += ' %s="%s" and' % (k, v)
-        if len(where):
+        if len(where) > 4:
             where = " where " + where
-        else:
-            where = '    '
-        sql = sql[:-4] + ';'
+        sql += where[:-4] + ';'
         logging.debug("generate select: %s" % (sql,))
         return sql
 
@@ -84,10 +85,10 @@ class DBRow:
     def generate_delete(self, where=''):
         sql = 'DELETE FROM ' + self.table_name
         if len(where):
-            if not where.lower().contains("where "):
+            if "where " not in where.lower():
                 where = " where " + where
         elif self.data["id"] is not None:
-            where = " where id = %s" % (self.data["id"],)
+            where = " where id = %s" % self.data["id"]
         sql += where + ";"
-        logging.debug("generate delete: %s" % (sql,))
+        logging.debug("generate delete: %s" % sql)
         return sql

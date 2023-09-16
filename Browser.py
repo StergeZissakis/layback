@@ -1,21 +1,19 @@
-import os
-import time
-import pickle
-import random
 import argparse
 import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as ExpectedCondition
 from selenium.webdriver.chrome.service import Service as ChromeService
+import Utils
+
 
 class Browser:
     headless = True
+    page = None
+    driver = None
 
     def __init__(self):
         parser = argparse.ArgumentParser()
@@ -28,20 +26,20 @@ class Browser:
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument('--window-size=1920,1080')
-        #self.chrome_options.add_argument("--incognito")
+        # self.chrome_options.add_argument("--incognito")
         self.chrome_options.add_argument('--start-maximized')
         self.chrome_options.add_argument('--disable-dev-shm-usage')
         self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--ignore-certificate-errors')
         self.chrome_options.add_argument('--allow-running-insecure-content')
         self.chrome_options.add_experimental_option("detach", True)
-        #self.chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36")
+        # self.chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36")
         self.chrome_options.add_argument("--enable-automation")
         self.chrome_options.add_argument("disable-infobars")
         self.chrome_options.add_argument("--disable-extensions")
         self.chrome_options.add_argument("--dns-prefetch-disable")
-        #self.chrome_options.add_argument(PageLoadStrategy.NORMAL)
-        #self.chrome_options.add_argument("--disable-browser-side-navigation")
+        # self.chrome_options.add_argument(PageLoadStrategy.NORMAL)
+        # self.chrome_options.add_argument("--disable-browser-side-navigation")
 
         if self.headless:
             self.chrome_options.add_argument('--headless=new')
@@ -93,8 +91,8 @@ class Browser:
                    )
                   )
 
-
-    def get_interactible_child(self, element):
+    @staticmethod
+    def get_interactible_child(element):
         if element and element.is_displayed() and element.is_enabled():
             logging.debug('Element not displayed or not enabled')
             return element
@@ -107,8 +105,8 @@ class Browser:
 
         return ret
 
-
-    def get_interactible_parent(self, element, parent_limit_xpath = ""):
+    @staticmethod
+    def get_interactible_parent(element, parent_limit_xpath=""):
         if element and element.is_displayed() and element.is_enabled():
             return element
 
@@ -132,7 +130,7 @@ class Browser:
         else:
             return None
 
-    def get_interactible(self, element, parent_limit_xpath = ""):
+    def get_interactible(self, element, parent_limit_xpath=""):
         if element and element.is_displayed() and element.is_enabled():
             return element
 
@@ -142,56 +140,38 @@ class Browser:
 
         return ret
 
-    def sleep_for_millis(self, millis):
-        time.sleep(millis / 1000)
-
-    def sleep_for_millis_random(self, limit):
-        if limit > 100:
-            self.sleep_for_millis(random.randint(100, limit))
-        else:
-            self.sleep_for_millis(random.randint(100, 1000))
-
-    def sleep_for_seconds(self, seconds):
-        time.sleep(seconds)
-        
-    def sleep_for_seconds_random(self, limit):
-        if limit > 1:
-            self.sleep_for_seconds(random.randint(1, limit))
-        else:
-            self.sleep_for_seconds(random.randint(1, 3))
-
-    def scroll_to_visible(self, element, centre = False):
+    def scroll_to_visible(self, element, centre=False):
         if centre:
             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
         else:
             self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
-        self.sleep_for_millis_random(400)
+        Utils.sleep_for_millis_random(400)
 
     def move_to_element(self, element):
-        if(self.element_completely_visible(element) and element.is_displayed()):
+        if self.element_completely_visible(element) and element.is_displayed():
             ActionChains(self.driver).move_to_element(element).perform()
-        self.sleep_for_millis_random(300)
+        Utils.sleep_for_millis_random(300)
 
     def move_to_element_and_scroll_to_visible_bottom(self, element):
         self.move_to_element(element)
-        self.sleep_for_millis_random(400)
+        Utils.sleep_for_millis_random(400)
         self.driver.execute_script("arguments[0].scrollIntoView(false);", element)
 
-    def move_to_element_and_left_click(self, element, wait_sync_element_xpath = "", parent_limit_xpath = ""):
+    def move_to_element_and_left_click(self, element, wait_sync_element_xpath="", parent_limit_xpath=""):
         self.move_to_element(element)
         clickable = self.get_interactible(element, parent_limit_xpath)
         if clickable:
             try:
                 clickable.click()
-            except :
+            except:
                 ActionChains(self.driver).move_to_element(clickable).click(clickable).perform()
 
-            self.sleep_for_millis_random(150)
+            Utils.sleep_for_millis_random(150)
             if len(wait_sync_element_xpath):
                 return self.wait_for_element_to_appear(wait_sync_element_xpath)
         return clickable
 
-    def scroll_move_left_click(self, element, wait_sync_element_xpath = "", parent_limit_xpath = ""):
+    def scroll_move_left_click(self, element, wait_sync_element_xpath="", parent_limit_xpath=""):
         self.scroll_to_visible(element, True)
         return self.move_to_element_and_left_click(element, wait_sync_element_xpath, parent_limit_xpath)
 
@@ -200,7 +180,7 @@ class Browser:
         clickable = self.get_interactible(element)
         if clickable:
             ActionChains(self.driver).key_down(Keys.CONTROL).click(clickable).key_up(Keys.CONTROL).perform()
-            self.sleep_for_millis_random(300)
+            Utils.sleep_for_millis_random(300)
 
     def accept_cookies(self, button_xpath):
         try:
@@ -211,10 +191,10 @@ class Browser:
             return
 
         if button:
-            self.sleep_for_millis_random(700)
+            Utils.sleep_for_millis_random(700)
             self.move_to_element_and_left_click(button)
 
-    def wait_for_element_to_appear(self, element_xpath, timeout = 10):
+    def wait_for_element_to_appear(self, element_xpath, timeout=10):
         if len(element_xpath):
             try:
                 return WebDriverWait(self.driver, timeout).until(ExpectedCondition.presence_of_element_located((By.XPATH, element_xpath)))
@@ -223,14 +203,14 @@ class Browser:
                 pass
         return None
 
-    def switch_to_tab(self, tab_index, wait_for_elelemt_xpath = ""):
+    def switch_to_tab(self, tab_index, wait_for_elelemt_xpath=""):
         self.driver.switch_to.window(self.driver.window_handles[tab_index])
         self.page = self.driver
         if len(wait_for_elelemt_xpath):
             self.wait_for_element_to_appear(wait_for_elelemt_xpath)
         return self.page
 
-    def close_tab(self, go_to_tab = 0):
+    def close_tab(self, go_to_tab=0):
         self.driver.close()
         return self.switch_to_tab(go_to_tab)
 
@@ -241,14 +221,14 @@ class Browser:
         for t in range(0, times):
             self.driver.execute_script('window.history.go(-1)')
 
-            self.sleep_for_millis_random(150)
+            Utils.sleep_for_millis_random(150)
         return self.reset_page_to_current()
 
     def scroll_to_bottom(self):
         lenOfPage = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-        match=False
-        while(not match):
+        match = False
+        while not match:
             lastCount = lenOfPage
-            self.sleep_for_millis_random(2000)
+            Utils.sleep_for_millis_random(2000)
             lenOfPage = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
             match = lastCount == lenOfPage

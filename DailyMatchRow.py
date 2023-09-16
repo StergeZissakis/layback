@@ -1,7 +1,5 @@
 from DBRow import DBRow
-from Utils import compare_team_names
-import datetime
-import logging
+
 
 class DailyMatchRow(DBRow):
 

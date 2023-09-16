@@ -1,10 +1,7 @@
 import time
-import Utils
 import logging
 from Utils import initialise_logger
 from PGConnector import PGConnector
-from Browser import Browser
-from datetime import datetime, timezone
 from DailyMatchRow import DailyMatchRow
 from MatchMonitor import monitor
 from multiprocessing import Process

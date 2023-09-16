@@ -1,21 +1,16 @@
 import time
-import difflib
-import pprint
 import logging
 import math
 import random
 from difflib import SequenceMatcher
-from selenium.webdriver.common.by import By
-from datetime import datetime, date, timedelta
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ExpectedCondition
 
 
 def add_time_to_date(event_date, event_time):
     (hour, minute) = str(event_time).split(":")
     return event_date.replace(hour=int(hour), minute=int(minute), second=0, microsecond=0)
 
-def ratio_odds_to_decimal(self, odds):
+
+def ratio_odds_to_decimal(odds):
     if odds.find('/') == -1:
         return odds
 
@@ -23,11 +18,12 @@ def ratio_odds_to_decimal(self, odds):
     decimal = (int(nom) / int(denom) + 1)
     return decimal
 
+
 def replaceSpecialChars(s):
     mappings = { '-': ' ',
                  'Ø': 'o',
                  'ø': 'o'
-                 #"-rø!@#$%^&*()[]{};:,./<>?\|`~-=_+"
+                 # "-rø!@#$%^&*()[]{};:,./<>?\|`~-=_+"
             }
     ret = ''
     for c in s:
@@ -36,8 +32,9 @@ def replaceSpecialChars(s):
         ret += c
     return ret.lower().strip()
 
+
 def compare_team_names(a, b):
-    #pp = pprint.PrettyPrinter(indent=4)
+    # pp = pprint.PrettyPrinter(indent=4)
     ca = replaceSpecialChars(a.strip().lower())
     cb = replaceSpecialChars(b.strip().lower())
     pa = ca.split(' ')
@@ -45,30 +42,41 @@ def compare_team_names(a, b):
     matches = 0
     for xa in pa:
         for yb in pb:
-            #if  xa == yb or A in B or B in A or A in pb or B in pa:
-            if  xa == yb or xa in yb or SequenceMatcher(None, xa, yb).ratio() >= 0.8:
+            # if  xa == yb or A in B or B in A or A in pb or B in pa:
+            if xa == yb or xa in yb or SequenceMatcher(None, xa, yb).ratio() >= 0.8:
                 matches += 1
-    #if matches == 0 and SequenceMatcher(None, ca, cb).ratio() >= 0.8:
+    # if matches == 0 and SequenceMatcher(None, ca, cb).ratio() >= 0.8:
     if SequenceMatcher(None, ca, cb).ratio() >= 0.8:
         matches += 1
     return matches
+
 
 def initialise_logger(process_name):
     fmt = "%(process)d %(levelname)s %(asctime)s - %(message)s"
     logging.basicConfig(level=logging.INFO, filename="./logs/"+str(process_name)+".log", format=fmt)
 
+
 def calculateStakeFor(euros, odds):
-    return str( math.ceil(float(euros) / (float(odds) - 1.0)) )
+    return str(math.ceil(float(euros) / (float(odds) - 1.0)))
+
 
 def sleep_for_millis(millis):
     time.sleep(millis / 1000)
 
+
 def sleep_for_millis_random(limit):
-    sleep_for_millis(random.randint(100, limit))
+    if limit > 100:
+        sleep_for_millis(random.randint(100, limit))
+    else:
+        sleep_for_millis(random.randint(100, 1000))
+
 
 def sleep_for_seconds(seconds):
     time.sleep(seconds)
-    
-def sleep_for_seconds_random(limit):
-    sleep_for_seconds(random.randint(1, limit))
 
+
+def sleep_for_seconds_random(limit):
+    if limit > 1:
+        sleep_for_seconds(random.randint(1, limit))
+    else:
+        sleep_for_seconds(random.randint(1, 3))
