@@ -45,6 +45,7 @@ class MatchMonitor:
         Utils.sleep_for_seconds(x)
 
     def expandTabsOfInterest(self):
+        self.sleep(4)
         for i in range(1, 10):
             if not self.check_exists_by_xpath(self.page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i):
                 continue
@@ -69,9 +70,9 @@ class MatchMonitor:
             return False
         return True
 
-    def checkForSuspendedAndWait(self):
-        suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'
-        while self.check_exists_by_xpath(self.page, suspended_xpath):  # and page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
+    def checkForSuspendedAndWait(self, tab): # TODO: needs testing
+        suspended_xpath = 'div[3]/div[3]/div/div'
+        while self.check_exists_by_xpath(tab, suspended_xpath): # and tab.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
             logging.debug("Supsension detected")
             Utils.sleep_for_seconds(1)
 
@@ -79,20 +80,20 @@ class MatchMonitor:
         div_palce_bet_button = 1
         if layback == 'Lay':
             div_palce_bet_button = 2
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(tab)
         tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[%s]/button' % str(div_palce_bet_button)).click()  # Place bet button
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(tab)
         tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input').send_keys(str(odds))  # odds
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(tab)
         tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(Utils.calculateStakeFor(amount, odds))  # stake
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(tab)
         tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
         # TODO: ensure bet is placed
         bet = self.logBet(layback, overUnder, goals, odds, odds_recorded, amount)
         # TODO: Monitor for when it will be matched
         # get final result of bets
-        monitorBetThread = Thread(target=self.monitorBet, args=(self, bet))
-        monitorBetThread.start()
+        # monitorBetThread = Thread(target=self.monitorBet, args=(self, bet))
+        # monitorBetThread.start()
         # monitorBetThread.join()  #TODO:?
 
     def logBet(self, layback, overUnder, goals, odds, odds_recorded, amount):
@@ -146,19 +147,19 @@ class MatchMonitor:
         return float(odds)
 
     def getLayUnder1p5Odds(self):
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(self.ou1p5Tab)
         return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
     def getLayUnder2p5Odds(self):
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(self.ou2p5Tab)
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
     def getBackUnder1p5Odds(self):
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(self.ou1p5Tab)
         return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
     def getBackUnder2p5Odds(self):
-        self.checkForSuspendedAndWait()
+        self.checkForSuspendedAndWait(self.ou2p5Tab)
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
     def loginToExchange(self):
@@ -184,21 +185,22 @@ class MatchMonitor:
         if self.check_exists_by_xpath(self.page, '//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button'):
             self.browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
 
-        if not self.expandTabsOfInterest():
-            logging.error('Match failed : %s' % self.match)
-            return
-    
-        logging.info('Starting self.match : %s' % self.match)
+        while not self.expandTabsOfInterest():
+            logging.error('Failed to expand tabs: %s' % self.match)
+            self.page = self.browser.get(self.match.get("url"))
+            self.sleep(2)
+
+        logging.info('Starting : %s' % self.match)
 
         self.livePage = OrbitLivePage(self.page)
         if not self.livePage.canBeMonitored():
-            self.livePage = SuperTipsLivePage()
+            self.livePage = SuperTipsLivePage(self.match)
             if not self.livePage.canBeMonitored():
                 logging.error('Live Match capture failed : %s' % self.match)
                 return
 
         timeout = 15
-        while not self.livePage.getMatchTime().isnumeric(): # in case the time has not appeared yet
+        while not isinstance(self.livePage.getMatchTime(), int): # in case the time has not appeared yet
             logging.info('Time is not numeric : %s' % self.match)
             self.sleep()
             timeout -= 1
@@ -210,15 +212,15 @@ class MatchMonitor:
         logging.info('Time is numeric : %s' % self.match)
     
         matchTime = self.livePage.getMatchTime()
-        while matchTime.isnumeric() and int(matchTime) <= 45:
+        while isinstance(matchTime, int) and matchTime <= 45:
             self.sleep()
             self.livePage.refreshLiveMatch()
     
         logging.info('1st Half passed : %s' % self.match)
-        self.sleep(30)
+        self.sleep(10)
         self.livePage.refreshLiveMatch()
 
-        while not self.livePage.getMatchTime().isnumeric():
+        while not isinstance(self.livePage.getMatchTime(), int):
             self.sleep(30)
             self.livePage.refreshLiveMatch()
         
@@ -228,7 +230,7 @@ class MatchMonitor:
             self.sleep(30)
             self.livePage.refreshLiveMatch()
     
-        logging.info('Goals of %s  @ 46\' : %s' % (self.match, str(self.livePage.getTotalGoals())))
+        logging.info('Goals of %s  @ %s\' : %s' % (self.match, str(self.livePage.getMatchTime()),str(self.livePage.getTotalGoals())))
         
         if self.livePage.getTotalGoals() == 0:
             self.layUnder1p5at1p5(self.eurosToBet)

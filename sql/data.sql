@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-09-16 04:33:43 BST
+-- Started on 2023-09-17 01:03:47 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,24 +19,8 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3066 (class 0 OID 16471)
--- Dependencies: 205
--- Data for Name: daily_over_2p5; Type: TABLE DATA; Schema: public; Owner: -
---
-
-
-
---
--- TOC entry 3071 (class 0 OID 16985)
--- Dependencies: 210
--- Data for Name: match_table_prototype; Type: TABLE DATA; Schema: public; Owner: -
---
-
-
-
---
--- TOC entry 3068 (class 0 OID 16493)
--- Dependencies: 207
+-- TOC entry 3033 (class 0 OID 16493)
+-- Dependencies: 203
 -- Data for Name: over2p5bets; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -46,11 +30,12 @@ INSERT INTO public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTim
 INSERT INTO public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "LayBack", "OverUnder", "Goals", "Odds", "OddsRecorded", "Amount", "BetResult", "BetMatchTime") VALUES (21, '2023-09-08 19:45:00', 'Turkey', 'Armenia', '2023-09-08 21:27:16.909669', 'Back', 'Under', 2.50, 1.00, 1.13, 1, NULL, NULL);
 INSERT INTO public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "LayBack", "OverUnder", "Goals", "Odds", "OddsRecorded", "Amount", "BetResult", "BetMatchTime") VALUES (22, '2023-09-09 19:45:00', 'Romania', 'Israel', '2023-09-09 20:00:01.58423', 'Lay', 'Under', 2.50, 1.50, 1.71, 1, NULL, NULL);
 INSERT INTO public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "LayBack", "OverUnder", "Goals", "Odds", "OddsRecorded", "Amount", "BetResult", "BetMatchTime") VALUES (23, '2023-09-09 19:45:00', 'Romania', 'Israel', '2023-09-09 21:27:19.539354', 'Back', 'Under', 2.50, 1.00, 1.52, 1, NULL, NULL);
+INSERT INTO public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "LayBack", "OverUnder", "Goals", "Odds", "OddsRecorded", "Amount", "BetResult", "BetMatchTime") VALUES (24, '2023-09-16 23:00:00', 'Atlanta Utd', 'Inter Miami CF', '2023-09-16 23:36:29.549506', 'Lay', 'Under', 2.50, 1.50, 1.10, 5, NULL, NULL);
 
 
 --
--- TOC entry 3075 (class 0 OID 17015)
--- Dependencies: 214
+-- TOC entry 3038 (class 0 OID 17015)
+-- Dependencies: 208
 -- Data for Name: over2p5footballsupertips; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -72,11 +57,52 @@ INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VAL
 INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (342, 'FC Den Bosch', 'Maastricht', '2023-09-15 19:00:00', NULL);
 INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (343, 'Roda JC', 'Telstar', '2023-09-15 19:00:00', NULL);
 INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (344, 'VVV', 'NAC', '2023-09-15 19:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (368, 'Feyenoord', 'Heerenveen', '2023-09-16 15:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (345, 'Austria Klagenfurt', 'LASK Linz', '2023-09-16 16:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (346, 'FC Blau Weiss Linz', 'SCR Altach', '2023-09-16 16:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (347, 'SK Sturm Graz', 'FC Salzburg', '2023-09-16 18:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (348, 'RWD Molenbeek', 'Cercle Brugge', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (349, 'Union Saint Gilloise', 'Genk', '2023-09-16 17:15:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (350, 'Club Brugge', 'Charleroi', '2023-09-16 19:45:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (351, 'Anderlecht II', 'Patro Eisden Maasmechelen', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (352, 'FCV Dender EH', 'Lommel', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (353, 'KFCO Beerschot Wilrijk', 'SK Beveren', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (354, 'FC Nordsjaelland', 'FC Copenhagen', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (355, 'Wolverhampton', 'Liverpool', '2023-09-16 12:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (356, 'Aston Villa', 'Crystal Palace', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (357, 'Fulham', 'Luton', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (358, 'Man Utd', 'Brighton', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (359, 'Tottenham', 'Sheff Utd', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (360, 'West Ham', 'Man City', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (361, 'Newcastle', 'Brentford', '2023-09-16 17:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (362, 'RB Leipzig', 'Augsburg', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (363, 'SC Freiburg', 'Borussia Dortmund', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (364, 'Wolfsburg', 'Union Berlin', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (365, 'Mainz', 'VfB Stuttgart', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (366, 'Cologne', 'TSG Hoffenheim', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (367, 'Bochum', 'Eintracht Frankfurt', '2023-09-16 17:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (369, 'Vitesse', 'RKC', '2023-09-16 17:45:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (370, 'PSV', 'NEC', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (371, 'Fortuna Sittard', 'FC Volendam', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (372, 'Heracles', 'FC Utrecht', '2023-09-16 20:00:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (373, 'New York City FC', 'New York Red Bulls', '2023-09-16 20:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (375, 'Charlotte FC', 'DC United', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (376, 'CF Montreal', 'Chicago Fire', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (377, 'Orlando City SC', 'Columbus Crew', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (378, 'Philadelphia Union', 'FC Cincinnati', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (379, 'Toronto FC', 'Vancouver Whitecaps', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (380, 'Houston Dynamo', 'St. Louis City SC', '2023-09-17 01:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (381, 'Minnesota United', 'Sporting Kansas City', '2023-09-17 01:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (382, 'FC Dallas', 'Seattle Sounders FC', '2023-09-17 01:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (383, 'Colorado Rapids', 'New England Revolution', '2023-09-17 02:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (384, 'Los Angeles FC', 'LA Galaxy', '2023-09-17 03:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (385, 'San Jose Earthquakes', 'Real Salt Lake', '2023-09-17 03:30:00', NULL);
+INSERT INTO public.over2p5footballsupertips (id, home, away, date_time, url) VALUES (374, 'Atlanta United', 'Inter Miami CF', '2023-09-16 23:55:00', NULL);
 
 
 --
--- TOC entry 3073 (class 0 OID 17004)
--- Dependencies: 212
+-- TOC entry 3036 (class 0 OID 17004)
+-- Dependencies: 206
 -- Data for Name: over2p5goalsnow; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -94,17 +120,320 @@ INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (459,
 INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (460, 'FC Den Bosch', 'Maastricht', '2023-09-15 19:00:00', NULL);
 INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (461, 'Roda JC', 'Telstar', '2023-09-15 19:00:00', NULL);
 INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (462, 'VVV', 'NAC', '2023-09-15 19:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (471, 'SC Freiburg', 'Borussia Dortmund', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (472, 'Wolfsburg', 'Union Berlin', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (473, 'Mainz', 'VfB Stuttgart', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (474, 'Cologne', 'TSG Hoffenheim', '2023-09-16 14:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (475, 'Bochum', 'Eintracht Frankfurt', '2023-09-16 17:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (476, 'Austria Klagenfurt', 'LASK Linz', '2023-09-16 16:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (477, 'FC Blau Weiss Linz', 'SCR Altach', '2023-09-16 16:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (478, 'SK Sturm Graz', 'FC Salzburg', '2023-09-16 18:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (479, 'RWD Molenbeek', 'Cercle Brugge', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (480, 'Club Brugge', 'Charleroi', '2023-09-16 19:45:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (481, 'Anderlecht II', 'Patro Eisden Maasmechelen', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (482, 'FCV Dender EH', 'Lommel', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (483, 'KFCO Beerschot Wilrijk', 'SK Beveren', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (484, 'Feyenoord', 'Heerenveen', '2023-09-16 15:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (485, 'Vitesse', 'RKC', '2023-09-16 17:45:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (486, 'PSV', 'NEC', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (487, 'Fortuna Sittard', 'FC Volendam', '2023-09-16 19:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (488, 'Heracles', 'FC Utrecht', '2023-09-16 20:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (375, 'Charlotte FC', 'DC United', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (376, 'CF Montreal', 'Chicago Fire', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (377, 'Orlando City SC', 'Columbus Crew', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (378, 'Philadelphia Union', 'FC Cincinnati', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (379, 'Toronto FC', 'Vancouver Whitecaps', '2023-09-17 00:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (380, 'Houston Dynamo', 'St. Louis City SC', '2023-09-17 01:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (381, 'Minnesota United', 'Sporting Kansas City', '2023-09-17 01:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (382, 'FC Dallas', 'Seattle Sounders FC', '2023-09-17 01:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (383, 'Colorado Rapids', 'New England Revolution', '2023-09-17 02:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (384, 'Los Angeles FC', 'LA Galaxy', '2023-09-17 03:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (385, 'San Jose Earthquakes', 'Real Salt Lake', '2023-09-17 03:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (489, 'Atlanta United', 'Inter Miami CF', '2023-09-16 23:55:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (463, 'Wolverhampton', 'Liverpool', '2023-09-16 12:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (464, 'Aston Villa', 'Crystal Palace', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (465, 'Fulham', 'Luton', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (466, 'Man Utd', 'Brighton', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (467, 'Tottenham', 'Sheff Utd', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (468, 'West Ham', 'Man City', '2023-09-16 15:00:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (469, 'Newcastle', 'Brentford', '2023-09-16 17:30:00', NULL);
+INSERT INTO public.over2p5goalsnow (id, home, away, date_time, url) VALUES (470, 'RB Leipzig', 'Augsburg', '2023-09-16 14:30:00', NULL);
 
 
 --
--- TOC entry 3077 (class 0 OID 17026)
--- Dependencies: 216
+-- TOC entry 3040 (class 0 OID 17026)
+-- Dependencies: 210
 -- Data for Name: over2p5orbitxch; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2945, 'SonderjyskE', 'AaB', '2023-09-15 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217961564', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3337, 'FC Nordsjaelland', 'FC Copenhagen', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217900814', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3345, 'York City', 'Southend', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218121261', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3353, 'Barnsley', 'Burton Albion', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889960', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3304, 'Fjolnir', 'Njardvik', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319692', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3329, 'FC Pyunik', 'BKMA Yerevan', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218268176', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3359, 'Celtic', 'Dundee', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217637359', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3346, 'Swindon', 'Walsall', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951629', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3317, 'SJK', 'Honka', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218122644', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3319, 'MK Dons', 'Stockport', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951539', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3358, 'Cove Rangers', 'Kelty Hearts', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217919918', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3313, 'Bradford', 'Harrogate Town', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951176', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3314, 'Crawley Town', 'Tranmere', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217950996', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3316, 'Forest Green', 'Doncaster', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951266', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3335, 'Wrexham', 'Grimsby', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951447', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3354, 'Coleraine', 'Newry', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218123023', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3305, 'Selfoss', 'IF Vestri', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319962', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3322, 'KFG', 'Throttur Vogar', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320248', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3321, 'Rochdale', 'Barnet', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120541', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3355, 'Port Vale', 'Northampton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889322', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3357, 'Annan', 'Stirling', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217920404', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3325, 'Hamilton', 'Alloa', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217920717', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3330, 'Oxford City', 'Dag and Red', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120721', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3347, 'NK Fuzinar', 'Krka', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218270328', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3356, 'Wycombe', 'Blackpool', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217888994', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3352, 'Torns', 'FC Trollhattan', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137715', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3326, 'Ebbsfleet Utd', 'Chesterfield', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120361', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3301, 'Vasalunds IF', 'Orebro Syrianska', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137985', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3339, 'Hartlepool', 'Woking', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120631', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3350, 'Tabor Sezana', 'NK Jadran Dekani', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218270148', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3341, 'FK Puchov', 'FK Humenne', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218228468', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3318, 'Keflavik (W)', 'Selfoss (W)', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320664', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3311, 'Molenbeek', 'Cercle Brugge', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217902501', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3348, 'Eskilsminne', 'Vanersborgs IF', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218138075', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3323, 'Peterborough', 'Leyton Orient', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889852', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3342, 'Colchester', 'Mansfield', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951719', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3327, 'AFC Wimbledon', 'Crewe', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217950816', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3344, 'Kayserispor', 'Gaziantep FK', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218113807', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3312, 'AFC Fylde', 'Eastleigh', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120451', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3303, 'Exeter', 'Cheltenham', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889210', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3324, 'Falkirk', 'Queen of South', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217920008', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3306, 'Throttur', 'Afturelding', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319872', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3302, 'Watford', 'Birmingham', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217646009', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3338, 'Aldershot', 'Gateshead', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218121171', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3333, 'FK Igman Konjic', 'FK Velez Mostar', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319096', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3343, 'Fulham', 'Luton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217634798', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3332, 'Hearts', 'Aberdeen', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217637467', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3320, 'Bristol City', 'West Brom', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217645253', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3349, 'Falkenbergs', 'Norrby IF', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218138517', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3309, 'Hottur', 'IR Reykjavik', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320158', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3308, 'Gillingham', 'Morecambe', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217950906', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3336, 'Anderlecht B', 'Patro Eisden Maasmechelen', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218230114', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3340, 'HJK Helsinki', 'FC Inter', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218122464', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3300, 'Preston', 'Plymouth', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217645901', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3331, 'Lincoln', 'Carlisle', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217888882', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3315, 'Kilmarnock', 'Hibernian', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217638037', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3307, 'West Ham', 'Man City', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217634939', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3334, 'Tindastoll (W)', 'IBV (W)', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320574', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3351, 'Tottenham', 'Sheff Utd', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217635503', true);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2994, 'Jong PSV Eindhoven', 'De Graafschap', '2023-09-15 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218084970', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3361, 'Sheff Wed', 'Ipswich', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217645793', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3298, 'Huddersfield', 'Rotherham', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217645577', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3373, 'Reading', 'Bolton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217888660', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3376, 'Wigan', 'Cambridge Utd', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889102', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3365, 'Ljungskile', 'BK Olympic', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218138607', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3369, 'Thor', 'Grindavik', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319782', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3368, 'Fleetwood Town', 'Oxford Utd', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217890068', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3372, 'Montrose', 'Edinburgh City', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217920098', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3360, 'Blackburn', 'Middlesbrough', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217646442', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3363, 'Arbroath', 'Airdrieonians', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217864120', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3374, 'Shrewsbury', 'Bristol Rovers', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217890176', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3367, 'Ross Co', 'Livingston', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217637929', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3364, 'Ahlafors IF', 'Ariana FC', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137445', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3375, 'Stevenage', 'Charlton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889432', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3366, 'Elgin City FC', 'Dumbarton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217865305', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3391, 'Feyenoord', 'Heerenveen', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217639118', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3378, 'Valencia', 'Atletico Madrid', '2023-09-16 15:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217673302', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3380, 'Huesca', 'Villarreal B', '2023-09-16 15:16:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218322539', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3382, 'Lamia', 'OFI', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217680327', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3394, 'Slavia Sofia', 'Lokomotiv Sofia', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217707246', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3387, 'Touring KE', 'SD Deusto', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328371', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3385, 'BSK Bijelo Brdo', 'NK Dubrava Zagreb', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218254387', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3388, 'Rio Ave', 'Famalicao', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217912989', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3383, 'Europa Point FC', 'Manchester 62 FC', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218334109', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3381, 'Ingolstadt', '1860 Munich', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218117684', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3389, 'NK Solin', 'NK Sesvete', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218254207', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3406, 'Austria Klagenfurt', 'LASK Linz', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217674584', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3392, 'Lisen', 'FC Sellier & Bellot Vlasim', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217974991', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3390, 'H Slavia Kromeriz', 'Sigma Olomouc B', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217975081', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3384, 'Santa Clara', 'Penafiel', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218126231', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3393, 'Stade Tunisien', 'EGS Gafsa', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218333962', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3386, 'Elche B', 'FC Jove Espanol', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328281', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3409, 'Al Salt', 'Al Ramtha', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320428', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3395, 'Dinamo Zagreb', 'Slaven Belupo', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217973056', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3397, 'MC Alger', 'ES Ben Aknoun', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328733', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3400, 'BFA Vilnius', 'Be1 NFA', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320338', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3399, 'Etoile Sportive Sahel', 'FAR Rabat', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329039', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3401, 'FK Banga Gargzdu', 'FK Dainava Alytus', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218230204', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3396, 'NC Magra', 'Kabylie', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328643', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3404, 'FK Aktobe', 'FC Ordabasy', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218179434', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3407, 'FC Blau Weiss Linz', 'SCR Altach', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217674465', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3405, 'Rennes', 'Lille', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217678244', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3410, 'Betis (W)', 'Villarreal (W)', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218327699', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3398, 'Hoffenheim II', 'SV Steinbach', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218274610', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3403, 'Al-Raed (KSA)', 'Al Nassr', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218040278', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3412, 'Djurgardens', 'Varnamo', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217786342', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3402, 'FC Ajka', 'Mezokovesd-Zsory', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218263735', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3408, 'Al-Hazm (KSA)', 'Al Taee', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218040576', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3411, 'Mura', 'NK Bravo', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218001752', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3416, 'Barcelona B', 'Fuenlabrada', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218233736', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3415, 'Kaizer Chiefs', 'Bloemfontein Celtic', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218142029', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3414, 'Rakow Czestochowa', 'LKS Lodz', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217793293', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3418, 'Koper', 'NK Celje', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218001387', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3362, 'Man Utd', 'Brighton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217635080', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3417, 'NK Radomlje', 'Domzale', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218001477', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3379, 'Reggiana', 'US Cremonese', '2023-09-16 15:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217959655', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3102, 'Sagamihara', 'FC Gifu', '2023-09-16 06:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218101808', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3103, 'Blaublitz Akita', 'Nagasaki', '2023-09-16 06:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218015713', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3104, 'Incheon Utd', 'Jeju Utd', '2023-09-16 06:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217880359', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3105, 'Jeonbuk Motors', 'Gangwon', '2023-09-16 06:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217880569', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3106, 'Honda Lock', 'Sony Sendai FC', '2023-09-16 07:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218312696', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3107, 'Maruyasu Okazaki', 'MIO Biwako Shiga', '2023-09-16 07:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218312876', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3108, 'Ansan Greeners FC', 'Cheongju FC', '2023-09-16 08:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217929112', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3109, 'Lee Man Warriors', 'Kitchee SC', '2023-09-16 08:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218309632', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3110, 'Seoul E-Land FC', 'Cheonan City', '2023-09-16 08:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217928834', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3111, 'Pohang Steelers', 'Suwon FC', '2023-09-16 08:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218344201', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3112, 'Brisbane Roar', 'Western Sydney Wanderers', '2023-09-16 08:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217952534', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3113, 'Pocheon FC', 'Busan Transportation Corp', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218256011', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3114, 'Arema Cronus', 'Persita Tangerang', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218310543', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3115, 'Csikszereda', 'CS Mioveni', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217945232', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3116, 'Gloria Buzau', 'FCM Alexandria', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217945592', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3117, 'Hwaseong FC', 'Yangpyeong FC', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218242973', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3118, 'Persib Bandung', 'PS TIRA', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218310453', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3119, 'Jiangxi Dark Horse Junior', 'Dalian Zhixing', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218310272', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3120, 'Csm Slatina', 'CSC 1599 Selimbar', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217991481', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3121, 'Unirea Slobozia', 'FC Metaloglobus Bucuresti', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217945322', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3122, 'Acs Dumbravita', 'CS Tunari', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217945412', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3123, 'FC Hunedoara', 'CSM Scolar Resita', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217945052', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3124, 'Haimen Codion', 'Quanzhou Yaxin', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218310362', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3125, 'Progresul 1944 Spartac', 'ACS Viitorul Tg Jiu', '2023-09-16 09:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217945502', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3126, 'Vyskov', 'Prostejov', '2023-09-16 09:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217974901', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3127, 'Taian Tiankuang', 'Hainan Star', '2023-09-16 09:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218311638', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3128, 'Slovan Bratislava II', 'KFC Komarno', '2023-09-16 09:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218228738', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3129, 'Prey Veng', 'National Defense Ministry', '2023-09-16 09:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218335305', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3130, 'Sendai', 'Mito', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218058034', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3131, 'Viktoria Koln U19', 'Fortuna Dusseldorf U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218311548', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3132, 'Istanbul Basaksehir FK U19', 'Antalyaspor U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218312302', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3133, 'Omiya', 'Kumamoto', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218057943', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3134, 'Tensung FC', 'RTC FC', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218332224', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3135, 'Kitakyushu', 'Azul Claro Numazu', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218114072', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3136, 'Yamagata', 'Okayama', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218057853', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3137, 'Kashima', 'C-Osaka', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217879265', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3138, 'Arminia Bielefeld U19', 'Dortmund U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329337', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3139, 'Leverkusen U19', 'FC Koln U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218311368', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3140, 'Eyupspor U19', 'Sivasspor U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218312392', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3141, 'Konyaspor U19', 'Istanbulspor AS U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218312212', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3142, 'RB Leipzig U19', 'Hamburger SV U19', '2023-09-16 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218311458', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3143, 'Henan Songshan Longmen', 'Shanghai Shenhua', '2023-09-16 10:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218110693', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3144, 'Busan IPark', 'Seongnam FC', '2023-09-16 10:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217928927', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3145, 'FC Schalke U19', 'SC Paderborn 07 U19', '2023-09-16 10:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218330244', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3146, 'Iwata', 'Renofa Yamaguchi', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218015803', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3147, 'CD Berceo', 'CA Rivers Ebro', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328100', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3148, 'Tochigi SC', 'Jef Utd Chiba', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218015983', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3149, 'Vanraure Hachinohe', 'Nara Club', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218114252', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3150, 'CD Atletico Melilla', 'Polideportivo Ejido', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328010', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3151, 'Oita', 'Tokushima', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218015622', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3152, 'FC Imabari', 'Nagano Parceiro', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218115362', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3153, 'SD Eibar (W)', 'Levante Las Planas (W)', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218327391', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3154, 'Fukuoka', 'Nagoya', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217879355', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3155, 'Hiroshima', 'Kobe', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217878995', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3156, 'FC Tatran Prešov (W)', 'FC Petrzalka (W)', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329607', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3157, 'MFK Ruzomberok (W)', 'Spartak Myjava (W)', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329517', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3158, 'Stomilanki Olsztyn (W)', 'Gornik Leczna (W)', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218334622', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3159, 'Atletico Madrid (W)', 'Athletic Bilbao (W)', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218110330', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3160, 'Kagoshima Utd', 'Kamatamare Sanuki', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218138165', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3161, 'Sapporo', 'Shonan', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217879085', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3162, '1. FSV Mainz 05 U19', 'SV Sandhausen U19', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218314595', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3163, 'AVS Futebol SAD', 'Vilaverdense', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218118062', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3164, 'Ulsan Hyundai Horang-i', 'Daejeon Citizen', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218344309', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3165, 'Garliava Kaunas', 'TransINVEST Vilnius', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316114', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3166, 'Slask Wroclaw (W)', 'Pogon Tczew (W)', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316945', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3167, 'Benfica U23', 'Farense U23', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316204', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3168, 'Tottori', 'Fukushima Utd', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218114162', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3169, 'Sporting Braga U23', 'SC Uniao Torreense U23', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218338223', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3170, 'Porto B', 'Maritimo', '2023-09-16 11:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218142119', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3171, 'Czarni Sosnowiec (W)', 'Pogon Szczecin (W)', '2023-09-16 11:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316855', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3172, 'Hansa Rostock', 'Fortuna Dusseldorf', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217689179', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3173, 'IF Karlstad', 'Umea FC', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137805', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3174, 'Wuppertaler SV U19', 'SC Verl U19', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329427', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3175, 'Mikkeli', 'SJK 2', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218289962', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3176, 'FC Stockholm Internazionale', 'Hammarby TFF', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137535', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3177, 'Sollentuna FF', 'IF Sylvia', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137895', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3178, 'BG Pathumthani United', 'Muangthong Utd', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218180336', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3179, 'AFC Eskilstuna', 'Orgryte', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217874964', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3180, 'Elversberg', 'Hamburger SV', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217688981', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3181, 'Ayutthaya United', 'Kasetsart FC', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316492', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3182, 'FK Jelgava', 'BFC Daugavpils', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218263371', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3183, 'Rot-Weiss Erfurt', 'Meuselwitz', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218274070', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3184, 'Karlsruhe', 'Kaiserslautern', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217730844', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3185, 'Hannover II', 'Norderstedt', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218273890', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3186, 'Nanjing Fengfan', 'Hebei KungFu', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218314502', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3187, 'AZS UJ Krakow (W)', 'UKS SMS Lodz (W)', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316765', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3188, 'Hertha Berlin II', 'Carl Zeiss Jena', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218274160', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3189, 'Svay Rieng FC', 'Angkor Tiger FC', '2023-09-16 12:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218314232', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3190, 'St Johnstone', 'Rangers', '2023-09-16 12:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217637578', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3191, 'Guangzhou FC', 'Dongguan Guanlian', '2023-09-16 12:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218314322', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3193, 'Yunnan Yukun', 'Qingdao Red Lions', '2023-09-16 12:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218314412', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3194, 'Phrae United', 'Rayong FC', '2023-09-16 12:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316402', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3195, 'Meizhou Hakka', 'Shenzhen FC', '2023-09-16 12:35:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218115452', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3196, 'SC Telstar (W)', 'Twente (W)', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218351349', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3197, 'SV Sandhausen', 'Preussen Munster', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218122735', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3198, 'Lubeck', 'Dynamo Dresden', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218117594', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3199, 'Arminia Bielefeld', 'Freiburg II', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218122825', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3200, 'Dortmund II', 'Viktoria Koln', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218117774', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3201, 'Ratchaburi', 'Police Tero', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218155337', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3202, 'Sundsvall (W)', 'Mallbackens IF (W)', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218334297', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3203, 'Rot-Weiss Essen', 'Jahn Regensburg', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218117864', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3204, 'FC Koln II', 'Schalke 04 II', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218291133', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3205, 'Athletic Bilbao', 'Cadiz', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217662409', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3206, 'VfL Osnabruck U19', 'Wolfsburg U19', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218331448', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3207, 'AFC Leopards SC (Kenya)', 'Muhoroni Youth FC', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218032992', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3208, 'Shabana', 'Kenya Police FC', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218033180', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3209, 'Persis Solo', 'Psis Semarang', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218315754', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3210, 'MFD Zalgiris Vilnius (Res)', 'FC Neptunas Klaipeda', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316024', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3211, 'Cosenza', 'Sudtirol', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217943595', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3212, 'Lecco', 'Brescia', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217960696', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3213, 'Pisa', 'SSD Bari', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217946822', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3214, 'Ankaraspor', 'Bucaspor', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218333593', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3215, 'FK Panevezio Ekranas', 'FK Nevezis', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218315844', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3216, 'Alemannia Aachen', 'SV Rodinghausen', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218275127', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3006, 'ASO Chlef', 'MC Oran', '2023-09-15 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218272136', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3217, 'Customs United', 'Samut Prakan', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218316312', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3218, 'Bandari FC (Kenya)', 'Ulinzi Stars', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218033086', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3219, 'Kakamega Homeboyz', 'Tusker FC', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218033452', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3220, 'FK Siauliai II', 'FK Riteriai II', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218315934', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3221, 'Kapaz Ganja', 'Sabail', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218262936', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3222, 'Aegir', 'Leiknir R', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218315663', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3223, 'Abha', 'Al-Ettifaq', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218040684', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3224, 'Stuttgart II', 'Homburg', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218274520', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3225, 'VfB Oldenburg', 'Teutonia 05 Ottensen', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218273800', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3226, 'Ascoli', 'Palermo', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217944155', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3227, 'FK Atyrau', 'FK Kyzyl-Zhar', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218190016', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3228, 'Feralpisalo', 'Modena', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217959475', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3229, 'FK Suduva', 'Panevezys', '2023-09-16 13:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218230024', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3230, 'SalPA', 'JJK', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218118152', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3231, 'Grorud IL', 'Lyn', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218276707', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3232, 'Montpellier (W)', 'Dijon (W)', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319422', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3233, 'Floy Flekkeroy', 'Egersund', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218276441', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3234, 'Chiangrai Utd', 'Khonkaen United', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218180426', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3235, 'Rigas Futbola Skola', 'FK Riga', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218263191', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3236, 'Lille (W)', 'Paris FC (W)', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218321765', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3237, 'Mlada Boleslav', 'Hradec Kralove', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217727920', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3238, 'Ostersunds FK', 'Gefle', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217960110', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3239, 'Polonia Warszawa', 'Znicz Pruszkow', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217798135', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3240, 'MFK Karvina', 'Teplice', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217740020', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3241, 'NK Jarun', 'NK Croatia Zmijavci', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218254027', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3242, 'Sigma Olomouc', 'Ceske Budejovice', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217727560', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3243, 'FC Astana', 'Tobol Kostanay', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218179344', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3244, 'Keciorengucu', 'Sanliurfaspor', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218077783', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3245, 'IFK Goteborg', 'Brommapojkarna', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217786666', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3246, 'JaPS', 'KaPa', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218122915', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3247, 'Egri FC', 'DEBRECENI VSC', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218263553', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3248, 'Golden Arrows', 'Stellenbosch FC', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218141939', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3249, 'Juventus', 'Lazio', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217672548', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3250, 'Caen', 'St Etienne', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218008133', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3251, 'Sirius', 'Varbergs BoIS', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217786558', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3252, 'Bohemians 1905', 'Banik Ostrava', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217730677', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3253, 'CD Nacional Funchal', 'Feirense', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218123490', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2831, 'Rionegro', 'Union Magdalena', '2023-09-14 23:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218219999', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2832, 'Coritiba', 'Bahia', '2023-09-15 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218219999', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2833, 'Deportivo Cali', 'Atletico Huila', '2023-09-15 00:40:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218219999', false);
@@ -126,6 +455,7 @@ INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALU
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2849, 'Ispe FC', 'Rakhine Utd', '2023-09-15 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218276261', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2850, 'FK Aksu Pavlodar', 'Okzhetpes', '2023-09-15 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218179614', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2909, 'FK Auda', 'FS METTA/LU', '2023-09-15 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218255923', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3254, 'IK Brage', 'Trelleborgs', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217960020', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2851, 'Sport Academy Kairat', 'FC Astana U21', '2023-09-15 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218318403', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2852, 'FC Kosice U19', 'Dunajska Streda U19', '2023-09-15 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218294510', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (2853, 'FC Vion Zlate Moravce U19', 'Z Michalovce U19', '2023-09-15 10:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218294403', false);
@@ -372,81 +702,314 @@ INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALU
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3099, 'Monterrey (W)', 'Pachuca (W)', '2023-09-16 04:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218205067', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3100, 'Tijuana', 'Toluca', '2023-09-16 04:10:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218205067', false);
 INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3101, 'Suzuka Unlimited', 'Criacao Shinjuku', '2023-09-16 05:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218205067', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3255, 'Fram Larvik', 'Kjelsas', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218276797', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3256, 'Pogon Szczecin', 'Korona Kielce', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217794730', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3257, 'Stade Reims (W)', 'Saint-Etienne (W)', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319512', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3258, 'Sandnes Ulf', 'KFUM Oslo', '2023-09-16 14:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217885254', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3259, 'Sturm Graz (W)', 'USC Landhaus (W)', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218314102', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3260, 'CD Victoria', 'Lagun Onak', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328191', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3261, 'Newtown', 'Barry Town Utd', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269564', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3262, 'Connahs Quay', 'Cardiff Metropolitan', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269204', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3264, 'FC Koln', 'Hoffenheim', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217641651', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3266, 'Penybont FC', 'Caernarfon Town', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269384', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3268, 'Freiburg', 'Dortmund', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217628780', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3269, 'Pontypridd Town', 'Bala Town', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269474', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3270, 'The New Saints', 'Haverfordwest County', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269294', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3286, 'Forfar', 'Spartans', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217865109', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3291, 'Bromley', 'Oldham', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120991', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3299, 'Peterhead', 'Bonnyrigg', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217865215', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3281, 'East Fife', 'Clyde', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217865395', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3272, 'Norwich', 'Stoke', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217646226', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3283, 'Newport County', 'Barrow', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217951086', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3285, 'Accrington', 'Sutton Utd', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217960606', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3277, 'Tolmin', 'Rudar', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269966', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3292, 'FC Halifax Town', 'Dorking Wanderers', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218121351', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3297, 'Queens Park', 'Dunfermline', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217864210', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3290, 'Aston Villa', 'Crystal Palace', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217634516', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3296, 'Dundee Utd', 'Morton', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217864390', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3278, 'Derby', 'Portsmouth', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217889654', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3288, 'IA Akranes', 'Grotta', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319602', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3295, 'Maidenhead', 'Boreham Wood', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218121081', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3284, 'QPR', 'Sunderland', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217646117', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3275, 'NK Primorje', 'Dravinja Kostroj', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218270238', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3271, 'Bohemians (W)', 'Sligo Rovers (W)', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218303861', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3294, 'Ballymena', 'Loughgall', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218181306', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3276, 'Konyaspor', 'Rizespor', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218114023', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3273, 'Taby FK', 'Sandvikens', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218137625', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3274, 'Stenhousemuir', 'Stranraer', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217865019', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3279, 'AC Oulu', 'IFK Mariehamn', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218122554', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3289, 'Glentoran', 'Dungannon', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218123113', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3282, 'Raith', 'Inverness CT', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217864300', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3287, 'Motherwell', 'St Mirren', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217637821', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3280, 'Wealdstone', 'Altrincham', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120901', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3263, 'Wolfsburg', 'Union Berlin', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217641951', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3419, 'NK Aluminij', 'NK Rogaska', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218001568', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3438, 'Umraniyespor', 'Corum Belediyespor', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218077913', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3443, 'Cukaricki', 'Crvena Zvezda', '2023-09-16 17:05:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218220574', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3423, 'Arandina CF', 'UD Ourense', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218250603', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3439, 'AD Llerenense', 'Numancia', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218252513', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3431, 'Ruzomberok', 'FC Kosice', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217761933', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3424, 'Real Aviles', 'RS Gimnastica', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218251233', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3427, 'Zemplin', 'Spartak Trnava', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217762039', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3435, 'SSD Fiorentina WFC (W)', 'Sassuolo (W)', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218321945', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3430, 'Karacabey Belediyespor AS', 'Adiyamanspor', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218333683', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3437, 'Kocaelispor', 'Boluspor', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218077693', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3433, 'Oleksandria', 'FC Minaj', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217921618', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3434, 'Gagra', 'Dila Gori', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218321855', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3422, 'CS Petrocub', 'Zimbru Chisinau', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218322035', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3421, 'Zilina', 'DUKLA BANSKA BYSTRICA', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217761401', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3425, 'Menemen Belediyespor', 'Etimesgut Belediyespor', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218333868', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3432, 'Inter', 'AC Milan', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217672668', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3442, 'Erokspor A.S', '1461 Trabzon', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218333773', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3440, 'Pardubice', 'Slavia Prague', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217727470', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3436, 'CD Covadonga', 'SD Compostela', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218250783', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3441, 'Haugesund', 'Viking', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217668817', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3426, 'Sandefjord', 'Stromsgodset', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217668907', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3444, 'Union St Gilloise', 'Genk', '2023-09-16 17:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217902609', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3453, 'Alcorcon', 'Levante', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217994392', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3446, 'Celta Vigo', 'Mallorca', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217662123', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3454, 'Vitesse Arnhem', 'RKC Waalwijk', '2023-09-16 17:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217639226', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3448, 'Carrarese', 'Pesaro', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218235833', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3450, 'Club Atletico Saguntino', 'CF Badalona Futur', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218252239', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3449, 'Kidderminster', 'Solihull Moors', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218120811', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3451, 'Bochum', 'Eintracht Frankfurt', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217627668', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3447, 'Recanatese', 'Lucchese', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218235081', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3452, 'Valladolid', 'FC Cartagena', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217994284', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3456, 'CD Ardoi', 'SD Lagunak', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218327920', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3474, 'Annecy', 'ESTAC Troyes', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007952', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3467, 'Quevilly Rouen', 'Concarneau', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007505', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3458, 'Dunkerque', 'Grenoble', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007772', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3455, 'Auxerre', 'Pau', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007624', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3468, 'Farense', 'Braga', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217912881', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3478, 'Rijeka', 'Osijek', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217982859', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3472, 'Madrid (W)', 'Barcelona (W)', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218327609', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3459, 'Galatasaray', 'Samsunspor', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218118029', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3466, 'Tondela', 'Mafra', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218126141', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3463, 'Valenciennes', 'Bordeaux', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007325', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3465, 'Vozdovac', 'Mladost Lucani', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218220934', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3471, 'Rodez', 'Angers', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007862', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3460, 'Alcantarilla FC', 'Union Molinense CF', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329697', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3457, 'Ludogorets', 'Botev Plovdiv', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217706792', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3470, 'Bastia', 'Laval', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218007415', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3462, 'Paris FC', 'Amiens', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218008043', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3469, 'Adana Demirspor', 'Pendikspor', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218113915', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3464, 'FK Backa Topola', 'Zeleznicar Pancevo', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218227105', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3473, 'Deportiva Venados', 'Inter Playa Del Carmen', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218324156', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3475, 'St. Joseph''s FC', 'Europa FC', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218334199', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3477, 'OFK Petrovac', 'FK Jedinstvo Bijelo Polje', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218323886', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3445, 'Newcastle', 'Brentford', '2023-09-16 17:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217633662', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3476, 'Manchego Ciudad Real', 'CD Estepona', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218252698', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3429, 'Molde', 'Odds BK', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217668724', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3499, 'HFX Wanderers', 'Atletico Ottawa', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218199019', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3480, 'Arenteiro', 'Real Union', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218233630', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3485, 'Union Kleinmunchen (W)', 'FFC Vorderland (W)', '2023-09-16 18:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218313935', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3483, 'Real Madrid Castilla', 'Atletico Madrid II', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218238586', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3484, 'FK Mladost Donja Gorica', 'FK Arsenal Tivat', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218323976', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3497, 'Fortuna Sittard', 'FC Volendam', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217639334', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3502, 'FK Spartak', 'Vojvodina', '2023-09-16 19:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218220844', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3491, 'Odra Opole', 'Lechia Gdansk', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217798333', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3489, 'PSV', 'NEC Nijmegen', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217639442', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3495, 'Piast Gliwice', 'Legia Warsaw', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217793923', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3498, 'Newells', 'Union Santa Fe', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217818026', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3500, 'Calor de San Pedro', 'Cimarrones de Sonora II', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326889', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3492, 'Deportivo Municipal', 'Universidad Cesar Vallejo', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218190287', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3531, 'Club Brugge', 'Charleroi', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217902717', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3488, 'UD Torre del Mar', 'UD Ciudad de Torredonjimeno', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328461', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3486, 'Athlone Town (W)', 'Peamount United (W)', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218303771', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3501, 'Al Ahli', 'Al-Taawoun Buraidah', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218040034', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3496, 'Mushuc Runa', 'Delfin', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218030911', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3490, 'Kfco Beerschot Wilrijk', 'Waasland-Beveren', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218125959', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3493, 'Desp Brasil P LTDA U20', 'Ibrachina FC U20', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326799', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3494, 'Gremio Novorizontino U20', 'Oeste U20', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218329960', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3503, 'Olympic Safi', 'FUS Rabat', '2023-09-16 19:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218327122', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3518, 'Deportivo Merlo', 'Argentino de Merlo', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326075', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3505, 'Jerv', 'Start', '2023-09-16 19:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217885764', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3516, 'CA Claypole', 'Sportivo Italiano', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326387', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3508, 'Comunicaciones B Aires', 'Talleres (RE)', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218325985', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3512, 'Deportivo Madryn', 'Villa Dalmine', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218210354', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3507, 'Criciuma', 'Mirassol', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218082004', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3520, 'CSD Yupanqui', 'Real Pilar FC', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218336244', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3522, 'Defensores Unidos', 'Guillermo Brown', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218210711', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3513, 'Flandria', 'Almagro BA', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218209994', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3514, 'Canuelas', 'CS Dock Sud', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326165', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3510, 'Deportivo Armenio', 'CA Fenix', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218325797', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3519, 'Gimnasia de La Plata (W)', 'Estudiantes de la plata', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326709', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3515, 'Los Andes', 'Sacachispas', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218325887', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3521, 'CA Guemes', 'Nueva Chicago', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218209724', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3511, 'Excursionistas', 'San Martin de Burzaco', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326477', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3509, 'Universitatea Craiova', 'ACS Sepsi OSK', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217713274', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3526, 'Entella', 'USD Sestri Levante 1919', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218235534', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3517, 'FK Mornar', 'FK Buducnost Podgorica', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218326979', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3506, 'Schalke 04', 'FC Magdeburg', '2023-09-16 19:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217695743', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3530, 'Olbia', 'Sassari Torres', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218235730', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3529, 'Pescara', 'Arezzo', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218236035', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3533, 'Sao Bernardo', 'EC Sao Jose Porto Alegre', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218262395', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3525, 'Sligo Rovers', 'UCD', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217934292', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3523, 'Cardiff', 'Swansea', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217645685', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3528, 'Sarajevo', 'Zrinjski', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218324066', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3524, 'Gubbio', 'Fermana', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218235444', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3527, 'Genoa', 'Napoli', '2023-09-16 19:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217672788', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3532, 'Mineros Guayana', 'Rayo Zuliano', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218308834', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3535, 'Barcelona', 'Betis', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217661961', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3534, 'Ferroviario', 'Ferroviaria', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218328949', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3536, 'Lens', 'Metz', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217913475', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3487, 'FCV Dender', 'Lommel', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218126049', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3482, 'Sturm Graz', 'Red Bull Salzburg', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217656156', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3566, 'Real Sociedad III', 'Real Zaragoza II', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218252970', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3567, 'UD Logrones', 'CD Izarra', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253377', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3568, 'Utebo CF', 'Barakaldo', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253060', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3570, 'Naxara CD', 'UD Mutilvera', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253287', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3571, 'Athletic Bilbao B', 'UD Barbastro', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253647', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3574, 'CD Calahorra', 'Arenas Club de Getxo', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253557', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3575, 'SD Gernika Club', 'CD Alaves B', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218252103', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3537, 'Vasco Da Gama', 'Fluminense', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217718603', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3545, 'Vizela', 'Benfica', '2023-09-16 20:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217912773', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3539, 'Albacete', 'Burgos', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217994176', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3550, 'AD Cariari Pococi', 'Municipal Turrialba', '2023-09-16 21:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218327301', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3544, 'Union de Salamanca', 'Deportivo', '2023-09-16 20:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218233431', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3541, 'Cordoba', 'Linares Deportivo', '2023-09-16 20:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218238316', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3542, 'Sabadell', 'SD Logrones', '2023-09-16 20:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218233538', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3546, 'Malaga', 'Granada B', '2023-09-16 20:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218238406', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3549, 'San Lorenzo', 'Racing Club', '2023-09-16 21:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217817936', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3552, 'Tigres FC Zipaquira', 'Boca Juniors de Cali', '2023-09-16 21:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218202769', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3548, 'Botafogo SP', 'Atletico Go', '2023-09-16 21:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217957963', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3547, 'Sampaio Correa FC', 'Chapecoense', '2023-09-16 21:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217957873', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3553, 'Yous Berrechid', 'SCCM Chabab Mohamedia', '2023-09-16 21:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218336514', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3554, 'Tacuary', 'Libertad', '2023-09-16 21:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218305456', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3555, 'Almirante Brown', 'Estudiantes Rio Cuarto', '2023-09-16 21:45:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218242156', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3551, 'Guayaquil City', 'Deportivo Cuenca', '2023-09-16 21:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218031001', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3564, 'Deportivo Garcilaso', 'Cusco FC', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218190107', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3561, 'Santa Tecla', 'CD Dragon', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218306773', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3557, 'Amazonas FC', 'Volta Redonda', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218262485', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3562, 'Cavalry', 'Vancouver FC', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218199109', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3556, 'Cibao FC', 'UNIVERSIDAD O&M', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218336694', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3565, 'Zamora FC', 'Metropolitanos', '2023-09-16 22:40:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218308744', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3560, 'Cucuta Deportivo', 'Real Cartagena', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218155517', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3558, 'Arabe Unido', 'Atletico Chiriqui', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218309194', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3559, 'Juventude', 'CRB', '2023-09-16 22:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218115272', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3569, 'Aguacateros de Peribán F.C', 'Halcones de Zapopan', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218339314', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3577, 'Atl Tucuman', 'Barracas Central', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217822975', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3572, 'Olancho', 'Lobos UPNFM', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218295087', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3573, 'Deportivo Mixco', 'Guastatoya', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218275541', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3576, 'Artesanos Metepec F.C.', 'Chilangos FC', '2023-09-16 23:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218338926', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3578, 'Gavilanes Matamoros', 'Leones Negros Udg', '2023-09-16 23:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218334894', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3583, 'Miami FC', 'Pittsburgh Riverhounds', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218134489', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3580, 'Necaxa', 'FC Juarez', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217717020', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3582, 'Olimpia', 'Club General Caballero JLM', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218305366', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3581, 'Escorpiones FC', 'Montaneses FC', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218339132', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3579, 'Deportivo Irapuato FC', 'CD Pioneros de Cancun', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218339224', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3584, 'El Nacional', 'Emelec', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218030821', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3589, 'Leones FC', 'Bogota', '2023-09-17 00:05:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218155427', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3587, 'Club Sporting Canamy', 'Reboceros de La Piedad', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218336604', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3586, 'Cafetaleros de Chiapas II', 'Tampico Madero', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218334984', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3585, 'Municipal Perez Zeledon', 'AD San Carlos', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218306503', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3590, 'Atletico Independiente', 'Alianza FC (Pan)', '2023-09-17 00:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218309014', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3593, 'Toronto FC', 'Vancouver Whitecaps', '2023-09-17 00:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217938356', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3592, 'Philadelphia', 'FC Cincinnati', '2023-09-17 00:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217938498', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3594, 'Charlotte FC', 'DC Utd', '2023-09-17 00:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217938855', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3540, 'Gimnasia Mendoza', 'CA Temperley', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218209814', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3563, 'Atlanta Utd', 'Inter Miami CF', '2023-09-16 23:55:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218305366', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3591, 'CF Montreal', 'Chicago Fire', '2023-09-17 00:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217938638', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3192, 'Wolves', 'Liverpool', '2023-09-16 12:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217635221', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3371, 'Araz Nakhchivan PFK', 'Neftchi Baku', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218262756', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3328, 'FSV Frankfurt', 'Kickers Offenbach', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218274430', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3635, 'FC Telavi', 'Dinamo Batumi', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218317356', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3293, 'Corinthians U20', 'AA Portuguesa U20', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218319318', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3310, 'MSK Povazska Bystrica', 'FK Spisska Nova Ves', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218228558', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3370, 'Dacia Buiucani', 'FC Milsami-Ursidos', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218320052', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3683, 'Chippenham', 'Hungerford Town', '2023-09-16 15:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218368477', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3597, 'Atletico MG', 'Botafogo', '2023-09-17 01:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217717491', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3600, 'Santos de Guapiles', 'CS Herediano', '2023-09-17 01:10:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218306413', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3598, 'Talleres', 'Instituto', '2023-09-17 01:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217822866', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3596, 'Antigua GFC', 'CSD Municipal', '2023-09-17 01:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218275628', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3601, 'Caracas', 'Universidad de Venezuela', '2023-09-17 01:20:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218308654', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3603, 'FC Dallas', 'Seattle Sounders', '2023-09-17 01:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217939814', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3607, 'Cd Fas', 'Once Municipal', '2023-09-17 02:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218307557', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3602, 'Minnesota Utd', 'Kansas City', '2023-09-17 01:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217939922', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3604, 'Houston Dynamo', 'St Louis City SC', '2023-09-17 01:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217940030', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3605, 'Monterrey', 'Leon', '2023-09-17 02:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217716750', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3608, 'CD Motagua', 'CD Real Sociedad', '2023-09-17 02:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218295267', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3609, 'Venados FC', 'Celaya', '2023-09-17 02:05:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218135413', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3610, 'America de Cali S.A', 'Boyaca Chico', '2023-09-17 02:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218347594', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3612, 'Herrera FC', 'Plaza Amador', '2023-09-17 02:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218308924', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3614, 'LD Alajuelense', 'Puntarenas F.C.', '2023-09-17 03:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218306593', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3611, 'Sporting Cristal', 'Universitario de Deportes', '2023-09-17 02:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218190823', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3613, 'Colorado', 'New England', '2023-09-17 02:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217940138', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3616, 'Los Angeles FC', 'LA Galaxy', '2023-09-17 03:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217940355', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3615, 'San Jose Earthquakes', 'Real Salt Lake', '2023-09-17 03:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217940246', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3617, 'Tlaxcala F.C', 'Alebrijes de Oaxaca', '2023-09-17 04:05:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218135503', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3618, 'CF America', 'Guadalajara', '2023-09-17 04:10:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217716930', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3619, 'Gyeongnam', 'Jeonnam Dragons', '2023-09-17 05:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217929019', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3742, 'CF Epila', 'CD Belchite 97', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362151', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3740, 'Casalarreina CF', 'CDFC La Calzada', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362061', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3735, 'CE Constancia de Inca', 'CD Llosetense', '2023-09-16 15:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218361971', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3750, 'AB', 'Fremad Amager', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218359102', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3761, 'APLG Gdansk (W)', 'Rekord Bielsko-Biala (W)', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218361787', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3752, 'FC Vilafranca', 'Reus', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362241', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3756, 'Strommen', 'Alta', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218361877', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3767, 'CD Padura', 'Leioa', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362421', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3768, 'CD Roda', 'CD Acero', '2023-09-16 16:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362331', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3413, 'Wisla Krakow', 'Chrobry Glogow', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217875054', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3776, 'CD Union Sur Yaiza', 'UD Las Palmas II', '2023-09-16 16:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362511', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3777, 'HUSA Agadir', 'Moghreb Tetouan', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362601', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3420, 'Olimpija', 'NK Maribor', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218001658', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3428, 'Hamrun Spartans FC', 'Balzan FC', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269114', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3791, 'Vikingur Reykjavik', 'KA Akureyri', '2023-09-16 17:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362691', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3461, 'Dinamo Tbilisi', 'Torpedo Kutaisi', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218317266', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3825, 'Athletic Bilbao B', 'UD Barbastro', '2023-09-16 18:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253647', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3479, 'Panaitolikos', 'Panathinaikos', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217680056', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3856, 'Santos U20', 'EC Sao Bernardo U20', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362797', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3864, 'Pumas UNAM (W)', 'Toluca (W)', '2023-09-16 19:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218362887', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3504, 'Gzira United FC', 'Paola Hibernians FC', '2023-09-16 19:15:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218269024', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3901, 'Utebo CF', 'Barakaldo', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218253060', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3588, 'Inter de Queretaro FC', 'Club San Juan de Aragon', '2023-09-17 00:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218339016', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3599, 'Estudiantes de Caseros', 'Independiente Rivadavia', '2023-09-17 01:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218210264', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3538, 'Heracles', 'FC Utrecht', '2023-09-16 20:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217639550', true);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3481, 'Intercity Sant Joan C.F', 'San Fernando CD', '2023-09-16 18:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218238496', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3543, 'New York City', 'New York Red Bulls', '2023-09-16 20:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217938227', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3595, 'Orlando City', 'Columbus', '2023-09-17 00:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217938747', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3606, 'AD Isidro Metapan', 'Fuerte San Francisco', '2023-09-17 02:00:00', 'https://www.orbitxch.com/customer/sport/1/market/1.218306953', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3265, 'RB Leipzig', 'Augsburg', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217628028', false);
+INSERT INTO public.over2p5orbitxch (id, home, away, date_time, url, plaied) VALUES (3267, 'Mainz', 'Stuttgart', '2023-09-16 14:30:00', 'https://www.orbitxch.com/customer/sport/1/market/1.217627788', false);
 
 
 --
--- TOC entry 3083 (class 0 OID 0)
+-- TOC entry 3046 (class 0 OID 0)
 -- Dependencies: 204
--- Name: OverUnderHistorical_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."OverUnderHistorical_id_seq"', 279, true);
-
-
---
--- TOC entry 3084 (class 0 OID 0)
--- Dependencies: 203
--- Name: OverUnder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."OverUnder_id_seq"', 24889, true);
-
-
---
--- TOC entry 3085 (class 0 OID 0)
--- Dependencies: 206
--- Name: daily_over_2p5_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.daily_over_2p5_id_seq', 5061, true);
-
-
---
--- TOC entry 3086 (class 0 OID 0)
--- Dependencies: 209
--- Name: match_table_prototype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.match_table_prototype_id_seq', 1, false);
-
-
---
--- TOC entry 3087 (class 0 OID 0)
--- Dependencies: 208
 -- Name: over2p5bets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5bets_id_seq', 23, true);
+SELECT pg_catalog.setval('public.over2p5bets_id_seq', 24, true);
 
 
 --
--- TOC entry 3088 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3047 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5footballsupertips_id_seq', 344, true);
+SELECT pg_catalog.setval('public.over2p5footballsupertips_id_seq', 529, true);
 
 
 --
--- TOC entry 3089 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3048 (class 0 OID 0)
+-- Dependencies: 205
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5goalsnow_id_seq', 462, true);
+SELECT pg_catalog.setval('public.over2p5goalsnow_id_seq', 619, true);
 
 
 --
--- TOC entry 3090 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3049 (class 0 OID 0)
+-- Dependencies: 209
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5orbitxch_id_seq', 3101, true);
+SELECT pg_catalog.setval('public.over2p5orbitxch_id_seq', 4225, true);
 
 
--- Completed on 2023-09-16 04:33:43 BST
+-- Completed on 2023-09-17 01:03:47 BST
 
 --
 -- PostgreSQL database dump complete

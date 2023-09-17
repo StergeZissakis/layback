@@ -101,7 +101,7 @@ def scrapeFootballSuperTips(dbase):
         page = browser.get(url)
         Utils.sleep_for_seconds(2)
 
-        browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
+        browser.accept_cookies('/html/body/div[5]/div[1]/div[2]/div/div/div/div[5]/div[2]/a')
 
         matches = page.find_elements(By.CLASS_NAME, 'poolList')
         for m in matches:
@@ -126,8 +126,10 @@ def scrapeFootballSuperTips(dbase):
                 continue
     
             dbase.insert_or_update(match)
+
             if tomorrow:
                 # add all tommorow's match to the Goals now table so that they will be accounted for
+                match.set("id", None)
                 match.table_name = "over2p5goalsnow"
                 dbase.insert_or_update(match)
                 tommorowsCount += 1
@@ -242,6 +244,7 @@ if __name__ == "__main__":
     initialise_logger("DailyScraper")
     db = PGConnector("postgres", "localhost")
     if not db.is_connected():
+        logging.error("Failed to connect to DB")
         exit(-1)
 
     goalsNow = scrapeGoalsNow(db)

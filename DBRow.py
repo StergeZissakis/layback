@@ -38,7 +38,7 @@ class DBRow:
         sql = ""
         for k in islice(self.data.keys(), 3, None):  
             if self.data[k] is not None:
-                sql += ' %s = EXCLUDED.%s, ' % (k, k)
+                sql += ' "%s" = EXCLUDED."%s", ' % (k, k)
         sql = sql[0:-2]
         logging.debug("do_update_set: %s" % (sql,))
         return sql

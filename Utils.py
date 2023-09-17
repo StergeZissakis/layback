@@ -18,6 +18,15 @@ def ratio_odds_to_decimal(odds):
     decimal = (int(nom) / int(denom) + 1)
     return decimal
 
+def stringsContainmentScore(lhs, rhs):
+    score = 0
+    for l in lhs.split(' '):
+        if l in rhs:
+            score += 1
+    for r in rhs.split(' '):
+        if r in lhs:
+            score += 1
+    return score
 
 def replaceSpecialChars(s):
     mappings = { '-': ' ',

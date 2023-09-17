@@ -45,18 +45,18 @@ class OrbitLivePage(LivePage):
 
     def __init__(self, orbitPage):
         super().__init__(orbitPage)
-        super().match = self.findLiveMatch()
-        super().endOfMatchStr = 'Finished'
+        self.match = self.findLiveMatch()
+        self.endOfMatchStr = 'Finished'
 
     def findLiveMatch(self):
         try:
-            return super().page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]')
+            return self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]')
         except:
             return None
 
     def getMatchTime(self):
         try:
-            mtm = super().match.find_element(By.XPATH, './div[2]/div[2]')
+            mtm = self.match.find_element(By.XPATH, './div[2]/div[2]')
             tm = mtm.text.strip().split("'")[0]
             return int(tm)
         except:
@@ -64,9 +64,9 @@ class OrbitLivePage(LivePage):
 
     def getTotalGoals(self):
         try:
-            homeGoals = super().match.find_element(By.XPATH, './div[2]/div[1]/span[1]')
-            awayGoals = super().match.find_element(By.XPATH, './div[2]/div[1]/span[3]')
-            return int(homeGoals) + int(awayGoals)
+            homeGoals = self.match.find_element(By.XPATH, './div[2]/div[1]/span[1]')
+            awayGoals = self.match.find_element(By.XPATH, './div[2]/div[1]/span[3]')
+            return int(homeGoals.text.strip()) + int(awayGoals.text.strip())
         except:
             return None
 
@@ -76,14 +76,15 @@ class SuperTipsLivePage(LivePage):
     browser = None
     url = 'https://www.footballsuper.tips/live-scores/live/'
 
-    def __init__(self):
+    def __init__(self, match):
         self.browser = Browser()
         page = self.browser.get(self.url)
         Utils.sleep_for_seconds(2)
-        self.browser.accept_cookies('/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]')
+        self.browser.accept_cookies('/html/body/div[5]/div[1]/div[2]/div/div/div/div[5]/div[2]/a')
         super().__init__(page)
-        super().match = self.findLiveMatch()
-        super().endOfMatchStr = 'FT'
+        self.match = match
+        self.match = self.findLiveMatch()
+        self.endOfMatchStr = 'FT'
 
     def __del__(self):
         if self.browser and self.browser.headless: 
@@ -91,10 +92,11 @@ class SuperTipsLivePage(LivePage):
 
     def findLiveMatch(self):
         try:
-            for lg in super().page.find_elements(By.CLASS_NAME, 'poolList'):  # live games
+            for lg in self.page.find_elements(By.CLASS_NAME, 'poolList'):  # live games
                 home = lg.find_element(By.XPATH, './a/div/div[2]').text.strip().lower()
                 away = lg.find_element(By.XPATH, './a/div/div[4]').text.strip().lower()
-                if home == self.match.get("home").lower() or away == self.match.get("away").lower():  # find the live match in the live page #TODO
+                if (Utils.stringsContainmentScore(home, self.match.get("home").lower()) > 0 and
+                        Utils.stringsContainmentScore(away, self.match.get("away").lower()) > 0):
                     return lg
         except:
             pass
@@ -104,22 +106,22 @@ class SuperTipsLivePage(LivePage):
 
     def getMatchTime(self):
         try:
-            return super().match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
+            return self.match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
         except:
             Utils.sleep_for_seconds(2)
         finally:
             if not self.check_exists_by_xpath(self.match, './a/div/div[1]/div'):
                 return None
-        return super().match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
+        return self.match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
 
     def getTotalGoals(self):
-        if not super().check_exists_by_xpath(self.match, './a/div/div[3]/span'):
+        if not self.check_exists_by_xpath(self.match, './a/div/div[3]/span'):
             return None
-        score_element = super().match.find_element(By.XPATH, './a/div/div[3]/span').text.strip()
+        score_element = self.match.find_element(By.XPATH, './a/div/div[3]/span').text.strip()
         home_goals, away_goals = score_element.split('-')
         return int(home_goals) + int(away_goals)
 
     def refreshLiveMatch(self):
-        super().page = self.browser.get(self.url)
-        super().match = self.findLiveMatch()
+        self.page = self.browser.get(self.url)
+        self.match = self.findLiveMatch()
     
