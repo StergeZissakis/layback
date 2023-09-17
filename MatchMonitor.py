@@ -215,7 +215,8 @@ class MatchMonitor:
         while isinstance(matchTime, int) and matchTime <= 45:
             self.sleep()
             self.livePage.refreshLiveMatch()
-    
+            matchTime = self.livePage.getMatchTime()
+
         logging.info('1st Half passed : %s' % self.match)
         self.sleep(10)
         self.livePage.refreshLiveMatch()
