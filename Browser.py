@@ -163,7 +163,8 @@ class Browser:
         if clickable:
             try:
                 clickable.click()
-            except:
+            except  Exception as Argument:
+                logging.exception("Exception in move_to_element_and_left_click")
                 ActionChains(self.driver).move_to_element(clickable).click(clickable).perform()
 
             Utils.sleep_for_millis_random(150)
@@ -186,8 +187,8 @@ class Browser:
         try:
             self.wait_for_element_to_appear(button_xpath)
             button = self.driver.find_element(By.XPATH, button_xpath )
-        except:
-            logging.error("accept_cookies failed: %s" % (button_xpath,))
+        except  Exception as Argument:
+            logging.debug("accept_cookies failed: %s" % button_xpath)
             return
 
         if button:
@@ -198,8 +199,8 @@ class Browser:
         if len(element_xpath):
             try:
                 return WebDriverWait(self.driver, timeout).until(ExpectedCondition.presence_of_element_located((By.XPATH, element_xpath)))
-            except:
-                logging.debug("Element has not appeared yet: %s" % (element_xpath,))
+            except  Exception as Argument:
+                logging.debug("Element has not appeared yet: %s" % element_xpath)
                 pass
         return None
 

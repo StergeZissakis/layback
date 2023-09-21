@@ -9,30 +9,36 @@ import Utils
 
 
 def scrapeGoalsNow(dbase):
-    leagues = [
-            "england premier league", 
-            "germany bundesliga i", 
-            "belgium first division a", 
-            "belgium first division b", 
-            "denmark superligaen", 
-            "netherlands eredivisie", 
-            "netherlands eerste divisie", 
-            "austria bundesliga",
-            "usa mls",
-            "usl championship",
-            "usa championship",
-            "canadian premier league",
-            "canada premier league",
-            "denmark division 1",
-            "denmark: 1. division",
-            "denmark division 2",
-            "denmark: 2.  division",
-            "eufa",
-            "euro",
-            "eurpean",
-            "uefa european championship qualifying",
-            "euro 2024 qualifying"
-            ]
+    leagues = {
+            "england premier league":         2, 
+            "germany bundesliga i":           1, 
+            "belgium first division a":      68, 
+            "belgium first division b":     136, 
+            "netherlands eredivisie":       196, 
+            "netherlands eerste divisie":   199, 
+            "austria bundesliga":            43,
+            "usa mls":                       76,
+            "usl championship":             383,
+            "usa championship":             384,
+            "canadian premier league":      257,
+            "canada premier league":        258,
+            "denmark superligaen":           40, 
+            "denmark division 1":           147,
+            "denmark: 1. division":         147,
+            "denmark division 2":           148,
+            "denmark: 2.  division":        148,
+            "eufa":                         350,
+            #"uefa european championship qualifying": 
+            "euro":                         387,
+            "uefa europa league":           245,
+            "euro 2024 qualifying":         274,
+            "uefa champions league":        244,  
+            "spain primera liga":             3, 
+            "france ligue 1":                 5,
+            "norway division 1":            204,
+            "Switzerland 1":                339, # TODO name
+            "Sweden 1":                     337  # TODO
+            }
     # leagues.append("denmark cup")
     count = 0
     browser = Browser()
@@ -47,7 +53,7 @@ def scrapeGoalsNow(dbase):
 
         league = m.find_elements(By.XPATH, 'preceding::div[@class="goalsleague"]')[-1]
         league_name = league.find_element(By.CLASS_NAME, 'league-name').text.lower().strip()
-        if league_name not in leagues:
+        if league_name not in leagues.keys():
             continue
 
         match = DailyMatchRow("over2p5goalsnow")
@@ -56,6 +62,7 @@ def scrapeGoalsNow(dbase):
         now = datetime.now()
         matchTime = m.find_element(By.CLASS_NAME, 'goalstime').text.strip()
         match.set("date_time", Utils.add_time_to_date(event_date=now, event_time=matchTime))
+        match.set("league_id", leagues[league_name])
 
         dbase.insert_or_update(match)
         count += 1
@@ -67,30 +74,36 @@ def scrapeGoalsNow(dbase):
 
 
 def scrapeFootballSuperTips(dbase):
-    leagues = [
-            "england premier league", 
-            "germany bundesliga i", 
-            "belgium first division a", 
-            "belgium first division b", 
-            "denmark superligaen", 
-            "netherlands eredivisie", 
-            "netherlands eerste divisie", 
-            "austria bundesliga",
-            "usa mls",
-            "usl championship",
-            "usa championship",
-            "canadian premier league",
-            "canada premier league",
-            "denmark division 1",
-            "denmark: 1. division",
-            "denmark division 2",
-            "denmark: 2.  division",
-            "eufa",
-            "euro",
-            "eurpean",
-            "uefa european championship qualifying",
-            "euro 2024 qualifying"
-            ]
+    leagues = {
+            "england premier league":         2, 
+            "germany bundesliga i":           1, 
+            "belgium first division a":      68, 
+            "belgium first division b":     136, 
+            "netherlands eredivisie":       196, 
+            "netherlands eerste divisie":   199, 
+            "austria bundesliga":            43,
+            "usa mls":                       76,
+            "usl championship":             383,
+            "usa championship":             384,
+            "canadian premier league":      257,
+            "canada premier league":        258,
+            "denmark superligaen":           40, 
+            "denmark division 1":           147,
+            "denmark: 1. division":         147,
+            "denmark division 2":           148,
+            "denmark: 2.  division":        148,
+            "eufa":                         350,
+            #"uefa european championship qualifying": 
+            "euro":                         387,
+            "uefa europa league":           245,
+            "euro 2024 qualifying":         274,
+            "uefa champions league":        244,  
+            "spain primera liga":             3, 
+            "france ligue 1":                 5,
+            "norway division 1":            204,
+            "Switzerland 1":                339, # TODO name
+            "Sweden 1":                     337  # TODO
+            }
     # leagues.append("denmark cup")
     urls = ["https://www.footballsuper.tips/todays-over-under-football-super-tips/", "https://www.footballsuper.tips/tomorrows-over-under-football-super-tips/"]
     tomorrow = False
@@ -112,7 +125,7 @@ def scrapeFootballSuperTips(dbase):
     
             league = m.find_elements(By.XPATH, 'preceding-sibling::div[@class="pool-list-group"]')[-1]
             league_name = league.find_element(By.XPATH, './div/strong').text.lower().strip()
-            if league_name not in leagues:
+            if league_name not in leagues.keys():
                 continue
     
             match = DailyMatchRow("over2p5footballsupertips")
@@ -121,6 +134,7 @@ def scrapeFootballSuperTips(dbase):
             date_time_str = m.find_element(By.CLASS_NAME, "datedisp").text
             date_time = datetime.strptime(date_time_str, "%d/%m/%y %H:%M")
             match.set("date_time", date_time)
+            match.set("league_id", leagues[league_name])
 
             if tomorrow and int(date_time.hour) >= 6:
                 continue
@@ -165,7 +179,8 @@ def scrapeOrbitxch(dbase):
     while todaysRoot is None:
         try:
             todaysRoot = page.find_element(By.XPATH,    '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[2]')
-        except:
+        except  Exception as Argument:
+            logging.exception("Error while getting today's root")
             Utils.sleep_for_seconds(1)
             continue
 
@@ -173,7 +188,8 @@ def scrapeOrbitxch(dbase):
     while tommorowsRoot is None:
         try:
             tommorowsRoot = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[2]/div[2]/div/div[2]')
-        except:
+        except  Exception as Argument:
+            logging.exception("Error while getting tomorrow's root")
             Utils.sleep_for_seconds(1)
             continue
 
@@ -188,8 +204,8 @@ def scrapeOrbitxch(dbase):
             if len(matchTime.split(':')) == 2 and len(str(matchTime)) == 5:
                 event_date_time = Utils.add_time_to_date(event_date=datetime.now(), event_time=matchTime)
                 row.set("date_time", event_date_time)
-        except:
-            logging.error("Failed to extract start time: %s of %s " % ('match./div[1]/div/span', str(row)))
+        except  Exception as Argument:
+            logging.debug("Failed to extract start time: %s of %s " % ('match./div[1]/div/span', str(row)))
             continue
     
         names = match.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
@@ -218,8 +234,8 @@ def scrapeOrbitxch(dbase):
                     break
                 event_date_time = Utils.add_time_to_date(event_date=tommorowsDate, event_time=mTime)
                 row.set("date_time", event_date_time)
-        except:
-            logging.error("Failed to extract tommorow's start time: %s" % tm)
+        except  Exception as Argument:
+            logging.exception("Failed to extract tommorow's start time: %s" % tm)
             continue
         names = tm.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
         home, away = names.find_elements(By.CSS_SELECTOR, 'p')

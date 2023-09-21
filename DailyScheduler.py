@@ -23,6 +23,7 @@ if __name__ == "__main__":
         match.set("away", m[2])
         match.set("date_time", m[3])
         match.set("url", m[4])
+        match.set("league_id", m[6])
         p = Process(target=monitor, args=(match,))
         p.start()
         processes.append(p)
@@ -36,6 +37,6 @@ if __name__ == "__main__":
     for p in processes:
         try:
             p.join()
-        except:
-            logging.debug("Failed to join on process  %s" % (str(p),))
+        except  Exception as Argument:
+            logging.exception("Failed to join on process  %s" % str(p))
             pass

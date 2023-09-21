@@ -1,9 +1,10 @@
 import logging
 import Utils 
+import requests
+import json
 from Browser import Browser
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-
 
 class LivePage:
 
@@ -15,18 +16,10 @@ class LivePage:
         self.page = page
 
     def canBeMonitored(self):
-        return self.findLiveMatch() is not None and self.getMatchTime() is not None and self.getTotalGoals() is not None
+        return False
 
     def hasMatchEnded(self):
         return str(self.getMatchTime()) == self.endOfMatchStr
-
-    @staticmethod
-    def check_exists_by_xpath(element, xpath):
-        try:
-            element.find_element(By.XPATH, xpath)
-            return True
-        except NoSuchElementException:
-            return False
 
     def findLiveMatch(self):
         return None
@@ -37,8 +30,6 @@ class LivePage:
     def getTotalGoals(self):
         return None
 
-    def refreshLiveMatch(self):
-        pass
 
 
 class OrbitLivePage(LivePage):
@@ -48,10 +39,14 @@ class OrbitLivePage(LivePage):
         self.match = self.findLiveMatch()
         self.endOfMatchStr = 'Finished'
 
+    def canBeMonitored(self):
+        return self.match is not None and self.getMatchTime() is not None and self.getTotalGoals() is not None
+
     def findLiveMatch(self):
         try:
             return self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]')
-        except:
+        except  Exception as Argument:
+            logging.exception("Exception in FindLiveMatch")
             return None
 
     def getMatchTime(self):
@@ -59,7 +54,8 @@ class OrbitLivePage(LivePage):
             mtm = self.match.find_element(By.XPATH, './div[2]/div[2]')
             tm = mtm.text.strip().split("'")[0]
             return int(tm)
-        except:
+        except  Exception as Argument:
+            logging.exception("Exception in getMatchTime")
             return None
 
     def getTotalGoals(self):
@@ -67,61 +63,55 @@ class OrbitLivePage(LivePage):
             homeGoals = self.match.find_element(By.XPATH, './div[2]/div[1]/span[1]')
             awayGoals = self.match.find_element(By.XPATH, './div[2]/div[1]/span[3]')
             return int(homeGoals.text.strip()) + int(awayGoals.text.strip())
-        except:
+        except  Exception as Argument:
+            logging.exception("Exception in getTotalGoals")
             return None
 
 
-class SuperTipsLivePage(LivePage):
+class APILivePage(LivePage):
 
-    browser = None
-    url = 'https://www.footballsuper.tips/live-scores/live/'
+    api_key = "Fv6kKZy7fwSLBTB7"
+    api_secret = "Bef6mREpHUEqpF44aboUaW2qsUc4ONbp"
+    fixture_id = None
+    get_fixtures_url = "https://livescore-api.com/api-client/fixtures/matches.json?key=%s&secret=%s&date=today&lang=en&competition_id="
+    get_live_url = "https://livescore-api.com/api-client/scores/live.json?key=%s&secret=%s&fixture_id="
 
     def __init__(self, match):
-        self.browser = Browser()
-        page = self.browser.get(self.url)
-        Utils.sleep_for_seconds(2)
-        self.browser.accept_cookies('/html/body/div[5]/div[1]/div[2]/div/div/div/div[5]/div[2]/a')
-        super().__init__(page)
         self.match = match
-        self.match = self.findLiveMatch()
         self.endOfMatchStr = 'FT'
+        self.get_fixtures_url %= (self.api_key, self.api_secret)
+        self.get_fixtures_url += match.get("league_id")
+        self.get_live_url %= (self.api_key, self.api_secret)
+        self.fixture_id = self.findLiveMatch()
+        if self.fixutre_id:
+            self.get_live_url += self.fixutre_id
 
-    def __del__(self):
-        if self.browser and self.browser.headless: 
-            self.browser.quit()
+    def canBeMonitored(self):
+        return self.fixture_id is not None
 
     def findLiveMatch(self):
-        try:
-            for lg in self.page.find_elements(By.CLASS_NAME, 'poolList'):  # live games
-                home = lg.find_element(By.XPATH, './a/div/div[2]').text.strip().lower()
-                away = lg.find_element(By.XPATH, './a/div/div[4]').text.strip().lower()
-                if (Utils.stringsContainmentScore(home, self.match.get("home").lower()) > 0 and
-                        Utils.stringsContainmentScore(away, self.match.get("away").lower()) > 0):
-                    return lg
-        except:
-            pass
-
-        logging.error("Failed to get live match")
+        league_fixtures = requests.get(self.get_fixtures_url).json()
+        for fixture in league_fixtures['data']['fixtures']:
+            if Utils.similar_strings(fixture['home_name'], self.match.get("home")) > 0.51 and Utils.similar_strings(fixture['away_name'], self.match.get("away")) > 0.51:
+                return fixture['id']
         return None
 
+    def refresh_fixture(self):
+        return requests.get(self.get_live_url).json()
+
     def getMatchTime(self):
-        try:
-            return self.match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
-        except:
-            Utils.sleep_for_seconds(2)
-        finally:
-            if not self.check_exists_by_xpath(self.match, './a/div/div[1]/div'):
-                return None
-        return self.match.find_element(By.XPATH, './a/div/div[1]/div').text.strip().split('´')[0]
+        live = self.refresh_fixture()
+        minutes = live['data']['match'][0]['time']
+        if not minutes.isnumeric():
+            return None
+        return int(minutes.strip())
 
     def getTotalGoals(self):
-        if not self.check_exists_by_xpath(self.match, './a/div/div[3]/span'):
+        live = self.refresh_fixture()
+        score = live['data']['match'][0]['score']
+        if '-' in score:
+            home, away = score.split('-')
+            return int(home.strip()) + int(away.strip())
+        else:
             return None
-        score_element = self.match.find_element(By.XPATH, './a/div/div[3]/span').text.strip()
-        home_goals, away_goals = score_element.split('-')
-        return int(home_goals) + int(away_goals)
 
-    def refreshLiveMatch(self):
-        self.page = self.browser.get(self.url)
-        self.match = self.findLiveMatch()
-    

@@ -55,7 +55,6 @@ class PGConnector(PGBase):
         sql = '%s ON CONFLICT ON CONSTRAINT %s_pkey DO UPDATE SET %s RETURNING id' % (match.generate_sql_insert_into_values(), match.table_name, match.generate_do_update_set())
         values = match.generate_sql_insert_values()
         cursor = self.pg.cursor()
-        print(sql + " " + str(values))
         cursor.execute(sql, values)
         self.pg.commit()
         rid = None
@@ -63,7 +62,8 @@ class PGConnector(PGBase):
             rid = cursor.fetchone()
             self.pg.commit()
             cursor.close()
-        except:
+        except  Exception as Argument:
+            logging.exception("Exception in insert_or_update. Remeding..")
             cursor.close()
             cursor = self.pg.cursor()
             sql = match.generate_select('id')

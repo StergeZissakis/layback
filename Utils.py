@@ -59,6 +59,8 @@ def compare_team_names(a, b):
         matches += 1
     return matches
 
+def similar_strings(str1, str2):
+    return SequenceMatcher(None, str1, str2).ratio()
 
 def initialise_logger(process_name):
     fmt = "%(process)d %(levelname)s %(asctime)s - %(message)s"

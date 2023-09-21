@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-09-17 01:03:47 BST
+-- Started on 2023-09-21 21:16:34 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -118,7 +118,7 @@ CREATE TYPE public."BetResult" AS ENUM (
 
 
 --
--- TOC entry 640 (class 1247 OID 16404)
+-- TOC entry 643 (class 1247 OID 16404)
 -- Name: OverUnderType; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -142,12 +142,13 @@ CREATE TABLE public.over2p5footballsupertips (
     home character varying NOT NULL COLLATE pg_catalog."en_US",
     away character varying NOT NULL COLLATE pg_catalog."en_US",
     date_time timestamp without time zone NOT NULL,
-    url character varying
+    url character varying,
+    league_id smallint
 );
 
 
 --
--- TOC entry 212 (class 1259 OID 17082)
+-- TOC entry 214 (class 1259 OID 25377)
 -- Name: footballsupertips_today; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -156,6 +157,7 @@ CREATE VIEW public.footballsupertips_today AS
     over2p5footballsupertips.home,
     over2p5footballsupertips.away,
     over2p5footballsupertips.date_time,
+    over2p5footballsupertips.league_id,
     over2p5footballsupertips.url
    FROM public.over2p5footballsupertips
   WHERE ((over2p5footballsupertips.date_time)::date >= CURRENT_DATE)
@@ -172,12 +174,13 @@ CREATE TABLE public.over2p5goalsnow (
     home character varying NOT NULL COLLATE pg_catalog."en_US",
     away character varying NOT NULL COLLATE pg_catalog."en_US",
     date_time timestamp without time zone NOT NULL,
-    url character varying
+    url character varying,
+    league_id smallint
 );
 
 
 --
--- TOC entry 211 (class 1259 OID 17078)
+-- TOC entry 213 (class 1259 OID 25373)
 -- Name: goalsnow_today; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -186,6 +189,7 @@ CREATE VIEW public.goalsnow_today AS
     over2p5goalsnow.home,
     over2p5goalsnow.away,
     over2p5goalsnow.date_time,
+    over2p5goalsnow.league_id,
     over2p5goalsnow.url
    FROM public.over2p5goalsnow
   WHERE ((over2p5goalsnow.date_time)::date >= CURRENT_DATE)
@@ -208,7 +212,7 @@ CREATE TABLE public.over2p5orbitxch (
 
 
 --
--- TOC entry 213 (class 1259 OID 17086)
+-- TOC entry 211 (class 1259 OID 17086)
 -- Name: orbitxch_today; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -225,7 +229,7 @@ CREATE VIEW public.orbitxch_today AS
 
 
 --
--- TOC entry 214 (class 1259 OID 17090)
+-- TOC entry 215 (class 1259 OID 25381)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -235,9 +239,10 @@ CREATE VIEW public."TodayMatches" AS
     c.away,
     c.date_time,
     c.url,
-    c.plaied
+    c.plaied,
+    b.league_id
    FROM ((public.goalsnow_today a
-     JOIN public.footballsupertips_today b ON ((((a.date_time = b.date_time) AND (lower((a.home)::text) ~~ lower((b.home)::text))) OR (lower((a.away)::text) ~~ lower((b.away)::text)))))
+     JOIN public.footballsupertips_today b ON ((((a.league_id = b.league_id) AND (a.date_time = b.date_time) AND (lower((a.home)::text) ~~ lower((b.home)::text))) OR (lower((a.away)::text) ~~ lower((b.away)::text)))))
      JOIN public.orbitxch_today c ON ((((b.date_time = c.date_time) AND (lower((b.home)::text) ~~ lower((c.home)::text))) OR (lower((b.away)::text) ~~ lower((c.away)::text)))))
   ORDER BY c.date_time, c.id, c.url;
 
@@ -265,7 +270,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 215 (class 1259 OID 17110)
+-- TOC entry 212 (class 1259 OID 17110)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -456,7 +461,7 @@ GRANT ALL ON TABLE public.over2p5footballsupertips TO postgres WITH GRANT OPTION
 
 --
 -- TOC entry 3043 (class 0 OID 0)
--- Dependencies: 212
+-- Dependencies: 214
 -- Name: TABLE footballsupertips_today; Type: ACL; Schema: public; Owner: -
 --
 
@@ -476,7 +481,7 @@ GRANT ALL ON TABLE public.over2p5goalsnow TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3045 (class 0 OID 0)
--- Dependencies: 211
+-- Dependencies: 213
 -- Name: TABLE goalsnow_today; Type: ACL; Schema: public; Owner: -
 --
 
@@ -496,7 +501,7 @@ GRANT ALL ON TABLE public.over2p5orbitxch TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3047 (class 0 OID 0)
--- Dependencies: 213
+-- Dependencies: 211
 -- Name: TABLE orbitxch_today; Type: ACL; Schema: public; Owner: -
 --
 
@@ -506,7 +511,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3048 (class 0 OID 0)
--- Dependencies: 214
+-- Dependencies: 215
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -526,7 +531,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3050 (class 0 OID 0)
--- Dependencies: 215
+-- Dependencies: 212
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -543,7 +548,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-17 01:03:47 BST
+-- Completed on 2023-09-21 21:16:34 BST
 
 --
 -- PostgreSQL database dump complete
