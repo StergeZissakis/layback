@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-09-21 21:16:34 BST
+-- Started on 2023-09-23 15:52:23 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,7 +20,7 @@ SET row_security = off;
 
 DROP DATABASE IF EXISTS postgres;
 --
--- TOC entry 3038 (class 1262 OID 13465)
+-- TOC entry 3037 (class 1262 OID 13465)
 -- Name: postgres; Type: DATABASE; Schema: -; Owner: -
 --
 
@@ -41,8 +41,8 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3039 (class 0 OID 0)
--- Dependencies: 3038
+-- TOC entry 3038 (class 0 OID 0)
+-- Dependencies: 3037
 -- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: -
 --
 
@@ -50,7 +50,7 @@ COMMENT ON DATABASE postgres IS 'default administrative connection database';
 
 
 --
--- TOC entry 3040 (class 0 OID 0)
+-- TOC entry 3039 (class 0 OID 0)
 -- Name: postgres; Type: DATABASE PROPERTIES; Schema: -; Owner: -
 --
 
@@ -87,7 +87,7 @@ CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 3041 (class 0 OID 0)
+-- TOC entry 3040 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: -
 --
@@ -113,7 +113,8 @@ CREATE TYPE public."ActionType" AS ENUM (
 
 CREATE TYPE public."BetResult" AS ENUM (
     'Won',
-    'Lost'
+    'Lost',
+    'Lapsed'
 );
 
 
@@ -257,7 +258,7 @@ CREATE TABLE public.over2p5bets (
     "MatchDateTime" timestamp without time zone,
     "Home" character varying NOT NULL,
     "Away" character varying NOT NULL,
-    "BetDateTime" timestamp without time zone DEFAULT now() NOT NULL,
+    "BetDateTime" timestamp without time zone NOT NULL,
     "LayBack" public."ActionType" NOT NULL,
     "OverUnder" public."OverUnderType" NOT NULL,
     "Goals" numeric(3,2) NOT NULL,
@@ -307,7 +308,7 @@ CREATE SEQUENCE public.over2p5bets_id_seq
 
 
 --
--- TOC entry 3051 (class 0 OID 0)
+-- TOC entry 3050 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: over2p5bets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -329,7 +330,7 @@ CREATE SEQUENCE public.over2p5footballsupertips_id_seq
 
 
 --
--- TOC entry 3052 (class 0 OID 0)
+-- TOC entry 3051 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -351,7 +352,7 @@ CREATE SEQUENCE public.over2p5goalsnow_id_seq
 
 
 --
--- TOC entry 3053 (class 0 OID 0)
+-- TOC entry 3052 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -373,7 +374,7 @@ CREATE SEQUENCE public.over2p5orbitxch_id_seq
 
 
 --
--- TOC entry 3054 (class 0 OID 0)
+-- TOC entry 3053 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -382,7 +383,7 @@ ALTER SEQUENCE public.over2p5orbitxch_id_seq OWNED BY public.over2p5orbitxch.id;
 
 
 --
--- TOC entry 2889 (class 2604 OID 16906)
+-- TOC entry 2888 (class 2604 OID 16906)
 -- Name: over2p5bets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -390,7 +391,7 @@ ALTER TABLE ONLY public.over2p5bets ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2891 (class 2604 OID 17018)
+-- TOC entry 2890 (class 2604 OID 17018)
 -- Name: over2p5footballsupertips id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -398,7 +399,7 @@ ALTER TABLE ONLY public.over2p5footballsupertips ALTER COLUMN id SET DEFAULT nex
 
 
 --
--- TOC entry 2890 (class 2604 OID 17007)
+-- TOC entry 2889 (class 2604 OID 17007)
 -- Name: over2p5goalsnow id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -406,7 +407,7 @@ ALTER TABLE ONLY public.over2p5goalsnow ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2893 (class 2604 OID 17029)
+-- TOC entry 2892 (class 2604 OID 17029)
 -- Name: over2p5orbitxch id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -414,7 +415,7 @@ ALTER TABLE ONLY public.over2p5orbitxch ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2895 (class 2606 OID 16547)
+-- TOC entry 2894 (class 2606 OID 16547)
 -- Name: over2p5bets over2p5bets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -423,7 +424,7 @@ ALTER TABLE ONLY public.over2p5bets
 
 
 --
--- TOC entry 2899 (class 2606 OID 17073)
+-- TOC entry 2898 (class 2606 OID 17073)
 -- Name: over2p5footballsupertips over2p5footballsupertips_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -432,7 +433,7 @@ ALTER TABLE ONLY public.over2p5footballsupertips
 
 
 --
--- TOC entry 2897 (class 2606 OID 17069)
+-- TOC entry 2896 (class 2606 OID 17069)
 -- Name: over2p5goalsnow over2p5goalsnow_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -441,7 +442,7 @@ ALTER TABLE ONLY public.over2p5goalsnow
 
 
 --
--- TOC entry 2901 (class 2606 OID 17077)
+-- TOC entry 2900 (class 2606 OID 17077)
 -- Name: over2p5orbitxch over2p5orbitxch_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -450,7 +451,7 @@ ALTER TABLE ONLY public.over2p5orbitxch
 
 
 --
--- TOC entry 3042 (class 0 OID 0)
+-- TOC entry 3041 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: TABLE over2p5footballsupertips; Type: ACL; Schema: public; Owner: -
 --
@@ -460,7 +461,7 @@ GRANT ALL ON TABLE public.over2p5footballsupertips TO postgres WITH GRANT OPTION
 
 
 --
--- TOC entry 3043 (class 0 OID 0)
+-- TOC entry 3042 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: TABLE footballsupertips_today; Type: ACL; Schema: public; Owner: -
 --
@@ -470,7 +471,7 @@ GRANT ALL ON TABLE public.footballsupertips_today TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3044 (class 0 OID 0)
+-- TOC entry 3043 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: TABLE over2p5goalsnow; Type: ACL; Schema: public; Owner: -
 --
@@ -480,7 +481,7 @@ GRANT ALL ON TABLE public.over2p5goalsnow TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3045 (class 0 OID 0)
+-- TOC entry 3044 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: TABLE goalsnow_today; Type: ACL; Schema: public; Owner: -
 --
@@ -490,7 +491,7 @@ GRANT ALL ON TABLE public.goalsnow_today TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3046 (class 0 OID 0)
+-- TOC entry 3045 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: TABLE over2p5orbitxch; Type: ACL; Schema: public; Owner: -
 --
@@ -500,7 +501,7 @@ GRANT ALL ON TABLE public.over2p5orbitxch TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3047 (class 0 OID 0)
+-- TOC entry 3046 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: TABLE orbitxch_today; Type: ACL; Schema: public; Owner: -
 --
@@ -510,7 +511,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3048 (class 0 OID 0)
+-- TOC entry 3047 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
@@ -520,7 +521,7 @@ GRANT ALL ON TABLE public."TodayMatches" TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3049 (class 0 OID 0)
+-- TOC entry 3048 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: TABLE over2p5bets; Type: ACL; Schema: public; Owner: -
 --
@@ -530,7 +531,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 
 --
--- TOC entry 3050 (class 0 OID 0)
+-- TOC entry 3049 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
@@ -548,7 +549,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-21 21:16:34 BST
+-- Completed on 2023-09-23 15:52:23 BST
 
 --
 -- PostgreSQL database dump complete

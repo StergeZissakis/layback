@@ -9,6 +9,7 @@ class BetRow(DBRow):
             "MatchDateTime": None,
             "Home": None,
             "Away": None,
+            "BetDateTime": None,
             "LayBack": None,
             "OverUnder": None,
             "Goals": None,

@@ -6,112 +6,92 @@ from Browser import Browser
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
-class LivePage:
-
-    page = None
+class APILivePage:
     match = None
-    endOfMatchStr = None
-
-    def __init__(self, page):
-        self.page = page
-
-    def canBeMonitored(self):
-        return False
-
-    def hasMatchEnded(self):
-        return str(self.getMatchTime()) == self.endOfMatchStr
-
-    def findLiveMatch(self):
-        return None
-
-    def getMatchTime(self):
-        return None
-
-    def getTotalGoals(self):
-        return None
-
-
-
-class OrbitLivePage(LivePage):
-
-    def __init__(self, orbitPage):
-        super().__init__(orbitPage)
-        self.match = self.findLiveMatch()
-        self.endOfMatchStr = 'Finished'
-
-    def canBeMonitored(self):
-        return self.match is not None and self.getMatchTime() is not None and self.getTotalGoals() is not None
-
-    def findLiveMatch(self):
-        try:
-            return self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]')
-        except  Exception as Argument:
-            logging.exception("Exception in FindLiveMatch")
-            return None
-
-    def getMatchTime(self):
-        try:
-            mtm = self.match.find_element(By.XPATH, './div[2]/div[2]')
-            tm = mtm.text.strip().split("'")[0]
-            return int(tm)
-        except  Exception as Argument:
-            logging.exception("Exception in getMatchTime")
-            return None
-
-    def getTotalGoals(self):
-        try:
-            homeGoals = self.match.find_element(By.XPATH, './div[2]/div[1]/span[1]')
-            awayGoals = self.match.find_element(By.XPATH, './div[2]/div[1]/span[3]')
-            return int(homeGoals.text.strip()) + int(awayGoals.text.strip())
-        except  Exception as Argument:
-            logging.exception("Exception in getTotalGoals")
-            return None
-
-
-class APILivePage(LivePage):
-
     api_key = "Fv6kKZy7fwSLBTB7"
     api_secret = "Bef6mREpHUEqpF44aboUaW2qsUc4ONbp"
     fixture_id = None
-    get_fixtures_url = "https://livescore-api.com/api-client/fixtures/matches.json?key=%s&secret=%s&date=today&lang=en&competition_id="
+    #get_fixtures_url = "https://livescore-api.com/api-client/fixtures/matches.json?key=%s&secret=%s&date=today&lang=en&competition_id="
+    get_fixtures_url = "https://livescore-api.com/api-client/scores/live.json?key=%s&secret=%s&date=today&lang=en&competition_id="
     get_live_url = "https://livescore-api.com/api-client/scores/live.json?key=%s&secret=%s&fixture_id="
-
+    last_known_score = None
+    last_known_time = None
+    last_known_status = None
     def __init__(self, match):
         self.match = match
         self.endOfMatchStr = 'FT'
         self.get_fixtures_url %= (self.api_key, self.api_secret)
-        self.get_fixtures_url += match.get("league_id")
+        self.get_fixtures_url += str(match.get("league_id"))
         self.get_live_url %= (self.api_key, self.api_secret)
         self.fixture_id = self.findLiveMatch()
-        if self.fixutre_id:
-            self.get_live_url += self.fixutre_id
+        if self.fixture_id:
+            self.get_live_url += str(self.fixture_id)
 
     def canBeMonitored(self):
         return self.fixture_id is not None
 
     def findLiveMatch(self):
-        league_fixtures = requests.get(self.get_fixtures_url).json()
-        for fixture in league_fixtures['data']['fixtures']:
-            if Utils.similar_strings(fixture['home_name'], self.match.get("home")) > 0.51 and Utils.similar_strings(fixture['away_name'], self.match.get("away")) > 0.51:
-                return fixture['id']
+        matches = requests.get(self.get_fixtures_url).json()
+        for match in matches['data']['match']:
+            if Utils.similar_strings(match['home_name'], self.match.get("home")) > 0.51 and Utils.similar_strings(match['away_name'], self.match.get("away")) > 0.51:
+                return match['fixture_id']
         return None
 
     def refresh_fixture(self):
-        return requests.get(self.get_live_url).json()
+        response = requests.get(self.get_live_url)
+        if response.status_code != 200:
+            return None
+        js_resp = response.json()
+        if js_resp['success'] is not True:
+            return None
+        return response.json()
 
     def getMatchTime(self):
         live = self.refresh_fixture()
-        minutes = live['data']['match'][0]['time']
+        if live is None and self.last_known_time is not None:
+            logging.info("Failed to get current match time. Using last known %s" % self.last_known_time)
+            return self.last_known_time
+        minutes = live['data']['match'][0]['time'].strip().split('+')[0]
         if not minutes.isnumeric():
-            return None
-        return int(minutes.strip())
+            return self.last_known_time
+        tm = int(minutes.strip())
+        self.last_known_time = tm
+        return tm
+
+    def getMatchStatus(self):
+        live = self.refresh_fixture()
+        if live is None and self.last_known_status is not None:
+            logging.info("Failed to get current match status. Using last known %s" % self.last_known_status)
+            return self.last_known_status
+        status = live["data"]["match"][0]["status"]
+        if isinstance(status, str):
+            if status == 'NOT STARTED':
+                self.last_known_status = "NS"
+            elif status in ("IN PLAY", "ADDED TIME"):
+                tm = self.getMatchTime()
+                if tm <= 45:
+                    self.last_known_status = '1H'
+                else:
+                    self.last_known_status = '2H'
+            elif status == "HALF TIME BREAK":
+                self.last_known_status = "HT"
+            elif status == "FINISHED":
+                self.last_known_status = "FT"
+            else:
+                pass # use last known status
+        return self.last_known_status
 
     def getTotalGoals(self):
         live = self.refresh_fixture()
+        if live is None and self.last_known_score is not None:
+            logging.info("Failed to get current score. Using last known %s" % self.last_known_score )
+            return self.last_known_score
         score = live['data']['match'][0]['score']
         if '-' in score:
             home, away = score.split('-')
-            return int(home.strip()) + int(away.strip())
+            sc = int(home.strip()) + int(away.strip())
+            self.last_known_score = sc
+            return sc
         else:
             return None
 

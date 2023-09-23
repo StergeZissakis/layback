@@ -7,39 +7,57 @@ from selenium.webdriver.common.by import By
 from DailyMatchRow import DailyMatchRow
 import Utils
 
+leagues = {
+    "AFC AFF Suzuki Cup": 246,  # TODO
+    "austria bundesliga": 43,
+    "Austria Erste Liga": 133,  # TODO
+    "Australia Hyundai A-League": 67,  # TODO
+    "belgium first division a": 68,
+    "belgium first division b": 136,
+    "canadian Championship": 257,
+    "canada premier league": 258,
+    "CONMEBOL Copa Libertadores": 329,  # TODO
+    "CONMEBOL Copa Sudamericana": 330,  # TODO
+    "denmark superligaen": 40,
+    "denmark division 1": 147,
+    "denmark: 1. division": 147,
+    "denmark division 2": 148,
+    "denmark: 2.  division": 148,
+    "england premier league": 2,
+    "england championship": 77,
+    "euro": 387,
+    "euro 2024 qualifying": 274,
+    "europa league": 245,
+    "france ligue 1": 5,
+    "germany bundesliga i": 1,
+    "germany bundesliga ii": 93,
+    "italy serie a": 4,
+    "japan j-league": 28,
+    "netherlands eredivisie": 196,
+    "netherlands eerste divisie": 199,
+    "norway division 1": 204,
+    "norway eliteserien": 13,
+    "portugal primeira liga": 8,
+    "south korea k league 1": 66,
+    "spain primera liga": 3,
+    "sweden 1": 337,  # TODO
+    "sweden allsvenskan": 14,
+    "sweden superettan": 336,
+    "switzerland 1": 339,  # TODO
+    "Switzerland Challenge League": 338,  # TODO
+    "switzerland super league": 15,
+    "usa championship": 384,
+    "usa mls": 76,
+    "usl championship": 383,
+    "uefa euro": 387,
+    "uefa champions league": 244,
+    "uefa europa league": 245,
+    "uefa Nations League": 350,  # TODO
+}
 
 def scrapeGoalsNow(dbase):
-    leagues = {
-            "england premier league":         2, 
-            "germany bundesliga i":           1, 
-            "belgium first division a":      68, 
-            "belgium first division b":     136, 
-            "netherlands eredivisie":       196, 
-            "netherlands eerste divisie":   199, 
-            "austria bundesliga":            43,
-            "usa mls":                       76,
-            "usl championship":             383,
-            "usa championship":             384,
-            "canadian premier league":      257,
-            "canada premier league":        258,
-            "denmark superligaen":           40, 
-            "denmark division 1":           147,
-            "denmark: 1. division":         147,
-            "denmark division 2":           148,
-            "denmark: 2.  division":        148,
-            "eufa":                         350,
-            #"uefa european championship qualifying": 
-            "euro":                         387,
-            "uefa europa league":           245,
-            "euro 2024 qualifying":         274,
-            "uefa champions league":        244,  
-            "spain primera liga":             3, 
-            "france ligue 1":                 5,
-            "norway division 1":            204,
-            "Switzerland 1":                339, # TODO name
-            "Sweden 1":                     337  # TODO
-            }
-    # leagues.append("denmark cup")
+    global leagues
+
     count = 0
     browser = Browser()
     page = browser.get("https://www.goalsnow.com/over-under-predictions/")
@@ -74,37 +92,7 @@ def scrapeGoalsNow(dbase):
 
 
 def scrapeFootballSuperTips(dbase):
-    leagues = {
-            "england premier league":         2, 
-            "germany bundesliga i":           1, 
-            "belgium first division a":      68, 
-            "belgium first division b":     136, 
-            "netherlands eredivisie":       196, 
-            "netherlands eerste divisie":   199, 
-            "austria bundesliga":            43,
-            "usa mls":                       76,
-            "usl championship":             383,
-            "usa championship":             384,
-            "canadian premier league":      257,
-            "canada premier league":        258,
-            "denmark superligaen":           40, 
-            "denmark division 1":           147,
-            "denmark: 1. division":         147,
-            "denmark division 2":           148,
-            "denmark: 2.  division":        148,
-            "eufa":                         350,
-            #"uefa european championship qualifying": 
-            "euro":                         387,
-            "uefa europa league":           245,
-            "euro 2024 qualifying":         274,
-            "uefa champions league":        244,  
-            "spain primera liga":             3, 
-            "france ligue 1":                 5,
-            "norway division 1":            204,
-            "Switzerland 1":                339, # TODO name
-            "Sweden 1":                     337  # TODO
-            }
-    # leagues.append("denmark cup")
+    global leagues
     urls = ["https://www.footballsuper.tips/todays-over-under-football-super-tips/", "https://www.footballsuper.tips/tomorrows-over-under-football-super-tips/"]
     tomorrow = False
     todaysCount = 0
