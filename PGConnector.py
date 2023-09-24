@@ -26,34 +26,34 @@ class PGConnector(PGBase):
         cursor.close()
         return ret
 
-    def select_match(self, match):
+    def select_row(self, row):
         cursor = self.pg.cursor()
-        cursor.execute(match.generate_select())
+        cursor.execute(row.generate_select())
         ret = cursor.fetchall()
         cursor.close()
         return ret
 
-    def insert(self, match):
-        sql = match.generate_sql_insert_into_values()
-        values = match.generate_sql_insert_values()
+    def insert(self, row):
+        sql = row.generate_sql_insert_into_values()
+        values = row.generate_sql_insert_values()
         cursor = self.pg.cursor()
         cursor.execute(sql, values)
         self.pg.commit()
         cursor.close()
 
-    def update(self, match):
-        sql = match.generate_update()
+    def update(self, row):
+        sql = row.generate_update()
         if len(sql):
             cursor = self.pg.cursor()
             cursor.execute(sql)
             self.pg.commit()
             cursor.close()
         else:
-            logging.error("Match update attempted without data.")
+            logging.error("Row update attempted without data.")
 
-    def insert_or_update(self, match):
-        sql = '%s ON CONFLICT ON CONSTRAINT %s_pkey DO UPDATE SET %s RETURNING id' % (match.generate_sql_insert_into_values(), match.table_name, match.generate_do_update_set())
-        values = match.generate_sql_insert_values()
+    def insert_or_update(self, row):
+        sql = '%s ON CONFLICT ON CONSTRAINT %s_pkey DO UPDATE SET %s RETURNING id' % (row.generate_sql_insert_into_values(), row.table_name, row.generate_do_update_set())
+        values = row.generate_sql_insert_values()
         cursor = self.pg.cursor()
         cursor.execute(sql, values)
         self.pg.commit()
@@ -66,21 +66,21 @@ class PGConnector(PGBase):
             logging.exception("Exception in insert_or_update. Remeding..")
             cursor.close()
             cursor = self.pg.cursor()
-            sql = match.generate_select('id')
+            sql = row.generate_select('id')
             cursor.execute(sql)
             rid = cursor.fetchone()
             cursor.close()
         finally:
             cid = rid[0]
 
-        if match.get("id") is not None:
-            cid = match.get("id")
+        if row.get("id") is not None:
+            cid = row.get("id")
         else:
-            match.set("id", id)
+            row.set("id", id)
         return cid
 
-    def delete(self, match, where=''):
-        sql = match.generate_delete(where)
+    def delete(self, row, where=''):
+        sql = row.generate_delete(where)
         cursor = self.pg.cursor()
         cursor.execute(sql)
         self.pg.commit()

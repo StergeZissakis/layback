@@ -2,13 +2,13 @@ import sys
 from datetime import datetime
 import logging
 import Utils
+from BetMonitor import BetMonitor
 from LiveMatch import APILivePage
 from PGConnector import PGConnector
 from BetRow import BetRow
 from Browser import Browser
 from selenium.webdriver.common.by import By
-from threading import Thread
-from selenium.common.exceptions import NoSuchElementException
+# from selenium.common.exceptions import NoSuchElementException
 
 
 class MatchMonitor:
@@ -35,22 +35,13 @@ class MatchMonitor:
             self.browser.quit()
 
     @staticmethod
-    def check_exists_by_xpath(element, xpath):
-        try:
-            element.find_element(By.XPATH, xpath)
-        except  Exception as Argument:
-            logging.debug("Element [%s] does not exist yet" % xpath)
-            return False
-        return True
-
-    @staticmethod
     def sleep(x=60):
         Utils.sleep_for_seconds(x)
 
     def expandTabsOfInterest(self):
         self.sleep(4)
         for i in range(1, 10):
-            if not self.check_exists_by_xpath(self.page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i):
+            if not self.browser.check_exists_by_xpath(self.page, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i):
                 continue
             tab = self.page.find_element(By.XPATH, '//*[@id="multiMarketContainer"]/div[6]/div[3]/div/div[%s]/div/div[1]/div[1]' % i)
             self.browser.scroll_to_visible(tab, True)
@@ -76,10 +67,10 @@ class MatchMonitor:
             ret = False
         return ret
 
-    def checkForSuspendedAndWait(self): # TODO: needs testing
+    def checkForSuspendedAndWait(self):
         suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'
         seconds_count = 0
-        while self.check_exists_by_xpath(self.page, suspended_xpath) and self.page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
+        while self.browser.check_exists_by_xpath(self.page, suspended_xpath) and self.page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
             Utils.sleep_for_seconds(1)
             seconds_count += 1
             if seconds_count > 900: # 15 mins
@@ -90,6 +81,7 @@ class MatchMonitor:
         div_place_bet_button = 1
         if layback == 'Lay':
             div_place_bet_button = 2
+        count =  0
         while True:
             try:
                 self.checkForSuspendedAndWait()
@@ -101,23 +93,47 @@ class MatchMonitor:
                 self.checkForSuspendedAndWait()
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
                 break
-            except  Exception as Argument:
-                logging.exception("Error during placeBet")
+            except Exception as Argument:
+                self.sleep(1)
+                logging.debug("Error during placeBet: %s" % self.match)
+                count += 1
+                if count >= 600:
+                    logging.error("Error during placeBet - Max timeout reached : %s" % self.match)
+                    sys.exit(3)
                 continue
-        # TODO: ensure bet is placed
+
         bet = self.logBet(layback, overUnder, goals, odds, odds_recorded, amount)
-        # TODO: Monitor for when it will be matched
-        # get final result of bets
-        # monitorBetThread = Thread(target=self.monitorBet, args=(self, bet))
-        # monitorBetThread.start()
-        # monitorBetThread.join()  #TODO:?
+        self.monitorBet(bet)
+
+    def extractOrbitTeamNames(self):
+        home = None
+        away = None
+        homepath = '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[1]/div[1]/div'
+        awaypath = '//*[@id="multiMarketContainer"]/div[1]/div[1]/div/div[2]/div[3]/div[1]/div'
+        if self.browser.check_exists_by_xpath(self.page, homepath) and self.browser.check_exists_by_xpath(self.page, awaypath):
+            home = self.page.find_element(By.XPATH, homepath).text.strip()
+            away = self.page.find_element(By.XPATH, awaypath).text.strip()
+        else:
+            teamspath = '//*[@id="multiMarketContainer"]/div[1]/div/div[1]/div/h2'
+            if self.browser.check_exists_by_xpath(self.page, teamspath):
+                teams = self.page.find_element(By.XPATH, teamspath)
+                home, away = teams.text.split(' v ')
+                home = home.strip()
+                away = away.strip()
+            else:
+                logging.error('Failed to extract bet team names: %s' % self.match)
+        return home, away
 
     def logBet(self, layback, overUnder, goals, odds, odds_recorded, amount):
-        # pp = pprint.PrettyPrinter(indent=4)
+        home, away = self.extractOrbitTeamNames()
+        if home is None:  # best effort
+            home = self.match.get("home")
+        if away is None:
+            away = self.match.get("away")
         bet = BetRow()
         bet.set("MatchDateTime", self.match.get("date_time"))
-        bet.set("Home", self.match.get("home"))
-        bet.set("Away", self.match.get("away"))
+        bet.set("Home", home)
+        bet.set("Away", away)
         bet.set("BetDateTime", datetime.now())
         bet.set("LayBack", layback)
         bet.set("OverUnder", overUnder)
@@ -130,8 +146,11 @@ class MatchMonitor:
         return bet
 
     def monitorBet(self, bet):
-        # TODO
-        pass
+        bm = BetMonitor(self.db, self.browser, self.page, bet)
+        if not bm.prepare():
+            return
+        betStatus = bm.monitor()
+        logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
     def layUnder1p5at1p5(self, euros):
         self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds(), euros)
@@ -147,7 +166,7 @@ class MatchMonitor:
 
     def backUnder2p5at1p5(self, euros):
         odds = self.getBackUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, odds, odds, euros)
+        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, 1.5, odds, euros)
         logging.info('%s betted Back Under 2.5 @ 1.5 odds' % self.match)
         return float(odds)
 
@@ -199,7 +218,7 @@ class MatchMonitor:
         Utils.sleep_for_seconds(3)
         self.loginToExchange()
 
-        if self.check_exists_by_xpath(self.page, '//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button'):
+        if self.browser.check_exists_by_xpath(self.page, '//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button'):
             self.browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
 
         retryCount = 0
@@ -218,36 +237,6 @@ class MatchMonitor:
         if not self.livePage.canBeMonitored():
             logging.error('Live Match capture failed : %s' % self.match)
             return
-        '''
-        timeout = 15
-        while not isinstance(self.livePage.getMatchTime(), int): # in case the time has not appeared yet
-            logging.info('Time is not numeric : %s' % self.match)
-            self.sleep()
-            timeout -= 1
-            if timeout == 0:
-                logging.error('Failed to get self.match time after 15 mins. : %s' % self.match)
-                return
-        
-        logging.info('Time is numeric : %s' % self.match)
-    
-        matchTime = self.livePage.getMatchTime()
-        while isinstance(matchTime, int) and matchTime <= 45:
-            self.sleep()
-            matchTime = self.livePage.getMatchTime()
-
-        logging.info('1st Half passed : %s' % self.match)
-        self.sleep(10)
-
-        while not isinstance(self.livePage.getMatchTime(), int):
-            self.sleep(30)
-        
-        logging.info('Beginning of 2nd Half : %s' % self.match)
-    
-        while isinstance(self.livePage.getMatchTime(), int) and int(self.livePage.getMatchTime()) <= 46:
-            self.sleep(30)
-    
-        logging.info('Goals of %s  @ %s\' : %s' % (self.match, str(self.livePage.getMatchTime()),str(self.livePage.getTotalGoals())))
-        '''
 
         logging.info("Checking for not started->%s" % self.match)
         while self.livePage.getMatchStatus() == "NS":
@@ -265,7 +254,9 @@ class MatchMonitor:
         while self.livePage.getMatchStatus() != "2H":
             self.sleep()
 
-        logging.info("2nd half to started->%s" % self.match)
+        logging.info("2nd half started->%s" % self.match)
+        while self.livePage.getMatchTime() < 55:
+            self.sleep()
 
         if self.livePage.getMatchStatus() == 'FT':
             logging.error("Match ended prematurely->%s" % self.match)

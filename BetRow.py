@@ -15,5 +15,8 @@ class BetRow(DBRow):
             "Goals": None,
             "Odds": None,
             "OddsRecorded": None,
-            "Amount": None
+            "Amount": None,
+            "BetResult": None,
+            "BetResultTime": None,
+            "BetId": None
         }

@@ -204,6 +204,16 @@ class Browser:
                 pass
         return None
 
+    @staticmethod
+    def check_exists_by_xpath(element, xpath):
+        try:
+            element.find_element(By.XPATH, xpath)
+        except  Exception as Argument:
+            logging.debug("Element [%s] does not exist yet" % xpath)
+            return False
+        return True
+
+
     def switch_to_tab(self, tab_index, wait_for_elelemt_xpath=""):
         self.driver.switch_to.window(self.driver.window_handles[tab_index])
         self.page = self.driver

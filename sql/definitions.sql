@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-09-23 15:52:23 BST
+-- Started on 2023-09-24 23:19:55 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -266,7 +266,8 @@ CREATE TABLE public.over2p5bets (
     "OddsRecorded" numeric(3,2) NOT NULL,
     "Amount" numeric NOT NULL,
     "BetResult" public."BetResult",
-    "BetMatchTime" timestamp without time zone
+    "BetResultTime" timestamp without time zone,
+    "BetId" bigint
 );
 
 
@@ -287,7 +288,7 @@ CREATE VIEW public."TodaysBets" AS
     a."Odds",
     a."OddsRecorded",
     a."Amount",
-    a."BetMatchTime",
+    a."BetResultTime" AS "BetMatchTime",
     a."BetResult"
    FROM public.over2p5bets a
   WHERE ((a."BetDateTime")::date >= CURRENT_DATE)
@@ -549,7 +550,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-23 15:52:23 BST
+-- Completed on 2023-09-24 23:19:55 BST
 
 --
 -- PostgreSQL database dump complete
