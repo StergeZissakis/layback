@@ -73,7 +73,7 @@ class MatchMonitor:
         while self.browser.check_exists_by_xpath(self.page, suspended_xpath) and self.page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
             Utils.sleep_for_seconds(1)
             seconds_count += 1
-            if seconds_count > 900: # 15 mins
+            if seconds_count > 900:  # 15 mins
                 logging.info("Match suspended for more than 10 minutes [%s]. Quiting..." % self.match)
                 sys.exit(2)
 
@@ -81,7 +81,7 @@ class MatchMonitor:
         div_place_bet_button = 1
         if layback == 'Lay':
             div_place_bet_button = 2
-        count =  0
+        count = 0
         while True:
             try:
                 self.checkForSuspendedAndWait()
@@ -95,7 +95,7 @@ class MatchMonitor:
                 break
             except Exception as Argument:
                 self.sleep(1)
-                logging.debug("Error during placeBet: %s" % self.match)
+                logging.debug("Error during placeBet: %s -> %s" % (self.match, Argument))
                 count += 1
                 if count >= 600:
                     logging.error("Error during placeBet - Max timeout reached : %s" % self.match)
@@ -258,8 +258,13 @@ class MatchMonitor:
         while self.livePage.getMatchTime() < 55:
             self.sleep()
 
+        self.match.set("ht_goals", self.livePage.getTotalGoals())
+        self.db.update(self.match)
+
         if self.livePage.getMatchStatus() == 'FT':
             logging.error("Match ended prematurely->%s" % self.match)
+            self.match.set("ft_goals", self.livePage.getTotalGoals())
+            self.db.update(self.match)
             return
 
         if self.livePage.getTotalGoals() == 0:
@@ -270,7 +275,7 @@ class MatchMonitor:
                 if self.getLayUnder1p5Odds() <= 1.15:
                     self.backUnder1p5(self.eurosToBet)
                     logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % self.match)
-                    return
+                    break
                 self.sleep()
 
             if self.livePage.getMatchStatus() != 'FT':
@@ -280,7 +285,7 @@ class MatchMonitor:
                 if self.getBackUnder1p5Odds() <= 1.52:
                     self.backUnder1p5at1p5(self.eurosToBet)
                     logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % self.match)
-                    return
+                    break
                 self.sleep()
     
         elif self.livePage.getTotalGoals() == 1:
@@ -291,7 +296,7 @@ class MatchMonitor:
                 if self.getLayUnder2p5Odds() <= 1.15:
                     self.backUnder2p5(self.eurosToBet)
                     logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % self.match)
-                    return
+                    break
                 self.sleep()
 
             if self.livePage.getMatchStatus() != 'FT':
@@ -301,13 +306,18 @@ class MatchMonitor:
                 if self.getBackUnder2p5Odds() <= 1.52:
                     self.backUnder2p5at1p5(self.eurosToBet)
                     logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % self.match)
-                    return
+                    break
                 self.sleep()
     
         else:
             logging.info('2 or more goals scored already. : %s' % self.match)
-            return
 
+        logging.info("Waiting for match to end->%s" % self.match)
+        while self.livePage.getMatchStatus() != "FT":
+            self.sleep()
+
+        self.match.set("ft_goals", self.livePage.getTotalGoals())
+        self.db.update(self.match)
         logging.info('Game %s finished with goals : %s' % (self.match, self.livePage.getTotalGoals()))
 
 

@@ -29,7 +29,6 @@ class BetMonitor:
     page = None
     bet = None
     betslips = None
-    betStatus = None
 
     def __init__(self, db, browser, page, bet):
         self.db = db
@@ -46,8 +45,12 @@ class BetMonitor:
         return True
 
     def locateBet(self):
-        event_name = self.bet.get("home") + " v " + self.bet.get("away")
-        for div in self.betslips.find_elements(By.XPATH, './div'):
+        event_name = self.bet.get("Home") + " v " + self.bet.get("Away")
+        while self.betslips is None:
+            self.prepare()
+            Utils.sleep_for_seconds(1)
+
+        for div in self.betslips.find_elements(By.XPATH, './div'):    # tODO unable to locate
             for innerDiv in div.find_element(By.XPATH, './div'):
                 div_event_name = innerDiv.get_attribute('data-event-name')
                 if div_event_name is not None and div_event_name == event_name: # bet located
@@ -64,6 +67,7 @@ class BetMonitor:
                     return BetStatus(betId, betTime, matched)
 
         return None
+
     def monitor(self):
         timeout = 30
         bet = self.locateBet()
@@ -98,7 +102,6 @@ class BetMonitor:
             return "matched"
 
         return "Unknown"
-
 
     def updateBet(self, betStatus):
         self.bet.set("BetDateTime", datetime.fromtimestamp(betStatus.placedTime))

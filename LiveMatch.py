@@ -63,6 +63,9 @@ class APILivePage:
         if live is None and self.last_known_status is not None:
             logging.info("Failed to get current match status. Using last known %s" % self.last_known_status)
             return self.last_known_status
+        if len(live["data"]["match"]) == 0:
+            logging.info("Failed to get current match status due to empty array. Using last known %s" % self.last_known_status)
+            return self.last_known_status
         status = live["data"]["match"][0]["status"]
         if isinstance(status, str):
             if status == 'NOT STARTED':
