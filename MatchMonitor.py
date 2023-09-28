@@ -23,12 +23,12 @@ class MatchMonitor:
     password = "Zisis1975€€€"
     livePage = None
     liveMatch = None
-    eurosToBet = None
+    stake = None
 
     def __init__(self, match):
         self.match = match
         self.browser = Browser()
-        self.eurosToBet = 5
+        self.stake = 6
 
     def __del__(self):
         if self.browser and self.browser.headless:
@@ -89,7 +89,7 @@ class MatchMonitor:
                 self.checkForSuspendedAndWait()
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input').send_keys(str(odds))  # odds
                 self.checkForSuspendedAndWait()
-                tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(Utils.calculateStakeFor(amount, odds))  # stake
+                tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(self.stake)
                 self.checkForSuspendedAndWait()
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
                 break
@@ -103,6 +103,7 @@ class MatchMonitor:
                 continue
 
         bet = self.logBet(layback, overUnder, goals, odds, odds_recorded, amount)
+        bet.tab = tab
         self.monitorBet(bet)
 
     def extractOrbitTeamNames(self):
@@ -147,9 +148,14 @@ class MatchMonitor:
 
     def monitorBet(self, bet):
         bm = BetMonitor(self.db, self.browser, self.page, bet)
-        if not bm.prepare():
-            return
         betStatus = bm.monitor()
+        while betStatus in ("Not Found", "Unknown"):
+            self.sleep(1)
+            betStatus = bm.monitor()
+
+        if betStatus == "Lapsed" and self.livePage.getTotalGoals() >= 2:
+            sys.exit()
+            #self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), bet.get("Goals"), bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
     def layUnder1p5at1p5(self, euros):
@@ -269,12 +275,12 @@ class MatchMonitor:
             return
 
         if self.livePage.getTotalGoals() == 0:
-            self.layUnder1p5at1p5(self.eurosToBet)
+            self.layUnder1p5at1p5(self.stake)
             logging.info('Initial bet played : %s' % self.match)
     
             while self.livePage.getTotalGoals() == 0 and self.livePage.getMatchStatus() != 'FT':
                 if self.getLayUnder1p5Odds() <= 1.15:
-                    self.backUnder1p5(self.eurosToBet)
+                    self.backUnder1p5(self.stake)
                     logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % self.match)
                     break
                 self.sleep()
@@ -284,18 +290,18 @@ class MatchMonitor:
     
             while self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
                 if self.getBackUnder1p5Odds() <= 1.52:
-                    self.backUnder1p5at1p5(self.eurosToBet)
+                    self.backUnder1p5at1p5(self.stake)
                     logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % self.match)
                     break
                 self.sleep()
     
         elif self.livePage.getTotalGoals() == 1:
-            self.layUnder2p5at1p5(self.eurosToBet)
+            self.layUnder2p5at1p5(self.stake)
             logging.info('Initial bet played. : %s' % self.match)
             
             while self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
                 if self.getLayUnder2p5Odds() <= 1.15:
-                    self.backUnder2p5(self.eurosToBet)
+                    self.backUnder2p5(self.stake)
                     logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % self.match)
                     break
                 self.sleep()
@@ -305,7 +311,7 @@ class MatchMonitor:
     
             while self.livePage.getTotalGoals() == 2 and self.livePage.getMatchStatus() != 'FT':
                 if self.getBackUnder2p5Odds() <= 1.52:
-                    self.backUnder2p5at1p5(self.eurosToBet)
+                    self.backUnder2p5at1p5(self.stake)
                     logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % self.match)
                     break
                 self.sleep()

@@ -28,7 +28,7 @@ class BetMonitor:
     browser = None
     page = None
     bet = None
-    betslips = None
+    lastGoodKnownBetStatus = None
 
     def __init__(self, db, browser, page, bet):
         self.db = db
@@ -36,25 +36,12 @@ class BetMonitor:
         self.page = page
         self.bet = bet
 
-    def prepare(self):
-        betslipsPath = '//*[@id="biab_body"]/div[2]/div[2]/div/div/div/div[1]/div[2]/div'
-        if not self.browser.check_exists_by_xpath(self.page, betslipsPath):
-            logging.error("BetMonitor failed to locate betslips: %s" % self.bet)
-            self.betslips = None
-            return False
-        self.betslips = self.page.find_element(By.XPATH, betslipsPath)
-        return True
-
-    def locateBet(self):
+    def getBetStatus(self):
         event_name = self.bet.get("Home") + " v " + self.bet.get("Away")
-        self.prepare()
-        while self.betslips is None:
-            self.prepare()
-            Utils.sleep_for_seconds(1)
         try:
-            betSlipDiv = self.page.find_element(By.XPATH, '//*[@data-event-name="' + event_name + '"]')
+            betSlipDiv = self.page.find_elements(By.XPATH, '//*[@data-event-name="' + event_name + '"]')[0]
             betId = betSlipDiv.get_attribute('data-offer-id')
-            betTime = betSlipDiv.get_attribute('data-placed-date')
+            betTime = int(betSlipDiv.get_attribute('data-placed-date'))
             statusDiv = betSlipDiv.find_element(By.XPATH, './div/div')
             statusDivClasses = statusDiv.get_attribute('class').split()
             matched = None
@@ -63,42 +50,40 @@ class BetMonitor:
             elif 'biab_matched' in statusDivClasses:
                 matched = True
             return BetStatus(betId, betTime, matched)
-        except:
-            logging.info("Failed to locate betslip: %s" % event_name)
+        except Exception as Argument:
+            logging.info("Failed to get betslip status: %s" % event_name)
         return None
 
     def monitor(self):
         timeout = 30
-        bet = self.locateBet()
+        betStatus = self.getBetStatus()
         retries = 0
-        while bet is None:
+        while betStatus is None:
             Utils.sleep_for_seconds(1)
-            bet = self.locateBet()
+            betStatus = self.getBetStatus()
             retries += 1
             if retries > timeout:
                 return "Not found"
 
-        if bet.matched:
-            self.updateBet(bet)
+        if betStatus.matched:
+            self.updateBet(betStatus)
+            self.lastGoodKnownBetStatus = betStatus
             return "Matched"
 
-        if self.bet is None:
-            self.bet = bet
-
         Utils.sleep_for_seconds(1)
-        bet = self.locateBet()
-        while bet and bet == self.bet:
+        betStatus = self.getBetStatus()
+        while betStatus and betStatus.matched is False:
             Utils.sleep_for_seconds(1)
-            bet = self.locateBet()
+            betStatus = self.getBetStatus()
 
-        if bet is None: # lapsed
-            bet = BetStatus(self.bet.id, self.bet.placedTime, self.bet.matched, True )
-            self.updateBet(bet)
+        if betStatus is None and self.lastGoodKnownBetStatus.matched is False: # lapsed
+            self.lastGoodKnownBetStatus.lapsed = True
+            self.updateBet(self.lastGoodKnownBetStatus)
             return "Lapsed"
 
-        if bet.matched:
-            self.updateBet(bet)
-            return "matched"
+        if betStatus and betStatus.matched:
+            self.updateBet(betStatus)
+            return "Matched"
 
         return "Unknown"
 
