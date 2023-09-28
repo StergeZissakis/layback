@@ -255,9 +255,10 @@ class MatchMonitor:
             self.sleep()
 
         logging.info("2nd half started->%s" % self.match)
-        while self.livePage.getMatchTime() < 55:
+        while self.livePage.getMatchTime() < 46:
             self.sleep()
 
+        self.match.table_name = 'over2p5orbitxch' # or it will try to update the view!
         self.match.set("ht_goals", self.livePage.getTotalGoals())
         self.db.update(self.match)
 

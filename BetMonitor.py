@@ -40,32 +40,31 @@ class BetMonitor:
         betslipsPath = '//*[@id="biab_body"]/div[2]/div[2]/div/div/div/div[1]/div[2]/div'
         if not self.browser.check_exists_by_xpath(self.page, betslipsPath):
             logging.error("BetMonitor failed to locate betslips: %s" % self.bet)
+            self.betslips = None
             return False
         self.betslips = self.page.find_element(By.XPATH, betslipsPath)
         return True
 
     def locateBet(self):
         event_name = self.bet.get("Home") + " v " + self.bet.get("Away")
+        self.prepare()
         while self.betslips is None:
             self.prepare()
             Utils.sleep_for_seconds(1)
-
-        for div in self.betslips.find_elements(By.XPATH, './div'):    # tODO unable to locate
-            for innerDiv in div.find_element(By.XPATH, './div'):
-                div_event_name = innerDiv.get_attribute('data-event-name')
-                if div_event_name is not None and div_event_name == event_name: # bet located
-                    betId = innerDiv.get_attribute('data-offer-id')
-                    betTime = innerDiv.get_attribute('data-placed-date')
-                    statusDiv = innerDiv.find_element(By.XPATH, './div/div')
-                    statusDivClasses = statusDiv.get_attribute('class').split()
-                    if 'biab_unmatched' in statusDivClasses:
-                        matched = False
-                    elif 'biab_matched' in statusDivClasses:
-                        matched = True
-                    else:
-                        continue
-                    return BetStatus(betId, betTime, matched)
-
+        try:
+            betSlipDiv = self.page.find_element(By.XPATH, '//*[@data-event-name="' + event_name + '"]')
+            betId = betSlipDiv.get_attribute('data-offer-id')
+            betTime = betSlipDiv.get_attribute('data-placed-date')
+            statusDiv = betSlipDiv.find_element(By.XPATH, './div/div')
+            statusDivClasses = statusDiv.get_attribute('class').split()
+            matched = None
+            if 'biab_unmatched' in statusDivClasses:
+                matched = False
+            elif 'biab_matched' in statusDivClasses:
+                matched = True
+            return BetStatus(betId, betTime, matched)
+        except:
+            logging.info("Failed to locate betslip: %s" % event_name)
         return None
 
     def monitor(self):

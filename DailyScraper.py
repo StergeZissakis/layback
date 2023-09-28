@@ -155,21 +155,25 @@ def scrapeOrbitxch(dbase):
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="biab_header"]/div[2]/div[2]/div[1]/div'))
     Utils.sleep_for_seconds(1)
     browser.move_to_element_and_left_click(page.find_element(By.XPATH, '//*[@id="-60"]'))  # GMT+1
-    Utils.sleep_for_seconds(3)
+    Utils.sleep_for_seconds(10)
 
 
-    # loop until they day afgter tommorrow appears on the list
+    # loop until they day after tommorrow appears on the list
     while browser.wait_for_element_to_appear('//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[3]/div[1]', 1) is None:
         browser.scroll_to_visible(page.find_element(By.XPATH, '//*[@id="biab_footer"]/div/ul'), centre=True)
-        Utils.sleep_for_seconds(2) 
+        Utils.sleep_for_seconds(3)
 
     todaysRoot = None
+    count = 0
     while todaysRoot is None:
         try:
             todaysRoot = page.find_element(By.XPATH,    '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[2]')
         except  Exception as Argument:
-            logging.exception("Error while getting today's root")
+            logging.info("Error while getting today's root")
             Utils.sleep_for_seconds(1)
+            count += 1
+            if count > 10:
+                break
             continue
 
     tommorowsRoot = None
@@ -182,7 +186,7 @@ def scrapeOrbitxch(dbase):
             continue
 
     # today
-    todaysMatches    = todaysRoot.find_elements(By.CSS_SELECTOR,    'div.biab_group-markets-table-row.row.rowMarket')
+    todaysMatches = todaysRoot.find_elements(By.CSS_SELECTOR,    'div.biab_group-markets-table-row.row.rowMarket')
     count = 0
     for match in todaysMatches:
         row = DailyMatchRow("over2p5orbitxch")

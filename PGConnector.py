@@ -76,7 +76,7 @@ class PGConnector(PGBase):
         if row.get("id") is not None:
             cid = row.get("id")
         else:
-            row.set("id", id)
+            row.set("id", cid)
         return cid
 
     def delete(self, row, where=''):

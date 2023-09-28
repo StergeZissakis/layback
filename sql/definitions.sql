@@ -5,7 +5,7 @@
 -- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
--- Started on 2023-09-25 23:23:48 BST
+-- Started on 2023-09-28 19:04:04 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -210,7 +210,8 @@ CREATE TABLE public.over2p5orbitxch (
     url character varying,
     plaied boolean DEFAULT false NOT NULL,
     ht_goals smallint,
-    ft_goals smallint
+    ft_goals smallint,
+    league_id smallint
 );
 
 
@@ -342,10 +343,10 @@ CREATE VIEW public."YesterdaysMatches" AS
     b.league_id,
     c.ht_goals,
     c.ft_goals
-   FROM ((public.goalsnow_today a
-     JOIN public.footballsupertips_today b ON ((((a.league_id = b.league_id) AND (a.date_time = b.date_time) AND (lower((a.home)::text) ~~ lower((b.home)::text))) OR (lower((a.away)::text) ~~ lower((b.away)::text)))))
-     JOIN public.orbitxch_today c ON ((((b.date_time = c.date_time) AND (lower((b.home)::text) ~~ lower((c.home)::text))) OR (lower((b.away)::text) ~~ lower((c.away)::text)))))
-  WHERE ((c.date_time >= (CURRENT_DATE - '1 day'::interval)) AND (c.date_time <= CURRENT_DATE))
+   FROM ((public.over2p5goalsnow a
+     JOIN public.over2p5footballsupertips b ON ((((a.league_id = b.league_id) AND (a.date_time = b.date_time) AND (lower((a.home)::text) ~~ lower((b.home)::text))) OR (lower((a.away)::text) ~~ lower((b.away)::text)))))
+     JOIN public.over2p5orbitxch c ON ((((b.date_time = c.date_time) AND (lower((b.home)::text) ~~ lower((c.home)::text))) OR (lower((b.away)::text) ~~ lower((c.away)::text)))))
+  WHERE ((c.date_time >= (CURRENT_DATE - '1 day'::interval)) AND (c.date_time < CURRENT_DATE))
   ORDER BY c.date_time, c.id, c.url;
 
 
@@ -624,7 +625,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-25 23:23:49 BST
+-- Completed on 2023-09-28 19:04:04 BST
 
 --
 -- PostgreSQL database dump complete

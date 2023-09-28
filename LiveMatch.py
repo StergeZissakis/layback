@@ -11,8 +11,7 @@ class APILivePage:
     api_key = "Fv6kKZy7fwSLBTB7"
     api_secret = "Bef6mREpHUEqpF44aboUaW2qsUc4ONbp"
     fixture_id = None
-    #get_fixtures_url = "https://livescore-api.com/api-client/fixtures/matches.json?key=%s&secret=%s&date=today&lang=en&competition_id="
-    get_fixtures_url = "https://livescore-api.com/api-client/scores/live.json?key=%s&secret=%s&date=today&lang=en&competition_id="
+    get_fixtures_url = "https://livescore-api.com/api-client/scores/live.json?key=%s&secret=%s&date=today&lang=en"
     get_live_url = "https://livescore-api.com/api-client/scores/live.json?key=%s&secret=%s&fixture_id="
     last_known_score = None
     last_known_time = None
@@ -21,7 +20,8 @@ class APILivePage:
         self.match = match
         self.endOfMatchStr = 'FT'
         self.get_fixtures_url %= (self.api_key, self.api_secret)
-        self.get_fixtures_url += str(match.get("league_id"))
+        if match.get("league_id"):
+            self.get_fixtures_url += "&competition_id=%s" % str(match.get("league_id"))
         self.get_live_url %= (self.api_key, self.api_secret)
         self.fixture_id = self.findLiveMatch()
         if self.fixture_id:
