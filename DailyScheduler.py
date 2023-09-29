@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     processes = []
 
-    matches = db.select('select * from "TodayMatches" where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval \'45 minutes\') , (now()::timestamp - interval \'15 minutes\'))')
+    matches = db.select('select * from "TodayMatches" where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval \'75 minutes\') , (now()::timestamp - interval \'15 minutes\'))')
     for m in matches:
         match = DailyMatchRow('TodayMatches')
         match.set("id", m[0])

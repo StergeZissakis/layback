@@ -172,74 +172,84 @@ def scrapeOrbitxch(dbase):
             logging.info("Error while getting today's root")
             Utils.sleep_for_seconds(1)
             count += 1
-            if count > 10:
+            if count > 20:
                 break
             continue
 
     tommorowsRoot = None
+    count = 0
     while tommorowsRoot is None:
         try:
             tommorowsRoot = page.find_element(By.XPATH, '//*[@id="biab_body"]/div[2]/main/div/div[3]/div/div/div[1]/div[3]/div/div[2]/div[2]/div/div[2]')
         except  Exception as Argument:
             logging.exception("Error while getting tomorrow's root")
             Utils.sleep_for_seconds(1)
+            count += 1
+            if count > 20:
+                break
             continue
 
     # today
-    todaysMatches = todaysRoot.find_elements(By.CSS_SELECTOR,    'div.biab_group-markets-table-row.row.rowMarket')
-    count = 0
-    for match in todaysMatches:
-        row = DailyMatchRow("over2p5orbitxch")
-        try:
-            matchTime = match.find_element(By.XPATH, './div[1]/div/span')
-            matchTime  = matchTime.text.strip()
-            if len(matchTime.split(':')) == 2 and len(str(matchTime)) == 5:
-                event_date_time = Utils.add_time_to_date(event_date=datetime.now(), event_time=matchTime)
-                row.set("date_time", event_date_time)
-        except  Exception as Argument:
-            logging.debug("Failed to extract start time: %s of %s " % ('match./div[1]/div/span', str(row)))
-            continue
-    
-        names = match.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
-        home, away = names.find_elements(By.CSS_SELECTOR, 'p')
-        market = match.get_attribute('data-market-id')
-        row.set("home", home.text.strip())
-        row.set("away", away.text.strip())
-        row.set("url", 'https://www.orbitxch.com/customer/sport/1/market/' + market.strip())
+    if todaysRoot:
+        todaysMatches = todaysRoot.find_elements(By.CSS_SELECTOR,    'div.biab_group-markets-table-row.row.rowMarket')
+        count = 0
+        for match in todaysMatches:
+            row = DailyMatchRow("over2p5orbitxch")
+            try:
+                matchTime = match.find_element(By.XPATH, './div[1]/div/span')
+                matchTime  = matchTime.text.strip()
+                if len(matchTime.split(':')) == 2 and len(str(matchTime)) == 5:
+                    event_date_time = Utils.add_time_to_date(event_date=datetime.now(), event_time=matchTime)
+                    row.set("date_time", event_date_time)
+            except  Exception as Argument:
+                logging.debug("Failed to extract start time: %s of %s " % ('match./div[1]/div/span', str(row)))
+                continue
 
-        if row.get("date_time") is not None:
-            dbase.insert_or_update(row)
-            count += 1
+            names = match.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
+            home, away = names.find_elements(By.CSS_SELECTOR, 'p')
+            market = match.get_attribute('data-market-id')
+            row.set("home", home.text.strip())
+            row.set("away", away.text.strip())
+            row.set("url", 'https://www.orbitxch.com/customer/sport/1/market/' + market.strip())
+
+            if row.get("date_time") is not None:
+                dbase.insert_or_update(row)
+                count += 1
+    else:
+        logging.error("Failed to get today's root")
 
     # tommorow
-    tommorowsMatches = tommorowsRoot.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
-    tommorowsDate = datetime.today() + timedelta(days=1)
     tommorowsCount = 0
-    for tm in tommorowsMatches:
-        row = DailyMatchRow("over2p5orbitxch")
-        try:
-            matchTime = tm.find_element(By.XPATH, './div[1]/div/span[2]')
-            mTime = matchTime.text.strip()
-            if len(mTime.split(':')) == 2 and len(str(mTime)) == 5:
-                hour, minute = mTime.split(':')
-                if int(hour) >= 6:
-                    break
-                event_date_time = Utils.add_time_to_date(event_date=tommorowsDate, event_time=mTime)
-                row.set("date_time", event_date_time)
-        except  Exception as Argument:
-            logging.exception("Failed to extract tommorow's start time: %s" % tm)
-            continue
-        names = tm.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
-        home, away = names.find_elements(By.CSS_SELECTOR, 'p')
-        market = tm.get_attribute('data-market-id')
-        row.set("home", home.text.strip())
-        row.set("away", away.text.strip())
-        row.set("url", 'https://www.orbitxch.com/customer/sport/1/market/' + market.strip())
-        
-        if row.get("date_time") is not None:
-            dbase.insert_or_update(row)
-            tommorowsCount += 1
-    
+    if tommorowsRoot:
+        tommorowsMatches = tommorowsRoot.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
+        tommorowsDate = datetime.today() + timedelta(days=1)
+        for tm in tommorowsMatches:
+            row = DailyMatchRow("over2p5orbitxch")
+            try:
+                matchTime = tm.find_element(By.XPATH, './div[1]/div/span[2]')
+                mTime = matchTime.text.strip()
+                if len(mTime.split(':')) == 2 and len(str(mTime)) == 5:
+                    hour, minute = mTime.split(':')
+                    if int(hour) >= 6:
+                        break
+                    event_date_time = Utils.add_time_to_date(event_date=tommorowsDate, event_time=mTime)
+                    row.set("date_time", event_date_time)
+            except  Exception as Argument:
+                logging.exception("Failed to extract tommorow's start time: %s" % tm)
+                continue
+            names = tm.find_element(By.CLASS_NAME, 'biab_market-title-team-names')
+            home, away = names.find_elements(By.CSS_SELECTOR, 'p')
+            market = tm.get_attribute('data-market-id')
+            row.set("home", home.text.strip())
+            row.set("away", away.text.strip())
+            row.set("url", 'https://www.orbitxch.com/customer/sport/1/market/' + market.strip())
+
+            if row.get("date_time") is not None:
+                dbase.insert_or_update(row)
+                tommorowsCount += 1
+    else:
+        logging.error("Fialed to get tommorows root")
+
     logging.info('Total Exchange Matches found for tommorow until 05:30: %s' % str(tommorowsCount))
 
     if browser.headless:
@@ -255,9 +265,9 @@ if __name__ == "__main__":
         logging.error("Failed to connect to DB")
         exit(-1)
 
-    goalsNow = scrapeGoalsNow(db)
-    logging.info("GoalsNow matches: " + str(goalsNow))
-    superTips = scrapeFootballSuperTips(db)
-    logging.info("SuperTips matches: " + str(superTips))
+    #goalsNow = scrapeGoalsNow(db)
+    #logging.info("GoalsNow matches: " + str(goalsNow))
+    #superTips = scrapeFootballSuperTips(db)
+    #logging.info("SuperTips matches: " + str(superTips))
     orbitxch = scrapeOrbitxch(db)
     logging.info("OrbitXCH matches: " + str(orbitxch))

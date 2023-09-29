@@ -149,13 +149,13 @@ class MatchMonitor:
     def monitorBet(self, bet):
         bm = BetMonitor(self.db, self.browser, self.page, bet)
         betStatus = bm.monitor()
-        while betStatus in ("Not Found", "Unknown"):
-            self.sleep(1)
-            betStatus = bm.monitor()
-
-        if betStatus == "Lapsed" and self.livePage.getTotalGoals() >= 2:
-            sys.exit()
-            #self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), bet.get("Goals"), bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
+        if betStatus == "Lapsed":
+            if self.livePage.getTotalGoals() == 0:
+                self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), 1.5, bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
+            elif self.livePage.getTotalGoals() == 1:
+                self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), 2.5, bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
+            else:
+                sys.exit()
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
     def layUnder1p5at1p5(self, euros):

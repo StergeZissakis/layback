@@ -13,7 +13,7 @@ from threading import Thread
 class BetStatus:
     id = None
     placedTime = None
-    matched = None
+    matched = False
     lasped = False
 
     def __init__(self, id, placedTime, matched, lapsed=False):
@@ -28,7 +28,6 @@ class BetMonitor:
     browser = None
     page = None
     bet = None
-    lastGoodKnownBetStatus = None
 
     def __init__(self, db, browser, page, bet):
         self.db = db
@@ -44,10 +43,8 @@ class BetMonitor:
             betTime = int(betSlipDiv.get_attribute('data-placed-date'))
             statusDiv = betSlipDiv.find_element(By.XPATH, './div/div')
             statusDivClasses = statusDiv.get_attribute('class').split()
-            matched = None
-            if 'biab_unmatched' in statusDivClasses:
-                matched = False
-            elif 'biab_matched' in statusDivClasses:
+            matched = False
+            if 'biab_matched' in statusDivClasses:
                 matched = True
             return BetStatus(betId, betTime, matched)
         except Exception as Argument:
@@ -55,40 +52,53 @@ class BetMonitor:
         return None
 
     def monitor(self):
-        timeout = 30
-        betStatus = self.getBetStatus()
-        retries = 0
-        while betStatus is None:
+        logging.info("Waiting for bet to appear: %s" % self.bet)
+        #Wait for be to appear
+        while self.getBetStatus() == None:
             Utils.sleep_for_seconds(1)
-            betStatus = self.getBetStatus()
-            retries += 1
-            if retries > timeout:
-                return "Not found"
 
-        if betStatus.matched:
-            self.updateBet(betStatus)
-            self.lastGoodKnownBetStatus = betStatus
+        logging.info("Bet appeared: %s" % self.bet)
+
+        status = self.getBetStatus()
+        if status.matched:
+            self.updateBet(status)
+            logging.info("Bet matched since it appeared: %s" % self.bet)
             return "Matched"
 
-        Utils.sleep_for_seconds(1)
-        betStatus = self.getBetStatus()
-        while betStatus and betStatus.matched is False:
+        logging.info("Bet not matched: %s" % self.bet)
+
+        status = self.getBetStatus()
+        lastKnownExistingStatus = status
+        while status is not None and status.matched is False:
             Utils.sleep_for_seconds(1)
-            betStatus = self.getBetStatus()
+            status = self.getBetStatus()
+            if status is not None and status.matched:
+                self.updateBet(status)
+                logging.info("Bet matched after unmatched: %s" % self.bet)
+                return "Matched"
+            elif status is None:
+                lastKnownExistingStatus.lasped = True
+                self.updateBet(lastKnownExistingStatus)
+                logging.info("Bet lapsed after unmatched: %s" % self.bet)
+                return "Lapsed"
+            if status is not None:
+                lastKnownExistingStatus = status
 
-        if betStatus is None and self.lastGoodKnownBetStatus.matched is False: # lapsed
-            self.lastGoodKnownBetStatus.lapsed = True
-            self.updateBet(self.lastGoodKnownBetStatus)
-            return "Lapsed"
+        if status is None:
+            lastKnownExistingStatus.lasped = True
+            self.updateBet(lastKnownExistingStatus)
+            logging.info("Bet lasped after unmatched2: %s" % self.bet)
+            return "Lasped"
 
-        if betStatus and betStatus.matched:
-            self.updateBet(betStatus)
+        if status.matched is True:
+            self.updateBet(status)
+            logging.info("Bet matched last resort: %s" % self.bet)
             return "Matched"
 
-        return "Unknown"
+        return "Laspsed"
 
     def updateBet(self, betStatus):
-        self.bet.set("BetDateTime", datetime.fromtimestamp(betStatus.placedTime))
+        self.bet.set("BetDateTime", datetime.fromtimestamp(betStatus.placedTime / 1000)) #Orbit epoch is in milliseconds
         self.bet.set("BetId", betStatus.id)
         if betStatus.lasped:
             self.bet.set("BetResult", 'Lapsed')

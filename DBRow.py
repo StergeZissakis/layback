@@ -75,7 +75,7 @@ class DBRow:
         sets = ''
         for k, v in self.data.items():
             if v is not None and k != 'id':
-                sets += " %s = '%s'," % (str(k), str(v))
+                sets += " \"%s\" = '%s'," % (str(k), str(v))
         if len(sets):
             sets = sets[0:-1]
             return 'UPDATE public."%s" SET %s WHERE id=%s;' % (self.table_name, sets, self.data["id"])
