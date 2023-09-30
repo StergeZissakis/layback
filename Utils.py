@@ -3,6 +3,7 @@ import logging
 import math
 import random
 from difflib import SequenceMatcher
+import requests
 
 
 def add_time_to_date(event_date, event_time):
@@ -91,3 +92,17 @@ def sleep_for_seconds_random(limit):
         sleep_for_seconds(random.randint(1, limit))
     else:
         sleep_for_seconds(random.randint(1, 3))
+
+def httpGet(url):
+    try:
+        return requests.get(url)
+    except HTTPError as e:
+        logging.error("HTTP Request Error: %s->%s" % (url, e))
+    except ConnectionError as e:
+        logging.error("HTTP Connection error: %s->%s" % (url, e))
+    except requests.exceptions.Timeout as e:
+        logging.error("HTTP Timeout: %s->%s" % (url, e))
+    except requests.exceptions.TooManyRedirects as e:
+        logging.error("HTTP Too Many Redirected: %s->%s" % (url, e))
+    except requests.exceptions.RequestException as e:
+        logging.error("HTTP Request Exception: %s->%s" % (url, e))

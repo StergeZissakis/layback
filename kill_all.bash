@@ -1,9 +1,5 @@
 #!/bin/bash
 
 #echo "Cleaning up all chrome leftovers..."
-killall -r "chrom.*"
-killall python
-killall python3
-killall chrome
-killall chromium
-killall chrom
+killall -g "/snap/chromium/2642/usr/lib/chromium-browser/chrome"
+#killall "/snap/chromium/2642/usr/lib/chromium-browser/chromedriver"

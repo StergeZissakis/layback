@@ -265,9 +265,9 @@ if __name__ == "__main__":
         logging.error("Failed to connect to DB")
         exit(-1)
 
-    #goalsNow = scrapeGoalsNow(db)
-    #logging.info("GoalsNow matches: " + str(goalsNow))
-    #superTips = scrapeFootballSuperTips(db)
-    #logging.info("SuperTips matches: " + str(superTips))
+    goalsNow = scrapeGoalsNow(db)
+    logging.info("GoalsNow matches: " + str(goalsNow))
+    superTips = scrapeFootballSuperTips(db)
+    logging.info("SuperTips matches: " + str(superTips))
     orbitxch = scrapeOrbitxch(db)
     logging.info("OrbitXCH matches: " + str(orbitxch))
