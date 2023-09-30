@@ -24,6 +24,7 @@ class MatchMonitor:
     livePage = None
     liveMatch = None
     stake = None
+    matchedBets = []
 
     def __init__(self, match):
         self.match = match
@@ -70,12 +71,17 @@ class MatchMonitor:
     def checkForSuspendedAndWait(self):
         suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'
         seconds_count = 0
+        suspended = False
         while self.browser.check_exists_by_xpath(self.page, suspended_xpath) and self.page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
+            suspended = True
             Utils.sleep_for_seconds(1)
             seconds_count += 1
             if seconds_count > 900:  # 15 mins
                 logging.info("Match suspended for more than 10 minutes [%s]. Quiting..." % self.match)
                 sys.exit(2)
+
+        if suspended:
+            Utils.sleep_for_seconds(1)
 
     def placeBet(self, tab, layback, overUnder, goals, odds, odds_recorded, amount):
         div_place_bet_button = 1
@@ -151,11 +157,16 @@ class MatchMonitor:
         betStatus = bm.monitor()
         if betStatus == "Lapsed":
             if self.livePage.getTotalGoals() == 0:
+                logging.info("Bet lapsed and reattempting with 0 goals: %s" % bet)
                 self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), 1.5, bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
             elif self.livePage.getTotalGoals() == 1:
+                logging.info("Bet lapsed and reattempting with 1 goal: %s" % bet)
                 self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), 2.5, bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
             else:
+                logging.info("Bet lapsed with more than 1 goal. Quiting: %s" % bet)
                 sys.exit()
+        elif betStatus == "Matched":
+            self.matchedBets.append(bet)
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
     def layUnder1p5at1p5(self, euros):
@@ -323,8 +334,16 @@ class MatchMonitor:
         while self.livePage.getMatchStatus() != "FT":
             self.sleep()
 
-        self.match.set("ft_goals", self.livePage.getTotalGoals())
+        ftGoals = self.livePage.getTotalGoals()
+        self.match.set("ft_goals", ftGoals)
         self.db.update(self.match)
+
+        for mb in self.matchedBets:
+            if mb.reconcile(ftGoals):
+                self.db.update(mb)
+
+            pass # TODO implement logic to reconcile the bets
+
         logging.info('Game %s finished with goals : %s' % (self.match, self.livePage.getTotalGoals()))
 
 

@@ -31,15 +31,19 @@ class APILivePage:
         return self.fixture_id is not None
 
     def findLiveMatch(self):
-        matches = requests.get(self.get_fixtures_url).json()
-        for match in matches['data']['match']:
-            if Utils.similar_strings(match['home_name'], self.match.get("home")) > 0.51 and Utils.similar_strings(match['away_name'], self.match.get("away")) > 0.51:
-                return match['fixture_id']
+        matches = Utils.httpGet(self.get_fixtures_url)
+        if matches is None:
+            return None
+        matches = matches.json()
+        if 'data' in matches.keys() and 'match' in matches['data'].keys():
+            for match in matches['data']['match']:
+                if Utils.similar_strings(match['home_name'], self.match.get("home")) > 0.51 and Utils.similar_strings(match['away_name'], self.match.get("away")) > 0.51:
+                    return match['fixture_id']
         return None
 
     def refresh_fixture(self):
-        response = requests.get(self.get_live_url)
-        if response.status_code != 200:
+        response = Utils.httpGet(self.get_live_url)
+        if response is None or response.status_code != 200:
             return None
         js_resp = response.json()
         if js_resp['success'] is not True:

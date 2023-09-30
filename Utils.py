@@ -4,6 +4,7 @@ import math
 import random
 from difflib import SequenceMatcher
 import requests
+from requests import HTTPError
 
 
 def add_time_to_date(event_date, event_time):
@@ -106,3 +107,4 @@ def httpGet(url):
         logging.error("HTTP Too Many Redirected: %s->%s" % (url, e))
     except requests.exceptions.RequestException as e:
         logging.error("HTTP Request Exception: %s->%s" % (url, e))
+    return None

@@ -11,13 +11,11 @@ from threading import Thread
 
 
 class BetStatus:
-    id = None
     placedTime = None
     matched = False
     lasped = False
 
-    def __init__(self, id, placedTime, matched, lapsed=False):
-        self.id = id
+    def __init__(self, placedTime, matched, lapsed=False):
         self.placedTime = placedTime
         self.matched = matched
         self.lasped = lapsed
@@ -39,23 +37,27 @@ class BetMonitor:
         event_name = self.bet.get("Home") + " v " + self.bet.get("Away")
         try:
             betSlipDiv = self.page.find_elements(By.XPATH, '//*[@data-event-name="' + event_name + '"]')[0]
-            betId = betSlipDiv.get_attribute('data-offer-id')
             betTime = int(betSlipDiv.get_attribute('data-placed-date'))
             statusDiv = betSlipDiv.find_element(By.XPATH, './div/div')
             statusDivClasses = statusDiv.get_attribute('class').split()
             matched = False
             if 'biab_matched' in statusDivClasses:
                 matched = True
-            return BetStatus(betId, betTime, matched)
+            return BetStatus(betTime, matched)
         except Exception as Argument:
-            logging.info("Failed to get betslip status: %s" % event_name)
+            logging.debug("Failed to get betslip status: %s" % event_name)
         return None
 
     def monitor(self):
         logging.info("Waiting for bet to appear: %s" % self.bet)
         #Wait for be to appear
+        timeout = 600
         while self.getBetStatus() == None:
             Utils.sleep_for_seconds(1)
+            timeout -= 1
+            if timeout <= 0:
+                logging.info("Bet failed to appear after 10 minutes. Quiting: %s" % self.bet)
+                return "Failed"
 
         logging.info("Bet appeared: %s" % self.bet)
 
@@ -99,7 +101,6 @@ class BetMonitor:
 
     def updateBet(self, betStatus):
         self.bet.set("BetDateTime", datetime.fromtimestamp(betStatus.placedTime / 1000)) #Orbit epoch is in milliseconds
-        self.bet.set("BetId", betStatus.id)
         if betStatus.lasped:
             self.bet.set("BetResult", 'Lapsed')
         if betStatus.lasped or betStatus.matched:
