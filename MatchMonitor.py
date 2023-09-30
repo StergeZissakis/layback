@@ -158,13 +158,12 @@ class MatchMonitor:
         if betStatus == "Lapsed":
             if self.livePage.getTotalGoals() == 0:
                 logging.info("Bet lapsed and reattempting with 0 goals: %s" % bet)
-                self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), 1.5, bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
+                self.placeBet(self.ou1p5Tab, bet.get("LayBack"), bet.get("OverUnder"), 1.5, bet.get("Odds"), None, bet.get("Amount"))
             elif self.livePage.getTotalGoals() == 1:
                 logging.info("Bet lapsed and reattempting with 1 goal: %s" % bet)
-                self.placeBet(bet.tab, bet.get("LayBack"), bet.get("OverUnder"), 2.5, bet.get("Odds"), bet.get("OddsRecorded"), bet.get("Amount"))
+                self.placeBet(self.ou2p5Tab, bet.get("LayBack"), bet.get("OverUnder"), 2.5, bet.get("Odds"), None, bet.get("Amount"))
             else:
-                logging.info("Bet lapsed with more than 1 goal. Quiting: %s" % bet)
-                sys.exit()
+                logging.info("Bet lapsed with more than 1 goal.: %s" % bet)
         elif betStatus == "Matched":
             self.matchedBets.append(bet)
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
@@ -238,19 +237,25 @@ class MatchMonitor:
         if self.browser.check_exists_by_xpath(self.page, '//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button'):
             self.browser.accept_cookies('//*[@id="biab_modal"]/div/div[2]/div[2]/div[2]/button')
 
+        logging.info('Starting : %s' % self.match)
+        self.livePage = APILivePage(self.match)
+
         retryCount = 0
         while not self.expandTabsOfInterest():
             logging.error('Failed to expand tabs: %s' % self.match)
             self.page = self.browser.get(self.match.get("url"))
             self.sleep(2)
+            if self.livePage.getTotalGoals() >= 2:
+                self.match.table_name = 'over2p5orbitxch'  # or it will try to update the view!
+                self.match.set("ht_goals", self.livePage.getTotalGoals())
+                self.db.update(self.match)
+                logging.info("2 or more goals at start of monitoring. Exiting. %s" % self.match)
+                return
             retryCount += 1
             if retryCount > 10:
                 logging.info('Failed to get over under tabs after 10 retries. Possibly 2 goals already scored : %s' % self.match)
                 return
 
-        logging.info('Starting : %s' % self.match)
-
-        self.livePage = APILivePage(self.match)
         if not self.livePage.canBeMonitored():
             logging.error('Live Match capture failed : %s' % self.match)
             return
@@ -262,6 +267,12 @@ class MatchMonitor:
         logging.info("Waiting for 1st half to finish->%s" % self.match)
         while self.livePage.getMatchStatus() == "1H":
             self.sleep()
+            if self.livePage.getTotalGoals() > 1:
+                self.match.table_name = 'over2p5orbitxch'  # or it will try to update the view!
+                self.match.set("ht_goals", self.livePage.getTotalGoals())
+                self.db.update(self.match)
+                logging.info("More than 1 goel in 1st half. Exiting. %s" % self.match)
+                return
 
         logging.info("Waiting for half time to finish->%s" % self.match)
         while self.livePage.getMatchStatus() == "HT":
@@ -342,9 +353,7 @@ class MatchMonitor:
             if mb.reconcile(ftGoals):
                 self.db.update(mb)
 
-            pass # TODO implement logic to reconcile the bets
-
-        logging.info('Game %s finished with goals : %s' % (self.match, self.livePage.getTotalGoals()))
+        logging.info('Game %s finished with goals : %s' % (self.match, ftGoals))
 
 
 def monitor(match):

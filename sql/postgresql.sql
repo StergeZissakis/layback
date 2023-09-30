@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
 -- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
--- Started on 2023-09-30 16:22:23 BST
+-- Started on 2023-09-30 21:47:27 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -235,7 +235,7 @@ CREATE VIEW public.orbitxch_today AS
 
 
 --
--- TOC entry 221 (class 1259 OID 16559)
+-- TOC entry 228 (class 1259 OID 16609)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -244,11 +244,11 @@ CREATE VIEW public."TodayMatches" AS
     c.home,
     c.away,
     c.date_time,
-    c.url,
     c.plaied,
     b.league_id,
     c.ht_goals,
-    c.ft_goals
+    c.ft_goals,
+    c.url
    FROM ((public.goalsnow_today a
      JOIN public.footballsupertips_today b ON ((((a.league_id = b.league_id) AND (a.date_time = b.date_time) AND (lower((a.home)::text) ~~ lower((b.home)::text))) OR (lower((a.away)::text) ~~ lower((b.away)::text)))))
      JOIN public.orbitxch_today c ON ((((b.date_time = c.date_time) AND (lower((b.home)::text) ~~ lower((c.home)::text))) OR (lower((b.away)::text) ~~ lower((c.away)::text)))))
@@ -256,7 +256,7 @@ CREATE VIEW public."TodayMatches" AS
 
 
 --
--- TOC entry 222 (class 1259 OID 16564)
+-- TOC entry 221 (class 1259 OID 16564)
 -- Name: over2p5bets; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -278,7 +278,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 228 (class 1259 OID 16600)
+-- TOC entry 226 (class 1259 OID 16600)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -302,7 +302,7 @@ CREATE VIEW public."TodaysBets" AS
 
 
 --
--- TOC entry 229 (class 1259 OID 16604)
+-- TOC entry 227 (class 1259 OID 16604)
 -- Name: YesterdaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -326,7 +326,7 @@ CREATE VIEW public."YesterdaysBets" AS
 
 
 --
--- TOC entry 223 (class 1259 OID 16578)
+-- TOC entry 229 (class 1259 OID 16614)
 -- Name: YesterdaysMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -335,7 +335,6 @@ CREATE VIEW public."YesterdaysMatches" AS
     c.home,
     c.away,
     c.date_time,
-    c.url,
     c.plaied,
     b.league_id,
     c.ht_goals,
@@ -348,7 +347,7 @@ CREATE VIEW public."YesterdaysMatches" AS
 
 
 --
--- TOC entry 224 (class 1259 OID 16583)
+-- TOC entry 222 (class 1259 OID 16583)
 -- Name: over2p5bets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -362,7 +361,7 @@ CREATE SEQUENCE public.over2p5bets_id_seq
 
 --
 -- TOC entry 3444 (class 0 OID 0)
--- Dependencies: 224
+-- Dependencies: 222
 -- Name: over2p5bets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -370,7 +369,7 @@ ALTER SEQUENCE public.over2p5bets_id_seq OWNED BY public.over2p5bets.id;
 
 
 --
--- TOC entry 225 (class 1259 OID 16584)
+-- TOC entry 223 (class 1259 OID 16584)
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -384,7 +383,7 @@ CREATE SEQUENCE public.over2p5footballsupertips_id_seq
 
 --
 -- TOC entry 3445 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 223
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -392,7 +391,7 @@ ALTER SEQUENCE public.over2p5footballsupertips_id_seq OWNED BY public.over2p5foo
 
 
 --
--- TOC entry 226 (class 1259 OID 16585)
+-- TOC entry 224 (class 1259 OID 16585)
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -406,7 +405,7 @@ CREATE SEQUENCE public.over2p5goalsnow_id_seq
 
 --
 -- TOC entry 3446 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 224
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -414,7 +413,7 @@ ALTER SEQUENCE public.over2p5goalsnow_id_seq OWNED BY public.over2p5goalsnow.id;
 
 
 --
--- TOC entry 227 (class 1259 OID 16586)
+-- TOC entry 225 (class 1259 OID 16586)
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -428,7 +427,7 @@ CREATE SEQUENCE public.over2p5orbitxch_id_seq
 
 --
 -- TOC entry 3447 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 225
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -469,11 +468,25 @@ ALTER TABLE ONLY public.over2p5orbitxch ALTER COLUMN id SET DEFAULT nextval('pub
 
 --
 -- TOC entry 3419 (class 0 OID 16564)
--- Dependencies: 222
+-- Dependencies: 221
 -- Data for Name: over2p5bets; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "LayBack", "OverUnder", "Goals", "Odds", "OddsRecorded", "Amount", "BetResult", "BetResultTime") FROM stdin;
+1	2023-09-30 16:30:00	Norrkoping	Kalmar FF	2023-09-30 17:34:58	Lay	Under	2.50	1.50	1.53	6	\N	2023-09-30 17:36:26.000087
+2	2023-09-30 16:30:00	Norrkoping	Kalmar FF	2023-09-30 17:34:58	Back	Under	2.50	1.13	1.13	6	\N	2023-09-30 18:03:27.528227
+4	2023-09-30 17:00:00	AC Milan	Lazio	2023-09-30 18:13:03	Lay	Under	1.50	1.50	1.63	6	\N	2023-09-30 18:13:18.047226
+5	2023-09-30 17:00:00	Servette	Lausanne	2023-09-30 18:10:09	Lay	Under	2.50	1.50	2.22	6	Lapsed	2023-09-30 18:14:46.527172
+3	2023-09-30 17:00:00	Winterthur	Lugano	2023-09-30 18:04:57	Lay	Under	2.50	1.50	2.00	6	\N	2023-09-30 18:16:56.500735
+6	2023-09-30 17:00:00	Servette	Lausanne	2023-09-30 18:14:54	Lay	Under	2.50	1.50	2.22	6	Lapsed	2023-09-30 18:17:10.161939
+7	2023-09-30 17:00:00	AC Milan	Lazio	2023-09-30 18:13:03	Back	Under	1.50	1.50	1.52	6	\N	2023-09-30 18:41:57.174993
+8	2023-09-30 17:45:00	FC Utrecht	Almere City	2023-09-30 18:55:07	Lay	Under	1.50	1.50	1.90	6	\N	2023-09-30 19:07:24.404697
+9	2023-09-30 17:45:00	FC Utrecht	Almere City	2023-09-30 18:55:07	Back	Under	1.50	1.12	1.12	6	\N	2023-09-30 19:24:31.210813
+10	2023-09-30 19:00:00	Francs Borains	Seraing Utd	2023-09-30 20:02:43	Lay	Under	1.50	1.50	1.93	6	Lapsed	2023-09-30 20:05:34.295916
+24	2023-09-30 20:00:00	FC Twente	Heerenveen	2023-09-30 21:05:52	Lay	Under	1.50	1.50	1.91	6	Lapsed	2023-09-30 21:06:46.148153
+21	2023-09-30 19:30:00	Grasshoppers Zurich	Young Boys	2023-09-30 20:33:39	Lay	Under	2.50	1.50	2.10	6	Lost	2023-09-30 20:48:58.446879
+23	2023-09-30 19:30:00	Grasshoppers Zurich	Young Boys	2023-09-30 20:33:39	Back	Under	2.50	1.50	1.30	6	Won	2023-09-30 20:57:18.773222
+22	2023-09-30 19:30:00	Hertha Berlin	St Pauli	2023-09-30 20:38:29	Lay	Under	2.50	1.50	1.96	6	Won	2023-09-30 20:51:35.39823
 \.
 
 
@@ -645,7 +658,6 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 6	CD Burgos Promesas	CD La Virgen	2023-09-30 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218997332	f	\N	\N	\N
 7	Odra Opole	GKS Katowice	2023-09-30 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218652631	f	\N	\N	\N
 8	Coquimbo Unido	Nublense	2023-09-30 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218719576	f	\N	\N	\N
-9	Norrkoping	Kalmar FF	2023-09-30 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218572509	f	\N	\N	\N
 10	Real Sociedad III	AD San Juan	2023-09-30 16:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218894805	f	\N	\N	\N
 11	Wiener SK	SV Leobendorf	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218934306	f	\N	\N	\N
 12	IF Vestri	Afturelding	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218982831	f	\N	\N	\N
@@ -656,20 +668,17 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 17	CD Castellon	Merida AD	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218902697	f	\N	\N	\N
 18	Ponferradina	CA Osasuna II	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218808824	f	\N	\N	\N
 19	07 Vestur	AB Argir	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218989151	f	\N	\N	\N
-20	Winterthur	Lugano	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218798817	f	\N	\N	\N
 21	Sligo Rovers (W)	Bohemians (W)	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218920530	f	\N	\N	\N
 22	Skra Czestochowa	GKS Jastrzebie	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218982513	f	\N	\N	\N
 23	Ruzomberok	Zemplin	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218828885	f	\N	\N	\N
 24	Zamalek	Solar7	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219006565	f	\N	\N	\N
 25	FC Vilafranca	Girona FC II	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218996961	f	\N	\N	\N
 26	Chernomorets Odesa	Zorya	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218757012	f	\N	\N	\N
-27	Servette	Lausanne	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218798925	f	\N	\N	\N
 28	Sol De Mayo	Villa Mitre	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218980991	f	\N	\N	\N
 29	Genclerbirligi	Manisa FK	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218731473	f	\N	\N	\N
 30	Valencia-Mestalla	Cerdanyola del Valles	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218896353	f	\N	\N	\N
 31	Sparta Prague	Plzen	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218505965	f	\N	\N	\N
 32	Trencin	DUKLA BANSKA BYSTRICA	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218617971	f	\N	\N	\N
-33	AC Milan	Lazio	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218580648	f	\N	\N	\N
 34	Rayon Sports FC	Al Hilal	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219006655	f	\N	\N	\N
 35	Galatasaray	Ankaragucu	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218560132	f	\N	\N	\N
 36	Crvena Zvezda	Radnicki Nis	2023-09-30 17:05:00	https://www.orbitxch.com/customer/sport/1/market/1.218982242	f	\N	\N	\N
@@ -685,17 +694,18 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 46	Nk Posusje	Tuzla City	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218972929	f	\N	\N	\N
 47	Defensores de Belgrano	All Boys	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218871552	f	\N	\N	\N
 48	Elche	Levante	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218683711	f	\N	\N	\N
-49	Girona	Real Madrid	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218580528	f	\N	\N	\N
 50	Tottenham	Liverpool	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218409626	f	\N	\N	\N
-51	RB Leipzig	Bayern Munich	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218409706	f	\N	\N	\N
 52	Maccabi Petach Tikva	Bnei Sakhnin	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218907071	f	\N	\N	\N
 53	Oxford City	Altrincham	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218715494	f	\N	\N	\N
 54	Giana Erminio	Arzignanochiampo	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218867413	f	\N	\N	\N
 55	Pro Vercelli	Fiorenzuola	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218867503	f	\N	\N	\N
 56	FC Ashdod	Hapoel Eran Hadera	2023-09-30 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218723364	f	\N	\N	\N
+33	AC Milan	Lazio	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218580648	t	0	2	4
+27	Servette	Lausanne	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218798925	t	1	\N	15
+49	Girona	Real Madrid	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218580528	t	\N	\N	\N
+51	RB Leipzig	Bayern Munich	2023-09-30 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218409706	t	\N	\N	\N
+20	Winterthur	Lugano	2023-09-30 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218798817	t	1	\N	15
 57	Hapoel Haifa	Maccabi Bnei Raina	2023-09-30 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218723273	f	\N	\N	\N
-58	FC Utrecht	Almere City	2023-09-30 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218426804	f	\N	\N	\N
-59	PSV	FC Volendam	2023-09-30 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218426696	f	\N	\N	\N
 60	Shabab Al Dharia	Ahli Al Khalil	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218982423	f	\N	\N	\N
 61	Skala	Vikingur II	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218989242	f	\N	\N	\N
 62	Caen	Guingamp	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218723835	f	\N	\N	\N
@@ -714,7 +724,6 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 75	Laval	Valenciennes	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218723727	f	\N	\N	\N
 76	Pau	Amiens	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218723943	f	\N	\N	\N
 77	Botev Plovdiv	Beroe Stara Za	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218767440	f	\N	\N	\N
-78	Boavista	Famalicao	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218771434	f	\N	\N	\N
 79	HB Torshavn	B68 Toftir	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218978689	f	\N	\N	\N
 80	Utebo CF	CD Calahorra	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218895075	f	\N	\N	\N
 81	Hapoel Beer Sheva	Hapoel Jerusalem	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218723454	f	\N	\N	\N
@@ -726,7 +735,6 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 87	DEBRECENI VSC	Ujpest	2023-09-30 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218427885	f	\N	\N	\N
 88	FCB Magpies	Manchester 62 FC	2023-09-30 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219019069	f	\N	\N	\N
 89	St Pauli II	Hamburg II	2023-09-30 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218877377	f	\N	\N	\N
-90	Francs Borains	Seraing Utd	2023-09-30 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218971715	f	\N	\N	\N
 91	Al-Khaleej Saihat	Dhamk	2023-09-30 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218735554	f	\N	\N	\N
 92	CA Germinal	Santamarina	2023-09-30 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218981214	f	\N	\N	\N
 93	Cordoba	Granada B	2023-09-30 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218902247	f	\N	\N	\N
@@ -749,8 +757,9 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 110	Hercules	CE Andratx	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218903093	f	\N	\N	\N
 111	CA Guemes	CA Temperley	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218871764	f	\N	\N	\N
 112	Juventude	Criciuma	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218730720	f	\N	\N	\N
-113	Hertha Berlin	St Pauli	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218517026	f	\N	\N	\N
-114	Grasshoppers Zurich	Young Boys	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218803023	f	\N	\N	\N
+59	PSV	FC Volendam	2023-09-30 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218426696	t	\N	\N	\N
+90	Francs Borains	Seraing Utd	2023-09-30 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218971715	t	0	\N	136
+78	Boavista	Famalicao	2023-09-30 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218771434	t	2	4	8
 115	Farul Constanta	ACS Sepsi OSK	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218526974	f	\N	\N	\N
 116	Wexford Youths (W)	Shamrock Rovers (W)	2023-09-30 19:35:00	https://www.orbitxch.com/customer/sport/1/market/1.218920416	f	\N	\N	\N
 117	LR Vicenza Virtus	Atalanta B	2023-09-30 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218909202	f	\N	\N	\N
@@ -762,14 +771,11 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 123	Deportes Melipilla	Deportes Rengo Unido	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219002371	f	\N	\N	\N
 124	Sao Bernardo	Brusque FC	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218913572	f	\N	\N	\N
 125	Bogota	Tigres FC Zipaquira	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218843407	f	\N	\N	\N
-126	FC Twente	Heerenveen	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218427021	f	\N	\N	\N
 127	San Lorenzo	Huracan	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218776363	f	\N	\N	\N
 128	Ferro Carril	Racing Cordoba	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218956268	f	\N	\N	\N
-129	RKC Waalwijk	Ajax	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218426912	f	\N	\N	\N
 130	CD General Velasquez	Deportes Limache	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219002191	f	\N	\N	\N
 131	Albacete	Andorra CF	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218683603	f	\N	\N	\N
 132	Villarreal B	Alcorcon	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218705518	f	\N	\N	\N
-133	Monaco	Marseille	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218408412	f	\N	\N	\N
 134	Real Sociedad	Athletic Bilbao	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218584957	f	\N	\N	\N
 135	Flamengo	Bahia	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218460531	f	\N	\N	\N
 136	Fortaleza EC	Gremio	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218460411	f	\N	\N	\N
@@ -805,6 +811,9 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 166	Racing Club	CA Independiente	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218776255	f	\N	\N	\N
 167	Olancho	CD Victoria	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218972345	f	\N	\N	\N
 168	Artesanos Metepec F.C.	Club CDM	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219010069	f	\N	\N	\N
+129	RKC Waalwijk	Ajax	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218426912	t	3	\N	196
+126	FC Twente	Heerenveen	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218427021	t	0	\N	196
+133	Monaco	Marseille	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218408412	t	\N	\N	\N
 169	Botafogo PB	Volta Redonda	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218913662	f	\N	\N	\N
 170	Yalmakan FC	Inter de Queretaro FC	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218995990	f	\N	\N	\N
 171	Deportivo Irapuato FC	Club Sporting Canamy	2023-10-01 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219015714	f	\N	\N	\N
@@ -853,21 +862,25 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 214	Toyama	Ehime	2023-10-01 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218854105	f	\N	\N	\N
 215	Tottori	FC Imabari	2023-10-01 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218853925	f	\N	\N	\N
 216	Cheongju FC	Bucheon FC 1995	2023-10-01 05:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218759273	f	\N	\N	\N
+9	Norrkoping	Kalmar FF	2023-09-30 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218572509	t	1	1	14
+58	FC Utrecht	Almere City	2023-09-30 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218426804	t	0	2	196
+114	Grasshoppers Zurich	Young Boys	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218803023	t	1	1	15
+113	Hertha Berlin	St Pauli	2023-09-30 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218517026	t	1	3	93
 \.
 
 
 --
 -- TOC entry 3448 (class 0 OID 0)
--- Dependencies: 224
+-- Dependencies: 222
 -- Name: over2p5bets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5bets_id_seq', 1, false);
+SELECT pg_catalog.setval('public.over2p5bets_id_seq', 25, true);
 
 
 --
 -- TOC entry 3449 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 223
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -876,7 +889,7 @@ SELECT pg_catalog.setval('public.over2p5footballsupertips_id_seq', 68, true);
 
 --
 -- TOC entry 3450 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 224
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -885,7 +898,7 @@ SELECT pg_catalog.setval('public.over2p5goalsnow_id_seq', 65, true);
 
 --
 -- TOC entry 3451 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 225
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -990,7 +1003,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3439 (class 0 OID 0)
--- Dependencies: 221
+-- Dependencies: 228
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1000,7 +1013,7 @@ GRANT ALL ON TABLE public."TodayMatches" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3440 (class 0 OID 0)
--- Dependencies: 222
+-- Dependencies: 221
 -- Name: TABLE over2p5bets; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1010,7 +1023,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3441 (class 0 OID 0)
--- Dependencies: 228
+-- Dependencies: 226
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1020,7 +1033,7 @@ GRANT ALL ON TABLE public."TodaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3442 (class 0 OID 0)
--- Dependencies: 229
+-- Dependencies: 227
 -- Name: TABLE "YesterdaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1030,7 +1043,7 @@ GRANT ALL ON TABLE public."YesterdaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3443 (class 0 OID 0)
--- Dependencies: 223
+-- Dependencies: 229
 -- Name: TABLE "YesterdaysMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -1047,7 +1060,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-30 16:22:23 BST
+-- Completed on 2023-09-30 21:47:27 BST
 
 --
 -- PostgreSQL database dump complete

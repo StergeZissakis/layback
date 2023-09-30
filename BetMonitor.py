@@ -1,4 +1,3 @@
-import sys
 from datetime import datetime
 import logging
 import Utils
@@ -51,13 +50,13 @@ class BetMonitor:
     def monitor(self):
         logging.info("Waiting for bet to appear: %s" % self.bet)
         #Wait for be to appear
-        timeout = 600
+        timeout = 60
         while self.getBetStatus() == None:
             Utils.sleep_for_seconds(1)
             timeout -= 1
             if timeout <= 0:
-                logging.info("Bet failed to appear after 10 minutes. Quiting: %s" % self.bet)
-                return "Failed"
+                logging.info("Bet failed to appear after 1 minute. Lapsing: %s" % self.bet)
+                return "Lasped"
 
         logging.info("Bet appeared: %s" % self.bet)
 

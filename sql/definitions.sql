@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
 -- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
--- Started on 2023-09-30 16:22:23 BST
+-- Started on 2023-09-30 21:47:28 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -235,7 +235,7 @@ CREATE VIEW public.orbitxch_today AS
 
 
 --
--- TOC entry 221 (class 1259 OID 16559)
+-- TOC entry 228 (class 1259 OID 16609)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -244,11 +244,11 @@ CREATE VIEW public."TodayMatches" AS
     c.home,
     c.away,
     c.date_time,
-    c.url,
     c.plaied,
     b.league_id,
     c.ht_goals,
-    c.ft_goals
+    c.ft_goals,
+    c.url
    FROM ((public.goalsnow_today a
      JOIN public.footballsupertips_today b ON ((((a.league_id = b.league_id) AND (a.date_time = b.date_time) AND (lower((a.home)::text) ~~ lower((b.home)::text))) OR (lower((a.away)::text) ~~ lower((b.away)::text)))))
      JOIN public.orbitxch_today c ON ((((b.date_time = c.date_time) AND (lower((b.home)::text) ~~ lower((c.home)::text))) OR (lower((b.away)::text) ~~ lower((c.away)::text)))))
@@ -256,7 +256,7 @@ CREATE VIEW public."TodayMatches" AS
 
 
 --
--- TOC entry 222 (class 1259 OID 16564)
+-- TOC entry 221 (class 1259 OID 16564)
 -- Name: over2p5bets; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -278,7 +278,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 228 (class 1259 OID 16600)
+-- TOC entry 226 (class 1259 OID 16600)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -302,7 +302,7 @@ CREATE VIEW public."TodaysBets" AS
 
 
 --
--- TOC entry 229 (class 1259 OID 16604)
+-- TOC entry 227 (class 1259 OID 16604)
 -- Name: YesterdaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -326,7 +326,7 @@ CREATE VIEW public."YesterdaysBets" AS
 
 
 --
--- TOC entry 223 (class 1259 OID 16578)
+-- TOC entry 229 (class 1259 OID 16614)
 -- Name: YesterdaysMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -335,7 +335,6 @@ CREATE VIEW public."YesterdaysMatches" AS
     c.home,
     c.away,
     c.date_time,
-    c.url,
     c.plaied,
     b.league_id,
     c.ht_goals,
@@ -348,7 +347,7 @@ CREATE VIEW public."YesterdaysMatches" AS
 
 
 --
--- TOC entry 224 (class 1259 OID 16583)
+-- TOC entry 222 (class 1259 OID 16583)
 -- Name: over2p5bets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -362,7 +361,7 @@ CREATE SEQUENCE public.over2p5bets_id_seq
 
 --
 -- TOC entry 3436 (class 0 OID 0)
--- Dependencies: 224
+-- Dependencies: 222
 -- Name: over2p5bets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -370,7 +369,7 @@ ALTER SEQUENCE public.over2p5bets_id_seq OWNED BY public.over2p5bets.id;
 
 
 --
--- TOC entry 225 (class 1259 OID 16584)
+-- TOC entry 223 (class 1259 OID 16584)
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -384,7 +383,7 @@ CREATE SEQUENCE public.over2p5footballsupertips_id_seq
 
 --
 -- TOC entry 3437 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 223
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -392,7 +391,7 @@ ALTER SEQUENCE public.over2p5footballsupertips_id_seq OWNED BY public.over2p5foo
 
 
 --
--- TOC entry 226 (class 1259 OID 16585)
+-- TOC entry 224 (class 1259 OID 16585)
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -406,7 +405,7 @@ CREATE SEQUENCE public.over2p5goalsnow_id_seq
 
 --
 -- TOC entry 3438 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 224
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -414,7 +413,7 @@ ALTER SEQUENCE public.over2p5goalsnow_id_seq OWNED BY public.over2p5goalsnow.id;
 
 
 --
--- TOC entry 227 (class 1259 OID 16586)
+-- TOC entry 225 (class 1259 OID 16586)
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -428,7 +427,7 @@ CREATE SEQUENCE public.over2p5orbitxch_id_seq
 
 --
 -- TOC entry 3439 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 225
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -565,7 +564,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3431 (class 0 OID 0)
--- Dependencies: 221
+-- Dependencies: 228
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -575,7 +574,7 @@ GRANT ALL ON TABLE public."TodayMatches" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3432 (class 0 OID 0)
--- Dependencies: 222
+-- Dependencies: 221
 -- Name: TABLE over2p5bets; Type: ACL; Schema: public; Owner: -
 --
 
@@ -585,7 +584,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3433 (class 0 OID 0)
--- Dependencies: 228
+-- Dependencies: 226
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -595,7 +594,7 @@ GRANT ALL ON TABLE public."TodaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3434 (class 0 OID 0)
--- Dependencies: 229
+-- Dependencies: 227
 -- Name: TABLE "YesterdaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -605,7 +604,7 @@ GRANT ALL ON TABLE public."YesterdaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3435 (class 0 OID 0)
--- Dependencies: 223
+-- Dependencies: 229
 -- Name: TABLE "YesterdaysMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -622,7 +621,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-30 16:22:23 BST
+-- Completed on 2023-09-30 21:47:28 BST
 
 --
 -- PostgreSQL database dump complete
