@@ -169,7 +169,7 @@ class MatchMonitor:
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
     def layUnder1p5at1p5(self, euros):
-        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds(), euros)
+        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds(), euros) # TODO Get odds may fail
         logging.info('%s betted Lay Under 1.5 @ 1.5 odds' % self.match)
 
     def layUnder2p5at1p5(self, euros):
@@ -208,7 +208,7 @@ class MatchMonitor:
 
     def getBackUnder1p5Odds(self):
         self.checkForSuspendedAndWait()
-        return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
+        return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text) # TODO if not foudn, match is gone
 
     def getBackUnder2p5Odds(self):
         self.checkForSuspendedAndWait()
@@ -271,7 +271,7 @@ class MatchMonitor:
                 self.match.table_name = 'over2p5orbitxch'  # or it will try to update the view!
                 self.match.set("ht_goals", self.livePage.getTotalGoals())
                 self.db.update(self.match)
-                logging.info("More than 1 goel in 1st half. Exiting. %s" % self.match)
+                logging.info("More than 1 gols in 1st half. Exiting. %s" % self.match)
                 return
 
         logging.info("Waiting for half time to finish->%s" % self.match)

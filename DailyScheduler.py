@@ -15,15 +15,15 @@ if __name__ == "__main__":
 
     processes = []
 
-    matches = db.select('select * from "TodayMatches" where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval \'45 minutes\') , (now()::timestamp - interval \'15 minutes\'))')
+    matches = db.select('select id, home, away, date_time, league_id, url from "TodayMatches" where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval \'45 minutes\') , (now()::timestamp - interval \'15 minutes\'))')
     for m in matches:
         match = DailyMatchRow('TodayMatches')
         match.set("id", m[0])
         match.set("home", m[1])
         match.set("away", m[2])
         match.set("date_time", m[3])
-        match.set("url", m[4])
-        match.set("league_id", m[6])
+        match.set("league_id", m[4])
+        match.set("url", m[5])
         p = Process(target=monitor, args=(match,))
         p.start()
         processes.append(p)

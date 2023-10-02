@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
 -- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
--- Started on 2023-09-30 21:47:28 BST
+-- Started on 2023-10-02 09:54:17 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -235,15 +235,15 @@ CREATE VIEW public.orbitxch_today AS
 
 
 --
--- TOC entry 228 (class 1259 OID 16609)
+-- TOC entry 228 (class 1259 OID 16619)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW public."TodayMatches" AS
  SELECT c.id,
+    c.date_time,
     c.home,
     c.away,
-    c.date_time,
     c.plaied,
     b.league_id,
     c.ht_goals,
@@ -270,8 +270,8 @@ CREATE TABLE public.over2p5bets (
     "OverUnder" public."OverUnderType" NOT NULL,
     "Goals" numeric(3,2) NOT NULL,
     "Odds" numeric(3,2) NOT NULL,
-    "OddsRecorded" numeric(3,2) NOT NULL,
-    "Amount" numeric NOT NULL,
+    "OddsRecorded" numeric(3,2),
+    "Amount" numeric,
     "BetResult" public."BetResult",
     "BetResultTime" timestamp without time zone
 );
@@ -326,15 +326,15 @@ CREATE VIEW public."YesterdaysBets" AS
 
 
 --
--- TOC entry 229 (class 1259 OID 16614)
+-- TOC entry 229 (class 1259 OID 16624)
 -- Name: YesterdaysMatches; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW public."YesterdaysMatches" AS
  SELECT c.id,
+    c.date_time,
     c.home,
     c.away,
-    c.date_time,
     c.plaied,
     b.league_id,
     c.ht_goals,
@@ -621,7 +621,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-09-30 21:47:28 BST
+-- Completed on 2023-10-02 09:54:17 BST
 
 --
 -- PostgreSQL database dump complete
