@@ -23,13 +23,13 @@ class MatchMonitor:
     password = "Zisis1975€€€"
     livePage = None
     liveMatch = None
-    stake = None
+    stake = 6
     matchedBets = []
+    stopBetting = False
 
     def __init__(self, match):
         self.match = match
         self.browser = Browser()
-        self.stake = 6
 
     def __del__(self):
         if self.browser and self.browser.headless:
@@ -68,8 +68,8 @@ class MatchMonitor:
             ret = False
         return ret
 
-    def checkForSuspendedAndWait(self):
-        suspended_xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'
+    def checkForSuspendedAndWait(self, xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'):
+        suspended_xpath = xpath
         seconds_count = 0
         suspended = False
         while self.browser.check_exists_by_xpath(self.page, suspended_xpath) and self.page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
@@ -83,34 +83,58 @@ class MatchMonitor:
         if suspended:
             Utils.sleep_for_seconds(1)
 
+    def waitOnSuspendedTab(self, tab):
+        suspended_xpath = 'div[3]/div[3]/div/div'
+        seconds_count = 0
+        while self.browser.check_exists_by_xpath(tab, suspended_xpath) and tab.find_element(By.XPATH, suspended_xpath).text in ("SUSPENDED", "CLOSED"):
+            if tab.find_element(By.XPATH, suspended_xpath).text == "CLOSED":
+                return False
+            Utils.sleep_for_seconds(1)
+            seconds_count += 1
+            if seconds_count > 300:  # 15 mins
+                logging.info("Tab suspended for more than 5 minutes [%s]" % self.match)
+                return False
+        return True
+
     def placeBet(self, tab, layback, overUnder, goals, odds, odds_recorded, amount):
+        if self.stopBetting:
+            logging.info("Bet discarded due to previosuly lapsed bet: %s", self.match)
+            return None
         div_place_bet_button = 1
         if layback == 'Lay':
             div_place_bet_button = 2
         count = 0
+        failed = False
         while True:
             try:
                 self.checkForSuspendedAndWait()
+                if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[%s]/button' % str(div_place_bet_button)).click()  # Place bet button
                 self.checkForSuspendedAndWait()
+                if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input').send_keys(str(odds))  # odds
                 self.checkForSuspendedAndWait()
+                if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(self.stake)
                 self.checkForSuspendedAndWait()
+                if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
                 break
-            except Exception as Argument:
+            except Exception as e:
                 self.sleep(1)
-                logging.debug("Error during placeBet: %s -> %s" % (self.match, Argument))
+                logging.debug("Error during placeBet: %s -> %s" % (self.match, e))
                 count += 1
                 if count >= 600:
                     logging.error("Error during placeBet - Max timeout reached : %s" % self.match)
                     sys.exit(3)
                 continue
+        if failed:
+            logging.error("Failed to place place due to suspension/closure: %s", self.match)
+            return False
 
         bet = self.logBet(layback, overUnder, goals, odds, odds_recorded, amount)
-        bet.tab = tab
         self.monitorBet(bet)
+        return True
 
     def extractOrbitTeamNames(self):
         home = None
@@ -156,20 +180,14 @@ class MatchMonitor:
         bm = BetMonitor(self.db, self.browser, self.page, bet)
         betStatus = bm.monitor()
         if betStatus == "Lapsed":
-            if self.livePage.getTotalGoals() == 0:
-                logging.info("Bet lapsed and reattempting with 0 goals: %s" % bet)
-                self.placeBet(self.ou1p5Tab, bet.get("LayBack"), bet.get("OverUnder"), 1.5, bet.get("Odds"), None, bet.get("Amount"))
-            elif self.livePage.getTotalGoals() == 1:
-                logging.info("Bet lapsed and reattempting with 1 goal: %s" % bet)
-                self.placeBet(self.ou2p5Tab, bet.get("LayBack"), bet.get("OverUnder"), 2.5, bet.get("Odds"), None, bet.get("Amount"))
-            else:
-                logging.info("Bet lapsed with more than 1 goal.: %s" % bet)
+            self.stopBetting = True
+            logging.info("Bet  [%s] lapsed with goals: : %s" % (bet, self.livePage.getTotalGoals()))
         elif betStatus == "Matched":
             self.matchedBets.append(bet)
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
     def layUnder1p5at1p5(self, euros):
-        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds(), euros) # TODO Get odds may fail
+        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds(), euros)
         logging.info('%s betted Lay Under 1.5 @ 1.5 odds' % self.match)
 
     def layUnder2p5at1p5(self, euros):
@@ -200,18 +218,22 @@ class MatchMonitor:
 
     def getLayUnder1p5Odds(self):
         self.checkForSuspendedAndWait()
+        if not self.waitOnSuspendedTab(self.ou1p5Tab): return None
         return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
     def getLayUnder2p5Odds(self):
         self.checkForSuspendedAndWait()
+        if not self.waitOnSuspendedTab(self.ou2p5Tab): return None
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
     def getBackUnder1p5Odds(self):
         self.checkForSuspendedAndWait()
-        return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text) # TODO if not foudn, match is gone
+        if not self.waitOnSuspendedTab(self.ou1p5Tab): return None
+        return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
     def getBackUnder2p5Odds(self):
         self.checkForSuspendedAndWait()
+        if not self.waitOnSuspendedTab(self.ou2p5Tab): return None
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
     def loginToExchange(self):
@@ -296,48 +318,29 @@ class MatchMonitor:
             self.db.update(self.match)
             return
 
+        initialBetPlaced = False
         if self.livePage.getTotalGoals() == 0:
             self.layUnder1p5at1p5(self.stake)
             logging.info('Initial bet played : %s' % self.match)
     
-            while self.livePage.getTotalGoals() == 0 and self.livePage.getMatchStatus() != 'FT':
-                if self.getLayUnder1p5Odds() <= 1.15:
-                    self.backUnder1p5(self.stake)
+            while self.livePage.getTotalGoals() < 2 and self.livePage.getMatchStatus() != 'FT':
+                odds = self.getLayUnder1p5Odds()
+                if odds is not None and odds <= 1.15:
+                    self.backUnder1p5at1p5(self.stake)
                     logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % self.match)
                     break
                 self.sleep()
-
-            if self.livePage.getMatchStatus() != 'FT':
-                logging.info('Goal detected : %s' % self.match)
-    
-            while self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
-                if self.getBackUnder1p5Odds() <= 1.52:
-                    self.backUnder1p5at1p5(self.stake)
-                    logging.info('Back Under 1.5 Odds dropped below 1.52. : %s' % self.match)
-                    break
-                self.sleep()
-    
         elif self.livePage.getTotalGoals() == 1:
             self.layUnder2p5at1p5(self.stake)
             logging.info('Initial bet played. : %s' % self.match)
             
-            while self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
-                if self.getLayUnder2p5Odds() <= 1.15:
-                    self.backUnder2p5(self.stake)
-                    logging.info('Lay Under 2.5 Odds dropped below 1.15. : %s' % self.match)
-                    break
-                self.sleep()
-
-            if self.livePage.getMatchStatus() != 'FT':
-                logging.info('Goal detected. : %s' % self.match)
-    
-            while self.livePage.getTotalGoals() == 2 and self.livePage.getMatchStatus() != 'FT':
-                if self.getBackUnder2p5Odds() <= 1.52:
+            while self.livePage.getTotalGoals() < 3 and self.livePage.getMatchStatus() != 'FT':
+                odds = self.getLayUnder2p5Odds()
+                if odds is not None and odds <= 1.52:
                     self.backUnder2p5at1p5(self.stake)
-                    logging.info('Back Under 2.5 Odds dropped below 1.52. : %s' % self.match)
+                    logging.info('Lay Under 2.5 Odds dropped below 1.52. : %s' % self.match)
                     break
                 self.sleep()
-    
         else:
             logging.info('2 or more goals scored already. : %s' % self.match)
 
