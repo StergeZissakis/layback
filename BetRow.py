@@ -22,6 +22,9 @@ class BetRow(DBRow):
             "BetResultTime": None
         }
 
+    def __str__(self):
+        return '[%s VS %s] %s %s %s @ %s' % (self.data["Home"], self.data["Away"], self.data["LayBack"], self.data["OverUnder"], self.data["Goals"], self.data["Odds"])
+
     def reconcile(self, totalGoals):
         betResultValue = self.get("BetResult")
         if betResultValue is not None and betResultValue == 'Lapsed':

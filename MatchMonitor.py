@@ -22,7 +22,6 @@ class MatchMonitor:
     username = "voyager2007"
     password = "Zisis1975€€€"
     livePage = None
-    liveMatch = None
     stake = 6
     matchedBets = []
     stopBetting = False
@@ -87,7 +86,7 @@ class MatchMonitor:
         suspended_xpath = 'div[3]/div[3]/div/div'
         seconds_count = 0
         while self.browser.check_exists_by_xpath(tab, suspended_xpath) and tab.find_element(By.XPATH, suspended_xpath).text in ("SUSPENDED", "CLOSED"):
-            if tab.find_element(By.XPATH, suspended_xpath).text == "CLOSED":
+            if self.browser.check_exists_by_xpath(tab, suspended_xpath) and  tab.find_element(By.XPATH, suspended_xpath).text == "CLOSED":
                 return False
             Utils.sleep_for_seconds(1)
             seconds_count += 1
@@ -186,36 +185,64 @@ class MatchMonitor:
             self.matchedBets.append(bet)
         logging.info('Bet Status [%s] of [%s]' % (betStatus, self.match))
 
-    def layUnder1p5at1p5(self, euros):
-        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds(), euros)
-        logging.info('%s betted Lay Under 1.5 @ 1.5 odds' % self.match)
+    def bet(self, layBack, overUnder, goalsThreshold, oddsToMatch, currentOdds):
+        tab = self.ou1p5Tab
+        if goalsThreshold == 2.5:
+            tab = self.ou2p5Tab
+        self.placeBet(tab, layBack, overUnder, goalsThreshold, oddsToMatch, currentOdds, self.stake)
+        logging.info('Betted %s %s %s @ %s odds %s' % (layBack, overUnder, goalsThreshold, oddsToMatch, self.match))
 
-    def layUnder2p5at1p5(self, euros):
-        self.placeBet(self.ou2p5Tab,  'Lay', 'Under', 2.5, 1.5, self.getLayUnder2p5Odds(), euros)
-        logging.info('%s betted Lay Under 2.5 @ 1.5 odds' % self.match)
-
-    def backUnder1p5at1p5(self, euros):
-        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, 1.5, self.getBackUnder1p5Odds(), euros)
-        logging.info('%s betted Back Under 1.5 @ 1.5 odds' % self.match)
-
-    def backUnder2p5at1p5(self, euros):
-        odds = self.getBackUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, 1.5, odds, euros)
-        logging.info('%s betted Back Under 2.5 @ 1.5 odds' % self.match)
+    '''
+    def layUnder1p5at1p5(self):
+        odds = self.getLayUnder1p5Odds()
+        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, odds, self.stake)
+        logging.info('Betted Lay Under 1.5 @ 1.5 odds %s' % self.match)
         return float(odds)
 
-    def backUnder1p5(self, euros):
+
+    def layUnder2p5at1p5(self):
+        odds = self.getLayUnder2p5Odds()
+        self.placeBet(self.ou2p5Tab,  'Lay', 'Under', 2.5, 1.5, odds, self.stake)
+        logging.info('Betted Lay Under 2.5 @ 1.5 odds %s' % self.match)
+        return float(odds)
+
+    def backUnder1p5at1p5(self):
         odds = self.getBackUnder1p5Odds()
-        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, odds, odds, euros)
-        logging.info('%s betted Back Under 1.5 @ [%s] odds ' % (self.match, odds))
+        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, 1.5, odds, self.stake)
+        logging.info('Betted Back Under 1.5 @ 1.5 odds %s' % self.match)
         return float(odds)
 
-    def backUnder2p5(self, euros):
+    def backUnder1p5at1p13(self):
+        odds = self.getBackUnder1p5Odds()
+        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, 1.13, odds, self.stake)
+        logging.info('Betted Back Under 1.5 @ 1.13 odds %s' % self.match)
+        return float(odds)
+
+    def backUnder2p5at1p5(self):
         odds = self.getBackUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, odds, odds, euros)
-        logging.info('%s betted Back Under 2.5 @ any [%s] odds ' % (self.match, odds))
+        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, 1.5, odds, self.stake)
+        logging.info('Betted Back Under 2.5 @ 1.5 odds %s' % self.match)
         return float(odds)
 
+
+    def backUnder2p5at1p13(self):
+        odds = self.getBackUnder2p5Odds()
+        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, 1.13, odds, self.stake)
+        logging.info('Betted Back Under 2.5 @ 1.13 odds %s' % self.match)
+        return float(odds)
+
+    def backUnder1p5(self):
+        odds = self.getBackUnder1p5Odds()
+        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, odds, odds, self.stake)
+        logging.info('Betted Back Under 1.5 @ [%s] odds %s' % (odds, self.match))
+        return float(odds)
+
+    def backUnder2p5(self):
+        odds = self.getBackUnder2p5Odds()
+        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, odds, odds, self.stake)
+        logging.info('Betted Back Under 2.5 @ [%s] odds %s' % (odds, self.match))
+        return float(odds)
+'''
     def getLayUnder1p5Odds(self):
         self.checkForSuspendedAndWait()
         if not self.waitOnSuspendedTab(self.ou1p5Tab): return None
@@ -320,25 +347,45 @@ class MatchMonitor:
 
         initialBetPlaced = False
         if self.livePage.getTotalGoals() == 0:
-            self.layUnder1p5at1p5(self.stake)
-            logging.info('Initial bet played : %s' % self.match)
-    
-            while self.livePage.getTotalGoals() < 2 and self.livePage.getMatchStatus() != 'FT':
-                odds = self.getLayUnder1p5Odds()
+            logging.info('Initial bet Lay Under 1.5 @ 1.5: %s' % self.match)
+            self.bet('Lay', 'Under', 1.5, 1.5, self.getLayUnder1p5Odds())
+
+            reversePlaid = False
+            while self.livePage.getTotalGoals() == 0 and self.livePage.getMatchStatus() != 'FT':
+                odds = self.getBackUnder1p5Odds()
                 if odds is not None and odds <= 1.15:
-                    self.backUnder1p5at1p5(self.stake)
-                    logging.info('Lay Under 1.5 Odds dropped below 1.15. : %s' % self.match)
+                    logging.info('Back Under 1.5 @ 1.13 - Odds dropped below 1.15. : %s' % self.match)
+                    self.bet('Back', 'Under', 1.5, 1.13, odds)
+                    reversePlaid = True
+                    break
+                self.sleep()
+
+            while not reversePlaid and self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
+                odds = self.getBackUnder1p5Odds()
+                if odds is not None and odds <= 1.52:
+                    logging.info('Back Under 1.5 @ 1.5 - Odds dropped below 1.52. : %s' % self.match)
+                    self.bet('Back', 'Under', 1.5, 1.5, odds)
                     break
                 self.sleep()
         elif self.livePage.getTotalGoals() == 1:
-            self.layUnder2p5at1p5(self.stake)
-            logging.info('Initial bet played. : %s' % self.match)
-            
-            while self.livePage.getTotalGoals() < 3 and self.livePage.getMatchStatus() != 'FT':
-                odds = self.getLayUnder2p5Odds()
+            logging.info('Initial bet Lay Under 2.5 @ 1.5 : %s' % self.match)
+            self.bet('Lay', 'Under', 2.5, 1.5, self.getLayUnder2p5Odds())
+
+            reversePlaid = False
+            while self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
+                odds = self.getBackUnder2p5Odds()
+                if odds is not None and odds <= 1.15:
+                    logging.info('Back Under 2.5 @ 1.13 - Odds dropped below 1.15. : %s' % self.match)
+                    self.bet('Back', 'Under', 2.5, 1.13, odds)
+                    reversePlaid = True
+                    break
+                self.sleep()
+
+            while not reversePlaid and self.livePage.getTotalGoals() == 2 and self.livePage.getMatchStatus() != 'FT':
+                odds = self.getBackUnder2p5Odds()
                 if odds is not None and odds <= 1.52:
-                    self.backUnder2p5at1p5(self.stake)
-                    logging.info('Lay Under 2.5 Odds dropped below 1.52. : %s' % self.match)
+                    logging.info('Back Under 2.5 @ 1.5 - Odds dropped below 1.52. : %s' % self.match)
+                    self.bet('Back', 'Under', 2.5, 1.5, odds)
                     break
                 self.sleep()
         else:
