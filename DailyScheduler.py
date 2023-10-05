@@ -14,8 +14,11 @@ if __name__ == "__main__":
         exit(-1)
 
     processes = []
+    select  = ' select id, home, away, date_time, league_id, url '
+    select += ' from "TodayMatches" '
+    select += " where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval '50 minutes') , (now()::timestamp - interval '15 minutes'))"
 
-    matches = db.select('select id, home, away, date_time, league_id, url from "TodayMatches" where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval \'50 minutes\') , (now()::timestamp - interval \'15 minutes\'))')
+    matches = db.select(select)
     for m in matches:
         match = DailyMatchRow('TodayMatches')
         match.set("id", m[0])
