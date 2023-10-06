@@ -37,7 +37,7 @@ class APILivePage:
         matches = matches.json()
         if 'data' in matches.keys() and 'match' in matches['data'].keys():
             for match in matches['data']['match']:
-                if Utils.similar_strings(match['home_name'], self.match.get("home")) > 0.51 and Utils.similar_strings(match['away_name'], self.match.get("away")) > 0.51:
+                if Utils.similar_strings(match['home_name'], self.match.get("home")) + Utils.similar_strings(match['away_name'], self.match.get("away")) >= 1.0:
                     return match['fixture_id']
         return None
 
@@ -90,7 +90,7 @@ class APILivePage:
 
     def getTotalGoals(self):
         live = self.refresh_fixture()
-        if live is None and self.last_known_score is not None:
+        if live is None or 'data' not in live or 'match' not in live['data'] or len(live['data']['match']) == 0 or 'score' not in live['data']['match'][0]:
             logging.info("Failed to get current score. Using last known %s" % self.last_known_score )
             return self.last_known_score
         score = live['data']['match'][0]['score']
@@ -100,5 +100,5 @@ class APILivePage:
             self.last_known_score = sc
             return sc
         else:
-            return None
+            return self.last_known_score
 

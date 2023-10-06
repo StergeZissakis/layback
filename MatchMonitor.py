@@ -86,8 +86,6 @@ class MatchMonitor:
         suspended_xpath = 'div[3]/div[3]/div/div'
         seconds_count = 0
         while self.browser.check_exists_by_xpath(tab, suspended_xpath) and tab.find_element(By.XPATH, suspended_xpath).text in ("SUSPENDED", "CLOSED"):
-            if self.browser.check_exists_by_xpath(tab, suspended_xpath) and  tab.find_element(By.XPATH, suspended_xpath).text == "CLOSED":
-                return False
             Utils.sleep_for_seconds(1)
             seconds_count += 1
             if seconds_count > 300:  # 15 mins
@@ -320,7 +318,7 @@ class MatchMonitor:
                 self.match.table_name = 'over2p5orbitxch'  # or it will try to update the view!
                 self.match.set("ht_goals", self.livePage.getTotalGoals())
                 self.db.update(self.match)
-                logging.info("More than 1 gols in 1st half. Exiting. %s" % self.match)
+                logging.info("More than 1 goals in 1st half. Exiting. %s" % self.match)
                 return
 
         logging.info("Waiting for half time to finish->%s" % self.match)
