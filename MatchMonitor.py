@@ -75,23 +75,30 @@ class MatchMonitor:
             suspended = True
             Utils.sleep_for_seconds(1)
             seconds_count += 1
-            if seconds_count > 900:  # 15 mins
+            if seconds_count > 180:
                 logging.info("Match suspended for more than 10 minutes [%s]. Quiting..." % self.match)
                 sys.exit(2)
-
         if suspended:
             Utils.sleep_for_seconds(1)
 
     def waitOnSuspendedTab(self, tab):
         suspended_xpath = 'div[3]/div[3]/div/div'
         seconds_count = 0
-        while self.browser.check_exists_by_xpath(tab, suspended_xpath) and tab.find_element(By.XPATH, suspended_xpath).text in ("SUSPENDED", "CLOSED"):
-            Utils.sleep_for_seconds(1)
-            seconds_count += 1
-            if seconds_count > 300:  # 15 mins
-                logging.info("Tab suspended for more than 5 minutes [%s]" % self.match)
-                return False
-        return True
+        try:
+            while self.browser.check_exists_by_xpath(tab, suspended_xpath):
+                text = tab.find_element(By.XPATH, suspended_xpath).text
+                if text == "CLOSED":
+                    return False
+                Utils.sleep_for_seconds(1)
+                seconds_count += 1
+                if seconds_count > 180:
+                    logging.info("Tab suspended for more than 5 minutes [%s]" % self.match)
+                    return False
+            return True
+        except Exception as e:
+            logging.error("Error while waiting for suspended tab: %s" % e)
+            Utils.sleep_for_seconds(2)
+            return self.waitOnSuspendedTab(tab)
 
     def placeBet(self, tab, layback, overUnder, goals, odds, odds_recorded, amount):
         if self.stopBetting:
@@ -121,7 +128,7 @@ class MatchMonitor:
                 self.sleep(1)
                 logging.debug("Error during placeBet: %s -> %s" % (self.match, e))
                 count += 1
-                if count >= 600:
+                if count >= 240:
                     logging.error("Error during placeBet - Max timeout reached : %s" % self.match)
                     sys.exit(3)
                 continue
@@ -190,57 +197,6 @@ class MatchMonitor:
         self.placeBet(tab, layBack, overUnder, goalsThreshold, oddsToMatch, currentOdds, self.stake)
         logging.info('Betted %s %s %s @ %s odds %s' % (layBack, overUnder, goalsThreshold, oddsToMatch, self.match))
 
-    '''
-    def layUnder1p5at1p5(self):
-        odds = self.getLayUnder1p5Odds()
-        self.placeBet(self.ou1p5Tab, 'Lay', 'Under', 1.5, 1.5, odds, self.stake)
-        logging.info('Betted Lay Under 1.5 @ 1.5 odds %s' % self.match)
-        return float(odds)
-
-
-    def layUnder2p5at1p5(self):
-        odds = self.getLayUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab,  'Lay', 'Under', 2.5, 1.5, odds, self.stake)
-        logging.info('Betted Lay Under 2.5 @ 1.5 odds %s' % self.match)
-        return float(odds)
-
-    def backUnder1p5at1p5(self):
-        odds = self.getBackUnder1p5Odds()
-        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, 1.5, odds, self.stake)
-        logging.info('Betted Back Under 1.5 @ 1.5 odds %s' % self.match)
-        return float(odds)
-
-    def backUnder1p5at1p13(self):
-        odds = self.getBackUnder1p5Odds()
-        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, 1.13, odds, self.stake)
-        logging.info('Betted Back Under 1.5 @ 1.13 odds %s' % self.match)
-        return float(odds)
-
-    def backUnder2p5at1p5(self):
-        odds = self.getBackUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, 1.5, odds, self.stake)
-        logging.info('Betted Back Under 2.5 @ 1.5 odds %s' % self.match)
-        return float(odds)
-
-
-    def backUnder2p5at1p13(self):
-        odds = self.getBackUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, 1.13, odds, self.stake)
-        logging.info('Betted Back Under 2.5 @ 1.13 odds %s' % self.match)
-        return float(odds)
-
-    def backUnder1p5(self):
-        odds = self.getBackUnder1p5Odds()
-        self.placeBet(self.ou1p5Tab, 'Back', 'Under', 1.5, odds, odds, self.stake)
-        logging.info('Betted Back Under 1.5 @ [%s] odds %s' % (odds, self.match))
-        return float(odds)
-
-    def backUnder2p5(self):
-        odds = self.getBackUnder2p5Odds()
-        self.placeBet(self.ou2p5Tab, 'Back', 'Under', 2.5, odds, odds, self.stake)
-        logging.info('Betted Back Under 2.5 @ [%s] odds %s' % (odds, self.match))
-        return float(odds)
-'''
     def getLayUnder1p5Odds(self):
         self.checkForSuspendedAndWait()
         if not self.waitOnSuspendedTab(self.ou1p5Tab): return None
