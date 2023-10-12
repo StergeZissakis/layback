@@ -98,7 +98,7 @@ class MatchMonitor:
         except Exception as e:
             logging.error("Error while waiting for suspended tab: %s" % e)
             Utils.sleep_for_seconds(2)
-            return self.waitOnSuspendedTab(tab)
+            return False
 
     def placeBet(self, tab, layback, overUnder, goals, odds, odds_recorded, amount):
         if self.stopBetting:
