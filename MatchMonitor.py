@@ -125,20 +125,19 @@ class MatchMonitor:
         if layback == 'Lay':
             div_place_bet_button = 2
         count = 0
-        failed = False
         while True:
             try:
-                if not self.checkForSuspendedAndWait(): failed = True; continue
-                if not self.waitOnSuspendedTab(tab): failed = True; continue
+                if not self.checkForSuspendedAndWait(): continue
+                if not self.waitOnSuspendedTab(tab): continue
                 tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[%s]/button' % str(div_place_bet_button)).click()  # Place bet button
-                if not self.checkForSuspendedAndWait(): failed = True; continue
-                if not self.waitOnSuspendedTab(tab): failed = True; continue
+                if not self.checkForSuspendedAndWait(): continue
+                if not self.waitOnSuspendedTab(tab): continue
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input').send_keys(str(odds))  # odds
-                if not self.checkForSuspendedAndWait(): failed = True; continue
-                if not self.waitOnSuspendedTab(tab): failed = True; continue
+                if not self.checkForSuspendedAndWait(): continue
+                if not self.waitOnSuspendedTab(tab): continue
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(self.stake)
-                if not self.checkForSuspendedAndWait(): failed = True; continue
-                if not self.waitOnSuspendedTab(tab): failed = True; continue
+                if not self.checkForSuspendedAndWait(): continue
+                if not self.waitOnSuspendedTab(tab): continue
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
                 break
             except Exception as e:
@@ -149,13 +148,9 @@ class MatchMonitor:
                     logging.error("Error during placeBet - Max timeout reached : %s" % self.match)
                     sys.exit(3)
                 continue
-        if failed:
-            logging.error("Failed to place place due to suspension/closure: %s", self.match)
-            return False
 
         bet = self.logBet(layback, overUnder, goals, odds, odds_recorded, amount)
         self.monitorBet(bet)
-        return True
 
     def extractOrbitTeamNames(self):
         home = None
