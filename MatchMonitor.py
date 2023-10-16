@@ -70,35 +70,52 @@ class MatchMonitor:
     def checkForSuspendedAndWait(self, xpath = '//*[@id="multiMarketContainer"]/div[5]/div[2]/div/div'):
         suspended_xpath = xpath
         seconds_count = 0
-        suspended = False
-        while self.browser.check_exists_by_xpath(self.page, suspended_xpath) and self.page.find_element(By.XPATH, suspended_xpath).text == "SUSPENDED":
-            suspended = True
-            Utils.sleep_for_seconds(1)
-            seconds_count += 1
-            if seconds_count > 180:
-                logging.info("Match suspended for more than 10 minutes [%s]. Quiting..." % self.match)
-                sys.exit(2)
-        if suspended:
-            Utils.sleep_for_seconds(1)
+        try:
+            while self.browser.check_exists_by_xpath(self.page, suspended_xpath):
+                suspendDiv = self.page.find_element(By.XPATH, suspended_xpath)
+                if suspendDiv is None:
+                    return True
+                text = suspendDiv.text
+                if text is None:
+                    return True
+                if text == "SUSPENDED":
+                    pass
+                if text == "CLOSED":
+                    return False
+
+                Utils.sleep_for_seconds(1)
+                seconds_count += 1
+                if seconds_count > 240:
+                    logging.info("Match suspended for more than 4 minutes [%s]. Quiting..." % self.match)
+                    sys.exit(2)
+        except Exception as e:
+            logging.error("Error while waiting for suspended div: %s" % e)
+            Utils.sleep_for_seconds(2)
+            return self.checkForSuspendedAndWait(xpath)
 
     def waitOnSuspendedTab(self, tab):
         suspended_xpath = 'div[3]/div[3]/div/div'
         seconds_count = 0
         try:
             while self.browser.check_exists_by_xpath(tab, suspended_xpath):
+                suspendDiv = tab.find_element(By.XPATH, suspended_xpath)
+                if suspendDiv is None:
+                    return True
                 text = tab.find_element(By.XPATH, suspended_xpath).text
+                if text != "SUSPENDED":
+                    return True
                 if text == "CLOSED":
                     return False
                 Utils.sleep_for_seconds(1)
                 seconds_count += 1
-                if seconds_count > 180:
-                    logging.info("Tab suspended for more than 5 minutes [%s]" % self.match)
-                    return False
+                if seconds_count > 240:
+                    logging.info("Tab suspended for more than 3 minutes [%s]" % self.match)
+                    sys.exit(4)
             return True
         except Exception as e:
             logging.error("Error while waiting for suspended tab: %s" % e)
             Utils.sleep_for_seconds(2)
-            return False
+            return self.waitOnSuspendedTab(tab)
 
     def placeBet(self, tab, layback, overUnder, goals, odds, odds_recorded, amount):
         if self.stopBetting:
@@ -111,16 +128,16 @@ class MatchMonitor:
         failed = False
         while True:
             try:
-                self.checkForSuspendedAndWait()
+                if not self.checkForSuspendedAndWait(): failed = True; break
                 if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[%s]/button' % str(div_place_bet_button)).click()  # Place bet button
-                self.checkForSuspendedAndWait()
+                if not self.checkForSuspendedAndWait(): failed = True; break
                 if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input').send_keys(str(odds))  # odds
-                self.checkForSuspendedAndWait()
+                if not self.checkForSuspendedAndWait(): failed = True; break
                 if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(self.stake)
-                self.checkForSuspendedAndWait()
+                if not self.checkForSuspendedAndWait(): failed = True; break
                 if not self.waitOnSuspendedTab(tab): failed = True; break
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
                 break
@@ -198,22 +215,22 @@ class MatchMonitor:
         logging.info('Betted %s %s %s @ %s odds %s' % (layBack, overUnder, goalsThreshold, oddsToMatch, self.match))
 
     def getLayUnder1p5Odds(self):
-        self.checkForSuspendedAndWait()
+        if not self.checkForSuspendedAndWait(): return None
         if not self.waitOnSuspendedTab(self.ou1p5Tab): return None
         return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
     def getLayUnder2p5Odds(self):
-        self.checkForSuspendedAndWait()
+        if not self.checkForSuspendedAndWait(): return None
         if not self.waitOnSuspendedTab(self.ou2p5Tab): return None
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[2]/button/span/div/span[1]').text)
 
     def getBackUnder1p5Odds(self):
-        self.checkForSuspendedAndWait()
+        if not self.checkForSuspendedAndWait(): return None
         if not self.waitOnSuspendedTab(self.ou1p5Tab): return None
         return float(self.ou1p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
     def getBackUnder2p5Odds(self):
-        self.checkForSuspendedAndWait()
+        if not self.checkForSuspendedAndWait(): return None
         if not self.waitOnSuspendedTab(self.ou2p5Tab): return None
         return float(self.ou2p5Tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[1]/button/span/div/span[1]').text)
 
