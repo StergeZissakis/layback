@@ -92,7 +92,7 @@ class MatchMonitor:
             logging.error("Error while waiting for suspended div: %s" % e)
             Utils.sleep_for_seconds(2)
             return self.checkForSuspendedAndWait(xpath)
-
+        return True
     def waitOnSuspendedTab(self, tab):
         suspended_xpath = 'div[3]/div[3]/div/div'
         seconds_count = 0
@@ -128,17 +128,17 @@ class MatchMonitor:
         failed = False
         while True:
             try:
-                if not self.checkForSuspendedAndWait(): failed = True; break
-                if not self.waitOnSuspendedTab(tab): failed = True; break
+                if not self.checkForSuspendedAndWait(): failed = True; continue
+                if not self.waitOnSuspendedTab(tab): failed = True; continue
                 tab.find_element(By.XPATH, './div[3]/div[1]/div[2]/div[2]/div[%s]/button' % str(div_place_bet_button)).click()  # Place bet button
-                if not self.checkForSuspendedAndWait(): failed = True; break
-                if not self.waitOnSuspendedTab(tab): failed = True; break
+                if not self.checkForSuspendedAndWait(): failed = True; continue
+                if not self.waitOnSuspendedTab(tab): failed = True; continue
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[2]/input').send_keys(str(odds))  # odds
-                if not self.checkForSuspendedAndWait(): failed = True; break
-                if not self.waitOnSuspendedTab(tab): failed = True; break
+                if not self.checkForSuspendedAndWait(): failed = True; continue
+                if not self.waitOnSuspendedTab(tab): failed = True; continue
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[3]/input').send_keys(self.stake)
-                if not self.checkForSuspendedAndWait(): failed = True; break
-                if not self.waitOnSuspendedTab(tab): failed = True; break
+                if not self.checkForSuspendedAndWait(): failed = True; continue
+                if not self.waitOnSuspendedTab(tab): failed = True; continue
                 tab.find_element(By.XPATH, './div[3]/div[2]/div/div/div[2]/div/div[1]/div[4]/button').click()  # bet button
                 break
             except Exception as e:
