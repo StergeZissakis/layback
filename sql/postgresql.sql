@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
 -- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
--- Started on 2023-10-09 15:18:22 BST
+-- Started on 2023-10-24 09:41:52 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -235,7 +235,7 @@ CREATE VIEW public.orbitxch_today AS
 
 
 --
--- TOC entry 228 (class 1259 OID 16619)
+-- TOC entry 226 (class 1259 OID 16619)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -268,9 +268,9 @@ CREATE TABLE public.over2p5bets (
     "BetDateTime" timestamp without time zone NOT NULL,
     "LayBack" public."ActionType" NOT NULL,
     "OverUnder" public."OverUnderType" NOT NULL,
-    "Goals" numeric(3,2) NOT NULL,
-    "Odds" numeric(3,2) NOT NULL,
-    "OddsRecorded" numeric(3,2),
+    "Goals" numeric NOT NULL,
+    "Odds" numeric NOT NULL,
+    "OddsRecorded" numeric,
     "Amount" numeric,
     "BetResult" public."BetResult",
     "BetResultTime" timestamp without time zone
@@ -278,7 +278,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 226 (class 1259 OID 16600)
+-- TOC entry 229 (class 1259 OID 24832)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -302,7 +302,7 @@ CREATE VIEW public."TodaysBets" AS
 
 
 --
--- TOC entry 227 (class 1259 OID 16604)
+-- TOC entry 228 (class 1259 OID 24827)
 -- Name: YesterdaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -326,7 +326,7 @@ CREATE VIEW public."YesterdaysBets" AS
 
 
 --
--- TOC entry 229 (class 1259 OID 16624)
+-- TOC entry 227 (class 1259 OID 16624)
 -- Name: YesterdaysMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -651,14 +651,92 @@ COPY public.over2p5bets (id, "MatchDateTime", "Home", "Away", "BetDateTime", "La
 186	2023-10-08 16:00:00	Stabaek	Lillestrom	2023-10-08 17:07:29	Lay	Under	1.50	1.50	1.67	6	Lost	2023-10-08 17:14:05.836116
 188	2023-10-08 16:30:00	Arsenal	Man City	2023-10-08 17:36:25	Lay	Under	1.50	1.50	1.59	6	Lost	2023-10-08 17:41:09.377861
 189	2023-10-08 16:00:00	Stabaek	Lillestrom	2023-10-08 17:07:29	Back	Under	1.50	1.50	1.48	6	Won	2023-10-08 17:41:57.340482
+209	2023-10-21 12:00:00	GAIS	Ostersunds FK	2023-10-21 13:06:12	Lay	Under	2.5	1.5	2.06	6	Lapsed	2023-10-21 13:19:47.798972
 190	2023-10-08 16:30:00	Arsenal	Man City	2023-10-08 17:36:25	Back	Under	1.50	1.13	1.15	6	Won	2023-10-08 18:00:47.647932
 191	2023-10-08 17:00:00	Midtjylland	Randers	2023-10-08 18:05:46	Lay	Under	2.50	1.50	1.77	6	Won	2023-10-08 18:15:08.784393
+231	2023-10-21 19:00:00	Roda JC	Willem II	2023-10-21 20:06:05	Lay	Under	2.5	1.5	1.98	6	Lost	2023-10-21 20:20:38.335992
+211	2023-10-21 12:30:00	Liverpool	Everton	2023-10-21 13:35:04	Lay	Under	1.5	1.5	3.25	6	Won	2023-10-21 13:57:35.327291
+212	2023-10-21 12:30:00	Liverpool	Everton	2023-10-21 13:35:04	Back	Under	1.5	1.5	1.45	6	Lost	2023-10-21 14:17:24.327052
 192	2023-10-08 18:00:00	Porto	Portimonense	2023-10-08 19:08:56	Lay	Under	2.50	1.50	2.20	6	Lost	2023-10-08 19:30:29.480452
 195	2023-10-08 18:00:00	Porto	Portimonense	2023-10-08 19:08:56	Back	Under	2.50	1.13	1.14	6	Won	2023-10-08 19:44:47.941462
 193	2023-10-08 18:15:00	Lierse	Deinze	2023-10-08 19:19:24	Lay	Under	2.50	1.50	2.18	6	Lost	2023-10-08 19:36:31.526156
 196	2023-10-08 18:15:00	Lierse	Deinze	2023-10-08 19:19:24	Back	Under	2.50	1.13	1.14	6	Won	2023-10-08 19:52:54.520651
 194	2023-10-08 18:30:00	Eintracht Frankfurt	FC Heidenheim	2023-10-08 19:35:28	Lay	Under	2.50	1.50	1.94	6	Lost	2023-10-08 19:46:46.918727
 197	2023-10-08 18:30:00	Eintracht Frankfurt	FC Heidenheim	2023-10-08 19:35:28	Back	Under	2.50	1.50	1.50	6	Won	2023-10-08 20:13:27.576243
+198	2023-10-14 15:30:00	VVV Venlo	Roda JC	2023-10-14 16:38:05	Lay	Under	1.5	1.5	2.06	6	Won	2023-10-14 16:50:35.552181
+200	2023-10-15 17:00:00	Switzerland	Belarus	2023-10-15 18:04:04	Lay	Under	2.5	1.5	2.16	6	Lapsed	2023-10-15 18:18:34.578979
+199	2023-10-15 17:00:00	Czech Republic	Faroe Islands	2023-10-15 18:03:59	Lay	Under	1.5	1.5	3.4	6	Lost	2023-10-15 18:27:13.909373
+201	2023-10-15 17:00:00	Czech Republic	Faroe Islands	2023-10-15 18:03:59	Back	Under	1.5	1.5	1.51	6	Won	2023-10-15 18:45:10.320395
+202	2023-10-15 19:45:00	Turkey	Latvia	2023-10-15 21:06:06.287014	Lay	Under	2.5	1.5	1.77	6	\N	\N
+203	2023-10-15 19:45:00	Norway	Spain	2023-10-15 21:06:06	Lay	Under	2.5	1.5	1.41	6	\N	2023-10-15 21:06:17.764679
+204	2023-10-15 19:45:00	Norway	Spain	2023-10-15 21:06:06	Lay	Under	2.5	1.5	1.33	6	Lost	2023-10-15 21:08:36.278005
+205	2023-10-15 19:45:00	Norway	Spain	2023-10-15 21:06:06	Back	Under	2.5	1.13	1.15	6	Won	2023-10-15 21:20:06.514965
+216	2023-10-21 15:00:00	Blackburn	Cardiff	2023-10-21 16:06:23	Lay	Under	1.5	1.5	1.74	6	Lapsed	2023-10-21 16:12:04.416856
+206	2023-10-16 19:45:00	Greece	Netherlands	2023-10-16 21:10:01	Lay	Under	1.5	1.5	1.3	6	Lost	2023-10-16 21:10:07.828667
+207	2023-10-16 19:45:00	Greece	Netherlands	2023-10-16 21:10:01	Back	Under	1.5	1.13	1.15	6	Won	2023-10-16 21:16:16.891295
+208	2023-10-19 18:00:00	Vendsyssel FF	AC Horsens	2023-10-19 19:05:02	Lay	Under	2.5	1.5	2.14	6	Lapsed	2023-10-19 19:17:09.077231
+210	2023-10-21 12:00:00	Paderborn	St Pauli	2023-10-21 13:06:14	Lay	Under	2.5	1.5	1.9	6	Lapsed	2023-10-21 13:07:40.285846
+215	2023-10-21 15:00:00	Bournemouth	Wolves	2023-10-21 16:06:08	Lay	Under	2.5	1.5	4.2	6	Lapsed	2023-10-21 16:12:35.349914
+225	2023-10-21 17:30:00	Sevilla	Real Madrid	2023-10-21 18:38:12	Lay	Under	1.5	1.5	2.08	6	\N	2023-10-21 18:52:07.100104
+213	2023-10-21 14:30:00	Union Berlin	Stuttgart	2023-10-21 15:38:28	Lay	Under	2.5	1.5	1.66	6	Won	2023-10-21 15:45:42.576686
+214	2023-10-21 14:30:00	Union Berlin	Stuttgart	2023-10-21 15:38:28	Back	Under	2.5	1.13	1.14	6	Lost	2023-10-21 16:04:06.545288
+217	2023-10-21 15:00:00	Middlesbrough	Birmingham	2023-10-21 16:09:20	Lay	Under	1.5	1.5	1.81	6	Lost	2023-10-21 16:21:52.928429
+218	2023-10-21 15:00:00	Middlesbrough	Birmingham	2023-10-21 16:09:20	Back	Under	1.5	1.13	1.15	6	Won	2023-10-21 16:39:17.081186
+219	2023-10-21 16:00:00	FC Copenhagen	Vejle	2023-10-21 17:12:25	Lay	Under	1.5	1.5	2.14	6	\N	2023-10-21 17:27:56.319292
+232	2023-10-21 19:30:00	FC Basel	Servette	2023-10-21 20:36:03	Lay	Under	1.5	1.5	1.84	6	Lost	2023-10-21 20:47:17.10263
+238	2023-10-21 19:30:00	FC Basel	Servette	2023-10-21 20:36:03	Back	Under	1.5	1.5	1.51	6	Won	2023-10-21 21:12:47.435614
+226	2023-10-21 17:45:00	PSV	Fortuna Sittard	2023-10-21 18:50:22	Lay	Under	2.5	1.5	2.44	6	Lapsed	2023-10-21 18:58:39.549154
+221	2023-10-21 17:00:00	Young Boys	FC Zurich	2023-10-21 18:08:16	Lay	Under	1.5	1.5	1.84	6	Lost	2023-10-21 18:20:26.904818
+224	2023-10-21 17:00:00	Young Boys	FC Zurich	2023-10-21 18:08:16	Back	Under	1.5	1.13	1.14	6	Won	2023-10-21 18:35:43.809505
+220	2023-10-21 17:00:00	Stade Lausanne-Ouchy	Lausanne	2023-10-21 18:07:06	Lay	Under	2.5	1.5	1.76	6	Won	2023-10-21 18:16:20.570786
+223	2023-10-21 17:00:00	Stade Lausanne-Ouchy	Lausanne	2023-10-21 18:07:06	Back	Under	2.5	1.13	1.15	6	Lost	2023-10-21 18:35:43.258386
+233	2023-10-21 19:00:00	Roda JC	Willem II	2023-10-21 20:06:05	Back	Under	2.5	1.13	1.15	6	Won	2023-10-21 20:36:56.85995
+222	2023-10-21 17:15:00	Molenbeek	Westerlo	2023-10-21 18:21:10	Lay	Under	1.5	1.5	1.82	6	Won	2023-10-21 18:30:56.456288
+228	2023-10-21 17:15:00	Molenbeek	Westerlo	2023-10-21 18:21:10	Back	Under	1.5	1.5	1.41	6	Lost	2023-10-21 18:57:43.260961
+240	2023-10-21 23:00:00	Toronto FC	Orlando City	2023-10-22 00:26:29	Lay	Under	1.5	1.5	2.02	6	Lapsed	2023-10-22 00:32:37.930719
+227	2023-10-21 17:45:00	RKC Waalwijk	FC Volendam	2023-10-21 18:52:06	Lay	Under	2.5	1.5	2.04	6	Won	2023-10-21 19:05:31.979801
+229	2023-10-21 17:45:00	RKC Waalwijk	FC Volendam	2023-10-21 18:52:06	Back	Under	2.5	1.13	1.14	6	Lost	2023-10-21 19:22:52.744483
+230	2023-10-21 19:00:00	Zulte-Waregem	FC Liege	2023-10-21 20:03:13	Lay	Under	1.5	1.5	2.24	6	Lost	2023-10-21 20:19:01.442771
+234	2023-10-21 19:00:00	Zulte-Waregem	FC Liege	2023-10-21 20:03:13	Back	Under	1.5	1.5	1.5	6	Won	2023-10-21 20:41:26.87092
+235	2023-10-21 19:45:00	Charleroi	Antwerp	2023-10-21 20:50:04	Lay	Under	1.5	1.5	1.93	6	Lapsed	2023-10-21 20:53:27.187
+236	2023-10-21 20:00:00	AZ Alkmaar	Heerenveen	2023-10-21 21:04:06	Lay	Under	2.5	1.5	1.8	6	\N	2023-10-21 21:14:50.558843
+237	2023-10-21 20:00:00	Celta Vigo	Atletico Madrid	2023-10-21 21:07:11	Lay	Under	2.5	1.5	2.0	6	\N	2023-10-21 21:22:58.209305
+239	2023-10-21 23:00:00	Charlotte FC	Inter Miami CF	2023-10-22 00:16:54	Lay	Under	2.5	1.5	2.1	6	Lapsed	2023-10-22 00:19:56.622418
+241	2023-10-22 02:00:00	Vancouver Whitecaps	Los Angeles FC	2023-10-22 03:23:20	Lay	Under	2.5	1.5	2.04	6	Lapsed	2023-10-22 03:35:11.628625
+243	2023-10-22 02:00:00	Colorado	Real Salt Lake	2023-10-22 03:23:21	Back	Under	1.5	1.13	1.07	6	Won	2023-10-22 03:51:28.160435
+244	2023-10-22 11:15:00	FC Utrecht	Ajax	2023-10-22 12:25:43	Lay	Under	2.5	1.5	2.14	6	Lapsed	2023-10-22 12:26:31.889478
+242	2023-10-22 02:00:00	Colorado	Real Salt Lake	2023-10-22 03:23:21	Lay	Under	1.5	1.5	2.1	6	Lost	2023-10-22 03:39:12.641059
+247	2023-10-22 11:30:00	Roma	AC Monza	2023-10-22 12:39:07	Back	Under	1.5	1.13	1.15	6	Won	2023-10-22 13:10:18.110418
+245	2023-10-22 11:30:00	Roma	AC Monza	2023-10-22 12:39:07	Lay	Under	1.5	1.5	2.08	6	Lost	2023-10-22 12:54:58.796578
+270	2023-10-22 16:30:00	Malmo FF	Varbergs BoIS	2023-10-22 17:41:14	Lay	Under	2.5	1.5	2.96	6	Lapsed	2023-10-22 17:54:37.626637
+264	2023-10-22 16:00:00	Ham-Kam	Haugesund	2023-10-22 17:04:06	Lay	Under	2.5	1.5	1.75	6	Won	2023-10-22 17:13:31.325797
+249	2023-10-22 12:30:00	Nurnberg	Hertha Berlin	2023-10-22 13:37:17	Lay	Under	2.5	1.5	1.99	6	Lapsed	2023-10-22 13:47:22.050889
+246	2023-10-22 12:00:00	Landskrona	Vasteras SK	2023-10-22 13:04:11	Lay	Under	1.5	1.5	2.32	6	Lost	2023-10-22 13:22:13.823167
+250	2023-10-22 12:00:00	Landskrona	Vasteras SK	2023-10-22 13:04:11	Back	Under	1.5	1.5	1.48	6	Won	2023-10-22 13:43:39.202204
+268	2023-10-22 16:00:00	Ham-Kam	Haugesund	2023-10-22 17:04:06	Back	Under	2.5	1.13	1.13	6	Lost	2023-10-22 17:32:52.81779
+248	2023-10-22 12:30:00	FCV Dender	KV Oostende	2023-10-22 13:34:07	Lay	Under	2.5	1.5	1.84	6	Lost	2023-10-22 13:45:01.188836
+251	2023-10-22 12:30:00	FCV Dender	KV Oostende	2023-10-22 13:34:07	Back	Under	2.5	1.13	1.15	6	Won	2023-10-22 14:01:19.418248
+252	2023-10-22 13:30:00	Excelsior	PEC Zwolle	2023-10-22 14:35:11.996677	Lay	Under	2.5	1.5	2.18	6	\N	\N
+257	2023-10-22 14:00:00	Toulouse	Reims	2023-10-22 15:08:43.019345	Lay	Under	1.5	1.5	1.68	6	\N	\N
+272	2023-10-22 18:15:00	Viking	Tromso	2023-10-22 19:20:04	Lay	Under	1.5	1.5	1.88	6	Lapsed	2023-10-22 19:21:44.033063
+256	2023-10-22 14:00:00	AaB	B93 Copenhagen	2023-10-22 15:08:17	Lay	Under	2.5	1.5	2.42	6	\N	2023-10-22 15:28:22.552616
+253	2023-10-22 13:30:00	Lillestrom	Valerenga	2023-10-22 14:44:09	Lay	Under	2.5	1.5	1.75	6	Lost	2023-10-22 14:52:12.707896
+258	2023-10-22 13:30:00	Lillestrom	Valerenga	2023-10-22 14:44:09	Back	Under	2.5	1.5	1.52	6	Won	2023-10-22 15:19:55.485528
+255	2023-10-22 14:00:00	KFUM Oslo	Raufoss	2023-10-22 15:06:17	Lay	Under	1.5	1.5	1.75	6	Lost	2023-10-22 15:14:25.425703
+259	2023-10-22 14:00:00	KFUM Oslo	Raufoss	2023-10-22 15:06:17	Back	Under	1.5	1.13	1.15	6	Won	2023-10-22 15:33:47.991018
+254	2023-10-22 14:00:00	Nantes	Montpellier	2023-10-22 15:05:35	Lay	Under	2.5	1.5	1.81	6	Lost	2023-10-22 15:15:56.348964
+260	2023-10-22 14:00:00	Nantes	Montpellier	2023-10-22 15:05:35	Back	Under	2.5	1.5	1.49	6	Won	2023-10-22 15:42:26.654125
+261	2023-10-22 15:00:00	Viborg	FC Nordsjaelland	2023-10-22 16:05:30	Lay	Under	1.5	1.5	2.1	6	\N	2023-10-22 16:19:40.211216
+271	2023-10-22 18:15:00	Francs Borains	Patro Eisden Maasmechelen	2023-10-22 19:17:03	Lay	Under	1.5	1.5	1.59	6	Lost	2023-10-22 19:19:52.429633
+273	2023-10-22 18:15:00	Francs Borains	Patro Eisden Maasmechelen	2023-10-22 19:17:03	Back	Under	1.5	1.13	1.15	6	Won	2023-10-22 19:40:23.550191
+265	2023-10-22 16:00:00	Rapid Vienna	Austria Klagenfurt	2023-10-22 17:08:07	Lay	Under	2.5	1.5	2.1	6	Lapsed	2023-10-22 17:20:41.502129
+266	2023-10-22 16:00:00	Stromsgodset	Odds BK	2023-10-22 17:09:22	Lay	Under	2.5	1.5	1.93	6	\N	2023-10-22 17:22:13.566728
+262	2023-10-22 15:30:00	Grasshoppers Zurich	Lugano	2023-10-22 16:37:06	Lay	Under	1.5	1.5	2.02	6	Won	2023-10-22 16:50:44.562959
+263	2023-10-22 15:45:00	Go Ahead Eagles	Sparta Rotterdam	2023-10-22 16:50:21	Lay	Under	1.5	1.5	2.22	6	Lost	2023-10-22 17:07:50.049562
+267	2023-10-22 15:45:00	Go Ahead Eagles	Sparta Rotterdam	2023-10-22 16:50:21	Back	Under	1.5	1.13	1.15	6	Won	2023-10-22 17:21:06.282568
+269	2023-10-22 16:30:00	Aston Villa	West Ham	2023-10-22 17:36:14	Lay	Under	2.5	1.5	2.06	6	Lapsed	2023-10-22 17:45:30.152617
+274	2023-10-22 20:00:00	Barcelona	Athletic Bilbao	2023-10-22 21:07:05	Lay	Under	1.5	1.5	1.84	6	Lost	2023-10-22 21:19:50.058541
+275	2023-10-22 20:00:00	Barcelona	Athletic Bilbao	2023-10-22 21:07:05	Back	Under	1.5	1.13	1.14	6	Won	2023-10-22 21:37:15.762021
 \.
 
 
@@ -977,7 +1055,38 @@ COPY public.over2p5footballsupertips (id, home, away, date_time, url, league_id)
 876	Lugano	Servette	2023-10-08 13:15:00	\N	15
 877	Lausanne Sports	Lucerne	2023-10-08 15:30:00	\N	15
 878	Young Boys	Basel	2023-10-08 15:30:00	\N	15
+1193	Greece	Netherlands	2023-10-16 19:45:00	\N	274
 1120	FC Helsingor	Vendsyssel FF	2023-10-09 18:00:00	\N	147
+1194	Belgium	Sweden	2023-10-16 19:45:00	\N	274
+1195	Iceland	Liechtenstein	2023-10-16 19:45:00	\N	274
+1223	KV Kortrijk	Club Brugge	2023-10-21 15:00:00	\N	68
+1224	RWD Molenbeek	Westerlo	2023-10-21 17:15:00	\N	68
+1206	San Marino	Denmark	2023-10-17 19:45:00	\N	274
+1123	Spain	Scotland	2023-10-12 19:45:00	\N	274
+1124	Cyprus	Norway	2023-10-12 19:45:00	\N	274
+1225	Charleroi	Antwerp	2023-10-21 19:45:00	\N	68
+1226	Anderlecht II	Standard Liege II	2023-10-21 15:00:00	\N	136
+1227	Zulte-Waregem	RFC Liege	2023-10-21 19:00:00	\N	136
+1131	Portugal	Slovakia	2023-10-13 19:45:00	\N	274
+1132	Liechtenstein	Bosnia-Herzegovina	2023-10-13 19:45:00	\N	274
+1133	Netherlands	France	2023-10-13 19:45:00	\N	274
+1164	Czech Republic	Faroe Islands	2023-10-15 17:00:00	\N	274
+1165	Switzerland	Belarus	2023-10-15 17:00:00	\N	274
+1166	Norway	Spain	2023-10-15 19:45:00	\N	274
+1167	Turkey	Latvia	2023-10-15 19:45:00	\N	274
+1168	Willem II	FC Den Bosch	2023-10-15 13:30:00	\N	199
+1169	Cambuur Leeuwarden	NAC	2023-10-15 15:45:00	\N	199
+1145	FC Dallas	Colorado Rapids	2023-10-15 01:30:00	\N	76
+1140	Northern Ireland	San Marino	2023-10-14 14:00:00	\N	274
+1141	Italy	Malta	2023-10-14 19:45:00	\N	274
+1142	Denmark	Kazakhstan	2023-10-14 19:45:00	\N	274
+1143	VVV	Roda JC	2023-10-14 15:30:00	\N	199
+1144	Telstar	Maastricht	2023-10-14 19:00:00	\N	199
+1228	Lierse Kempenzonen	RFC Seraing	2023-10-21 19:00:00	\N	136
+1229	FC Copenhagen	Vejle	2023-10-21 16:00:00	\N	40
+1230	Liverpool	Everton	2023-10-21 12:30:00	\N	2
+1146	Nashville SC	New England Revolution	2023-10-15 01:30:00	\N	76
+1147	LA Galaxy	Real Salt Lake	2023-10-15 03:30:00	\N	76
 839	Monza	Salernitana	2023-10-08 11:30:00	\N	4
 840	Frosinone	Verona	2023-10-08 14:00:00	\N	4
 841	Napoli	Fiorentina	2023-10-08 19:45:00	\N	4
@@ -1009,6 +1118,146 @@ COPY public.over2p5footballsupertips (id, home, away, date_time, url, league_id)
 867	Kalmar FF	Malmo FF	2023-10-08 14:00:00	\N	14
 868	IFK Varnamo	IFK Norrkoping	2023-10-08 14:00:00	\N	14
 869	Brommapojkarna	Elfsborg	2023-10-08 14:00:00	\N	14
+1214	Vendsyssel FF	AC Horsens	2023-10-19 18:00:00	\N	147
+1210	Inter Miami CF	Charlotte FC	2023-10-19 01:00:00	\N	76
+1231	Bournemouth	Wolverhampton	2023-10-21 15:00:00	\N	2
+1232	Brentford	Burnley	2023-10-21 15:00:00	\N	2
+1233	Man City	Brighton	2023-10-21 15:00:00	\N	2
+1191	Azerbaijan	Austria	2023-10-16 17:00:00	\N	274
+1192	Gibraltar	Rep of Ireland	2023-10-16 19:45:00	\N	274
+1234	Chelsea	Arsenal	2023-10-21 17:30:00	\N	2
+1235	Blackburn	Cardiff	2023-10-21 15:00:00	\N	77
+1236	Huddersfield	QPR	2023-10-21 15:00:00	\N	77
+1237	Hull	Southampton	2023-10-21 15:00:00	\N	77
+1238	Middlesbrough	Birmingham	2023-10-21 15:00:00	\N	77
+1239	Norwich	Leeds	2023-10-21 15:00:00	\N	77
+1220	FC Salzburg	LASK Linz	2023-10-21 16:00:00	\N	43
+1221	SK Sturm Graz	Hartberg	2023-10-21 16:00:00	\N	43
+1222	FC Blau Weiss Linz	Austria Lustenau	2023-10-21 16:00:00	\N	43
+1259	RKC	FC Volendam	2023-10-21 17:45:00	\N	196
+1260	PSV	Fortuna Sittard	2023-10-21 17:45:00	\N	196
+1261	NEC	Almere City FC	2023-10-21 19:00:00	\N	196
+1262	Feyenoord	Vitesse	2023-10-21 20:00:00	\N	196
+1263	AZ	Heerenveen	2023-10-21 20:00:00	\N	196
+1264	Roda JC	Willem II	2023-10-21 19:00:00	\N	199
+1265	Bodo/Glimt	Sandefjord	2023-10-21 14:00:00	\N	13
+1266	SK Brann	Molde	2023-10-21 17:00:00	\N	13
+1267	Hodd	Sogndal	2023-10-21 14:00:00	\N	204
+1268	FK Jerv	Kongsvinger	2023-10-21 14:00:00	\N	204
+1269	Kristiansund BK	Asane	2023-10-21 14:00:00	\N	204
+1270	Mjondalen	IK Start	2023-10-21 14:00:00	\N	204
+1271	Sandnes Ulf	Fredrikstad	2023-10-21 14:00:00	\N	204
+1272	Gwangju FC	Ulsan Hyundai	2023-10-21 06:00:00	\N	66
+1273	Sevilla	Real Madrid	2023-10-21 17:30:00	\N	3
+1274	Celta Vigo	Atletico Madrid	2023-10-21 20:00:00	\N	3
+1275	Sirius	Brommapojkarna	2023-10-21 16:30:00	\N	14
+1276	GAIS	Ostersunds FK	2023-10-21 12:00:00	\N	336
+1277	Helsingborg	Gefle IF	2023-10-21 14:00:00	\N	336
+1446	Rapid Vienna	Austria Klagenfurt	2023-10-22 16:00:00	\N	43
+1290	St. Louis City SC	Seattle Sounders FC	2023-10-22 02:00:00	\N	76
+1240	PSG	Strasbourg	2023-10-21 16:00:00	\N	5
+1241	Nice	Marseille	2023-10-21 20:00:00	\N	5
+1242	Union Berlin	VfB Stuttgart	2023-10-21 14:30:00	\N	1
+1243	SC Freiburg	Bochum	2023-10-21 14:30:00	\N	1
+1244	Wolfsburg	Bayer Leverkusen	2023-10-21 14:30:00	\N	1
+1245	TSG Hoffenheim	Eintracht Frankfurt	2023-10-21 14:30:00	\N	1
+1246	Darmstadt	RB Leipzig	2023-10-21 14:30:00	\N	1
+1247	Mainz	Bayern Munich	2023-10-21 17:30:00	\N	1
+1248	Paderborn	St Pauli	2023-10-21 12:00:00	\N	93
+1249	VfL Osnabruck	Wehen SV	2023-10-21 12:00:00	\N	93
+1250	Hamburg	Greuther Furth	2023-10-21 12:00:00	\N	93
+1251	Fortuna Dusseldorf	Kaiserslautern	2023-10-21 19:30:00	\N	93
+1252	Verona	Napoli	2023-10-21 14:00:00	\N	4
+1253	Sassuolo	Lazio	2023-10-21 19:45:00	\N	4
+1254	Albirex Niigata	Sagan Tosu	2023-10-21 05:00:00	\N	28
+1255	Yokohama F-Marinos	Consadole Sapporo	2023-10-21 06:00:00	\N	28
+1256	Yokohama FC	FC Tokyo	2023-10-21 06:00:00	\N	28
+1257	Vissel Kobe	Kashima Antlers	2023-10-21 06:00:00	\N	28
+1258	Kyoto Sanga FC	Shonan Bellmare	2023-10-21 07:00:00	\N	28
+1278	Stade Lausanne-Ouchy	Lausanne Sports	2023-10-21 17:00:00	\N	15
+1279	Young Boys	FC Zurich	2023-10-21 17:00:00	\N	15
+1280	Basel	Servette	2023-10-21 19:30:00	\N	15
+1281	FC Cincinnati	Atlanta United	2023-10-21 23:00:00	\N	76
+1282	Columbus Crew	CF Montreal	2023-10-21 23:00:00	\N	76
+1283	New York City FC	Chicago Fire	2023-10-21 23:00:00	\N	76
+1284	Toronto FC	Orlando City SC	2023-10-21 23:00:00	\N	76
+1285	Charlotte FC	Inter Miami CF	2023-10-21 23:00:00	\N	76
+1286	Nashville SC	New York Red Bulls	2023-10-21 23:00:00	\N	76
+1287	New England Revolution	Philadelphia Union	2023-10-21 23:00:00	\N	76
+1291	Vancouver Whitecaps	Los Angeles FC	2023-10-22 02:00:00	\N	76
+1292	Colorado Rapids	Real Salt Lake	2023-10-22 02:00:00	\N	76
+1293	LA Galaxy	FC Dallas	2023-10-22 02:00:00	\N	76
+1294	San Jose Earthquakes	Austin FC	2023-10-22 02:00:00	\N	76
+1445	WSG Swarovski Tirol	FK Austria Vienna	2023-10-22 13:30:00	\N	43
+1447	Genk	KV Mechelen	2023-10-22 12:30:00	\N	68
+1448	Cercle Brugge	Gent	2023-10-22 15:00:00	\N	68
+1449	Standard Liege	Anderlecht	2023-10-22 17:30:00	\N	68
+1451	FCV Dender EH	KV Oostende	2023-10-22 12:30:00	\N	136
+1452	Club Brugge II	SK Beveren	2023-10-22 15:00:00	\N	136
+1453	Francs Borains	Patro Eisden Maasmechelen	2023-10-22 18:15:00	\N	136
+1454	Viborg	FC Nordsjaelland	2023-10-22 15:00:00	\N	40
+1455	Randers FC	Brondby	2023-10-22 17:00:00	\N	40
+1456	AaB	B93 Copenhagen	2023-10-22 14:00:00	\N	147
+1457	HB Køge	Naestved IF	2023-10-22 15:00:00	\N	147
+1458	Aston Villa	West Ham	2023-10-22 16:30:00	\N	2
+1459	Lorient	Rennes	2023-10-22 12:00:00	\N	5
+1460	Toulouse	Reims	2023-10-22 14:00:00	\N	5
+1461	Lille	Brest	2023-10-22 14:00:00	\N	5
+1462	Nantes	Montpellier	2023-10-22 14:00:00	\N	5
+1463	Monaco	Metz	2023-10-22 16:05:00	\N	5
+1464	Lyon	Clermont Foot	2023-10-22 19:45:00	\N	5
+1465	Cologne	Borussia Mgladbach	2023-10-22 14:30:00	\N	1
+1466	Heidenheim	Augsburg	2023-10-22 16:30:00	\N	1
+1467	Hansa Rostock	Holstein Kiel	2023-10-22 12:30:00	\N	93
+1468	Karlsruher SC	Schalke	2023-10-22 12:30:00	\N	93
+1469	Nurnberg	Hertha Berlin	2023-10-22 12:30:00	\N	93
+1470	Roma	Monza	2023-10-22 11:30:00	\N	4
+1471	Bologna	Frosinone	2023-10-22 14:00:00	\N	4
+1472	Salernitana	Cagliari	2023-10-22 14:00:00	\N	4
+1474	FC Utrecht	Ajax	2023-10-22 11:15:00	\N	196
+1475	Heracles	FC Twente	2023-10-22 13:30:00	\N	196
+1476	Excelsior	PEC Zwolle	2023-10-22 13:30:00	\N	196
+1477	Go Ahead Eagles	Sparta Rotterdam	2023-10-22 15:45:00	\N	196
+1478	Lillestrom	Valerenga	2023-10-22 13:30:00	\N	13
+1479	Aalesund	Sarpsborg	2023-10-22 16:00:00	\N	13
+1480	HamKam	Haugesund	2023-10-22 16:00:00	\N	13
+1481	Rosenborg	Stabaek	2023-10-22 16:00:00	\N	13
+1482	Stromsgodset	Odd BK	2023-10-22 16:00:00	\N	13
+1483	Viking FK	Tromso	2023-10-22 18:15:00	\N	13
+1484	Bryne	Skeid	2023-10-22 14:00:00	\N	204
+1485	KFUM	Raufoss	2023-10-22 14:00:00	\N	204
+1486	Moss	Ranheim	2023-10-22 14:00:00	\N	204
+1487	FC Seoul	Gangwon FC	2023-10-22 06:00:00	\N	66
+1488	Jeju United	Suwon Bluewings	2023-10-22 06:00:00	\N	66
+1489	Daejeon Hana Citizen	Suwon FC	2023-10-22 08:40:00	\N	66
+1289	Portland Timbers	Houston Dynamo	2023-10-22 02:00:00	\N	76
+1450	OH Leuven	Sint-Truidense	2023-10-22 18:15:00	\N	68
+1473	AC Milan	Juventus	2023-10-22 19:45:00	\N	4
+1490	Girona	Almeria	2023-10-22 15:15:00	\N	3
+1491	Villarreal	CD Alaves	2023-10-22 17:30:00	\N	3
+1492	Barcelona	Athletic Bilbao	2023-10-22 20:00:00	\N	3
+1493	Djurgarden	Hammarby	2023-10-22 14:00:00	\N	14
+1494	Halmstad	Mjällby AIF	2023-10-22 14:00:00	\N	14
+1495	Malmo FF	Varbergs BoIS FC	2023-10-22 16:30:00	\N	14
+1496	BK Hacken	IFK Norrkoping	2023-10-22 16:30:00	\N	14
+1497	Landskrona	Västerås SK FK	2023-10-22 12:00:00	\N	336
+1498	Orgryte IS	Trelleborgs FF	2023-10-22 14:00:00	\N	336
+1499	IK Brage	AFC Eskilstuna	2023-10-22 14:00:00	\N	336
+1500	Winterthur	St Gallen	2023-10-22 13:15:00	\N	15
+1501	Grasshoppers	Lugano	2023-10-22 15:30:00	\N	15
+1502	Lucerne	Yverdon Sport FC	2023-10-22 15:30:00	\N	15
+1288	Sporting Kansas City	Minnesota United	2023-10-22 02:00:00	\N	76
+1640	Odense BK	Midtjylland	2023-10-23 18:00:00	\N	40
+1641	Tottenham	Fulham	2023-10-23 20:00:00	\N	2
+1642	Fiorentina	Empoli	2023-10-23 19:45:00	\N	4
+1643	AZ Reserves	De Graafschap	2023-10-23 19:00:00	\N	199
+1644	Top Oss	FC Utrecht Reserves	2023-10-23 19:00:00	\N	199
+1645	Ajax Reserves	ADO Den Haag	2023-10-23 19:00:00	\N	199
+1646	Helmond Sport	FC Dordrecht	2023-10-23 19:00:00	\N	199
+1647	PSV Reserves	FC Eindhoven	2023-10-23 19:00:00	\N	199
+1648	FC Groningen	FC Emmen	2023-10-23 19:00:00	\N	199
+1649	Elfsborg	AIK	2023-10-23 18:10:00	\N	14
+1650	Jonkopings Sodra	Skövde AIK	2023-10-23 18:00:00	\N	336
 \.
 
 
@@ -1348,6 +1597,27 @@ COPY public.over2p5goalsnow (id, home, away, date_time, url, league_id) FROM std
 581	New York Red Bulls	Toronto FC	2023-10-08 00:30:00	\N	76
 582	Orlando City SC	New England Revolution	2023-10-08 00:30:00	\N	76
 583	Philadelphia Union	Nashville SC	2023-10-08 00:30:00	\N	76
+1193	LA Galaxy	Real Salt Lake	2023-10-15 03:30:00	\N	76
+1159	Latvia	Armenia	2023-10-12 17:00:00	\N	274
+1160	Israel	Switzerland	2023-10-12 19:45:00	\N	274
+1161	Spain	Scotland	2023-10-12 19:45:00	\N	274
+1162	Cyprus	Norway	2023-10-12 19:45:00	\N	274
+1163	Croatia	Turkey	2023-10-12 19:45:00	\N	274
+1280	Huddersfield	QPR	2023-10-21 15:00:00	\N	77
+1281	Hull	Southampton	2023-10-21 15:00:00	\N	77
+1282	Middlesbrough	Birmingham	2023-10-21 15:00:00	\N	77
+1179	Estonia	Azerbaijan	2023-10-13 17:00:00	\N	274
+1180	Netherlands	France	2023-10-13 19:45:00	\N	274
+1181	Rep of Ireland	Greece	2023-10-13 19:45:00	\N	274
+1283	Norwich	Leeds	2023-10-21 15:00:00	\N	77
+1239	Gibraltar	Rep of Ireland	2023-10-16 19:45:00	\N	274
+1240	Greece	Netherlands	2023-10-16 19:45:00	\N	274
+1241	Belgium	Sweden	2023-10-16 19:45:00	\N	274
+1242	Bosnia-Herzegovina	Portugal	2023-10-16 19:45:00	\N	274
+1188	Hungary	Serbia	2023-10-14 19:45:00	\N	274
+1189	VVV	Roda JC	2023-10-14 15:30:00	\N	199
+1190	Telstar	Maastricht	2023-10-14 19:00:00	\N	199
+1284	Swansea	Leicester	2023-10-21 15:00:00	\N	77
 899	Sporting	FC Arouca	2023-10-08 20:30:00	\N	8
 900	FC Seoul	Jeonbuk Motors	2023-10-08 07:00:00	\N	66
 901	Kalmar FF	Malmo FF	2023-10-08 14:00:00	\N	14
@@ -1369,6 +1639,144 @@ COPY public.over2p5goalsnow (id, home, away, date_time, url, league_id) FROM std
 923	Real Salt Lake	Sporting Kansas City	2023-10-08 02:30:00	\N	76
 924	Seattle Sounders FC	Vancouver Whitecaps	2023-10-08 03:30:00	\N	76
 1156	FC Helsingor	Vendsyssel FF	2023-10-09 18:00:00	\N	147
+1285	West Brom	Plymouth	2023-10-21 15:00:00	\N	77
+1286	Stoke	Sunderland	2023-10-21 15:00:00	\N	77
+1295	Fortuna Dusseldorf	Kaiserslautern	2023-10-21 19:30:00	\N	93
+1296	Sevilla	Real Madrid	2023-10-21 17:30:00	\N	3
+1251	England	Italy	2023-10-17 19:45:00	\N	274
+1252	Serbia	Montenegro	2023-10-17 19:45:00	\N	274
+1253	Northern Ireland	Slovenia	2023-10-17 19:45:00	\N	274
+1267	Vendsyssel FF	AC Horsens	2023-10-19 18:00:00	\N	147
+1263	Inter Miami CF	Charlotte FC	2023-10-19 01:00:00	\N	76
+1206	Georgia	Cyprus	2023-10-15 14:00:00	\N	274
+1207	Czech Republic	Faroe Islands	2023-10-15 17:00:00	\N	274
+1208	Switzerland	Belarus	2023-10-15 17:00:00	\N	274
+1209	Norway	Spain	2023-10-15 19:45:00	\N	274
+1210	Turkey	Latvia	2023-10-15 19:45:00	\N	274
+1211	Romania	Andorra	2023-10-15 19:45:00	\N	274
+1212	Willem II	FC Den Bosch	2023-10-15 13:30:00	\N	199
+1213	Cambuur Leeuwarden	NAC	2023-10-15 15:45:00	\N	199
+1191	FC Dallas	Colorado Rapids	2023-10-15 01:30:00	\N	76
+1192	Nashville SC	New England Revolution	2023-10-15 01:30:00	\N	76
+1273	Liverpool	Everton	2023-10-21 12:30:00	\N	2
+1274	Bournemouth	Wolverhampton	2023-10-21 15:00:00	\N	2
+1275	Man City	Brighton	2023-10-21 15:00:00	\N	2
+1276	Newcastle	Crystal Palace	2023-10-21 15:00:00	\N	2
+1277	Sheff Utd	Man Utd	2023-10-21 20:00:00	\N	2
+1278	Preston	Millwall	2023-10-21 12:30:00	\N	77
+1279	Blackburn	Cardiff	2023-10-21 15:00:00	\N	77
+1287	Union Berlin	VfB Stuttgart	2023-10-21 14:30:00	\N	1
+1288	SC Freiburg	Bochum	2023-10-21 14:30:00	\N	1
+1289	Wolfsburg	Bayer Leverkusen	2023-10-21 14:30:00	\N	1
+1290	TSG Hoffenheim	Eintracht Frankfurt	2023-10-21 14:30:00	\N	1
+1291	Darmstadt	RB Leipzig	2023-10-21 14:30:00	\N	1
+1292	Mainz	Bayern Munich	2023-10-21 17:30:00	\N	1
+1293	Paderborn	St Pauli	2023-10-21 12:00:00	\N	93
+1294	Hamburg	Greuther Furth	2023-10-21 12:00:00	\N	93
+1298	Verona	Napoli	2023-10-21 14:00:00	\N	4
+1297	Celta Vigo	Atletico Madrid	2023-10-21 20:00:00	\N	3
+1299	Sassuolo	Lazio	2023-10-21 19:45:00	\N	4
+1300	PSG	Strasbourg	2023-10-21 16:00:00	\N	5
+1301	SK Sturm Graz	Hartberg	2023-10-21 16:00:00	\N	43
+1302	FC Blau Weiss Linz	Austria Lustenau	2023-10-21 16:00:00	\N	43
+1303	KV Kortrijk	Club Brugge	2023-10-21 15:00:00	\N	68
+1304	RWD Molenbeek	Westerlo	2023-10-21 17:15:00	\N	68
+1305	Charleroi	Antwerp	2023-10-21 19:45:00	\N	68
+1306	Anderlecht II	Standard Liege II	2023-10-21 15:00:00	\N	136
+1307	Zulte-Waregem	RFC Liege	2023-10-21 19:00:00	\N	136
+1308	Lierse Kempenzonen	RFC Seraing	2023-10-21 19:00:00	\N	136
+1309	FC Copenhagen	Vejle	2023-10-21 16:00:00	\N	40
+1310	Yokohama F-Marinos	Consadole Sapporo	2023-10-21 06:00:00	\N	28
+1311	RKC	FC Volendam	2023-10-21 17:45:00	\N	196
+1312	PSV	Fortuna Sittard	2023-10-21 17:45:00	\N	196
+1313	NEC	Almere City FC	2023-10-21 19:00:00	\N	196
+1314	Feyenoord	Vitesse	2023-10-21 20:00:00	\N	196
+1315	AZ	Heerenveen	2023-10-21 20:00:00	\N	196
+1316	Roda JC	Willem II	2023-10-21 19:00:00	\N	199
+1317	Bodo/Glimt	Sandefjord	2023-10-21 14:00:00	\N	13
+1318	SK Brann	Molde	2023-10-21 17:00:00	\N	13
+1319	Hodd	Sogndal	2023-10-21 14:00:00	\N	204
+1320	FK Jerv	Kongsvinger	2023-10-21 14:00:00	\N	204
+1321	Kristiansund BK	Asane	2023-10-21 14:00:00	\N	204
+1322	Mjondalen	IK Start	2023-10-21 14:00:00	\N	204
+1323	Sandnes Ulf	Fredrikstad	2023-10-21 14:00:00	\N	204
+1324	Degerfors	Kalmar FF	2023-10-21 14:00:00	\N	14
+1325	Sirius	Brommapojkarna	2023-10-21 16:30:00	\N	14
+1326	GAIS	Ostersunds FK	2023-10-21 12:00:00	\N	336
+1327	Helsingborg	Gefle IF	2023-10-21 14:00:00	\N	336
+1328	Stade Lausanne-Ouchy	Lausanne Sports	2023-10-21 17:00:00	\N	15
+1329	Young Boys	FC Zurich	2023-10-21 17:00:00	\N	15
+1330	Basel	Servette	2023-10-21 19:30:00	\N	15
+1331	FC Cincinnati	Atlanta United	2023-10-21 23:00:00	\N	76
+1332	Columbus Crew	CF Montreal	2023-10-21 23:00:00	\N	76
+1333	Toronto FC	Orlando City SC	2023-10-21 23:00:00	\N	76
+1334	Charlotte FC	Inter Miami CF	2023-10-21 23:00:00	\N	76
+1335	New England Revolution	Philadelphia Union	2023-10-21 23:00:00	\N	76
+1339	Vancouver Whitecaps	Los Angeles FC	2023-10-22 02:00:00	\N	76
+1340	Colorado Rapids	Real Salt Lake	2023-10-22 02:00:00	\N	76
+1341	LA Galaxy	FC Dallas	2023-10-22 02:00:00	\N	76
+1342	San Jose Earthquakes	Austin FC	2023-10-22 02:00:00	\N	76
+1483	Aston Villa	West Ham	2023-10-22 16:30:00	\N	2
+1484	Cologne	Borussia Mgladbach	2023-10-22 14:30:00	\N	1
+1338	St. Louis City SC	Seattle Sounders FC	2023-10-22 02:00:00	\N	76
+1485	Heidenheim	Augsburg	2023-10-22 16:30:00	\N	1
+1486	Karlsruher SC	Schalke	2023-10-22 12:30:00	\N	93
+1487	Hansa Rostock	Holstein Kiel	2023-10-22 12:30:00	\N	93
+1488	Nurnberg	Hertha Berlin	2023-10-22 12:30:00	\N	93
+1489	Girona	Almeria	2023-10-22 15:15:00	\N	3
+1490	Barcelona	Athletic Bilbao	2023-10-22 20:00:00	\N	3
+1491	Roma	Monza	2023-10-22 11:30:00	\N	4
+1492	Bologna	Frosinone	2023-10-22 14:00:00	\N	4
+1493	Atalanta	Genoa	2023-10-22 17:00:00	\N	4
+1494	Lorient	Rennes	2023-10-22 12:00:00	\N	5
+1495	Toulouse	Reims	2023-10-22 14:00:00	\N	5
+1496	Nantes	Montpellier	2023-10-22 14:00:00	\N	5
+1497	Monaco	Metz	2023-10-22 16:05:00	\N	5
+1498	SCR Altach	Wolfsberger AC	2023-10-22 13:30:00	\N	43
+1499	WSG Swarovski Tirol	FK Austria Vienna	2023-10-22 13:30:00	\N	43
+1500	Rapid Vienna	Austria Klagenfurt	2023-10-22 16:00:00	\N	43
+1501	Standard Liege	Anderlecht	2023-10-22 17:30:00	\N	68
+1502	OH Leuven	Sint-Truidense	2023-10-22 18:15:00	\N	68
+1503	FCV Dender EH	KV Oostende	2023-10-22 12:30:00	\N	136
+1504	Club Brugge II	SK Beveren	2023-10-22 15:00:00	\N	136
+1505	Francs Borains	Patro Eisden Maasmechelen	2023-10-22 18:15:00	\N	136
+1506	Viborg	FC Nordsjaelland	2023-10-22 15:00:00	\N	40
+1507	Randers FC	Brondby	2023-10-22 17:00:00	\N	40
+1508	AaB	B93 Copenhagen	2023-10-22 14:00:00	\N	147
+1509	HB Køge	Naestved IF	2023-10-22 15:00:00	\N	147
+1510	FC Utrecht	Ajax	2023-10-22 11:15:00	\N	196
+1511	Heracles	FC Twente	2023-10-22 13:30:00	\N	196
+1512	Excelsior	PEC Zwolle	2023-10-22 13:30:00	\N	196
+1513	Go Ahead Eagles	Sparta Rotterdam	2023-10-22 15:45:00	\N	196
+1514	Lillestrom	Valerenga	2023-10-22 13:30:00	\N	13
+1515	Aalesund	Sarpsborg	2023-10-22 16:00:00	\N	13
+1516	HamKam	Haugesund	2023-10-22 16:00:00	\N	13
+1517	Rosenborg	Stabaek	2023-10-22 16:00:00	\N	13
+1518	Stromsgodset	Odd BK	2023-10-22 16:00:00	\N	13
+1519	Viking FK	Tromso	2023-10-22 18:15:00	\N	13
+1520	Bryne	Skeid	2023-10-22 14:00:00	\N	204
+1521	KFUM	Raufoss	2023-10-22 14:00:00	\N	204
+1522	Moss	Ranheim	2023-10-22 14:00:00	\N	204
+1523	Halmstad	Mjällby AIF	2023-10-22 14:00:00	\N	14
+1524	Malmo FF	Varbergs BoIS FC	2023-10-22 16:30:00	\N	14
+1525	BK Hacken	IFK Norrkoping	2023-10-22 16:30:00	\N	14
+1526	Landskrona	Västerås SK FK	2023-10-22 12:00:00	\N	336
+1527	Orgryte IS	Trelleborgs FF	2023-10-22 14:00:00	\N	336
+1528	IK Brage	AFC Eskilstuna	2023-10-22 14:00:00	\N	336
+1529	Winterthur	St Gallen	2023-10-22 13:15:00	\N	15
+1530	Grasshoppers	Lugano	2023-10-22 15:30:00	\N	15
+1531	Lucerne	Yverdon Sport FC	2023-10-22 15:30:00	\N	15
+1336	Sporting Kansas City	Minnesota United	2023-10-22 02:00:00	\N	76
+1337	Portland Timbers	Houston Dynamo	2023-10-22 02:00:00	\N	76
+1652	Fiorentina	Empoli	2023-10-23 19:45:00	\N	4
+1653	Odense BK	Midtjylland	2023-10-23 18:00:00	\N	40
+1654	AZ Reserves	De Graafschap	2023-10-23 19:00:00	\N	199
+1651	Tottenham	Fulham	2023-10-23 20:00:00	\N	2
+1655	Ajax Reserves	ADO Den Haag	2023-10-23 19:00:00	\N	199
+1656	Helmond Sport	FC Dordrecht	2023-10-23 19:00:00	\N	199
+1657	PSV Reserves	FC Eindhoven	2023-10-23 19:00:00	\N	199
+1658	FC Groningen	FC Emmen	2023-10-23 19:00:00	\N	199
+1659	Jonkopings Sodra	Skövde AIK	2023-10-23 18:00:00	\N	336
 \.
 
 
@@ -1543,6 +1951,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 167	Olancho	CD Victoria	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218972345	f	\N	\N	\N
 168	Artesanos Metepec F.C.	Club CDM	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219010069	f	\N	\N	\N
 129	RKC Waalwijk	Ajax	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218426912	t	3	\N	196
+5893	PSKC Cimahi	Putra Safin Group	2023-10-10 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219514783	f	\N	\N	\N
 126	FC Twente	Heerenveen	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218427021	t	0	\N	196
 133	Monaco	Marseille	2023-09-30 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218408412	t	\N	\N	\N
 169	Botafogo PB	Volta Redonda	2023-09-30 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218913662	f	\N	\N	\N
@@ -1654,6 +2063,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 274	TSG Hoffenheim U19	Kaiserslautern U19	2023-10-01 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219061621	f	\N	\N	\N
 255	VVV Venlo	Helmond Sport	2023-10-01 11:15:00	https://www.orbitxch.com/customer/sport/1/market/1.218770207	t	1	4	199
 270	Blackburn	Leicester	2023-10-01 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218602678	t	2	\N	77
+5894	Angola (W)	Mozambique (W)	2023-10-10 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219511759	f	\N	\N	\N
 275	BK Olympic	Ariana FC	2023-10-01 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218758913	f	\N	\N	\N
 276	Eimsbutteler	Norderstedt	2023-10-01 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218876645	f	\N	\N	\N
 277	SKN St. Polten (W)	SG FC Bergheim/USK Hof (W)	2023-10-01 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219017898	f	\N	\N	\N
@@ -1759,6 +2169,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 359	Sirius	Degerfors	2023-10-01 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218572620	t	1	5	14
 377	Asane	Ranheim IL	2023-10-01 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218657763	t	2	\N	204
 373	Hacken	AIK	2023-10-01 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218572728	t	0	\N	14
+10106	Olmaliq	Sepahan	2023-10-23 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220084325	f	\N	\N	\N
 380	Toulouse	Metz	2023-10-01 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218430179	t	2	\N	5
 341	Hartberg	SCR Altach	2023-10-01 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218426479	t	0	0	43
 338	Excelsior	Sparta Rotterdam	2023-10-01 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218427345	t	0	3	196
@@ -2559,12 +2970,12 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 5764	IK Uppsala (W)	Växjö DFF (W)	2023-10-09 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219426760	f	\N	\N	\N
 5766	Canon Sportif De Yaounde	PWD Bamenda	2023-10-09 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219394615	f	\N	\N	\N
 5763	FK Riteriai II	MFD Zalgiris Vilnius (Res)	2023-10-09 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219426669	f	\N	\N	\N
-5765	FC Helsingor	Vendsyssel FF	2023-10-09 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219182888	f	\N	\N	\N
 5762	Elche	Andorra CF	2023-10-09 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219251838	f	\N	\N	\N
 5768	Sint Truidense (Res)	K Lierse U21	2023-10-09 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219426397	f	\N	\N	\N
 5767	KV Oostende (Res)	Kortrijk (Res)	2023-10-09 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219426307	f	\N	\N	\N
 5770	Deportes Concepcion	Deportes Rengo Unido	2023-10-09 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219454861	f	\N	\N	\N
 5769	Westerlo (Res)	FCV Dender EH U21	2023-10-09 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219449549	f	\N	\N	\N
+5765	FC Helsingor	Vendsyssel FF	2023-10-09 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219182888	t	0	1	147
 5775	CS Dock Sud	Deportivo Merlo	2023-10-09 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219425979	f	\N	\N	\N
 5773	Canuelas	Comunicaciones B Aires	2023-10-09 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219425789	f	\N	\N	\N
 5777	CA Fenix	CA Colegiales	2023-10-09 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219425369	f	\N	\N	\N
@@ -2679,6 +3090,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 1767	AFC Odorheiu Secuiesc	Viitorul Curita	2023-10-06 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219303828	f	\N	\N	\N
 4879	Kryvbas Krivyi Rih	Chernomorets Odesa	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219103105	f	\N	\N	\N
 5198	Itrottarfelag Fuglafjaroar	EB/Streymur	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219365566	f	\N	\N	\N
+7336	Brattvag	Lyn	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219713236	f	\N	\N	\N
 1780	Gloria Bistrita	ACS Medias 2022	2023-10-06 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219303444	f	\N	\N	\N
 1775	Arema Cronus	Pusamania Borneo FC	2023-10-06 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219275183	f	\N	\N	\N
 1774	Lamphun Warrior	Ratchaburi	2023-10-06 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219268453	f	\N	\N	\N
@@ -2945,6 +3357,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 2480	Nomme Kalju	Parnu JK Vaprus	2023-10-07 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219172696	f	\N	\N	\N
 2476	AC Torrellano	Elche B	2023-10-07 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219335481	f	\N	\N	\N
 2462	Nagasaki	Fujieda MYFC	2023-10-07 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218769667	f	\N	\N	\N
+8642	Caen	Auxerre	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510186	f	\N	\N	\N
 5026	Club Gimnasia y Tiro	Sarmiento de Resistencia	2023-10-08 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219371810	f	\N	\N	\N
 2485	Atletico Madrid (W)	Sevilla FC (W)	2023-10-07 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219265756	f	\N	\N	\N
 2488	Hutnik Krakow	Sandecja Nowy Sacz	2023-10-07 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219319169	f	\N	\N	\N
@@ -3701,6 +4114,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 4809	Lyon	Lorient	2023-10-08 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218751055	t	2	\N	5
 4813	Sundsvall	IK Brage	2023-10-08 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219167072	t	1	3	336
 4767	Vejle	Hvidovre	2023-10-08 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219115518	t	2	\N	40
+6123	Bogota	Cortulua	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472255	f	\N	\N	\N
 4814	Asane	Fredrikstad	2023-10-08 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219096430	t	2	\N	204
 4837	Bremer SV	VfB Oldenburg	2023-10-08 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219271443	f	\N	\N	\N
 4827	Kozarmisleny	Vasas	2023-10-08 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219174471	f	\N	\N	\N
@@ -3755,6 +4169,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 4871	Patacona CF	Silla CF	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219391344	f	\N	\N	\N
 4867	Leicester City (W)	Everton (W)	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219264364	f	\N	\N	\N
 4866	Antwerp	Eupen	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219104330	t	2	\N	68
+6167	Bolivia	Ecuador	2023-10-13 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218300588	f	\N	\N	\N
 4878	Al Arabi (Jor)	Al-Jazeera	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219404557	f	\N	\N	\N
 4881	B36 Torshavn	07 Vestur	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219365797	f	\N	\N	\N
 4884	Breidablik	Stjarnan	2023-10-08 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219181132	f	\N	\N	\N
@@ -3808,6 +4223,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 4928	Molde	Bodo Glimt	2023-10-08 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218861672	t	2	\N	13
 4915	Coruxo	Pontevedra CF	2023-10-08 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219233814	f	\N	\N	\N
 4921	Austria Klagenfurt	Red Bull Salzburg	2023-10-08 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218764756	t	2	\N	43
+9802	CD Castellon	Atletico Madrid II	2023-10-22 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865165	f	\N	\N	\N
 4960	Juventud Torremolinos	Polideportivo Almeria	2023-10-08 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219390522	f	\N	\N	\N
 4961	Municipal Turrialba	AD Aserri	2023-10-08 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219403204	f	\N	\N	\N
 4937	Gyori	Budafoki	2023-10-08 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219174110	f	\N	\N	\N
@@ -3862,6 +4278,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 4965	Atletico Madrid II	San Fernando CD	2023-10-08 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219198398	f	\N	\N	\N
 4943	Luarca CF	CD Llanes	2023-10-08 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219391969	f	\N	\N	\N
 5006	Porto B	Torreense	2023-10-08 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219163687	f	\N	\N	\N
+9805	Mura	Koper	2023-10-22 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219505673	f	\N	\N	\N
 5015	Lierse	Deinze	2023-10-08 18:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219110358	t	1	1	136
 4985	Xerez CD	AD Cartaya	2023-10-08 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219390069	f	\N	\N	\N
 4988	GKS Katowice	Nieciecza	2023-10-08 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218992461	f	\N	\N	\N
@@ -4006,6 +4423,18 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 5107	CD Olimpia	CD Victoria	2023-10-09 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219410846	f	\N	\N	\N
 5108	Real Cartagena	Llaneros FC	2023-10-09 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219315258	f	\N	\N	\N
 5749	Proxy Work Club	La Viena FC	2023-10-09 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219449039	f	\N	\N	\N
+9808	Club A.B.B.	CD Aleman	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220039979	f	\N	\N	\N
+9810	AE Jataiense	Centro Oeste SAF	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220052373	f	\N	\N	\N
+9818	Internacional	Santos	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219524940	f	\N	\N	\N
+9809	Club Deportivo Sur Car	Club Deportivo FATIC	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220039889	f	\N	\N	\N
+9811	CD Municipalidad de Yacuiba	CDT Real Oruro	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220039799	f	\N	\N	\N
+9813	River Plate (Uru)	Penarol	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219953144	f	\N	\N	\N
+9814	Atletico MG	Cruzeiro MG	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219525180	f	\N	\N	\N
+9816	Aparecida EC	ASEEV GO	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220052463	f	\N	\N	\N
+9815	Flamengo	Vasco Da Gama	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219525060	f	\N	\N	\N
+9819	Fortaleza FC	Leones FC	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219830127	f	\N	\N	\N
+9820	Valladolid	Andorra CF	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789937	f	\N	\N	\N
+9812	Oliveirense	Boavista	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968100	f	\N	\N	\N
 5755	Colombe du Dja et Lobo	Union Sportive de Douala	2023-10-09 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219406927	f	\N	\N	\N
 5756	Floy Flekkeroy	Valerenga II	2023-10-09 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219450451	f	\N	\N	\N
 5814	CA San Lorenzo (W)	Independiente (W)	2023-10-09 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219468289	f	\N	\N	\N
@@ -4046,14 +4475,2417 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 5799	Aurora	Guabira	2023-10-09 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219352706	f	\N	\N	\N
 5870	Corinthians (W)	Always Ready FC Women	2023-10-09 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219473607	f	\N	\N	\N
 5800	America de Cali (W)	SC Internacional (W)	2023-10-09 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219455988	f	\N	\N	\N
-5872	Toluca (W)	Guadalajara (W)	2023-10-10 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492991	f	\N	\N	\N
-5801	Sport Recife	Ponte Preta	2023-10-10 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219075969	f	\N	\N	\N
 5802	Velez Sarsfield	Atl Tucuman	2023-10-10 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218834419	f	\N	\N	\N
 5803	Libertad FC	Guayaquil City	2023-10-10 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219192482	f	\N	\N	\N
 5804	Blooming Santa Cruz	Royal Pari	2023-10-10 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219342584	f	\N	\N	\N
 5805	Pumas UNAM (W)	Club Necaxa (W)	2023-10-10 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451640	f	\N	\N	\N
 5806	Escorpiones FC	Halcones de Zapopan	2023-10-10 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451730	f	\N	\N	\N
 5807	Monterrey (W)	Queretaro (W)	2023-10-10 04:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451822	f	\N	\N	\N
+5888	Beijing Tech FC	Chongqing Tonglianglong	2023-10-10 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219457410	f	\N	\N	\N
+5872	Toluca (W)	Guadalajara (W)	2023-10-10 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492991	f	\N	\N	\N
+5801	Sport Recife	Ponte Preta	2023-10-10 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219075969	f	\N	\N	\N
+5889	Dantong Hantong	Nanjing Fengfan	2023-10-10 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219458117	f	\N	\N	\N
+5890	Dalian Zhixing	Yunnan Yukun	2023-10-10 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219457919	f	\N	\N	\N
+5891	Deltras Sidoarjo	Persela Lamongan	2023-10-10 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219520783	f	\N	\N	\N
+5892	Hubei Chufeng Heli	Guangxi Lanhang	2023-10-10 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219458682	f	\N	\N	\N
+5900	Santa Clara U23	Mafra U23	2023-10-10 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219497453	f	\N	\N	\N
+5902	Gorilla FC	Gasogi United	2023-10-10 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467407	f	\N	\N	\N
+5903	South Africa (W)	Eswatini (W)	2023-10-10 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219511849	f	\N	\N	\N
+5904	Ispartaspor	Sincan Belediyespor	2023-10-10 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219485758	f	\N	\N	\N
+5906	Al Buqaa	Al Alyah	2023-10-10 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467767	f	\N	\N	\N
+5908	Wadi degla	Tanta	2023-10-10 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219498124	f	\N	\N	\N
+5907	Ceske Budejovice	MFK Chrudim	2023-10-10 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219497053	f	\N	\N	\N
+5909	APR FC	Bugesera	2023-10-10 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467497	f	\N	\N	\N
+5910	Brindisi	Juve Stabia	2023-10-10 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219468645	f	\N	\N	\N
+5911	Bursaspor	Golcukspor	2023-10-10 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484969	f	\N	\N	\N
+5913	Heimstetten	TSV 1865 Dachau	2023-10-10 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219468510	f	\N	\N	\N
+5914	Eintracht Frankfurt (W)	Sparta Prague (W)	2023-10-10 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219488675	f	\N	\N	\N
+5918	Deportivo Espanol	CA Puerto Nuevo	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471135	f	\N	\N	\N
+5912	Paris FC (W)	Wolfsburg (W)	2023-10-10 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219488585	f	\N	\N	\N
+5927	AD Berazategui	CA Atlas	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471765	f	\N	\N	\N
+5917	Tranmere	Leicester U21	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219301136	f	\N	\N	\N
+5933	Walsall	Forest Green	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219301046	f	\N	\N	\N
+5929	CSD Liniers de Ciudad Evita	Deportivo Laferrere	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471495	f	\N	\N	\N
+5921	Mansfield	Doncaster	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219246428	f	\N	\N	\N
+5924	Social Atletico (W)	River Plate (W)	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471858	f	\N	\N	\N
+5928	Club Lujan	Leandro N Alem	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471405	f	\N	\N	\N
+5916	Reading	Swindon	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219246337	f	\N	\N	\N
+5935	Central Cordoba	Excursionistas	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471315	f	\N	\N	\N
+5932	Stevenage	Wycombe	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219246702	f	\N	\N	\N
+5936	Charlton	Aston Villa U21	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219299281	f	\N	\N	\N
+5930	Justo Jose de Urquiza	San Martin de Burzaco	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471585	f	\N	\N	\N
+5931	Real Pilar FC	Victoriano Arenas	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219529319	f	\N	\N	\N
+5925	CA Claypole	FC Midland	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471675	f	\N	\N	\N
+5934	Valur Reykjavik (W)	SKN St. Polten (W)	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219488765	f	\N	\N	\N
+5938	Wigan	Fleetwood Town	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219246518	f	\N	\N	\N
+5926	Notts Co	Derby	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219313211	f	\N	\N	\N
+5919	Sportivo Italiano	CSD Yupanqui	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219471225	f	\N	\N	\N
+5915	Uni San Martin	Alianza Universidad	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219470461	f	\N	\N	\N
+5937	Lincoln	Wolves U21	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219301226	f	\N	\N	\N
+5923	Carlisle	Nottingham Forest U21	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219299372	f	\N	\N	\N
+5920	Morecambe	Barrow	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219246608	f	\N	\N	\N
+5922	Blackpool	Liverpool U21	2023-10-10 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219299462	f	\N	\N	\N
+5939	FCJ Alt-Ottakring	SV Donau	2023-10-10 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219519011	f	\N	\N	\N
+5940	Exeter	Arsenal U21	2023-10-10 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219246792	f	\N	\N	\N
+5944	Grimsby	Bradford	2023-10-10 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219301316	f	\N	\N	\N
+5943	Crewe	Wrexham	2023-10-10 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219246882	f	\N	\N	\N
+5951	Bowers & Pitsea	Heybridge Swifts	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219489469	f	\N	\N	\N
+5942	Cheltenham	Newport County	2023-10-10 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219299100	f	\N	\N	\N
+5949	Northwood	Marlow	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219489739	f	\N	\N	\N
+5952	Larne	Bangor	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219497723	f	\N	\N	\N
+5948	Carrick Rangers	Dundela	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219497633	f	\N	\N	\N
+5947	Felixstowe & Walton Utd	Brightlingsea Regent	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219489829	f	\N	\N	\N
+5950	Ards	Glentoran	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219497543	f	\N	\N	\N
+5946	Brentwood Town	Redbridge	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219489649	f	\N	\N	\N
+5945	Bury Town	Gorleston	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219489379	f	\N	\N	\N
+5953	Ballymacash Rangers	Knockbreda	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219497813	f	\N	\N	\N
+5954	Maldon & Tiptree	Basildon United	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219489559	f	\N	\N	\N
+5905	LKS Wislanie Jaskowice	Garbarnia	2023-10-10 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219514873	f	\N	\N	\N
+5896	Heilongjiang Lava Spring	Yanbian Longding	2023-10-10 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219503362	f	\N	\N	\N
+5970	Kirsehir Belediyespor	Sirnak Idmanyurdu Spor	2023-10-10 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219533005	f	\N	\N	\N
+5895	Kirklarelispor	Corlu 1947 Spor	2023-10-10 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219485849	f	\N	\N	\N
+5898	Guangxi Baoyun	Sichuan Jiuniu FC	2023-10-10 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219462335	f	\N	\N	\N
+5897	Hebei KungFu	Jiangxi Liansheng	2023-10-10 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219462425	f	\N	\N	\N
+5899	El Seka Elhadeed	Raya Sporting FC	2023-10-10 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219498030	f	\N	\N	\N
+5976	Samma	Um El Quttein	2023-10-10 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219497147	f	\N	\N	\N
+5901	Mukura Victory Sports	Sunrise FC	2023-10-10 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467677	f	\N	\N	\N
+5978	Madagascar (W)	Malawi (W)	2023-10-10 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219532012	f	\N	\N	\N
+5981	Santa Clara U23	Mafra U23	2023-10-10 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219497453	f	\N	\N	\N
+5986	FC Lys Sassandra	Racing Club D'Abidjan	2023-10-10 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219533102	f	\N	\N	\N
+6064	SV Anadolu Spor Koblenz	TuS Immendorf 1899	2023-10-10 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219554221	f	\N	\N	\N
+5941	Salford City	Stockport	2023-10-10 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219246972	f	\N	\N	\N
+6031	Nantwich Town	Runcorn Linnets FC	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219532567	f	\N	\N	\N
+6027	Harborough Town	Coleshill Town	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219532657	f	\N	\N	\N
+6023	Sporting Khalsa	Hinckley LRFC	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219532747	f	\N	\N	\N
+5959	Whitehawk	Haringey Borough	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219461837	f	\N	\N	\N
+5962	Port Vale	Newcastle U21	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219298956	f	\N	\N	\N
+5956	Hornchurch	Hastings United	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219451912	f	\N	\N	\N
+5957	Galway Utd	Waterford	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219192572	f	\N	\N	\N
+5958	Billericay Town	Dulwich Hamlet	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219452002	f	\N	\N	\N
+5961	Portsmouth	Gillingham	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219247062	f	\N	\N	\N
+6036	Chichester City United	Three Bridges FC	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219535746	f	\N	\N	\N
+5960	Harrogate Town	Accrington	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219247152	f	\N	\N	\N
+5955	Sutton Utd	Crawley Town	2023-10-10 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219247242	f	\N	\N	\N
+5963	Man Utd (W)	Paris St-G (W)	2023-10-10 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219488855	f	\N	\N	\N
+5964	San Lorenzo	San Martin de San Juan	2023-10-10 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219512929	f	\N	\N	\N
+5965	Belgrano	Boca Juniors	2023-10-11 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218834509	f	\N	\N	\N
+5966	Imbabura Sporting Club	CD Vargas Torres	2023-10-11 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219462169	f	\N	\N	\N
+5967	ABC RN	Mirassol	2023-10-11 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219230955	f	\N	\N	\N
+5968	Alianza Petrolera	Atletico Bucaramanga	2023-10-11 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219462019	f	\N	\N	\N
+9837	CD Real Sociedad	Olancho	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952690	f	\N	\N	\N
+9823	Atenas	Juventud De Las Piedras	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220024058	f	\N	\N	\N
+9826	Sport Huancayo	Sport Boys (Per)	2023-10-22 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219524289	f	\N	\N	\N
+9828	Brusque FC	Amazonas FC	2023-10-22 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219951880	f	\N	\N	\N
+9827	Union Comercio	Deportivo Garcilaso	2023-10-22 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219524379	f	\N	\N	\N
+9825	Carlos Mannucci	Binacional	2023-10-22 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219524019	f	\N	\N	\N
+9824	Guayaquil City	Independiente (Ecu)	2023-10-22 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649311	f	\N	\N	\N
+9830	Deportivo San Pedro	Club Deportivo Iztapa	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220051493	f	\N	\N	\N
+9831	Juventud Pinulteca FC	CSD Sacachispas	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220056028	f	\N	\N	\N
+9839	CD Dragon	Jocoro	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220025822	f	\N	\N	\N
+9832	Sporting San Miguelito	Plaza Amador	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219995590	f	\N	\N	\N
+9842	Once Municipal	CD Aguila	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220025912	f	\N	\N	\N
+9833	ART Municipal Jalapa	Indigenas de Matagalpa FC	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220053411	f	\N	\N	\N
+9840	Platense Zacatecoluca	AD Isidro Metapan	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220026092	f	\N	\N	\N
+9838	Costa del Este	Alianza FC (Pan)	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219995500	f	\N	\N	\N
+9834	Avai	Ceara SC Fortaleza	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219537210	f	\N	\N	\N
+9829	Chile (W)	Paraguay (W)	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220054840	f	\N	\N	\N
+9835	Sport Recife	Chapecoense	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219536562	f	\N	\N	\N
+9836	CD Luis Angel Firpo	Cd Fas	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220026002	f	\N	\N	\N
+9841	Boyaca Chico	Atletico Nacional Medellin	2023-10-22 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219819623	f	\N	\N	\N
+9843	Santa Tecla	Alianza FC (SLV)	2023-10-22 22:15:00	https://www.orbitxch.com/customer/sport/1/market/1.220029369	f	\N	\N	\N
+6124	Llaneros FC	Cucuta Deportivo	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472435	f	\N	\N	\N
+6125	Atletico FC Cali	Fortaleza FC	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472525	f	\N	\N	\N
+6126	Boyaca Patriotas	Tigres FC Zipaquira	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472615	f	\N	\N	\N
+6127	Leones FC	Real Cartagena	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472165	f	\N	\N	\N
+6128	Barranquilla	Orsomarso	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472705	f	\N	\N	\N
+6129	Real Soacha Cundinamarca FC	Real Santander	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472075	f	\N	\N	\N
+6130	Quindio	Boca Juniors de Cali	2023-10-11 21:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219472345	f	\N	\N	\N
+6131	Club Atletico Basanez	Cerrito	2023-10-11 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219604875	f	\N	\N	\N
+6132	CD America de Quito	Club Nueve de Octubre	2023-10-11 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219529686	f	\N	\N	\N
+6133	Olimpia Women	Universitario	2023-10-11 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219577788	f	\N	\N	\N
+6134	Ferro Carril de Salto	CA Bella Vista	2023-10-12 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219600551	f	\N	\N	\N
+6135	Deportivo Cali	Tolima	2023-10-12 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219463084	f	\N	\N	\N
+6136	CA Juventud Colonia	Albion FC	2023-10-12 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219600641	f	\N	\N	\N
+6137	Macara	Chacaritas SC	2023-10-12 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219529505	f	\N	\N	\N
+6138	Chaco For Ever	Defensa y Justicia	2023-10-12 01:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219561250	f	\N	\N	\N
+6139	Vila Nova	Botafogo SP	2023-10-12 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219230847	f	\N	\N	\N
+6140	Tapatio	Universidad Guadalajara	2023-10-12 02:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219314222	f	\N	\N	\N
+6141	Mazatlan FC(W)	Santos Laguna (W)	2023-10-12 02:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219569700	f	\N	\N	\N
+6142	Deportivo Pereira	Rionegro	2023-10-12 02:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219498304	f	\N	\N	\N
+6143	Pacific	York9	2023-10-12 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219513235	f	\N	\N	\N
+9846	Coritiba	SE Palmeiras	2023-10-22 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219524580	f	\N	\N	\N
+9844	Bragantino SP	Fluminense	2023-10-22 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219524820	f	\N	\N	\N
+9845	Corinthians	America MG	2023-10-22 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219525540	f	\N	\N	\N
+9847	Municipal Grecia	AD Municipal Liberia	2023-10-22 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952240	f	\N	\N	\N
+9849	Santos de Guapiles	Municipal Perez Zeledon	2023-10-22 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952060	f	\N	\N	\N
+9848	La Luz FC	Plaza Colonia	2023-10-22 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952964	f	\N	\N	\N
+9858	CD Victoria	CD Marathon	2023-10-23 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952510	f	\N	\N	\N
+9860	Alianza Petrolera	Tolima	2023-10-23 02:20:00	https://www.orbitxch.com/customer/sport/1/market/1.219819803	f	\N	\N	\N
+10107	Aalesund II	Orn Horten	2023-10-23 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010472	f	\N	\N	\N
+10108	Al Alyah	Al Tora	2023-10-23 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220105127	f	\N	\N	\N
+10109	Hyderabad FC	Chennaiyin FC	2023-10-23 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219819893	f	\N	\N	\N
+10110	KF Erzeni	Partizani Tirana	2023-10-23 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220081492	f	\N	\N	\N
+10111	ACS Sepsi OSK	Botosani	2023-10-23 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219173083	f	\N	\N	\N
+10112	FK Siauliai II	MFD Zalgiris Vilnius (Res)	2023-10-23 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220068856	f	\N	\N	\N
+10113	Young Africans	Azam FC	2023-10-23 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220069006	f	\N	\N	\N
+9851	CD Olimpia	CD Motagua	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952780	f	\N	\N	\N
+9850	Costa Rica (W)	Argentina (W)	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220049876	f	\N	\N	\N
+9855	Tampico Madero	Halcones de Zapopan	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033617	f	\N	\N	\N
+9854	Real Cartagena	Boca Juniors de Cali	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219830217	f	\N	\N	\N
+9853	Huehueteco Xinabajul	Achuapa FC	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219924742	f	\N	\N	\N
+9852	LDU	Emelec	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649401	f	\N	\N	\N
+9856	Ind Medellin	Deportivo Pereira	2023-10-23 00:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219819713	f	\N	\N	\N
+9857	Atletico San Luis	Necaxa	2023-10-23 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219494775	f	\N	\N	\N
+9859	Cienciano	Sporting Cristal	2023-10-23 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219523749	f	\N	\N	\N
+10114	Ghazl El Mahallah	Makadi FC	2023-10-23 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220086969	f	\N	\N	\N
+10115	Zeleznicar Pancevo	FK IMT Novi Beograd	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011912	f	\N	\N	\N
+10116	Al-Muharraq	Al Ahli (BRN)	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220068766	f	\N	\N	\N
+10117	Al-Ittihad	Al Quwa Al Jawiya	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220084507	f	\N	\N	\N
+10118	Al Sharjah	Nasaf	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220084415	f	\N	\N	\N
+10119	Al Zawraa	Nejmeh	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220103712	f	\N	\N	\N
+10120	FK Navbahor Namangan	Nassaji Mazandaran F.C.	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220084613	f	\N	\N	\N
+10121	Arka Gdynia	Znicz Pruszkow	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416060	f	\N	\N	\N
+10122	Levadia Tallinn II	Tallinna JK Legion	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220068676	f	\N	\N	\N
+6178	CD Subiza	CD Avance Ezcabarte	2023-10-12 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219598693	f	\N	\N	\N
+6179	Malaga	Melilla UD	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219561918	f	\N	\N	\N
+6180	CD Oberena	CD Alesves	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219599053	f	\N	\N	\N
+6181	CP Montehermoso	CD Calamonte	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219598873	f	\N	\N	\N
+6182	Pazarspor	Silifke Belediye Spor	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219585007	f	\N	\N	\N
+6183	Olivenza	RCP Valverdeno	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219598783	f	\N	\N	\N
+6184	Adiyamanspor	Viven Bornova FK	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219584737	f	\N	\N	\N
+6185	Arroyo	CD Azuaga	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219598963	f	\N	\N	\N
+6186	CD Diocesano	Don Benito	2023-10-12 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219621710	f	\N	\N	\N
+6187	CD Pamplona	CD Beti Onak	2023-10-12 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219599234	f	\N	\N	\N
+6188	Barcia	CD Llanera	2023-10-12 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219599143	f	\N	\N	\N
+6189	Hansa Rostock	Naestved	2023-10-12 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219608556	f	\N	\N	\N
+6190	KV Oostende	Valenciennes	2023-10-12 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219621265	f	\N	\N	\N
+6191	Mgladbach	Sint Truiden	2023-10-12 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601096	f	\N	\N	\N
+6192	Republic of Maldives	Bangladesh	2023-10-12 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219610268	f	\N	\N	\N
+6193	Chinese Taipei	Timor-Leste	2023-10-12 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219530326	f	\N	\N	\N
+6194	Schalke 04	Heracles	2023-10-12 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601186	f	\N	\N	\N
+6195	FC Magdeburg	Braunschweig	2023-10-12 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219602748	f	\N	\N	\N
+6196	Singapore	Guam	2023-10-12 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219555613	f	\N	\N	\N
+6197	Nepal	Laos	2023-10-12 12:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219562844	f	\N	\N	\N
+6198	Augsburg	Nurnberg	2023-10-12 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601276	f	\N	\N	\N
+6199	Indonesia	Brunei	2023-10-12 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219562717	f	\N	\N	\N
+6200	Cambodia	Pakistan	2023-10-12 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219534035	f	\N	\N	\N
+6201	Hong Kong	Bhutan	2023-10-12 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219555708	f	\N	\N	\N
+6202	Karlsruhe	Strasbourg	2023-10-12 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219593056	f	\N	\N	\N
+6203	SCR Altach	FC Dornbirn	2023-10-12 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219602839	f	\N	\N	\N
+6204	Lazio (W)	Inter Milan (W)	2023-10-12 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219621620	f	\N	\N	\N
+6170	Chile	Peru	2023-10-13 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218300371	f	\N	\N	\N
+6173	Cuba	Honduras	2023-10-13 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219424188	f	\N	\N	\N
+6174	Atletico San Luis (W)	Monterrey (W)	2023-10-13 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219596313	f	\N	\N	\N
+6175	Guadalajara (W)	Club Leon FC (W)	2023-10-13 02:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219596403	f	\N	\N	\N
+6176	Tigres (W)	Cruz Azul (W)	2023-10-13 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219596493	f	\N	\N	\N
+6177	Pachuca (W)	Club Tijuana (W)	2023-10-13 04:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219596583	f	\N	\N	\N
+6171	Toluca (W)	FC Atlas (W)	2023-10-13 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219596223	f	\N	\N	\N
+6209	UD Collerense	CD Binissalem	2023-10-12 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219599414	f	\N	\N	\N
+6210	UCD Burlades	Pena Sport	2023-10-12 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219599324	f	\N	\N	\N
+6206	Afghanistan	Mongolia	2023-10-12 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219530416	f	\N	\N	\N
+6205	Viktoria Marianske Lazne	Plzen	2023-10-12 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219602418	f	\N	\N	\N
+6207	Azerbaijan U21	Northern Ireland U21	2023-10-12 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219461125	f	\N	\N	\N
+6208	Georgia U21	Netherlands U21	2023-10-12 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219403927	f	\N	\N	\N
+6215	SD Lagunak	CD Cortes	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601734	f	\N	\N	\N
+6216	CF Trujillo	AC Pueblonuevo	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219622092	f	\N	\N	\N
+6212	SD Beasain	CD Derio	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601464	f	\N	\N	\N
+6211	Real Titanico	Urraca	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601554	f	\N	\N	\N
+6213	Condal CF	UD Gijon Industrial	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219601644	f	\N	\N	\N
+6214	Romania U20	England U20	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219599816	f	\N	\N	\N
+6218	FIRST VIENNA FC 1894	Rapid Vienna	2023-10-12 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219602568	f	\N	\N	\N
+6217	San Pedro FC	CO Korhogo	2023-10-12 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219610128	f	\N	\N	\N
+6221	Club Portugalete	Urduliz FT	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219602147	f	\N	\N	\N
+6219	Israel U21	Estonia U21	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219351767	f	\N	\N	\N
+6224	Karsiyaka	Bigaspor	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219584917	f	\N	\N	\N
+6222	Slovakia U21	Poland U21	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219450091	f	\N	\N	\N
+6223	CD San Ignacio	Anaitasuna FT	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219602327	f	\N	\N	\N
+6220	UAE	Kuwait	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219450001	f	\N	\N	\N
+6172	Brazil	Venezuela	2023-10-13 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218300804	f	\N	\N	\N
+6286	Turegano CF	CD Santurtzi	2023-10-12 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219630004	f	\N	\N	\N
+6287	AD Tardienta	CD Zirauki	2023-10-12 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219630094	f	\N	\N	\N
+6225	SCD Durango	Leioa	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219603265	f	\N	\N	\N
+6226	Bahrain	Kyrgyzstan	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219596908	f	\N	\N	\N
+6227	Georgia	Thailand	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219449821	f	\N	\N	\N
+6228	Montenegro	Lebanon	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565635	f	\N	\N	\N
+6231	Egypt	Zambia	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565725	f	\N	\N	\N
+6229	Colombe du Dja et Lobo	PWD Bamenda	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219605347	f	\N	\N	\N
+6230	Latvia	Armenia	2023-10-12 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218779530	f	\N	\N	\N
+6233	Lorca Deportiva CF	Caravaca	2023-10-12 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219603175	f	\N	\N	\N
+6232	Jerez CF	CD Don Alvaro	2023-10-12 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219603085	f	\N	\N	\N
+6234	Bidezarra	CD Cantolagua	2023-10-12 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219605253	f	\N	\N	\N
+6235	Chievo Verona (W)	Juventus FC (W)	2023-10-12 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219622182	f	\N	\N	\N
+6236	Sweden	Moldova	2023-10-12 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219449731	f	\N	\N	\N
+6237	Jitex BK (W)	Lidkopings FK (W)	2023-10-12 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219584827	f	\N	\N	\N
+6238	Luxembourg U21	Ukraine U21	2023-10-12 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219351677	f	\N	\N	\N
+6241	Ibis SC	CA Pernambucano	2023-10-12 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219622905	f	\N	\N	\N
+6239	Egypt U23	Jordan U23	2023-10-12 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219602052	f	\N	\N	\N
+6240	Cruzeiro U20	Coimbra EC U20	2023-10-12 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219610365	f	\N	\N	\N
+6242	Kongsvinger U19	Hamarkameratene U19	2023-10-12 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219584434	f	\N	\N	\N
+6243	FK Lyn U19	Nordstrand U19	2023-10-12 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219584344	f	\N	\N	\N
+6244	Fredrikstad U19	Baerum SK U19	2023-10-12 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219584254	f	\N	\N	\N
+6245	Austria U21	Norway U21	2023-10-12 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219499673	f	\N	\N	\N
+6251	Cheltenham Town (W)	Oxford United (W)	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219622725	f	\N	\N	\N
+6246	Hull City (W)	Barnsley (W)	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219622634	f	\N	\N	\N
+6249	Leek Town (W)	Loughborough Lightning (W)	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219622544	f	\N	\N	\N
+6248	Fylde (W)	Liverpool Feds (W)	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219622815	f	\N	\N	\N
+6252	London Seaward (W)	Cambridge United (W)	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219622454	f	\N	\N	\N
+6247	Northampton Town (W)	Boldmere St. Michaels (W)	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219622364	f	\N	\N	\N
+6254	England U21	Serbia U21	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219343739	f	\N	\N	\N
+6253	UCD	Bohemians	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219314098	f	\N	\N	\N
+6168	Argentina	Paraguay	2023-10-13 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218300480	f	\N	\N	\N
+6256	Albania	Czech Republic	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218779140	f	\N	\N	\N
+6258	Cyprus	Norway	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778538	t	1	4	274
+6255	Faroe Islands	Poland	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778658	f	\N	\N	\N
+6250	Andorra	Kosovo	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218779746	f	\N	\N	\N
+6257	Belarus	Romania	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218779638	f	\N	\N	\N
+6260	Croatia	Turkey	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778780	f	\N	\N	\N
+6261	Algeria	Cape Verde	2023-10-12 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565544	f	\N	\N	\N
+6262	Libertad Limpeno (W)	Corinthians (W)	2023-10-12 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219599932	f	\N	\N	\N
+6263	Colombia	Uruguay	2023-10-12 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.218300696	f	\N	\N	\N
+6264	CF America (W)	Club Necaxa (W)	2023-10-12 22:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219599676	f	\N	\N	\N
+6265	Suriname	Haiti	2023-10-12 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416510	f	\N	\N	\N
+6266	America de Cali (W)	Club Nacional (W)	2023-10-12 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219600270	f	\N	\N	\N
+6267	SC Internacional (W)	Boca Juniors (W)	2023-10-12 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219600461	f	\N	\N	\N
+6169	Queretaro (W)	Pumas UNAM (W)	2023-10-13 00:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219595916	f	\N	\N	\N
+6369	Sulut United FC	PSBS Biak Numfor	2023-10-13 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219628150	f	\N	\N	\N
+6370	Palestine	Tajikistan	2023-10-13 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219512209	f	\N	\N	\N
+6259	Spain	Scotland	2023-10-12 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778218	t	0	2	274
+6166	Grenada	Jamaica	2023-10-13 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416600	f	\N	\N	\N
+6371	Japan	Canada	2023-10-13 11:35:00	https://www.orbitxch.com/customer/sport/1/market/1.219499763	f	\N	\N	\N
+6372	SV Darmstadt	Elversberg	2023-10-13 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219627415	f	\N	\N	\N
+6373	South Korea	Tunisia	2023-10-13 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219449911	f	\N	\N	\N
+6374	ACS Targu Mures 1898	CS Glor2018 Bistrita-Nasaud	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219633883	f	\N	\N	\N
+6375	AFC Dunarea Ciocanesti	ACS Recolta Gheorghe Doja	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634624	f	\N	\N	\N
+6376	Semen Padang	Karo United	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219628240	f	\N	\N	\N
+6377	Sturm Graz	Floridsdorfer Ac	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219627757	f	\N	\N	\N
+6379	DSV Leoben	Austria Klagenfurt	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219627847	f	\N	\N	\N
+6380	CS Avantul Periam	ACB Ineu	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634333	f	\N	\N	\N
+6383	Latvia U21	Rep of Ireland U21	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219610725	f	\N	\N	\N
+6384	ACS Inainte Modelu	CS Gloria Baneasa	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219635489	f	\N	\N	\N
+6385	Csm Focsani	Dacia Unirea Braila	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634714	f	\N	\N	\N
+6386	FCM Baia Mare	Crisul Santandrei	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634808	f	\N	\N	\N
+6387	ACS Kids Tampa Brasov	ASC Ciucas Tarlungeni	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634063	f	\N	\N	\N
+6381	ACS Vedita Colonesti MS	SCM Ramnicu Valcea	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634513	f	\N	\N	\N
+6382	CF Metalurgistul Cugir	CS Unirea Ungheni	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634153	f	\N	\N	\N
+6378	FCM Avantul Reghin	CSM Unirea Alba Iulia	2023-10-13 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219634423	f	\N	\N	\N
+6391	Kaiserslautern	Metz	2023-10-13 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219627955	f	\N	\N	\N
+6392	Trinec	FK Blansko	2023-10-13 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219617649	f	\N	\N	\N
+6393	Gorica	Tabor Sezana	2023-10-13 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219563450	f	\N	\N	\N
+6394	Malaysia	India	2023-10-13 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219516043	f	\N	\N	\N
+6413	IFK Hassleholm	FBK Balkan	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219647662	f	\N	\N	\N
+6414	Lindome	Qviding FIF	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219647482	f	\N	\N	\N
+6429	Karlskrona	IFK Berga	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219647572	f	\N	\N	\N
+6406	USM Annaba	CA Batna	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219619070	f	\N	\N	\N
+6407	ESM Kolea	JSM Tiaret	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637119	f	\N	\N	\N
+6397	GC Mascara	SC Mecheria	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219619340	f	\N	\N	\N
+6398	MCB Oued Sly	RC Arba	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219639313	f	\N	\N	\N
+6402	ASM Oran	RC Kouba	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219619250	f	\N	\N	\N
+6404	JS Bordj Menaiel	Chelghoum Laid	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637026	f	\N	\N	\N
+6396	Medea	NA Hussein Dey	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219619430	f	\N	\N	\N
+6395	MSP Batna	AS Ain M'lila	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637837	f	\N	\N	\N
+6399	WA Mostaganem	ES Mostaganem	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219662606	f	\N	\N	\N
+6405	JS Guire	WA Boufarik	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637320	f	\N	\N	\N
+6401	Portugal U20	Germany U20	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219606368	f	\N	\N	\N
+6403	Cr Temouchent	Skaf Khemis Miliana	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219619160	f	\N	\N	\N
+6408	NRB Teleghma	IB Khemis El Khechna	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219619520	f	\N	\N	\N
+6400	Greece U21	Croatia U21	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219447961	f	\N	\N	\N
+6409	US Souf	Belouizdad	2023-10-13 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219639088	f	\N	\N	\N
+6410	Finland U21	Albania U21	2023-10-13 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219448051	f	\N	\N	\N
+6411	Iraq	Qatar	2023-10-13 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219512299	f	\N	\N	\N
+6412	Cracovia Krakow	Stal Rzeszow	2023-10-13 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219628045	f	\N	\N	\N
+6415	Garliava Kaunas	FK Kauno Zalgiris 2	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219620733	f	\N	\N	\N
+6416	APR FC	Mukura Victory Sports	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219620823	f	\N	\N	\N
+6420	Saudi Arabia	Nigeria	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219516133	f	\N	\N	\N
+6426	Olimpia Elblag	Kks Kalisz	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219606084	f	\N	\N	\N
+6424	Cyprus U21	Slovenia U21	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219448141	f	\N	\N	\N
+6423	FC Zurich II	Bulle	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219621035	f	\N	\N	\N
+6425	Malta U21	Belgium U21	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416690	f	\N	\N	\N
+6422	Estonia	Azerbaijan	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218779314	f	\N	\N	\N
+6419	New Zealand	DR Congo	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566101	f	\N	\N	\N
+6421	Sweden U21	Moldova U21	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416780	f	\N	\N	\N
+6427	Czech Republic U21	Wales U21	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219448231	f	\N	\N	\N
+6418	Guinea	Guinea-Bissau	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219626921	f	\N	\N	\N
+6417	South Africa	Eswatini	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566191	f	\N	\N	\N
+6428	Bulgaria U21	Germany U21	2023-10-13 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219448321	f	\N	\N	\N
+6430	KAC 1909	SV Oberwinkler Lendorf	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219615437	f	\N	\N	\N
+9521	Lorient	Rennes	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219117051	t	2	\N	5
+10123	Fauve Azur Elite	Fovu Club de Baham	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008650	f	\N	\N	\N
+10124	Busaiteen Club	Al Khalidiyah	2023-10-23 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219910533	f	\N	\N	\N
+9490	FC Utrecht	Ajax	2023-10-22 11:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219480046	t	1	\N	196
+6454	Eimsbutteler	Drochtersen-Assel	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219593829	f	\N	\N	\N
+6469	Carrick Rangers	Linfield	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219400384	f	\N	\N	\N
+6432	Portugal U21	Belarus U21	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219448501	f	\N	\N	\N
+6434	Herlev IF	Bronshoj	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219620945	f	\N	\N	\N
+6435	SK Vorwarts Steyr	St.Anna	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219615167	f	\N	\N	\N
+6433	Bosnia U21	France U21	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219448411	f	\N	\N	\N
+6437	VST Volkermarkt	Atus Velden	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219615527	f	\N	\N	\N
+6436	Favoritner AC	SC Mannsdorf	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219645789	f	\N	\N	\N
+6441	Turkey U21	San Marino U21	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219458988	f	\N	\N	\N
+6439	Kremser SC	FCM TQS Traiskirchen	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219615347	f	\N	\N	\N
+6438	FC Gleisdorf 09	WSC Hertha Wels	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219615257	f	\N	\N	\N
+6440	ASV Drassburg	Austria Wien (A)	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219615077	f	\N	\N	\N
+6444	Dortmund II	Rot-Weiss Essen	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219353827	f	\N	\N	\N
+6453	Chemie Leipzig	Eintracht Frankfurt	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219627104	f	\N	\N	\N
+6449	FSV 08 Bissingen	SG Sonnenhof	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219615887	f	\N	\N	\N
+6451	Skra Czestochowa	Wisla Pulawy	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219606174	f	\N	\N	\N
+6443	SC Eltersdorf	DJK Ammerthal	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614987	f	\N	\N	\N
+6455	Switzerland U21	Montenegro U21	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219369325	f	\N	\N	\N
+6447	Djurgardens IF Dff (W)	IFK Norrkoping DFK (W)	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219616585	f	\N	\N	\N
+6452	1. CfR Pforzheim	Holzhausen FC	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219615977	f	\N	\N	\N
+6445	Spartak Myjava	Slovan Bratislava II	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219602237	f	\N	\N	\N
+6450	TuS Koblenz	Homburg	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219613881	f	\N	\N	\N
+6446	FC Memmingen	FC Eintracht Bamberg	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219593919	f	\N	\N	\N
+6448	FC Kilia Kiel 1902	Weiche Flensburg	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219594443	f	\N	\N	\N
+6457	SW Rehden	Bersenbruck	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219617741	f	\N	\N	\N
+6459	SC Wiedenbruck	SV Rodinghausen	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219614512	f	\N	\N	\N
+6462	Bergisch Gladbach 09	Bonner SC	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219615707	f	\N	\N	\N
+6463	Romania U21	Armenia U21	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219530836	f	\N	\N	\N
+6460	SC Victoria Hamburg	ETSV Hamburg	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219615797	f	\N	\N	\N
+6458	Fortuna Koln	Rot-Weiss Ahlen	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219614332	f	\N	\N	\N
+6461	AZ Alkmaar Women	SC Telstar (W)	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219616280	f	\N	\N	\N
+6456	FC Utrecht (W)	ADO Den Haag (W)	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219616370	f	\N	\N	\N
+6466	SV 19 Straelen	Tvd Velbert	2023-10-13 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219616189	f	\N	\N	\N
+6465	Sheff Wed U21	Sheff Utd U21	2023-10-13 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219628864	f	\N	\N	\N
+6464	VfB 03 Hilden	Teutonia St. Tonis	2023-10-13 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219616099	f	\N	\N	\N
+6468	Scotland U21	Hungary U21	2023-10-13 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219369415	f	\N	\N	\N
+6467	Jordan	Iran	2023-10-13 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219594537	f	\N	\N	\N
+6471	Crusaders	Ballymena	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219400598	f	\N	\N	\N
+6470	Fiorenzuola	FC Legnago	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219558287	f	\N	\N	\N
+6476	Novara	Arzignanochiampo	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219558197	f	\N	\N	\N
+6485	24 de Septiembre Santa Cruz	Club Universitario B	2023-10-13 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219650076	f	\N	\N	\N
+6481	Glentoran	Loughgall	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219400294	f	\N	\N	\N
+6484	Albinoleffe	SS Virtus Verona 1921	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219558377	f	\N	\N	\N
+6472	Glenavon	Cliftonville	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219400508	f	\N	\N	\N
+6475	Portugal	Slovakia	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218779020	f	\N	\N	\N
+6482	Newry	Coleraine	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219403657	f	\N	\N	\N
+6474	Republic of Ireland	Greece	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778298	f	\N	\N	\N
+6477	Iceland	Luxembourg	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218779422	f	\N	\N	\N
+6483	England	Australia	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219361057	f	\N	\N	\N
+6478	Austria	Belgium	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778418	f	\N	\N	\N
+6473	Liechtenstein	Bosnia	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218801229	f	\N	\N	\N
+6480	Dungannon	Larne	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219403567	f	\N	\N	\N
+6479	Netherlands	France	2023-10-13 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218778077	t	1	3	274
+6527	Uzbekistan U23	Spain U21	2023-10-13 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219667156	f	\N	\N	\N
+6533	CE L Hospitalet	CFJ Mollerusa	2023-10-13 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219675666	f	\N	\N	\N
+6547	Treibach	SAK Klagenfurt	2023-10-13 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219667672	f	\N	\N	\N
+6550	SV Lafnitz II	SC Kalsdorf	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219667066	f	\N	\N	\N
+6431	Bordeaux (W)	Montpellier (W)	2023-10-13 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219616460	f	\N	\N	\N
+6556	UFC Fehring	Fleischereimaschinen Schenk	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219668033	f	\N	\N	\N
+6557	Salzburger AK 1914	USK Anif	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219668123	f	\N	\N	\N
+6559	FC Zwettl	SCU Kilb	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219667762	f	\N	\N	\N
+6560	SV Wildon	SC Bruck an der Mur	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219668393	f	\N	\N	\N
+6561	Parndorf	Ask Horitschon	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219668303	f	\N	\N	\N
+6562	ASV Siegendorf	ASK Marz	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219668213	f	\N	\N	\N
+6563	ASK Kottingbrunn	SV Gloggnitz	2023-10-13 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219667852	f	\N	\N	\N
+6573	Lindome	Qviding FIF	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219647482	f	\N	\N	\N
+6577	IFK Hassleholm	FBK Balkan	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219647662	f	\N	\N	\N
+6442	Frederiksberg Alliancen 2000	Fremad Amager	2023-10-13 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219626363	f	\N	\N	\N
+6588	Karlskrona	IFK Berga	2023-10-13 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219647572	f	\N	\N	\N
+6595	Ciudad de Bolivar	CS Atenas	2023-10-13 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638671	f	\N	\N	\N
+6487	Mali	Uganda	2023-10-13 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219627012	f	\N	\N	\N
+6488	Centro Atletico Fenix	Plaza Colonia	2023-10-13 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219520243	f	\N	\N	\N
+6486	Oviedo	Albacete	2023-10-13 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219410627	f	\N	\N	\N
+6489	AD Carmelita	PFA Antioquia FC	2023-10-13 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219628437	f	\N	\N	\N
+6490	Huracan	Estudiantes	2023-10-13 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219626569	f	\N	\N	\N
+6491	Curacao	Panama	2023-10-13 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219521017	f	\N	\N	\N
+6492	Defensor Sporting	Torque	2023-10-13 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219520333	f	\N	\N	\N
+6623	Club Sporting Canamy	Inter de Queretaro FC	2023-10-13 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677786	f	\N	\N	\N
+6493	Deportivo Pasto	Union Magdalena	2023-10-14 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219498214	f	\N	\N	\N
+6499	Deportivo Maldonado	Penarol	2023-10-14 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219530227	f	\N	\N	\N
+6497	Tlaxcala F.C	CD Tepatitlan de Morelos	2023-10-14 00:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219361710	f	\N	\N	\N
+6498	9 de Julio Rafaela	Boca Unidos	2023-10-14 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219638761	f	\N	\N	\N
+6500	Barbados	Dominican Republic	2023-10-14 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219544828	f	\N	\N	\N
+6501	Criciuma	Chapecoense	2023-10-14 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219251566	f	\N	\N	\N
+6505	Arabe Unido	Sporting San Miguelito	2023-10-14 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219639698	f	\N	\N	\N
+6504	FC Santiago	Huracanes Izcalli FC	2023-10-14 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219657519	f	\N	\N	\N
+6502	Petone	Auckland United	2023-10-14 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219629359	f	\N	\N	\N
+6503	Trinidad & Tobago	Guatemala	2023-10-14 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219521197	f	\N	\N	\N
+6506	Auckland City	Cashmere Technical	2023-10-14 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219629271	f	\N	\N	\N
+6508	Christchurch United	Manurewa AFC	2023-10-14 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219629447	f	\N	\N	\N
+6511	Cimarrones de Sonora	Correcaminos	2023-10-14 04:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219611719	f	\N	\N	\N
+6507	Once Caldas	Jaguares de Cordoba	2023-10-14 02:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219498395	f	\N	\N	\N
+6510	Alacranes de Durango	Correcaminos (Premier)	2023-10-14 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219635822	f	\N	\N	\N
+6509	Wellington Olympic AFC	Eastern Suburbs Auckland	2023-10-14 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219629535	f	\N	\N	\N
+6512	Grulla Morioka	FC Ryukyu	2023-10-14 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463804	f	\N	\N	\N
+6513	Nara Club	Fukushima Utd	2023-10-14 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463444	f	\N	\N	\N
+6666	Blaublitz Akita	FC Machida	2023-10-14 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219447513	f	\N	\N	\N
+6667	Central Coast (W)	Newcastle Jets (W)	2023-10-14 07:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219628329	f	\N	\N	\N
+6668	Wellington Phoenix (Res)	Napier City Rovers	2023-10-14 07:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219629623	f	\N	\N	\N
+6495	Inter Playa Del Carmen	Racing FC Porto Palmeiras	2023-10-14 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219635912	f	\N	\N	\N
+6494	Martinique	El Salvador	2023-10-14 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219521107	f	\N	\N	\N
+6496	Hartford Athletic FC	Tulsa Roughnecks FC	2023-10-14 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219560546	f	\N	\N	\N
+6669	Lee Man Warriors	North District	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219697887	f	\N	\N	\N
+6670	Hainan Star	Wuhan Jiangcheng	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649945	f	\N	\N	\N
+6671	Chungnam Asan	Cheongju FC	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219385992	f	\N	\N	\N
+6672	Shaoxing Shangyu Pterosaur	Haimen Codion	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649671	f	\N	\N	\N
+6673	Hunan Billows FC	Taian Tiankuang	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649761	f	\N	\N	\N
+6674	Sham Shui Po	HK U23	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714617	f	\N	\N	\N
+6675	Quanzhou Yaxin	Zibo Qisheng FC	2023-10-14 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649851	f	\N	\N	\N
+6676	Dantong Hantong	Heilongjiang Lava Spring	2023-10-14 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219650256	f	\N	\N	\N
+6677	Nanjing Fengfan	Qingdao Youth Island	2023-10-14 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219650346	f	\N	\N	\N
+6678	Mataram Utama	Psim Yogyakarta	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677386	f	\N	\N	\N
+6679	Concordia Chiajna	FCM Alexandria	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219691757	f	\N	\N	\N
+6680	Gresik United	Persijap Jepara	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677296	f	\N	\N	\N
+6681	Persekat Kabupaten Tegal	PSCS Cilacap	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677206	f	\N	\N	\N
+6682	Fujieda MYFC	Thespakusatsu Gunma	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219447603	f	\N	\N	\N
+6683	MSK Zilina (W)	Slovan Bratislava (W)	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219682645	f	\N	\N	\N
+6684	Jinan Xingzhou	Suzhou Dongwu	2023-10-14 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219650444	f	\N	\N	\N
+6685	PSDS Deli Serdang	Persiraja Banda Aceh	2023-10-14 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219677477	f	\N	\N	\N
+6686	Sydney FC (W)	Western Sydney (W)	2023-10-14 09:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219466500	f	\N	\N	\N
+6687	Rudes	NK Radomlje	2023-10-14 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219684431	f	\N	\N	\N
+6688	GKS Katowice	Piast Gliwice	2023-10-14 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219691847	f	\N	\N	\N
+6689	Herspice (W)	FC Viktoria Plzen (W)	2023-10-14 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219688248	f	\N	\N	\N
+6690	Zaglebie Sosnowiec	Podbeskidzie B-B	2023-10-14 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219684341	f	\N	\N	\N
+6691	Medyk Konin (W)	Gornik Leczna (W)	2023-10-14 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219656349	f	\N	\N	\N
+6692	Kitchee SC	Hong Kong Rangers FC	2023-10-14 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219685315	f	\N	\N	\N
+6693	Pogon Tczew (W)	Stomilanki Olsztyn (W)	2023-10-14 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219684222	f	\N	\N	\N
+6694	Villarreal (W)	Athletic Bilbao (W)	2023-10-14 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219512659	f	\N	\N	\N
+6695	Napoli Calcio (W)	Sampdoria (W)	2023-10-14 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219711153	f	\N	\N	\N
+6696	Dobrudzha	Lokomotiv Plovdiv	2023-10-14 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219710828	f	\N	\N	\N
+6697	Diyarbekirspor	Afjet Afyonspor	2023-10-14 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219632141	f	\N	\N	\N
+6698	Perth Glory (W)	Western United (W)	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219613592	f	\N	\N	\N
+6699	Hannover II	Bremer SV	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219595150	f	\N	\N	\N
+6700	Fortuna Hjorring (W)	AGF Aarhus (W)	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219658450	f	\N	\N	\N
+6701	FC Stockholm Internazionale	Sollentuna FF	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219447693	f	\N	\N	\N
+6702	Hansa Rostock II	FSV 63 Luckenwalde	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219560033	f	\N	\N	\N
+6703	Nomme Kalju	Harju JK Laagri	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219682797	f	\N	\N	\N
+6704	Rekord Bielsko-Biala (W)	Czarni Sosnowiec (W)	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219684132	f	\N	\N	\N
+6705	FC Phonix Lubeck	Hamburg II	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219595059	f	\N	\N	\N
+6706	Slavoj Trebisov	Tatran Presov	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219605446	f	\N	\N	\N
+6707	Oddevold	Norrby IF	2023-10-14 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219433835	f	\N	\N	\N
+6708	Poland U19	Kazakhstan U19	2023-10-14 12:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219710603	f	\N	\N	\N
+6709	UD Teror Balompie	CD Santa Ursula	2023-10-14 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219675393	f	\N	\N	\N
+6710	Jiangxi Liansheng	Guangzhou FC	2023-10-14 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219657838	f	\N	\N	\N
+6711	Bracknell Town FC	Dag and Red	2023-10-14 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219713056	f	\N	\N	\N
+6712	Notts Co	Mansfield	2023-10-14 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219387548	f	\N	\N	\N
+6713	UKS SMS Lodz (W)	Pogon Szczecin (W)	2023-10-14 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219658630	f	\N	\N	\N
+6714	Kisumu All Stars	Kibera Black Stars	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219682325	f	\N	\N	\N
+6715	Naivas	SS Assad FC	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219682415	f	\N	\N	\N
+6716	Indija	Kolubara Lazarevac	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219690806	f	\N	\N	\N
+6717	FK Sloboda Point	Radnicki Novi Beograd	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219690903	f	\N	\N	\N
+6718	Mainz II	FC Astoria Walldorf	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219613971	f	\N	\N	\N
+6719	Sparta Prague (W)	1 FC Slovacko (W)	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678549	f	\N	\N	\N
+6720	SV Lippstadt	Mgladbach II	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614783	f	\N	\N	\N
+6721	Velbert	Schalke 04 II	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614242	f	\N	\N	\N
+6722	Triestina	Lumezzane	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219625313	f	\N	\N	\N
+6723	Augsburg II	Greuther Furth II	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219595609	f	\N	\N	\N
+6724	Viktoria Koln	Erzgebirge	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386174	f	\N	\N	\N
+6725	Nuova Monterosi	Audace Cerignola	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219557927	f	\N	\N	\N
+6726	68 Aksaray Belediyespor	Etimesgut Belediyespor	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219632321	f	\N	\N	\N
+6727	Ankara Demirspor	Bucaspor	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219632411	f	\N	\N	\N
+6728	Sportist Svoge	Hebar	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219713511	f	\N	\N	\N
+6729	Verl	Ingolstadt	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386264	f	\N	\N	\N
+6730	Blyth Spartans	Bishops Stortford	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611137	f	\N	\N	\N
+6731	Fortuna Sittard (W)	PSV Eindhoven (W)	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661384	f	\N	\N	\N
+6732	Hessen Kassel	SGV Freiberg	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614061	f	\N	\N	\N
+6733	Alemannia Aachen	FC Wegberg-Beeck	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614890	f	\N	\N	\N
+6734	FC Gutersloh	FC Duren	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614603	f	\N	\N	\N
+6735	Unterhaching	SV Sandhausen	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386358	f	\N	\N	\N
+6736	Aurora Pro Patria 1919	Mantova	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219558017	f	\N	\N	\N
+6737	Ankaraspor	Kirklarelispor	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219643093	f	\N	\N	\N
+6738	SV Stuttgarter Kickers	FSV Frankfurt	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614151	f	\N	\N	\N
+6739	Spartak Pleven	Lokomotiv Sofia	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219713421	f	\N	\N	\N
+6740	Duzcespor	Erzincanspor	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219632231	f	\N	\N	\N
+6741	Fortuna Dusseldorf II	FC Bocholt	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614422	f	\N	\N	\N
+6742	Rot-Weiss Oberhausen	Wuppertaler	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219614693	f	\N	\N	\N
+6743	Freiburg II	Hallescher FC	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219475434	f	\N	\N	\N
+6744	Mikkeli	SJK 2	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219635706	f	\N	\N	\N
+6745	Aarhus Fremad	Esbjerg	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219553639	f	\N	\N	\N
+6746	Roskilde	Thisted	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660717	f	\N	\N	\N
+6747	Pergolettese	A.C. Trento S.C.S.D.	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219558107	f	\N	\N	\N
+6748	Jahn Regensburg	Lubeck	2023-10-14 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386082	f	\N	\N	\N
+6749	UMS Loum	Fovu Club	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219691438	f	\N	\N	\N
+6750	Kucukcekmece Sinop Spor	Gumushanespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219643583	f	\N	\N	\N
+6751	Inegol Kafkas Genclikspor	Edirnespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219643485	f	\N	\N	\N
+6752	Silivrispor	Kutahyaspor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219643763	f	\N	\N	\N
+6753	Denizlispor	Inegolspor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219633709	f	\N	\N	\N
+6754	Nazilli Belediyespor	Kirsehir Belediyespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219709814	f	\N	\N	\N
+6755	Somaspor Spor Kulubu	76 Igdir Belediyespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219632625	f	\N	\N	\N
+6756	Altinordu	Serik Belediyespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219632929	f	\N	\N	\N
+6757	Belediye Derincespor	Karaman Belediyespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219632805	f	\N	\N	\N
+6758	Sariyer G.K.	Fethiyespor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219632715	f	\N	\N	\N
+6759	AS Fortuna Mfou	Les Astres FC de Douala	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219686573	f	\N	\N	\N
+6760	Halide Edip Adivarspor	Adiyamanspor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219709290	f	\N	\N	\N
+6761	Usakspor	Ispartaspor	2023-10-14 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219632535	f	\N	\N	\N
+6762	Sudtirol	WSG Wattens	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219697362	f	\N	\N	\N
+6763	Romania U19	San Marino U19	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219671741	f	\N	\N	\N
+6764	NK Jadran Dekani	Rudar	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219563540	f	\N	\N	\N
+6765	Zrinski Jurjevac	NK Croatia Zmijavci	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660315	f	\N	\N	\N
+6766	Rosengard (W)	Hammarby (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661024	f	\N	\N	\N
+6767	MSK Povazska Bystrica	MSK Zilina II	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219605718	f	\N	\N	\N
+6768	Nykobing FC	Brabrand	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660537	f	\N	\N	\N
+6769	Paris FC (W)	EA Guingamp (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661294	f	\N	\N	\N
+6770	Giouchtas	Panachaiki	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219671561	f	\N	\N	\N
+6771	Olympiacos B	Ionikos	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219671651	f	\N	\N	\N
+6772	Ljungskile	Torns	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219434286	f	\N	\N	\N
+6773	NK Fuzinar	NK Primorje	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565364	f	\N	\N	\N
+6774	Cibalia Vinkovci	NK Sesvete	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660134	f	\N	\N	\N
+6775	Cork City (W)	Treaty United (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219516223	f	\N	\N	\N
+6776	NK Solin	NK Jarun	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660405	f	\N	\N	\N
+6777	FK Puchov	KFC Komarno	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219605536	f	\N	\N	\N
+6778	MFk Dolny Kubin	FK Spisska Nova Ves	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219605626	f	\N	\N	\N
+6779	BK Olympic	Vanersborgs IF	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219434016	f	\N	\N	\N
+6780	Albion FC	Cerrito	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661654	f	\N	\N	\N
+6781	England U19	Wales U19	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219672191	f	\N	\N	\N
+6782	Northern Ireland	San Marino	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219291334	f	\N	\N	\N
+6783	Le Havre AC (W)	Lille (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678729	f	\N	\N	\N
+6784	Gasogi United	Amagaju	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219685222	f	\N	\N	\N
+6785	AB	Skive	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660627	f	\N	\N	\N
+6786	Czech Rep U19	Finland U19	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219672101	f	\N	\N	\N
+6787	Bugesera	Gorilla FC	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661114	f	\N	\N	\N
+6788	FK Humenne	Malzenice	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219605808	f	\N	\N	\N
+6789	Dravinja Kostroj	NK Bilje	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565454	f	\N	\N	\N
+6790	NK Slovenska Bistrica	Tolmin	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565274	f	\N	\N	\N
+6791	Sunrise FC	Etincelles	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661204	f	\N	\N	\N
+6792	Danubio	Racing Club (Uru)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219520423	f	\N	\N	\N
+6793	BK Hacken (W)	Brommapojkarna (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660934	f	\N	\N	\N
+6794	Wexford Youths (W)	Peamount United (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219516313	f	\N	\N	\N
+6795	Ahlafors IF	Aatvidabergs FF	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219434196	f	\N	\N	\N
+6796	Ukraine	North Macedonia	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219326571	f	\N	\N	\N
+6797	Roa (W)	Lsk Kvinner (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219680471	f	\N	\N	\N
+6798	Rosenborg BK (W)	Stabaek (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219680561	f	\N	\N	\N
+6799	Valerenga (W)	Avaldsnes (W)	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660844	f	\N	\N	\N
+6800	Egaleo	Kalamata	2023-10-14 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661564	f	\N	\N	\N
+6801	Finn Harps	Athlone Town	2023-10-14 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219404107	f	\N	\N	\N
+6802	Germany U19	N Macedonia U19	2023-10-14 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219671831	f	\N	\N	\N
+10125	Pogon Siedlce	Zaglebie Lubin II	2023-10-23 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219891480	f	\N	\N	\N
+6824	Farnborough FC	St Albans	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611047	f	\N	\N	\N
+6807	Hampton and Richmond	Dartford	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219610957	f	\N	\N	\N
+6810	Ebbsfleet United	Slough Town	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712066	f	\N	\N	\N
+6834	Queen of South	Arbroath	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451460	f	\N	\N	\N
+6813	Alcoyano	Linares Deportivo	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219583165	f	\N	\N	\N
+6815	United IK Nordic	IF Karlstad	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219512839	f	\N	\N	\N
+6804	O Magran	Olympique Akbou	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219696666	f	\N	\N	\N
+6831	CF Rayo Majadahonda	Sabadell	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582085	f	\N	\N	\N
+6818	Bromley	Wealdstone	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712426	f	\N	\N	\N
+6805	Shamrock Rovers (W)	Shelbourne (W)	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219698429	f	\N	\N	\N
+6827	Wrexham	Salford City	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219388093	f	\N	\N	\N
+6836	Lunds BK	Oskarshamns AIK	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219433745	f	\N	\N	\N
+6825	Grimsby	Accrington	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387656	f	\N	\N	\N
+6837	Raith	Montrose	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451550	f	\N	\N	\N
+6823	Southport	Gloucester	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611497	f	\N	\N	\N
+6829	East Kilbride	Hamilton	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451057	f	\N	\N	\N
+6811	FC Halifax Town	Marine FC	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711976	f	\N	\N	\N
+6822	Reading	Oxford Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219399653	f	\N	\N	\N
+6828	AD Alcorcon II	CD Canillas	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219675303	f	\N	\N	\N
+6819	Darlington	Kings Lynn	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611407	f	\N	\N	\N
+6830	USM El Eulma	ES El Ghozlane	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637735	f	\N	\N	\N
+6821	Altrincham	Oldham	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712786	f	\N	\N	\N
+6814	Treaty United	Galway Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219411121	f	\N	\N	\N
+6832	Dalkurd FF	Orebro Syrianska	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219433925	f	\N	\N	\N
+6833	CD Diocesanos	Ponferradina II	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219675213	f	\N	\N	\N
+6826	Swindon	Newport County	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387982	f	\N	\N	\N
+6809	MK Dons	Barrow	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386451	f	\N	\N	\N
+6835	Brackley Town	Spennymoor Town	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611227	f	\N	\N	\N
+6806	Braintree	Chesham Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712516	f	\N	\N	\N
+6808	Falkirk	Queens Park	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451147	f	\N	\N	\N
+6816	Yong Sport Academy	Avion Academy FC	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219686663	f	\N	\N	\N
+6820	Sandvikens	Hammarby TFF	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219434106	f	\N	\N	\N
+6817	Carlisle	Leyton Orient	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219400119	f	\N	\N	\N
+10126	Rouen	Avranches	2023-10-23 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219945531	f	\N	\N	\N
+6884	Excursionistas (W)	Club El Porvenir (W)	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219647823	f	\N	\N	\N
+6853	Cornella	Union de Salamanca	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582355	f	\N	\N	\N
+6838	AFC Fylde	Leek Town FC	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712966	f	\N	\N	\N
+6861	Victoria United Limbe	Stade Renard	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219691137	f	\N	\N	\N
+6867	UD Rayo Ibense	Patacona CF	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219674456	f	\N	\N	\N
+6848	Harrogate Town	Stockport	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386636	f	\N	\N	\N
+6844	AFC Wimbledon	Bradford	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219388207	f	\N	\N	\N
+6842	Torquay	Maidstone Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711706	f	\N	\N	\N
+6852	Lincoln	Burton Albion	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219399869	f	\N	\N	\N
+6855	Alfreton Town	Macclesfield	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712876	f	\N	\N	\N
+6851	Morton	Kelty Hearts	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219451237	f	\N	\N	\N
+6860	Blackpool	Stevenage	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219400227	f	\N	\N	\N
+6857	Chesterfield FC	Kettering Town FC	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712246	f	\N	\N	\N
+6858	Eastleigh	Dover Athletic	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712156	f	\N	\N	\N
+6866	Atletico Levante UD	Villarreal CF III	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219675123	f	\N	\N	\N
+6847	Forest Green	Colchester	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387874	f	\N	\N	\N
+6862	Weymouth	Tonbridge Angels	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219610867	f	\N	\N	\N
+6863	Peterborough Sports FC	Banbury Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611317	f	\N	\N	\N
+6856	Aveley	Barnet	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712696	f	\N	\N	\N
+6859	Warrington Town	South Shields	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219611587	f	\N	\N	\N
+6839	Boreham Wood	Welling Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712606	f	\N	\N	\N
+6845	Crewe	Tranmere	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387764	f	\N	\N	\N
+6841	Scarborough Athletic	Oxford City	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711796	f	\N	\N	\N
+6843	York City	Needham Market	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711616	f	\N	\N	\N
+6849	Morecambe	Crawley Town	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219461699	f	\N	\N	\N
+6850	Walsall	Gillingham	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386734	f	\N	\N	\N
+6865	AD Cartaya	AD Ceuta B	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219675480	f	\N	\N	\N
+6840	Chelmsford	Whitby Town	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219712336	f	\N	\N	\N
+6846	Doncaster	Sutton Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386544	f	\N	\N	\N
+6869	Foggia	Brindisi	2023-10-14 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219559630	f	\N	\N	\N
+6868	Mirandes	Tenerife	2023-10-14 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219447152	f	\N	\N	\N
+6870	SSD Pro Sesto	Padova	2023-10-14 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219557837	f	\N	\N	\N
+6872	Dynamo Douala	Aigle Royal de la Menoua	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219691227	f	\N	\N	\N
+6876	USM Alger	USM Khenchela	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219662759	f	\N	\N	\N
+6871	Granada (W)	Real Madrid FC (W)	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219631702	f	\N	\N	\N
+6874	Fauve Azur Elite	Coton S De Garoua	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219691317	f	\N	\N	\N
+6877	Leganes B	CD Las Rozas	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219701419	f	\N	\N	\N
+6873	Arminia Bielefeld	Waldhof Mannheim	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219403387	f	\N	\N	\N
+6878	Asane Football (W)	Lyn (W)	2023-10-14 15:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219680651	f	\N	\N	\N
+6879	Rijeka	Udinese	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679860	f	\N	\N	\N
+6881	UD Montijo	SS Reyes	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219572757	f	\N	\N	\N
+6883	CD Carinena	UD Fraga	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219675033	f	\N	\N	\N
+6886	Arandina CF	Valladolid B	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219568117	f	\N	\N	\N
+6880	CD Illescas	Villanovense	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219572667	f	\N	\N	\N
+6887	Cadiz B	Linense	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219571011	f	\N	\N	\N
+6882	Longford	Bray Wanderers	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219409669	f	\N	\N	\N
+6889	CD Tropezon	CD Naval	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219674853	f	\N	\N	\N
+6885	Celta Vigo B	Real Union	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582175	f	\N	\N	\N
+6888	CD Padura	CD Basconia	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219674943	f	\N	\N	\N
+6890	RCD Mallorca II	Felanitx	2023-10-14 16:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219674763	f	\N	\N	\N
+6893	Manchego Ciudad Real	San Roque Lepe	2023-10-14 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219573673	f	\N	\N	\N
+6892	Elche Ilicitano	Atzeneta U.E	2023-10-14 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219675576	f	\N	\N	\N
+6891	Niger	Somalia	2023-10-14 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219691667	f	\N	\N	\N
+6875	VVV Venlo	Roda JC	2023-10-14 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219467510	t	0	2	199
+9620	Bologna	Frosinone	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219332408	t	2	\N	4
+6894	Sligo Rovers (W)	Athlone Town (W)	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219698519	f	\N	\N	\N
+6895	Como FC (W)	AC Milan (W)	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219713947	f	\N	\N	\N
+6913	Karacabey Belediyespor AS	Zonguldakspor	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219633380	f	\N	\N	\N
+6915	Mersin Idman Yurdu	1461 Trabzon	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219633290	f	\N	\N	\N
+6909	CA Tarazona	CA Osasuna II	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582265	f	\N	\N	\N
+6912	SC Kiyovu	Marines FC	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219663128	f	\N	\N	\N
+6904	Sibenik	NK Dubrava Zagreb	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219660225	f	\N	\N	\N
+6898	FC Tallinn	Viimsi JK	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219682887	f	\N	\N	\N
+6900	Club Atletico Saguntino	Torrent CF	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219570291	f	\N	\N	\N
+6901	Valencia-Mestalla	CE Europa	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219570741	f	\N	\N	\N
+6899	UD Ourense	Deportivo La Coruna II	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219568027	f	\N	\N	\N
+6914	Menemen Belediyespor	Kastamonuspor	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219633200	f	\N	\N	\N
+6905	Fleury 91 (W)	Dijon (W)	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219663038	f	\N	\N	\N
+6916	Slovenia	Finland	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219291442	f	\N	\N	\N
+6896	Yeni Orduspor	Aliaga Futbol AS	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219643673	f	\N	\N	\N
+6911	Al Hala	Aali Club	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679282	f	\N	\N	\N
+6907	Bahrain SC	Busaiteen Club	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679462	f	\N	\N	\N
+6906	Manama Club	Al Hidd	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679372	f	\N	\N	\N
+6903	Iskenderunspor	Arnavutkoy Belediyesi GVS	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219643003	f	\N	\N	\N
+6908	Austria U19	Montenegro U19	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219671921	f	\N	\N	\N
+6897	Bulgaria	Lithuania	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219291550	f	\N	\N	\N
+6917	The New Saints	East Fife	2023-10-14 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219693889	f	\N	\N	\N
+6922	Kerry FC	Waterford	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219475728	f	\N	\N	\N
+6919	Peterhead	Dundee Utd	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219451327	f	\N	\N	\N
+6921	Chelsea (W)	West Ham United (W)	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219540663	f	\N	\N	\N
+6923	Alcantarilla FC	Deportiva Minera	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219675753	f	\N	\N	\N
+6924	Real Sociedad (W)	SD Eibar (W)	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219569798	f	\N	\N	\N
+6918	Sporting Gijon	Zaragoza	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219447260	f	\N	\N	\N
+6920	FC Cartagena	Racing Santander	2023-10-14 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219447368	f	\N	\N	\N
+6925	CD Torre Fuerte	Fancesa	2023-10-14 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692615	f	\N	\N	\N
+6927	Ivory Coast	Morocco	2023-10-14 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219544637	f	\N	\N	\N
+6926	UE Castelldefels	Olot	2023-10-14 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219680085	f	\N	\N	\N
+6932	Platense (W)	SATelevision (W)	2023-10-14 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219648030	f	\N	\N	\N
+6928	Excursionistas	San Martin de Burzaco	2023-10-14 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219676546	f	\N	\N	\N
+6929	HFX Wanderers	Pacific	2023-10-14 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219664576	f	\N	\N	\N
+6930	Club San Juan de Aragon	Tampico Madero	2023-10-14 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219664672	f	\N	\N	\N
+6931	Deportiva Venados	Aguacateros de Peribán F.C	2023-10-14 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219687010	f	\N	\N	\N
+6933	SC Telstar	MVV Maastricht	2023-10-14 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219476088	f	\N	\N	\N
+6934	Deportivo Armenio	Comunicaciones B Aires	2023-10-14 19:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219676366	f	\N	\N	\N
+6935	Real Sociedad III	Barakaldo	2023-10-14 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219566377	f	\N	\N	\N
+6939	Sevilla FC (W)	Valencia (W)	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219569169	f	\N	\N	\N
+6940	CA Atlas	FC Midland	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219675935	f	\N	\N	\N
+6941	CA Claypole	Justo Jose de Urquiza	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219676065	f	\N	\N	\N
+6937	Hercules	Cerdanyola del Valles	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219570381	f	\N	\N	\N
+6938	Cacereno	Guadalajara	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219572847	f	\N	\N	\N
+6942	General Lamadrid	Sportivo Italiano	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219676456	f	\N	\N	\N
+6943	Real Pilar FC	CSD Liniers de Ciudad Evita	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219676241	f	\N	\N	\N
+6945	Denmark	Kazakhstan	2023-10-14 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219291159	f	\N	\N	\N
+6946	Italy	Malta	2023-10-14 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219326451	f	\N	\N	\N
+6944	Hungary	Serbia	2023-10-14 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219291038	f	\N	\N	\N
+6947	CDSC Iberia	Deportes Valdivia	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692027	f	\N	\N	\N
+6948	Real San Joaquin	CD General Velasquez	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219691937	f	\N	\N	\N
+9866	Motala	Dalkurd FF	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220086286	f	\N	\N	\N
+9673	Sampdoria	Cosenza	2023-10-22 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219482651	f	\N	\N	\N
+6974	Mexicali FC	Colima FC	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219683826	f	\N	\N	\N
+6986	Halcones de Zapopan	Montaneses FC	2023-10-15 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677966	f	\N	\N	\N
+6950	Deportes Rengo Unido	Linares	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692117	f	\N	\N	\N
+6951	Lyon (W)	Saint-Etienne (W)	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678639	f	\N	\N	\N
+6957	USA	Germany	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219448857	f	\N	\N	\N
+6955	Sansinena	CA Liniers	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219665375	f	\N	\N	\N
+6956	Puerto Rico	Guyana	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467857	f	\N	\N	\N
+6953	Uruguay Montevideo FC	IA Potencia	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219665069	f	\N	\N	\N
+6954	Aruba	US Virgin Islands	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573853	f	\N	\N	\N
+6952	Espanyol	Valladolid	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219447476	f	\N	\N	\N
+6960	Sarmiento de Resistencia	Club Mutual Crucero del	2023-10-14 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219676817	f	\N	\N	\N
+6961	La Luz FC	Liverpool Montevideo	2023-10-14 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219520513	f	\N	\N	\N
+6959	Argentino Monte Maiz	Ferro Carril Oeste GP	2023-10-14 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219648123	f	\N	\N	\N
+6962	Sportivo Penarol	Huracan Las Heras	2023-10-14 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219676727	f	\N	\N	\N
+6965	Uruguay de Coronado	Municipal Turrialba	2023-10-14 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219688153	f	\N	\N	\N
+6964	Novorizontino	Tombense MG	2023-10-14 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219251386	f	\N	\N	\N
+6963	Ituano	CRB	2023-10-14 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219251656	f	\N	\N	\N
+6966	Universidad de Chile (W)	Atletico Nacional (W)	2023-10-14 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219714707	f	\N	\N	\N
+6969	Alianza FC (Pan)	Plaza Amador	2023-10-14 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219656259	f	\N	\N	\N
+6971	Cavalry	Forge	2023-10-14 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219680336	f	\N	\N	\N
+6970	Deportivo Pereira	La Equidad	2023-10-14 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219499458	f	\N	\N	\N
+6972	Santa Tecla	AD Isidro Metapan	2023-10-14 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219658018	f	\N	\N	\N
+6968	Argentino de Merlo	Los Andes	2023-10-14 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219676636	f	\N	\N	\N
+6967	Club Sportivo Ameliano	Sportivo Trinidense	2023-10-14 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219686046	f	\N	\N	\N
+6973	Ceara SC Fortaleza	Sampaio Correa FC	2023-10-14 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219251476	f	\N	\N	\N
+6977	Artesanos Metepec F.C.	CD Poza Rica	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219693007	f	\N	\N	\N
+6981	CA Huracan (W)	Gimnasia de La Plata (W)	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219647913	f	\N	\N	\N
+6976	Ciervos fc	Zitacuaro CF	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677606	f	\N	\N	\N
+6975	Deportivo Mixco	Deportivo Coatepeque	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219655287	f	\N	\N	\N
+6978	Bahamas	Antigua and Barbuda	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573763	f	\N	\N	\N
+6979	Yalmakan FC	Escorpiones FC	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678108	f	\N	\N	\N
+6980	Wanderers (Uru)	Cerro Largo FC	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219473393	f	\N	\N	\N
+6984	Cafetaleros de Chiapas II	CD Pioneros de Cancun	2023-10-15 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677876	f	\N	\N	\N
+6987	Alebrijes de Oaxaca	Cancun FC	2023-10-15 00:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219417218	f	\N	\N	\N
+6982	Mineros de Fresnillo FC	Tritones Vallarta MFC	2023-10-15 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677696	f	\N	\N	\N
+6985	Deportivo Irapuato FC	Petroleros de Salamanca	2023-10-15 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219683916	f	\N	\N	\N
+6988	Atletico Nacional Medellin	Ind Medellin	2023-10-15 00:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219499188	f	\N	\N	\N
+6989	UMECIT	Atletico Chiriqui	2023-10-15 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219684654	f	\N	\N	\N
+6991	Guarani (Par)	Deportivo Recoleta	2023-10-15 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219692885	f	\N	\N	\N
+6992	Cimarrones de Sonora II	Gavilanes Matamoros	2023-10-15 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219678318	f	\N	\N	\N
+6993	Juventud	San Mendo	2023-10-15 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219687319	f	\N	\N	\N
+6990	Palmeiras (W)	Club Olimpia Women	2023-10-15 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219718657	f	\N	\N	\N
+6998	Mexico	Ghana	2023-10-15 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219494226	f	\N	\N	\N
+6994	Cuiaba	Cruzeiro MG	2023-10-15 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219148003	f	\N	\N	\N
+6999	Reboceros de La Piedad	Lobos ULMX	2023-10-15 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219684008	f	\N	\N	\N
+6996	Nashville SC	New England	2023-10-15 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219420481	t	2	\N	76
+6997	San Antonio FC	Indy Eleven	2023-10-15 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219560726	f	\N	\N	\N
+6995	FC Dallas	Colorado	2023-10-15 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219420373	t	2	\N	76
+7000	Millonarios	Junior FC Barranquilla	2023-10-15 02:20:00	https://www.orbitxch.com/customer/sport/1/market/1.219499278	f	\N	\N	\N
+7002	Guastatoya	Huehueteco Xinabajul	2023-10-15 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219655593	f	\N	\N	\N
+6983	Tuzos de la UAZ	Leones Negros Udg	2023-10-15 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678212	f	\N	\N	\N
+6854	Atletico Baleares	Atletico Madrid II	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219583075	f	\N	\N	\N
+6803	Olimpija	HNK Gorica	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679770	f	\N	\N	\N
+6812	Cambridge Utd	Shrewsbury	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219399761	f	\N	\N	\N
+6864	Kidderminster	Ashton Utd	2023-10-14 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711886	f	\N	\N	\N
+7087	CD Brea	AD San Juan	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567634	f	\N	\N	\N
+7089	Deportivo Toluca U23	Monterrey U23	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219720966	f	\N	\N	\N
+7097	Cruz Azul U23	Santos Laguna U23	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219721056	f	\N	\N	\N
+7099	Wolayta Dicha FC	Adama Kenema fc	2023-10-14 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219720599	f	\N	\N	\N
+6910	Cordoba	Merida AD	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582985	f	\N	\N	\N
+6902	Paris St-G (W)	Stade Reims (W)	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219662928	f	\N	\N	\N
+7124	Athletic Bilbao B	Real Zaragoza II	2023-10-14 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566468	f	\N	\N	\N
+6936	Defensores de Belgrano (W)	CA Belgrano (W)	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219696758	f	\N	\N	\N
+7149	Sol De Mayo	Club Cipolletti	2023-10-14 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219721858	f	\N	\N	\N
+6949	CDT Real Oruro	CD Gualberto Villarroel	2023-10-14 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692705	f	\N	\N	\N
+6958	Club Deportivo FATIC	CD Municipal Tarija	2023-10-14 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219696392	f	\N	\N	\N
+7192	Halcones de Zapopan	Montaneses FC	2023-10-14 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219677966	f	\N	\N	\N
+7011	Ehime	Kitakyushu	2023-10-15 05:55:00	https://www.orbitxch.com/customer/sport/1/market/1.219463174	f	\N	\N	\N
+7255	FC Osaka	FC Gifu	2023-10-15 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463984	f	\N	\N	\N
+7256	Kamatamare Sanuki	Tottori	2023-10-15 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463534	f	\N	\N	\N
+7257	Toyama	Azul Claro Numazu	2023-10-15 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463894	f	\N	\N	\N
+7258	Melbourne Victory (W)	Brisbane Roar FC (W)	2023-10-15 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219613697	f	\N	\N	\N
+7259	Vanraure Hachinohe	Kagoshima Utd	2023-10-15 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463354	f	\N	\N	\N
+7260	Shatin SA	South China	2023-10-15 06:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219739279	f	\N	\N	\N
+7261	Wing Yee	Wong Tai Sin	2023-10-15 06:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219739369	f	\N	\N	\N
+7262	Nagoya	Fukuoka	2023-10-15 07:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638997	f	\N	\N	\N
+7195	Mexicali FC	Colima FC	2023-10-15 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219683826	f	\N	\N	\N
+7001	Atletico Independiente	San Francisco FC	2023-10-15 02:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219656169	f	\N	\N	\N
+7003	Wellington Phoenix (W)	Melbourne City (W)	2023-10-15 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219466605	f	\N	\N	\N
+7004	Las Vegas Lights FC	San Diego Loyal SC	2023-10-15 03:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219560636	f	\N	\N	\N
+7263	Wofoo Tai Po	Hong Kong FC	2023-10-15 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219740762	f	\N	\N	\N
+7006	Los Cabos United	Tecos FC	2023-10-15 04:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692795	f	\N	\N	\N
+7007	Adelaide United (W)	Canberra United (W)	2023-10-15 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219628524	f	\N	\N	\N
+7010	FC Imabari	Yokohama SCC	2023-10-15 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463264	f	\N	\N	\N
+7009	Matsumoto	Nagano Parceiro	2023-10-15 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463624	f	\N	\N	\N
+7008	Tegevajaro Miyazaki	Sagamihara	2023-10-15 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219463714	f	\N	\N	\N
+9718	Deportivo La Coruna II	Zamora	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895766	f	\N	\N	\N
+7264	Kyrgyzstan	Philippines	2023-10-15 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219749634	f	\N	\N	\N
+7005	LA Galaxy	Real Salt Lake	2023-10-15 03:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219422337	t	2	\N	76
+7266	Beijing Tech FC	Jiangxi Dark Horse Junior	2023-10-15 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219695992	f	\N	\N	\N
+7267	Yanbian Longding	Guangxi Baoyun	2023-10-15 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219696262	f	\N	\N	\N
+7268	Hubei Chufeng Heli	Yunnan Yukun	2023-10-15 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219695812	f	\N	\N	\N
+7265	Wuxi Wugou	Shenyang Urban FC	2023-10-15 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219696172	f	\N	\N	\N
+7270	3 Sing FC	Yuen Long	2023-10-15 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219739099	f	\N	\N	\N
+7271	Central & West DR & SA	Kowloon City FC	2023-10-15 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219739189	f	\N	\N	\N
+7272	Citizen AA	Sai Kung	2023-10-15 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219738919	f	\N	\N	\N
+7273	Hoi King SA	Eastern District SA	2023-10-15 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219739009	f	\N	\N	\N
+7274	PSPS Pekanbaru	PSMS Medan	2023-10-15 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219733034	f	\N	\N	\N
+7275	Persipa Pati	Deltras Sidoarjo	2023-10-15 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219732944	f	\N	\N	\N
+7276	Urawa	Yokohama FM	2023-10-15 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638907	f	\N	\N	\N
+7277	FC Petrzalka	Tatran Lip Mikulas	2023-10-15 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219605922	f	\N	\N	\N
+7278	Betis B	UCAM Murcia	2023-10-15 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219570831	f	\N	\N	\N
+7279	FC La Union Atletico	El Palo	2023-10-15 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219571207	f	\N	\N	\N
+7280	AD Parla	Trival Valderas	2023-10-15 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219740473	f	\N	\N	\N
+9941	Al Riyadh SC	Al-Ettifaq	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219609529	f	\N	\N	\N
+7281	AD Torrejon	FC Villanueva del Pardillo	2023-10-15 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219740337	f	\N	\N	\N
+7282	CD Siete Villas	CD Laredo	2023-10-15 10:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219733911	f	\N	\N	\N
+7283	FE Grama	Reus FC Reddis	2023-10-15 10:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219733793	f	\N	\N	\N
+7284	Southern District	Eastern AA	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741678	f	\N	\N	\N
+7285	AD Ceuta FC	CD Castellon	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582625	f	\N	\N	\N
+7286	UDG Tenerife Sur (W)	Betis (W)	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219569079	f	\N	\N	\N
+7287	Santa Eulalia	Espanyol B	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219570561	f	\N	\N	\N
+7288	Terrassa	CE Andratx	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219569888	f	\N	\N	\N
+7292	Ibiza Eivissa	Recreativo Huelva	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582805	f	\N	\N	\N
+7293	Real Murcia	Algeciras	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582715	f	\N	\N	\N
+7294	Pablo De Mafumet	UE Tona	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219734001	f	\N	\N	\N
+7295	Real Jaen	Motril CF	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219739831	f	\N	\N	\N
+7296	Socuellamos	Azuqueca	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741302	f	\N	\N	\N
+7297	UD Logrones II	Casalarreina CF	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219742582	f	\N	\N	\N
+7298	Centre d'Esports Manresa	SD Formentera	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219570079	f	\N	\N	\N
+7299	La Nucia	SE Penya Independent	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219570471	f	\N	\N	\N
+7300	CD Calamonte	Jerez CF	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219742132	f	\N	\N	\N
+7301	CF Pozuelo de Alarcon	Rayo Vallecano B	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219739647	f	\N	\N	\N
+7302	Sporting Gijon B	SD Lenense	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219734181	f	\N	\N	\N
+7303	Sporting de Huelva (W)	Madrid (W)	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219512749	f	\N	\N	\N
+7304	CD Estepona	Mar Menor CF	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219571117	f	\N	\N	\N
+7305	UD Barbastro	CD Alaves B	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566918	f	\N	\N	\N
+7306	CP San Cristobal	Rapitenca	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219734091	f	\N	\N	\N
+7307	Albacete Balompie II	CD Toledo II	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741482	f	\N	\N	\N
+7308	Real Oviedo II	Coruxo	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567937	f	\N	\N	\N
+7289	CD Cuarte	CD Belchite 97	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741032	f	\N	\N	\N
+7290	CD Mostoles	CD Paracuellos Antamira	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219740137	f	\N	\N	\N
+7291	CD Utrera	Cordoba CF II	2023-10-15 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741861	f	\N	\N	\N
+7312	Excelsior (W)	Feyenoord (W)	2023-10-15 11:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219710920	f	\N	\N	\N
+7313	Pomigliano (W)	SSD Fiorentina WFC (W)	2023-10-15 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219722993	f	\N	\N	\N
+7314	CF Trujillo	CF Jaraiz	2023-10-15 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219742222	f	\N	\N	\N
+7315	SD Rayo Cantabria	CD Cayon	2023-10-15 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219567830	f	\N	\N	\N
+7316	Southampton (W)	Durham (W)	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219727873	f	\N	\N	\N
+7317	CD Atletico Paso	Getafe B	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573043	f	\N	\N	\N
+7318	Man Utd (W)	Leicester City (W)	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219541023	f	\N	\N	\N
+7319	Aalborg BK (W)	Koge (W)	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711243	f	\N	\N	\N
+7320	AZS UJ Krakow (W)	GKS Katowice (W)	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219711029	f	\N	\N	\N
+7321	Angelholms	Ariana FC	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219535438	f	\N	\N	\N
+7322	Eskilsminne	Tvaakers	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219461429	f	\N	\N	\N
+7323	Umea FC	Motala	2023-10-15 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219461519	f	\N	\N	\N
+7324	Shanghai Jiading	Hebei KungFu	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219711333	f	\N	\N	\N
+7325	Sivas Belediyespor	Erbaaspor	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716317	f	\N	\N	\N
+7326	Fatsa Belediyespor	Tepecik Belediye	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716497	f	\N	\N	\N
+7327	Sebat Genclik Spor	Cankaya	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716939	f	\N	\N	\N
+7328	Dongguan Guanlian	Sichuan Jiuniu FC	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219732763	f	\N	\N	\N
+7329	Karbel Karakopru	Kusadasispor	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716227	f	\N	\N	\N
+7330	SSV Ulm	Dynamo Dresden	2023-10-15 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219446446	f	\N	\N	\N
+7331	Putra Safin Group	Perserang Serang	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219732854	f	\N	\N	\N
+7333	Bodens	IFK Stocksund	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219535528	f	\N	\N	\N
+7334	ANADOLU UNIVERSITY	Batman Petrolspor	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219716047	f	\N	\N	\N
+7335	Juve Stabia	Catania	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219557657	f	\N	\N	\N
+7332	Entella	Gubbio	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219625496	f	\N	\N	\N
+9736	Gornik Zabrze	Rakow Czestochowa	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219408933	f	\N	\N	\N
+10006	Fraijanes FC	Cuilapa FC	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220084050	f	\N	\N	\N
+9787	ADR Jicaral	AD Barrio Mexico	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014357	f	\N	\N	\N
+7337	ACR Messina	FC Giugliano	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219557567	f	\N	\N	\N
+7338	Benevento	AZ Picerno ASD	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219667940	f	\N	\N	\N
+7339	Giana Erminio	Pro Vercelli	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219560330	f	\N	\N	\N
+7340	Perugia	Sassari Torres	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219667488	f	\N	\N	\N
+7341	Tilikratis Lefkadas	Ilioupoli	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219674217	f	\N	\N	\N
+7342	Man City (W)	Bristol City (W)	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219540573	f	\N	\N	\N
+7343	Spartans WFC (W)	Hearts (W)	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219735601	f	\N	\N	\N
+7344	TSV Havelse	SV Meppen	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219595330	f	\N	\N	\N
+7345	Talasgucu Belediyespor	Kirikkale Buyuk Anadolusp	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219715267	f	\N	\N	\N
+7346	Burgos	Villarreal B	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219461092	f	\N	\N	\N
+7347	Rangers (W)	Hibernian (W)	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219735748	f	\N	\N	\N
+7348	Osmaniyespor 2011	Darica Genclerbirligi	2023-10-15 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219715777	f	\N	\N	\N
+7350	Efeler 09	Pazarspor	2023-10-15 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219715867	f	\N	\N	\N
+9786	Aurora FC	Deportivo Mictlan	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220049537	f	\N	\N	\N
+7352	Bergama Belediyespor	Or1967 Futbol Isletmeciligi	2023-10-15 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716637	f	\N	\N	\N
+7353	Bulvarspor	Amasyaspor 1968 FK	2023-10-15 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716137	f	\N	\N	\N
+7354	Bursa Yildirim Spor	Mus Spor	2023-10-15 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219716727	f	\N	\N	\N
+7355	Estudiantes de La Plata (W)	River Plate (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714127	f	\N	\N	\N
+7356	Sunderland (W)	Reading (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219727963	f	\N	\N	\N
+7357	Georgia	Cyprus	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219459369	f	\N	\N	\N
+7358	Sheffield United (W)	Birmingham (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219728255	f	\N	\N	\N
+7359	FK Smederevo	OFK Beograd	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714037	f	\N	\N	\N
+7360	Blackburn Rovers (W)	Charlton (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714889	f	\N	\N	\N
+7361	Kristianstads (W)	KIF Orebro Dff (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219715069	f	\N	\N	\N
+7362	Crystal Palace (W)	London City Lionesses	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714799	f	\N	\N	\N
+7363	Watford (W)	Lewes (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219728053	f	\N	\N	\N
+7364	Thisted (W)	Brondby (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714347	f	\N	\N	\N
+7365	Linkopings FC (W)	Växjö DFF (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714979	f	\N	\N	\N
+7366	Arsenal (W)	Aston Villa (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219540753	f	\N	\N	\N
+7367	Ilirija Extra-Lux	Beltinci	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565093	f	\N	\N	\N
+7368	Aberdeen (W)	Glasgow City (W)	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219735267	f	\N	\N	\N
+7369	Nafta Lendava	Triglav	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565184	f	\N	\N	\N
+7370	HNK Orijent 1919	NK Dugopolje	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714217	f	\N	\N	\N
+7371	Levadiakos	Apollon Kalamaria FC	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219674127	f	\N	\N	\N
+7372	AS Kigali	Police FC	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219713857	f	\N	\N	\N
+7373	Makedonikos	Anagennisi Karditsas	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219674037	f	\N	\N	\N
+7374	Miramar Misiones	CA Rentistas	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714527	f	\N	\N	\N
+7375	Niki Volou	Kozani FC	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219673946	f	\N	\N	\N
+7376	Etoile de l'Est	Rwamagana City FC	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219736650	f	\N	\N	\N
+7377	Falkenbergs	FC Trollhattan	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219473269	f	\N	\N	\N
+7378	Musanze	Rayon Sports FC	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219713767	f	\N	\N	\N
+7379	FC St. Pauli U19	SV Meppen U19	2023-10-15 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219714437	f	\N	\N	\N
+7387	Taby FK	Vasalunds IF	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219461609	f	\N	\N	\N
+7386	Dfo Pardubice (W)	Slavia Prague (W)	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678459	f	\N	\N	\N
+7384	Union Sportive de Douala	Bamboutos FC de Mbouda	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219732545	f	\N	\N	\N
+7383	UCAM Murcia CF B	Union Molinense CF	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741952	f	\N	\N	\N
+7382	SD Compostela	RC Villalbes	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567724	f	\N	\N	\N
+7381	San Fernando CD	Granada B	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582895	f	\N	\N	\N
+7385	AS Roma (W)	Inter Milan (W)	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219715687	f	\N	\N	\N
+7380	Wexford F.C	Cobh Ramblers	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219553729	f	\N	\N	\N
+7388	Cruzeiro U20	Gremio FBPA U20	2023-10-15 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756660	f	\N	\N	\N
+7390	Recanatese	Arezzo	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219667578	f	\N	\N	\N
+7391	Virtus Francavilla	Sorrento	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219626016	f	\N	\N	\N
+7389	LR Vicenza Virtus	Renate	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219625404	f	\N	\N	\N
+9788	Universidad San Carlos	San Benito FC	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220039285	f	\N	\N	\N
+7396	Carrarese	Ancona	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219625638	f	\N	\N	\N
+7395	Eldense	Elche	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219460984	f	\N	\N	\N
+7392	US Latina Calcio	Monopoli	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219557747	f	\N	\N	\N
+7394	Barcelona B	CD Teruel	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219581905	f	\N	\N	\N
+7393	Andorra CF	Alcorcon	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219460876	f	\N	\N	\N
+7400	Levante UD (W)	Levante Las Planas (W)	2023-10-15 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219568989	f	\N	\N	\N
+7401	IF Sylvia	Pitea	2023-10-15 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219535618	f	\N	\N	\N
+7398	Preussen Munster	1860 Munich	2023-10-15 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219454252	f	\N	\N	\N
+7399	Marbella	FC Cartagena II	2023-10-15 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219571297	f	\N	\N	\N
+7403	Cambuur Leeuwarden	NAC Breda	2023-10-15 15:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219469128	t	2	\N	199
+7404	Fernandez Vial	CSD San Antonio Unido	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219733230	f	\N	\N	\N
+7422	Naxara CD	CD Calahorra	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567244	f	\N	\N	\N
+7421	Marino Luanco	UP Langreo	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567346	f	\N	\N	\N
+7411	Salamanca UDS	Real Avila CF	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219739741	f	\N	\N	\N
+7413	Real Aviles	Guijuelo	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567544	f	\N	\N	\N
+7405	AD Llerenense	CD Mensajero	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573223	f	\N	\N	\N
+7419	Motherwell (W)	Dundee United (W)	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219735357	f	\N	\N	\N
+7415	Hamilton WFC (W)	Montrose FC (W)	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219735450	f	\N	\N	\N
+7420	Yeclano Deportivo	Velez CF	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573493	f	\N	\N	\N
+7412	CD Covadonga	RS Gimnastica	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567453	f	\N	\N	\N
+7408	Krka	NK Brinje Grosuplje	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219565003	f	\N	\N	\N
+7407	CD Izarra	Valle de Egüés	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567024	f	\N	\N	\N
+7409	CD Badajoz	CDE Ursaria	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573313	f	\N	\N	\N
+7406	Numancia	CDA Navalcarnero	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573133	f	\N	\N	\N
+7423	SD Gernika Club	Arenas Club de Getxo	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566558	f	\N	\N	\N
+7418	UD Alzira	UE Sant Andreu	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219570651	f	\N	\N	\N
+7410	CD Binefar	CD Caspe	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741122	f	\N	\N	\N
+7416	SD Solares	CD Bezana	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219734271	f	\N	\N	\N
+7417	Silla CF	UD Castellonense	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219740047	f	\N	\N	\N
+7414	Brighton (W)	Tottenham (W)	2023-10-15 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219540843	f	\N	\N	\N
+7424	Partick Thistle (W)	Celtic (W)	2023-10-15 16:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219724634	f	\N	\N	\N
+7425	CD Utrillas	AD Almudevar	2023-10-15 16:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219740942	f	\N	\N	\N
+7435	CD Marchamalo	UB Conquense	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219741212	f	\N	\N	\N
+7434	CD Don Alvaro	Olivenza	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219742312	f	\N	\N	\N
+7429	Arosa FC	CD Estradense	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219734631	f	\N	\N	\N
+7427	Badalona	AE Prat	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219734361	f	\N	\N	\N
+7426	Liverpool (W)	Everton (W)	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219540933	f	\N	\N	\N
+7433	CD Algar	CAP Ciudad de Murcia	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219742042	f	\N	\N	\N
+7432	CCD Alberite	CA Rivers Ebro	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219742492	f	\N	\N	\N
+7436	SD Ejea	CD Ebro	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219740852	f	\N	\N	\N
+7431	SRD Vimenor CF	CD Colindres	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219734463	f	\N	\N	\N
+7430	Progreso	Bella Vista	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219718567	f	\N	\N	\N
+7441	East Riffa	Al-Ettifaq	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756570	f	\N	\N	\N
+7437	Al Riffa	Sitra	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219728606	f	\N	\N	\N
+7440	Aguilas	Sevilla B	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573583	f	\N	\N	\N
+7444	CD Acero	CF Gandia	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219739957	f	\N	\N	\N
+7442	Balikesirspor	Kestel Spor	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219716817	f	\N	\N	\N
+7443	Juventus FC (W)	Sassuolo (W)	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219723083	f	\N	\N	\N
+7447	Antequera CF	Intercity Sant Joan C.F	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582535	f	\N	\N	\N
+7439	Czech Republic	Faroe Islands	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219477297	t	0	1	274
+7446	Switzerland	Belarus	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219459597	t	1	6	274
+7445	CD Coria	CP Montehermoso	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219742402	f	\N	\N	\N
+7438	Utebo CF	Tudelano	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566738	f	\N	\N	\N
+9790	Deportivo Coatepeque	Guastatoya	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219925102	f	\N	\N	\N
+7465	ADR Jicaral	A.D. Cofutpa	2023-10-15 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219724405	f	\N	\N	\N
+7469	Ponte Preta	Atletico Go	2023-10-15 18:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219683278	f	\N	\N	\N
+9789	Arenas Armilla	UD Torre del Mar	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020611	f	\N	\N	\N
+7449	Lugo	SD Logrones	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219581635	f	\N	\N	\N
+7456	Macva Sabac	FK Dubocica	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219718784	f	\N	\N	\N
+7452	UD Logrones	UD Mutilvera	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219567134	f	\N	\N	\N
+7450	Ponferradina	Deportivo	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219581995	f	\N	\N	\N
+7454	Karabuk Idmanyurdu	Kepez Belediyespor	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219715177	f	\N	\N	\N
+7457	Metalac Gornji Milanovac	FK Jedinstvo Ub	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219718874	f	\N	\N	\N
+7455	Karsiyaka	Ergene Velimese SK	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219716407	f	\N	\N	\N
+7453	Zamora	Pontevedra CF	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219566287	f	\N	\N	\N
+7448	Gimnastica Segoviana CF	AD Union Adarve	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219573403	f	\N	\N	\N
+7458	Atletico Madrid (W)	Barcelona (W)	2023-10-15 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219486122	f	\N	\N	\N
+7462	Cesena	USD Sestri Levante 1919	2023-10-15 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219626252	f	\N	\N	\N
+7463	Spal	Fermana	2023-10-15 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219625762	f	\N	\N	\N
+7461	Eibar	Huesca	2023-10-15 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219456305	f	\N	\N	\N
+7459	Leganes	Amorebieta	2023-10-15 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219460768	f	\N	\N	\N
+7460	CF Badalona Futur	Lleida	2023-10-15 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219570180	f	\N	\N	\N
+7464	Caja Oblatos C.FD	Chilpancingo	2023-10-15 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219722903	f	\N	\N	\N
+7467	Alianza Universidad	Uni San Martin	2023-10-15 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219686143	f	\N	\N	\N
+7466	Xerez Deportivo FC	Ayamonte	2023-10-15 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219741771	f	\N	\N	\N
+7468	AD Aserri	Escorpiones FC	2023-10-15 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219724315	f	\N	\N	\N
+7475	Lanus (W)	Racing (W)	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219722586	f	\N	\N	\N
+7472	Sociedad B	Leonesa	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219581725	f	\N	\N	\N
+7471	Real Madrid Castilla	Atletico Sanluqueno CF	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219582445	f	\N	\N	\N
+7470	Arenteiro	Sestao River	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219581815	f	\N	\N	\N
+7474	Cruz Azul (W)	Club Tijuana (W)	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219722813	f	\N	\N	\N
+7473	Puebla FC (W)	CF America (W)	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219722723	f	\N	\N	\N
+7476	River Plate (Uru)	Boston River	2023-10-15 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219520603	f	\N	\N	\N
+7484	ASEEV GO	AE Jataiense	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219753241	f	\N	\N	\N
+7488	Ferro Carril Oeste	Aldosivi	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526384	f	\N	\N	\N
+7481	CD MAIPU	Independiente Rivadavia	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526204	f	\N	\N	\N
+7483	Club Atletico el Linqueno	Gimnasia Conc del Urug	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219726628	f	\N	\N	\N
+7486	Centro Oeste SAF	Aparecida EC	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219753331	f	\N	\N	\N
+7487	Santa Helena	Goiatuba EC	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219753421	f	\N	\N	\N
+7485	Atletico Rafaela	Chacarita	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526654	f	\N	\N	\N
+7482	Gimnasia Jujuy	Deportivo Riestra	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526114	f	\N	\N	\N
+7479	Brown de Adrogue	CA Atlanta	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526564	f	\N	\N	\N
+7480	Deportivo Madryn	Atletico Mitre	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526474	f	\N	\N	\N
+7489	Quilmes	CA Rac Cordoba	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526742	f	\N	\N	\N
+7477	Villa Dalmine	Chaco For Ever	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526024	f	\N	\N	\N
+7492	Romania	Andorra	2023-10-15 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219476865	f	\N	\N	\N
+7494	Norway	Spain	2023-10-15 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219343971	f	1	1	274
+7490	Poland	Moldova	2023-10-15 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477406	f	\N	\N	\N
+7493	Wales	Croatia	2023-10-15 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219343851	f	\N	\N	\N
+7495	CD Trasandino	Deportes Limache	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756318	f	\N	\N	\N
+7497	Real Mizque	Universitario De Pando	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756094	f	\N	\N	\N
+7496	Deportes Melipilla	Deportes Concepcion	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756408	f	\N	\N	\N
+7502	Tigre	Newells	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219186012	f	\N	\N	\N
+7499	Sarmiento de Junin	Racing Club	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219189689	f	\N	\N	\N
+7501	Def Belgrano VR	CA Union de Sunchales	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219722493	f	\N	\N	\N
+7500	Atenas	Tacuarembo	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219726448	f	\N	\N	\N
+7498	CD Hiska Nacional	Real Potosi	2023-10-15 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756004	f	\N	\N	\N
+7351	Willem II	Den Bosch	2023-10-15 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219489035	t	2	\N	199
+7397	Taranto Sport	Crotone	2023-10-15 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219626157	f	\N	\N	\N
+7402	CD Galapagar	Collado Villalba	2023-10-15 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219739551	f	\N	\N	\N
+7428	CDB Atletico Tomelloso	CD Quintanar del Rey	2023-10-15 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219741392	f	\N	\N	\N
+7451	Etihad Al Reef	Buri FC	2023-10-15 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219728514	f	\N	\N	\N
+7629	Calor de San Pedro	CF Orgullo de Reynosa	2023-10-15 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781765	f	\N	\N	\N
+7478	Estudiantes de Caseros	Tristan Suarez	2023-10-15 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526294	f	\N	\N	\N
+7650	Ponte Preta	Atletico Go	2023-10-15 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219683278	f	\N	\N	\N
+7503	Provincial Osorno	Lautaro de Buin	2023-10-15 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219733342	f	\N	\N	\N
+7504	Club Defensores de P	CA Douglas Haig	2023-10-15 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219722313	f	\N	\N	\N
+7505	Olimpo	Santamarina	2023-10-15 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219722403	f	\N	\N	\N
+7508	Limon Black Star	Guadalupe F.C	2023-10-15 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219724135	f	\N	\N	\N
+7509	Quepos Cambute	Municipal Garabito	2023-10-15 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219724045	f	\N	\N	\N
+7506	San Martin De Formosa	Club Gimnasia y Tiro	2023-10-15 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219726806	f	\N	\N	\N
+7510	Santa Rosa FC	Comerciantes FC	2023-10-15 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219726538	f	\N	\N	\N
+7511	Atletico Palmaflor Vinto	Jorge Wilstermann	2023-10-15 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219661474	f	\N	\N	\N
+7507	AD Cariari Pococi	Municipal Santa Ana	2023-10-15 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219724225	f	\N	\N	\N
+7512	Londrina	Avai	2023-10-15 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219683170	f	\N	\N	\N
+7513	Corinthians (W)	America de Cali (W)	2023-10-15 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219732669	f	\N	\N	\N
+7519	Achuapa FC	Xelaju	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219655683	f	\N	\N	\N
+7516	Costa del Este	Tauro FC	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219655989	f	\N	\N	\N
+7514	Sportivo AC Las Parejas	Independiente Chivilcoy	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219726718	f	\N	\N	\N
+7517	Amazonas FC	Brusque FC	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219658540	f	\N	\N	\N
+7518	Rionegro	Alianza Petrolera	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219499368	f	\N	\N	\N
+7521	Platense Zacatecoluca	CD Municipal Limeno	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219658108	f	\N	\N	\N
+7520	CD Dragon	CD Aguila	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219657928	f	\N	\N	\N
+7515	EC Vitoria Salvador	Guarani	2023-10-15 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219251747	f	\N	\N	\N
+7522	CD Luis Angel Firpo	Jocoro	2023-10-15 22:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219658198	f	\N	\N	\N
+7523	Nacional (Uru)	Cerro	2023-10-15 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219520693	f	\N	\N	\N
+7524	CA Central Norte	C J Antoniana	2023-10-15 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219722223	f	\N	\N	\N
+7525	Real Apodaca FC	Coras de Nayarit FC	2023-10-15 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219756228	f	\N	\N	\N
+7529	Deportivo Cali	America de Cali S.A	2023-10-16 00:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219499008	f	\N	\N	\N
+7526	St Kitts & Nevis	Sint Maarten	2023-10-16 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219734853	f	\N	\N	\N
+7530	Herrera FC	CD Universitario	2023-10-16 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219656079	f	\N	\N	\N
+7532	Haiti	Jamaica	2023-10-16 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219732237	f	\N	\N	\N
+7535	Guadalajara (W)	Pumas UNAM (W)	2023-10-16 01:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219734643	f	\N	\N	\N
+7531	CF America	Guadalajara	2023-10-16 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679680	f	\N	\N	\N
+7533	Honduras	Cuba	2023-10-16 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219732417	f	\N	\N	\N
+7534	Suriname	Grenada	2023-10-16 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219732327	f	\N	\N	\N
+7536	Talleres	Boca Juniors	2023-10-16 01:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219738203	f	\N	\N	\N
+7713	CF America	Guadalajara	2023-10-16 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679680	f	\N	\N	\N
+7538	Venados FC	Dorados	2023-10-16 02:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219468798	f	\N	\N	\N
+7537	Club Atletico Morelia	Atlante	2023-10-16 02:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219469038	f	\N	\N	\N
+7539	Tolima	Santa Fe	2023-10-16 02:20:00	https://www.orbitxch.com/customer/sport/1/market/1.219499098	f	\N	\N	\N
+7540	Club Atletico La Paz	Mineros de Zacatecas	2023-10-16 04:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219468948	f	\N	\N	\N
+7718	China	Uzbekistan	2023-10-16 12:35:00	https://www.orbitxch.com/customer/sport/1/market/1.219753950	f	\N	\N	\N
+7491	Turkey	Latvia	2023-10-15 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219459423	f	1	\N	274
+7527	Atletico San Luis (W)	Tigres (W)	2023-10-16 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219731524	f	\N	\N	\N
+7528	Club Necaxa (W)	FC Atlas (W)	2023-10-16 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219734451	f	\N	\N	\N
+7707	SC Internacional (W)	Colo Colo (W)	2023-10-16 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219792694	f	\N	\N	\N
+7719	Charlton U21	Millwall U21	2023-10-16 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219762622	f	\N	\N	\N
+7720	FK Mladost Novi Sad	FK Graficar	2023-10-16 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219764806	f	\N	\N	\N
+7721	FK Vrsac	RFK Novi Sad	2023-10-16 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219764626	f	\N	\N	\N
+7722	FK Radnicki Sremska	Tekstilac Odzaci	2023-10-16 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219764716	f	\N	\N	\N
+7723	Fleetwood Town U21	Birmingham U21	2023-10-16 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219764535	f	\N	\N	\N
+7724	Misr El Makasa	Proxy Work Club	2023-10-16 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219798725	f	\N	\N	\N
+9791	AD Cariari Pococi	Futbol Consultants Moravia	2023-10-22 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014447	f	\N	\N	\N
+7742	Alvarado	Defensores Unidos	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219532169	f	\N	\N	\N
+7727	CA Independiente (W)	CA Banfield (W)	2023-10-16 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219765198	f	\N	\N	\N
+7725	Botswana	Eswatini	2023-10-16 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219791422	f	\N	\N	\N
+7728	Club Ferro Carril Oeste (W)	CA Estudiantes (W)	2023-10-16 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219765288	f	\N	\N	\N
+7729	Mozambique	Nigeria	2023-10-16 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219766148	f	\N	\N	\N
+7730	Al Khalidiyah	Al-Shabbab (BRN)	2023-10-16 16:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219733124	f	\N	\N	\N
+7731	Germany U20	Czech Republic U20	2023-10-16 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219790023	f	\N	\N	\N
+7732	Algeria	Egypt	2023-10-16 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219657626	f	\N	\N	\N
+7733	Azerbaijan	Austria	2023-10-16 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219477189	f	\N	\N	\N
+7734	Norway U20	Romania U20	2023-10-16 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219782754	f	\N	\N	\N
+7735	Olimpia Grudziadz	LKS Lodz II	2023-10-16 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219606264	f	\N	\N	\N
+7736	Ukraine U21	England U21	2023-10-16 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219590477	f	\N	\N	\N
+7737	Stade Abidjan	Stella Club d'Adjame	2023-10-16 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219784017	f	\N	\N	\N
+7738	Sud America	Club Oriental de La Paz	2023-10-16 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219769245	f	\N	\N	\N
+7749	Patronato	Agropecuario	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219529139	f	\N	\N	\N
+7748	Flandria	San Martin de San Juan	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526925	f	\N	\N	\N
+7747	Estudiantes Rio Cuarto	Nueva Chicago	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219529229	f	\N	\N	\N
+7752	Pescara	Pesaro	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219560126	f	\N	\N	\N
+7739	Almirante Brown	CA Temperley	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219525934	f	\N	\N	\N
+7744	Senegal	Cameroon	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219642913	f	\N	\N	\N
+7750	Potenza	AP Turris Calcio	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219559540	f	\N	\N	\N
+7740	Northern Ireland U21	Serbia U21	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219590567	f	\N	\N	\N
+7743	CA Guemes	Almagro BA	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219762868	f	\N	\N	\N
+7745	Defensores de Belgrano	San Martin de Tucuman	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219526835	f	\N	\N	\N
+7746	Deportivo Moron	San Telmo	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219527015	f	\N	\N	\N
+7741	Gimnasia Mendoza	Guillermo Brown	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219529409	f	\N	\N	\N
+7756	Iceland	Liechtenstein	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219476382	f	\N	\N	\N
+7758	Casertana	Avellino	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219794317	f	\N	\N	\N
+7754	Bosnia	Portugal	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477461	f	\N	\N	\N
+7768	Queretaro (W)	Pachuca (W)	2023-10-17 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780139	f	\N	\N	\N
+7751	Belgium	Sweden	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477822	t	2	\N	274
+7753	Pontedera	Rimini	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219560216	f	\N	\N	\N
+7757	Luxembourg	Slovakia	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219476756	f	\N	\N	\N
+7760	Banfield	Atl Tucuman	2023-10-16 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219186438	f	\N	\N	\N
+7761	Levante	Racing de Ferrol	2023-10-16 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219460603	f	\N	\N	\N
+7763	Saint Martin	Anguilla	2023-10-16 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219743169	f	\N	\N	\N
+7762	Turks and Caicos Islands	British Virgin Islands	2023-10-16 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219755881	f	\N	\N	\N
+7764	Boca Juniors de Cali	Fortaleza FC	2023-10-16 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219734993	f	\N	\N	\N
+7765	Talleres (RE)	CA San Miguel	2023-10-16 21:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219775680	f	\N	\N	\N
+7766	Central Cordoba (SdE)	Lanus	2023-10-16 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219351520	f	\N	\N	\N
+7767	Leones FC	Real Cartagena	2023-10-16 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692207	f	\N	\N	\N
+7771	Juventude	Sport Recife	2023-10-17 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219353784	f	\N	\N	\N
+7772	Atletico Huila	Envigado	2023-10-17 00:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219544727	f	\N	\N	\N
+7769	Defensa y Justicia	Belgrano	2023-10-17 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219331483	f	\N	\N	\N
+7770	French Guyana	St Vincent & Grenadines	2023-10-17 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219753084	f	\N	\N	\N
+7773	Dominican Republic	Barbados	2023-10-17 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219735982	f	\N	\N	\N
+7774	Monterrey (W)	Mazatlan FC(W)	2023-10-17 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219782460	f	\N	\N	\N
+7775	Club Leon FC (W)	Toluca (W)	2023-10-17 02:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219782368	f	\N	\N	\N
+7776	Atletico Bucaramanga	Boyaca Chico	2023-10-17 02:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219530522	f	\N	\N	\N
+7777	Nicaragua	Montserrat	2023-10-17 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219752938	f	\N	\N	\N
+7759	Greece	Netherlands	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477701	t	0	1	274
+7726	MO Constantine	AS Khroub	2023-10-16 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692525	f	\N	\N	\N
+7785	Uzbekistan U23	Egypt U23	2023-10-16 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803808	f	\N	\N	\N
+7788	Raya Sporting FC	Nasr Taaden	2023-10-16 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219801905	f	\N	\N	\N
+7789	SOL FC	Zoman FC	2023-10-16 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219803718	f	\N	\N	\N
+7796	Rosenborg BK 2	Verdal IL	2023-10-16 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219803538	f	\N	\N	\N
+7799	Vianopolis U20	Jataiense U20	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219807583	f	\N	\N	\N
+7800	AA Aparecidense U20	Aragoiania U20	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219808196	f	\N	\N	\N
+7801	Aparecida EC U20	Guanabara City U20	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219808286	f	\N	\N	\N
+7802	Goias EC U20	Vila Nova U20	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219808015	f	\N	\N	\N
+7807	Cerrado U20	Trindade AC U20	2023-10-16 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219808105	f	\N	\N	\N
+7861	Selangor II	Perak II	2023-10-17 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219833215	f	\N	\N	\N
+7862	Sri Lanka	Yemen	2023-10-17 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219657729	f	\N	\N	\N
+7863	Japan	Tunisia	2023-10-17 11:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219664763	f	\N	\N	\N
+7864	Salford City (Res)	Rotherham United (Res)	2023-10-17 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219832175	f	\N	\N	\N
+7755	Gibraltar	Republic of Ireland	2023-10-16 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477942	t	2	\N	274
+7778	Atletico Saltillo	Chihuahua FC	2023-10-17 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219782664	f	\N	\N	\N
+7779	Santos Laguna (W)	FC Juarez (W)	2023-10-17 04:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219782550	f	\N	\N	\N
+7780	Guam	Singapore	2023-10-17 05:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219639872	f	\N	\N	\N
+7859	Mongolia	Afghanistan	2023-10-17 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219650644	f	\N	\N	\N
+7860	Pakistan	Cambodia	2023-10-17 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219641559	f	\N	\N	\N
+7871	Mauritania	Burkina Faso	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219816825	f	\N	\N	\N
+7866	Timor-Leste	Chinese Taipei	2023-10-17 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219736964	f	\N	\N	\N
+7865	South Korea	Vietnam	2023-10-17 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219769740	f	\N	\N	\N
+7867	Macau	Myanmar	2023-10-17 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219639962	f	\N	\N	\N
+7868	Bangladesh	Republic of Maldives	2023-10-17 12:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219641649	f	\N	\N	\N
+7869	Carlisle (Res)	Blackpool (Res)	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219808377	f	\N	\N	\N
+7874	Peterborough United U21	Burnley U21	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219815695	f	\N	\N	\N
+7872	Laos	Nepal	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219686483	f	\N	\N	\N
+7873	Bhutan	Hong Kong	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219641469	f	\N	\N	\N
+7870	Bristol City U21	Queens Park Rangers U21	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219797118	f	\N	\N	\N
+7875	Latvia U21	Turkey U21	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219590657	f	\N	\N	\N
+7876	Brunei	Indonesia	2023-10-17 13:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219642607	f	\N	\N	\N
+7878	Ipswich Town U21	Watford U21	2023-10-17 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219815790	f	\N	\N	\N
+7877	Albania U21	Montenegro U21	2023-10-17 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219590747	f	\N	\N	\N
+7881	Bolton (Res)	Huddersfield (Res)	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219834913	f	\N	\N	\N
+7886	Abo Qair Semads	Wadi degla	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803041	f	\N	\N	\N
+7882	La Viena FC	Petrojet	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803315	f	\N	\N	\N
+7883	Olympic El Qanal	Dekernes	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803405	f	\N	\N	\N
+7885	Tanta	El Seka Elhadeed	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803131	f	\N	\N	\N
+7880	Malaysia	Tajikistan	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219769830	f	\N	\N	\N
+7884	North Macedonia	Armenia	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219766058	f	\N	\N	\N
+7879	Cape Verde	Comoros	2023-10-17 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219798223	f	\N	\N	\N
+7887	Kazakhstan U21	Spain U21	2023-10-17 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219590837	f	\N	\N	\N
+7889	Kazakhstan U19	N Macedonia U19	2023-10-17 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219801179	f	\N	\N	\N
+7888	Poland U19	Germany U19	2023-10-17 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219801269	f	\N	\N	\N
+7890	Nurnberg II	Bayreuth	2023-10-17 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219797953	f	\N	\N	\N
+7892	Jordan	Iraq	2023-10-17 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219822248	f	\N	\N	\N
+9793	Oud-Heverlee Leuven	Sint Truiden	2023-10-22 18:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219457886	f	\N	\N	\N
+7891	Azerbaijan U21	Luxembourg U21	2023-10-17 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219590927	f	\N	\N	\N
+9795	Gualaceo SC	Aucas	2023-10-22 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219649491	f	\N	\N	\N
+9796	Erzgebirge	SSV Ulm	2023-10-22 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219789658	f	\N	\N	\N
+9797	Bristol City (W)	Arsenal (W)	2023-10-22 18:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219895456	f	\N	\N	\N
+9798	Borac Banja Luka	Zrinjski	2023-10-22 18:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219857505	f	\N	\N	\N
+9794	Francs Borains	Patro Eisden Maasmechelen	2023-10-22 18:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219791307	t	0	0	136
+9804	Montaneses FC	Yalmakan FC	2023-10-22 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220017156	f	\N	\N	\N
+7896	Armenia U21	Switzerland U21	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591017	f	\N	\N	\N
+7895	Lithuania U21	Iceland U21	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219593125	f	\N	\N	\N
+7894	Romania U21	Finland U21	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591107	f	\N	\N	\N
+7900	Zambia	Uganda	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219817992	f	\N	\N	\N
+7904	Telecom Egypt SC	Ghazl El Mahallah	2023-10-17 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219803221	f	\N	\N	\N
+7898	Saudi Arabia	Mali	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638485	f	\N	\N	\N
+7903	Croatia U21	Belarus U21	2023-10-17 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219743418	f	\N	\N	\N
+7902	Bulgaria U21	Kosovo U21	2023-10-17 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219591330	f	\N	\N	\N
+7901	Gibraltar U21	Netherlands U21	2023-10-17 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219753117	f	\N	\N	\N
+7905	Hungary U21	Belgium U21	2023-10-17 16:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219591420	f	\N	\N	\N
+7906	Italy U21	Norway U21	2023-10-17 16:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219591510	f	\N	\N	\N
+7907	Syria	Kuwait	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219818085	f	\N	\N	\N
+7912	Bahrain	Philippines	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780232	f	\N	\N	\N
+7909	Poland U21	Estonia U21	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591600	f	\N	\N	\N
+7914	Slovenia U21	Austria U21	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591690	f	\N	\N	\N
+7913	Estonia	Thailand	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219736238	f	\N	\N	\N
+7908	Austria U19	England U19	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219801359	f	\N	\N	\N
+7910	Finland	Kazakhstan	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219476630	f	\N	\N	\N
+7911	Czech Republic U21	Denmark U21	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219593215	f	\N	\N	\N
+7919	Scotland U21	Malta U21	2023-10-17 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219591781	f	\N	\N	\N
+7915	UAE	Lebanon	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219802764	f	\N	\N	\N
+7916	Albania	Bulgaria	2023-10-17 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219736148	f	\N	\N	\N
+7918	France U21	Cyprus U21	2023-10-17 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219595510	f	\N	\N	\N
+7920	FC Nottingen	FC Astoria Walldorf	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219821712	f	\N	\N	\N
+7923	SV Turkgucu-Ataspor	DJK Vilzing	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813586	f	\N	\N	\N
+7921	Sportunion Schonbrunn	Mannsworth	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219821802	f	\N	\N	\N
+7922	Buchbach	Illertissen	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813495	f	\N	\N	\N
+7924	Burghausen	FC Memmingen	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813315	f	\N	\N	\N
+7925	Viktoria Aschaffenburg	TSV Aubstadt	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813405	f	\N	\N	\N
+7929	Hull City U21	Barnsley U21	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219819172	f	\N	\N	\N
+7926	England U20	Portugal U20	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219831274	f	\N	\N	\N
+7933	UAI Urquiza (W)	Lorenzo de Almagro (W)	2023-10-17 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219804294	f	\N	\N	\N
+7930	Portugal U21	Greece U21	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591871	f	\N	\N	\N
+7931	Qatar	Iran	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803900	f	\N	\N	\N
+7927	Andorra U21	Faroe Islands U21	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591961	f	\N	\N	\N
+7928	Cambridge Utd	Colchester	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219775182	f	\N	\N	\N
+7932	Excursionistas (W)	Club El Porvenir (W)	2023-10-17 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219794019	f	\N	\N	\N
+7934	Waltham Abbey	Bedford Town	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219822338	f	\N	\N	\N
+7937	Herne Bay	Folkestone Invicta	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219834546	f	\N	\N	\N
+7941	Lithuania	Hungary	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219476973	f	\N	\N	\N
+7935	Brightlingsea Regent	Basildon United	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219808468	f	\N	\N	\N
+7936	Hanworth Villa	Hartley Wintney	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219808558	f	\N	\N	\N
+7946	Northern Ireland	Slovenia	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219476506	f	\N	\N	\N
+7949	Ivory Coast	South Africa	2023-10-17 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780324	f	\N	\N	\N
+7940	Serbia	Montenegro	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477581	f	\N	\N	\N
+7944	England	Italy	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219350687	f	\N	\N	\N
+7945	Cardiff Metropolitan	Newtown	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219802951	f	\N	\N	\N
+7938	Caernarfon Town	Aberystwyth	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219802861	f	\N	\N	\N
+7942	Malta	Ukraine	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219477081	f	\N	\N	\N
+7939	Haverfordwest County	Penybont FC	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219816414	f	\N	\N	\N
+7943	San Marino	Denmark	2023-10-17 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219476258	f	\N	\N	\N
+7947	Morocco	Liberia	2023-10-17 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219785045	f	\N	\N	\N
+7948	France	Scotland	2023-10-17 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219639423	f	\N	\N	\N
+7899	Moldova U21	North Macedonia U21	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219595420	f	\N	\N	\N
+7976	Ayr (Res)	Queen of South (Res)	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219837718	f	\N	\N	\N
+7977	Dundee (Res)	Dundee Utd (Res)	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219837538	f	\N	\N	\N
+7978	Hibernian (Res)	Hamilton (Res)	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219837628	f	\N	\N	\N
+7979	Preston North End (Res)	Wrexham (Res)	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219840436	f	\N	\N	\N
+7980	Queens Park (Res)	Livingston (Res)	2023-10-17 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219837808	f	\N	\N	\N
+7988	Atletico Goianiense U20	Itaberai U20	2023-10-17 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219837330	f	\N	\N	\N
+8000	Lincoln City (Res)	Notts County FC (Res)	2023-10-17 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219840542	f	\N	\N	\N
+7966	Peru	Argentina	2023-10-18 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219311607	f	\N	\N	\N
+7967	Deportivo Saprissa	Puntarenas F.C.	2023-10-18 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678819	f	\N	\N	\N
+8179	Shenyang Urban FC	Yanbian Longding	2023-10-18 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219826418	f	\N	\N	\N
+8180	Qingdao Youth Island	Suzhou Dongwu	2023-10-18 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219826891	f	\N	\N	\N
+8181	Nanjing Fengfan	Jinan Xingzhou	2023-10-18 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219826981	f	\N	\N	\N
+8182	Sichuan Jiuniu FC	Wuxi Wugou	2023-10-18 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219826801	f	\N	\N	\N
+9800	Pumas UNAM	Monterrey	2023-10-22 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219494316	f	\N	\N	\N
+9801	Atletico Sanluqueno CF	Cordoba	2023-10-22 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864985	f	\N	\N	\N
+7957	Ecuador	Colombia	2023-10-18 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219313752	f	\N	\N	\N
+7958	Mexico	Germany	2023-10-18 00:55:00	https://www.orbitxch.com/customer/sport/1/market/1.219610545	f	\N	\N	\N
+8183	Mil-Mugan FK	Irevan FK	2023-10-18 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219851940	f	\N	\N	\N
+8184	Afjet Afyonspor	Van Buyuksehir Belediyespor	2023-10-18 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219832085	f	\N	\N	\N
+8185	76 Igdir Belediyespor	Menemen Belediyespor	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219853714	f	\N	\N	\N
+8186	Guangxi Baoyun	Dongguan Guanlian	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219832313	f	\N	\N	\N
+8187	Jiangxi Liansheng	Shanghai Jiading	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219832403	f	\N	\N	\N
+8188	Guangzhou FC	Dantong Hantong	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219832808	f	\N	\N	\N
+8189	1461 Trabzon	Karacabey Belediyespor AS	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219847597	f	\N	\N	\N
+8190	Hebei KungFu	Heilongjiang Lava Spring	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219832898	f	\N	\N	\N
+8086	Avion Academy FC	Coton S De Garoua	2023-10-17 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219845454	f	\N	\N	\N
+7893	Angola	DR Congo	2023-10-17 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219826328	f	\N	\N	\N
+7897	Georgia U21	Sweden U21	2023-10-17 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219591200	f	\N	\N	\N
+7917	Wurzburger Kickers	Schalding-Heining	2023-10-17 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219799266	f	\N	\N	\N
+8035	Grosspetersdorf	Pinkafeld	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219838122	f	\N	\N	\N
+8038	AIK (W)	IFK Norrkoping (W)	2023-10-17 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219837904	f	\N	\N	\N
+8049	Mauritania	Burkina Faso	2023-10-17 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219816825	f	\N	\N	\N
+7950	Antigua and Barbuda	Bahamas	2023-10-17 20:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219791274	f	\N	\N	\N
+7951	Guyana	Puerto Rico	2023-10-17 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219782923	f	\N	\N	\N
+7952	Cayman Islands	US Virgin Islands	2023-10-17 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219783035	f	\N	\N	\N
+8069	CD Luis Angel Firpo (W)	Municipal Limeno (W)	2023-10-17 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219838594	f	\N	\N	\N
+7954	AD Municipal Liberia	Santos de Guapiles	2023-10-17 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219683328	f	\N	\N	\N
+7953	Venezuela	Chile	2023-10-17 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219311391	f	\N	\N	\N
+7956	Paraguay	Bolivia	2023-10-17 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219311499	f	\N	\N	\N
+7955	Bermuda	Belize	2023-10-17 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219755773	f	\N	\N	\N
+8191	Adiyamanspor	Ankara Demirspor	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219847507	f	\N	\N	\N
+8192	Kirklarelispor	Nazilli Belediyespor	2023-10-18 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219847417	f	\N	\N	\N
+8193	FK Smederevo	FK Backa Topola	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219846966	f	\N	\N	\N
+7959	Sporting San Jose FC	Municipal Grecia	2023-10-18 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219678909	f	\N	\N	\N
+7960	Uruguay	Brazil	2023-10-18 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219318771	f	\N	\N	\N
+8171	Palmeiras (W)	Atletico Nacional (W)	2023-10-18 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219873155	f	\N	\N	\N
+7961	USA	Ghana	2023-10-18 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219638575	f	\N	\N	\N
+7962	Genesis Huracan	Lobos UPNFM	2023-10-18 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219826711	f	\N	\N	\N
+7963	Panama	Guatemala	2023-10-18 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219752830	f	\N	\N	\N
+7964	El Salvador	Martinique	2023-10-18 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219752522	f	\N	\N	\N
+7965	Curacao	Trinidad & Tobago	2023-10-18 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219752192	f	\N	\N	\N
+8194	Zonguldakspor	Ankaraspor	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219847687	f	\N	\N	\N
+8195	Kastamonuspor	Denizlispor	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219854001	f	\N	\N	\N
+8196	Etimesgut Belediyespor	Iskenderunspor	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219853804	f	\N	\N	\N
+8197	Karaman Belediyespor	Amed Sportif Faaliyetler	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219855418	f	\N	\N	\N
+8198	Serik Belediyespor	Halide Edip Adivarspor	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219847970	f	\N	\N	\N
+8199	Sandecja Nowy Sacz	Chojniczanka Chojnice	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219832583	f	\N	\N	\N
+8200	Kirsehir Belediyespor	Altinordu	2023-10-18 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219847777	f	\N	\N	\N
+8201	FC Vorskla Poltava (W)	AS Roma (W)	2023-10-18 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219839513	f	\N	\N	\N
+8202	Arnavutkoy Belediyesi GVS	Usakspor	2023-10-18 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219854497	f	\N	\N	\N
+8203	Union Sportive de Douala	Aigle Royal de la Menou	2023-10-18 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219845760	f	\N	\N	\N
+8204	Inegolspor	Sariyer G.K.	2023-10-18 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219854407	f	\N	\N	\N
+8205	Bucaspor	Bursaspor	2023-10-18 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219848189	f	\N	\N	\N
+8206	Fovu Club de Baham	Victoria United Limbe	2023-10-18 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219841259	f	\N	\N	\N
+8207	SSD US Angri 1927	Real Casalnuova	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866795	f	\N	\N	\N
+8208	Poggibonsi	AC Aglianese	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866615	f	\N	\N	\N
+8209	ASD Asti	PDHA Evancon	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219852795	f	\N	\N	\N
+8210	Vivi Altotevere Sansepolcro	Pistoiese	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219855222	f	\N	\N	\N
+8211	USD Castellanzese	ASD Varesina	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219867065	f	\N	\N	\N
+8212	Follonica Gavorrano	Sangiovannese	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219855312	f	\N	\N	\N
+8213	Acd Campodarsego Calcio	Montecchio Maggiore	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219855037	f	\N	\N	\N
+8214	AC Dolomiti Bellunesi	Virtus Bolzano	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219851850	f	\N	\N	\N
+8215	Borgo San Donnino	US Corticella	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219854947	f	\N	\N	\N
+8216	San Nicolo Notaresco	Campobasso	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866705	f	\N	\N	\N
+8217	USD Citta di Fasano	SSD Casarano Calcio	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219867155	f	\N	\N	\N
+8218	AJ Fano 1906	Sambenedettese	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866435	f	\N	\N	\N
+8219	Vibonese	FC Lamezia Terme	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219867245	f	\N	\N	\N
+8220	FK Tekstilac Derventa	Tuzla City	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219852030	f	\N	\N	\N
+8221	Real Calepina FC	AC Ponte San Pietro-Isola	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219856061	f	\N	\N	\N
+8222	Luparense FC	APDC Chions	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219854767	f	\N	\N	\N
+8223	Union Clodiense Chioggia	Ravenna	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866885	f	\N	\N	\N
+8224	FK Trayal Krusevac	Crvena Zvezda	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219847057	f	\N	\N	\N
+8225	USD Casatese	ASD Fanfulla	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866975	f	\N	\N	\N
+8226	GS Arconatese	ASD Alcione	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219852885	f	\N	\N	\N
+8227	ASD Real Monterotondo Scalo	Cynthiabalonga	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866525	f	\N	\N	\N
+8228	Cavese 1919	Rotonda Calcio	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219854857	f	\N	\N	\N
+8229	SK Sered	Slovan Bratislava	2023-10-18 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219852248	f	\N	\N	\N
+8231	Bamboutos FC de Mbouda	AS Fortuna Mfou	2023-10-18 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219845850	f	\N	\N	\N
+9799	FCSB	FC Voluntari	2023-10-22 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219173353	f	\N	\N	\N
+10127	Udinese	Lecce	2023-10-23 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219118133	f	\N	\N	\N
+8230	Fezzanese	Vado FC	2023-10-18 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219871121	f	\N	\N	\N
+8234	PWD Bamenda	Dynamo Douala	2023-10-18 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219846030	f	\N	\N	\N
+8237	MFD Zalgiris Vilnius (Res)	TransINVEST Vilnius	2023-10-18 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219834636	f	\N	\N	\N
+8236	Les Astres FC de Douala	Canon Sportif De Yaounde	2023-10-18 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219845940	f	\N	\N	\N
+8235	Zrinjski	FK Velez Mostar	2023-10-18 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219835027	f	\N	\N	\N
+8239	CFF Clujana (W)	Slavia Prague (W)	2023-10-18 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219839603	f	\N	\N	\N
+8238	Liverpool Montevideo	Defensor Sporting	2023-10-18 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219755914	f	\N	\N	\N
+8240	Fethiyespor	Duzcespor	2023-10-18 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219853894	f	\N	\N	\N
+8243	Ispartaspor	Belediye Derincespor	2023-10-18 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219854263	f	\N	\N	\N
+8242	Tabasalu JK	Paide Linnameeskond	2023-10-18 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219839151	f	\N	\N	\N
+8241	FC Paradiso	Rapperswil-Jona	2023-10-18 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219835745	f	\N	\N	\N
+8244	Erokspor A.S	Mersin Idman Yurdu	2023-10-18 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219848279	f	\N	\N	\N
+8245	Rosengard (W)	Zfk Spartak Subotica (W)	2023-10-18 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219854677	f	\N	\N	\N
+8246	Sparta Prague (W)	Eintracht Frankfurt (W)	2023-10-18 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219854587	f	\N	\N	\N
+8247	Wolfsburg (W)	Paris FC (W)	2023-10-18 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219839694	f	\N	\N	\N
+8248	Fidelis Andria	US Bitonto Calcio	2023-10-18 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219871211	f	\N	\N	\N
+8249	Twente (W)	BK Hacken (W)	2023-10-18 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219839784	f	\N	\N	\N
+9803	Zitacuaro CF	Canoneros Marina	2023-10-22 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220055926	f	\N	\N	\N
+8286	AD Guanacasteca	CS Herediano	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219679089	f	\N	\N	\N
+9806	Lyon	Clermont	2023-10-22 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219117533	f	\N	\N	\N
+8296	Arabe Unido	Costa del Este	2023-10-19 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219883274	f	\N	\N	\N
+8299	Macara	Manta FC	2023-10-19 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219853072	f	\N	\N	\N
+8300	CS Cartagines	AD San Carlos	2023-10-19 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219650166	f	\N	\N	\N
+8297	CD Universitario	UMECIT	2023-10-19 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219883670	f	\N	\N	\N
+8303	CA Independiente	Barracas Central	2023-10-19 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386840	f	\N	\N	\N
+8302	Olancho	CD Olimpia	2023-10-19 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219879869	f	\N	\N	\N
+8304	Vasco Da Gama	Fortaleza EC	2023-10-19 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219230617	f	\N	\N	\N
+8301	Inter Miami CF	Charlotte FC	2023-10-19 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219487784	t	2	\N	76
+8294	Cucuta Deportivo	Llaneros FC	2023-10-19 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219692387	f	\N	\N	\N
+8295	Coritiba	Cuiaba	2023-10-19 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219230257	f	\N	\N	\N
+8252	SK Brann (W)	Glasgow City (W)	2023-10-18 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219863096	f	\N	\N	\N
+8250	SSV Jeddeloh	TuS BW Lohne	2023-10-18 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219839241	f	\N	\N	\N
+8251	Borac Banja Luka	Sarajevo	2023-10-18 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219839061	f	\N	\N	\N
+8253	SKN St. Polten (W)	Valur Reykjavik (W)	2023-10-18 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219858886	f	\N	\N	\N
+8258	Plaza Colonia	Wanderers (Uru)	2023-10-18 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219761059	f	\N	\N	\N
+8255	FC Cosmos Koblenz	Rot-Weiss Koblenz	2023-10-18 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219839423	f	\N	\N	\N
+8256	Cham	FC Luzern II	2023-10-18 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219840338	f	\N	\N	\N
+8257	Valerenga (W)	Real Madrid FC (W)	2023-10-18 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219879987	f	\N	\N	\N
+8259	Bavois	FC Zurich II	2023-10-18 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219840242	f	\N	\N	\N
+8260	Eintracht Trier	SV Auersmacher	2023-10-18 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219839333	f	\N	\N	\N
+8261	L'Hospitalet	Andorra CF	2023-10-18 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219857017	f	\N	\N	\N
+8262	Etoile Carouge	Breitenrain	2023-10-18 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219840152	f	\N	\N	\N
+8263	Racing Club D'Abidjan	SC Gagnoa	2023-10-18 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219838971	f	\N	\N	\N
+8264	Paris St-G (W)	Man Utd (W)	2023-10-18 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219876444	f	\N	\N	\N
+8266	Palazzolo	Calcio Desenzano	2023-10-18 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219871301	f	\N	\N	\N
+8267	CE Europa	Olot	2023-10-18 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219855132	f	\N	\N	\N
+8265	Trapani	Sancataldese Calcio	2023-10-18 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219871607	f	\N	\N	\N
+8268	Servette FC U21	Biel Bienne	2023-10-18 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219840062	f	\N	\N	\N
+8271	Ramsgate	Erith & Belvedere	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219885732	f	\N	\N	\N
+8269	Larkhall Athletic	Bashley	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219872013	f	\N	\N	\N
+8270	Southall	Thatcham Town	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219840634	f	\N	\N	\N
+8275	DLR Waves (W)	Shamrock Rovers (W)	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219824482	f	\N	\N	\N
+8276	Galway WFC (W)	Athlone Town (W)	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219824662	f	\N	\N	\N
+8273	Kingstonian	Enfield Town	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219783096	f	\N	\N	\N
+8274	Shelbourne (W)	Sligo Rovers (W)	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219824572	f	\N	\N	\N
+8272	Connahs Quay	Bala Town	2023-10-18 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219839971	f	\N	\N	\N
+8277	Universidad San Carlos	Barberena FC	2023-10-18 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219847147	f	\N	\N	\N
+8278	Cerro Largo FC	La Luz FC	2023-10-18 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219760969	f	\N	\N	\N
+8280	Barranquilla	Atletico FC Cali	2023-10-18 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219692297	f	\N	\N	\N
+8281	Chacaritas SC	Independiente Juniors	2023-10-18 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219840814	f	\N	\N	\N
+8279	Club Nueve de Octubre	Guayaquil SC	2023-10-18 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219840724	f	\N	\N	\N
+8284	Fraijanes FC	Deportivo Mictlan	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219859848	f	\N	\N	\N
+8283	Deportivo Nueva Concepcion	S Lucia Cotzumalguapa	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219859938	f	\N	\N	\N
+8282	Solola FC	Marquense	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219859757	f	\N	\N	\N
+8285	CD Aguila	Platense Zacatecoluca	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219841164	f	\N	\N	\N
+8287	CD Luis Angel Firpo	Alianza FC (SLV)	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219847237	f	\N	\N	\N
+8288	Juventud Pinulteca FC	Aurora FC	2023-10-18 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219860028	f	\N	\N	\N
+8289	Jocoro	Santa Tecla	2023-10-18 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219847327	f	\N	\N	\N
+8290	CA Platense	Estudiantes	2023-10-18 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219351628	f	\N	\N	\N
+8291	Gremio	Athletico-PR	2023-10-18 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219230497	f	\N	\N	\N
+8292	Torque	Penarol	2023-10-18 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219713146	f	\N	\N	\N
+9807	AC Milan	Juventus	2023-10-22 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219118013	f	\N	\N	\N
+10031	Shamrock Rovers	Drogheda	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219512569	f	\N	\N	\N
+9822	Anapolina Go	Santa Helena	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220052193	f	\N	\N	\N
+9817	Stade Reims (W)	Lyon (W)	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220023967	f	\N	\N	\N
+8445	CD Victoria	CD Real Sociedad	2023-10-20 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219919232	f	\N	\N	\N
+8446	San Francisco FC	Herrera FC	2023-10-20 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219910839	f	\N	\N	\N
+8447	Santos	Bragantino SP	2023-10-20 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219238646	f	\N	\N	\N
+8232	APEJES Academy	Fauve Azur Elite	2023-10-18 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219841349	f	\N	\N	\N
+8233	ASD Trastevere Calcio	Sassari Calcio Latte Dolce	2023-10-18 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219871031	f	\N	\N	\N
+8352	Poggibonsi	AC Aglianese	2023-10-18 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219866615	f	\N	\N	\N
+8254	Kotwica Kolobrzeg	Stal Stalowa Wola	2023-10-18 18:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219769920	f	\N	\N	\N
+8368	COB	AS Black Stars	2023-10-18 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219894024	f	\N	\N	\N
+8373	US Livorno 1915 SSD	GSD Ghiviborgo VSD	2023-10-18 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219894117	f	\N	\N	\N
+8395	Nacional (Par)	Guarani (Par)	2023-10-18 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219894211	f	\N	\N	\N
+8444	Royal Pari	Aurora	2023-10-20 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219918426	f	\N	\N	\N
+8448	Boston River	Nacional (Uru)	2023-10-20 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219792897	f	\N	\N	\N
+8305	Corinthians (W)	SC Internacional (W)	2023-10-19 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219826582	f	\N	\N	\N
+8449	Rosario Central	Velez Sarsfield	2023-10-20 00:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219185796	f	\N	\N	\N
+9821	Barcelona	Athletic Bilbao	2023-10-22 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219118853	t	0	1	3
+10128	Vanlose U21	Boldklubben 1908 U21	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220132681	f	\N	\N	\N
+10129	Varnamo	IFK Goteborg	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484278	f	\N	\N	\N
+10130	Valerenga II	Kjelsas	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220081583	f	\N	\N	\N
+10131	Stal Mielec	Warta Poznan	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219409023	f	\N	\N	\N
+8293	America MG	Botafogo	2023-10-19 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219230137	f	\N	\N	\N
+8407	Tacuary	Guairena	2023-10-19 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219894301	f	\N	\N	\N
+8298	Cuniburo FC	Imbabura Sporting Club	2023-10-19 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219853163	f	\N	\N	\N
+8307	Goias	Sao Paulo	2023-10-19 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219246243	f	\N	\N	\N
+8306	Bahia	Internacional	2023-10-19 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219230017	f	\N	\N	\N
+8308	Millonarios	Union Magdalena	2023-10-19 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.218954674	f	\N	\N	\N
+8310	AD Isidro Metapan	CD Dragon	2023-10-19 02:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219860781	f	\N	\N	\N
+8309	Plaza Amador	Tauro FC	2023-10-19 02:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219883489	f	\N	\N	\N
+8312	CD Motagua	Vida	2023-10-19 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219879779	f	\N	\N	\N
+8311	Quiche FC	Deportivo San Pedro	2023-10-19 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219866345	f	\N	\N	\N
+8313	LD Alajuelense	Municipal Perez Zeledon	2023-10-19 03:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219678999	f	\N	\N	\N
+10132	OB	Midtjylland	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219458498	f	\N	\N	\N
+10133	AL Nahdha	Al-Futowa	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220120437	f	\N	\N	\N
+10134	Stromsgodset II	Kvik Halden	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010202	f	\N	\N	\N
+10135	Trabzonspor	Alanyaspor	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219200325	f	\N	\N	\N
+10136	Jonkopings Sodra	Skovde AIK	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219500663	f	\N	\N	\N
+10137	Genclerbirligi	Altay	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219788178	f	\N	\N	\N
+10138	Fatih Karagumruk Istanbul	Adana Demirspor	2023-10-23 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219200217	f	\N	\N	\N
+10139	Elfsborg	AIK	2023-10-23 18:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219483918	f	\N	\N	\N
+10140	Red Star	Cholet SO	2023-10-23 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219943332	f	\N	\N	\N
+10141	Jong PSV Eindhoven	FC Eindhoven	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219910028	f	\N	\N	\N
+10142	FC Groningen	Emmen	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219910118	f	\N	\N	\N
+10143	FC Oss	Jong FC Utrecht	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219857396	f	\N	\N	\N
+10144	Stade Abidjan	Racing Club D'Abidjan	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033707	f	\N	\N	\N
+10145	Jong AZ Alkmaar	De Graafschap	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219857785	f	\N	\N	\N
+10146	Al-Hilal	Mumbai City FC	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220088959	f	\N	\N	\N
+10147	Al-Sadd	Al Faisaly SC	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220084703	f	\N	\N	\N
+10148	Al Arabi Kuwait	Al Riffa	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220103892	f	\N	\N	\N
+10149	AD Cantolao	Atletico Grau	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219524199	f	\N	\N	\N
+8460	Al-Jalil	Al Aqaba	2023-10-19 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219884066	f	\N	\N	\N
+8461	Racing Club (Uru)	Centro Atletico Fenix	2023-10-19 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219738294	f	\N	\N	\N
+8462	Aali Club	Al-Ettifaq	2023-10-19 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219887718	f	\N	\N	\N
+8463	Malkiya	Al-Ittihad (BRN)	2023-10-19 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219885608	f	\N	\N	\N
+8464	Qalali	Al Budaiya	2023-10-19 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219885302	f	\N	\N	\N
+8465	Partizani Tirana	KF Tirana	2023-10-19 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219883976	f	\N	\N	\N
+8467	Hansa Rostock II	Greifswalder SV 04	2023-10-19 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219888019	f	\N	\N	\N
+8468	CSMS Iasi	ACS Sepsi OSK	2023-10-19 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219173173	f	\N	\N	\N
+8469	Deportivo Maldonado	River Plate (Uru)	2023-10-19 18:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219790158	f	\N	\N	\N
+8470	K Lierse U21	AS Eupen (Res)	2023-10-19 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219887808	f	\N	\N	\N
+8471	Gimnasia La Plata	Argentinos Juniors	2023-10-19 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219386930	f	\N	\N	\N
+8472	Rebordosa	Braga	2023-10-19 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219892296	f	\N	\N	\N
+8473	Godoy Cruz	San Lorenzo	2023-10-19 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219185688	f	\N	\N	\N
+8474	Cerro	Danubio	2023-10-19 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219792987	f	\N	\N	\N
+8475	Colon	River Plate	2023-10-19 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219353676	f	\N	\N	\N
+8476	CF America (W)	Queretaro (W)	2023-10-19 22:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219882217	f	\N	\N	\N
+8477	Tombense MG	Vila Nova	2023-10-19 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219536778	f	\N	\N	\N
+8478	Atletico Go	ABC RN	2023-10-19 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219658360	f	\N	\N	\N
+8479	Cruzeiro MG	Flamengo	2023-10-19 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219229897	f	\N	\N	\N
+8480	SE Palmeiras	Atletico MG	2023-10-19 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219258544	f	\N	\N	\N
+8481	Sportivo Luqueno	Club General Caballero JLM	2023-10-19 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219894481	f	\N	\N	\N
+8454	Sporting San Miguelito	Alianza FC (Pan)	2023-10-20 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219919131	f	\N	\N	\N
+8453	Cd Fas	Fuerte San Francisco	2023-10-20 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219918021	f	\N	\N	\N
+8456	FC Atlas (W)	Guadalajara (W)	2023-10-20 02:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219916822	f	\N	\N	\N
+8457	Venados FC	Club Atletico Morelia	2023-10-20 04:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219780414	f	\N	\N	\N
+9626	Nantes	Montpellier	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219117411	t	1	2	5
+10150	CFR Cluj	Otelul Galati	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219173929	f	\N	\N	\N
+10151	Helmond Sport	FC Dordrecht	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219853390	f	\N	\N	\N
+10152	Jong Ajax Amsterdam	ADO Den Haag	2023-10-23 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219853480	f	\N	\N	\N
+10153	St Patricks	Sligo Rovers	2023-10-23 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219839874	f	\N	\N	\N
+8458	Tigres (W)	Monterrey (W)	2023-10-20 04:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219916732	f	\N	\N	\N
+8459	Pachuca (W)	Club Necaxa (W)	2023-10-20 04:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219916642	f	\N	\N	\N
+8466	Vendsyssel FF	AC Horsens	2023-10-19 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219803990	t	1	3	147
+8504	Sarmiento de Junin	Racing Club	2023-10-20 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219944485	f	\N	\N	\N
+8450	CD Municipal Limeno	Once Municipal	2023-10-20 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219917931	f	\N	\N	\N
+8451	Fluminense	Corinthians	2023-10-20 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219230377	f	\N	\N	\N
+8452	Real Espana	CD Marathon	2023-10-20 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219918610	f	\N	\N	\N
+8455	Deportivo Pereira	Atletico Nacional Medellin	2023-10-20 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219918120	f	\N	\N	\N
+8515	Csikszereda	FC Unirea Dej	2023-10-21 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219571521	f	\N	\N	\N
+8516	Bhayangkara FC	PS Barito Putera	2023-10-21 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219960217	f	\N	\N	\N
+8517	Progresul 1944 Spartac	FC Metaloglobus Bucuresti	2023-10-21 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219571431	f	\N	\N	\N
+8518	CSM Scolar Resita	CS Tunari	2023-10-21 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219588991	f	\N	\N	\N
+8519	PSS Sleman	Persik Kediri	2023-10-21 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219960127	f	\N	\N	\N
+8520	Acs Dumbravita	FCM Alexandria	2023-10-21 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219571701	f	\N	\N	\N
+8521	Unirea Slobozia	CSA Steaua Bucuresti	2023-10-21 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219593305	f	\N	\N	\N
+8522	RB Leipzig U19	Hannover 96 (U19)	2023-10-21 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219964113	f	\N	\N	\N
+8523	Inter Milan (W)	Napoli Calcio (W)	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219982947	f	\N	\N	\N
+8524	Tuzlaspor	Kocaelispor	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219736552	f	\N	\N	\N
+8525	CF Panaderia Pulido	Club Atletico Victoria	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219975900	f	\N	\N	\N
+8526	Customs United	Rayong FC	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219963933	f	\N	\N	\N
+8527	Erzurum BB	Keciorengucu	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219736372	f	\N	\N	\N
+8528	Villarreal CF III	CD Soneja	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219975810	f	\N	\N	\N
+8529	Kisvarda	Mezokovesd-Zsory	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219502462	f	\N	\N	\N
+10154	USD Sestri Levante 1919	Carrarese	2023-10-23 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219842447	f	\N	\N	\N
+8530	Kayserispor	Rizespor	2023-10-21 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219200433	f	\N	\N	\N
+8531	Beltinci	Gorica	2023-10-21 11:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219896750	f	\N	\N	\N
+8532	Nakhon Pathom	Khonkaen United	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219912193	f	\N	\N	\N
+8533	Botev Vratsa	Botev Plovdiv	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219534862	f	\N	\N	\N
+8534	Geita Gold FC	Dodoma FC	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219964895	f	\N	\N	\N
+8535	Sollentuna FF	Taby FK	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219852430	f	\N	\N	\N
+8536	Tvaakers	Lunds BK	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865616	f	\N	\N	\N
+8537	Thanh Hoa	Hong Linh Ha Tinh	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983591	f	\N	\N	\N
+8538	VFL Osnabruck	Wehen Wiesbaden	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219175457	f	\N	\N	\N
+8539	Phnom Penh	Prey Veng	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219964591	f	\N	\N	\N
+8540	Berliner AK	Meuselwitz	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923404	f	\N	\N	\N
+8543	BK Olympic	Norrby IF	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864353	f	\N	\N	\N
+8544	Ayutthaya United	Lampang FC	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219964023	f	\N	\N	\N
+8546	Sloga Doboj	Siroki Brijeg	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219855791	f	\N	\N	\N
+8547	Suzhou Dongwu	Jiangxi Liansheng	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219965130	f	\N	\N	\N
+8548	Preston	Millwall	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219383971	f	\N	\N	\N
+8549	JL Chiangmai United	Chainat Hornbill	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219963843	f	\N	\N	\N
+8550	Aston Villa (W)	Tottenham (W)	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219895365	f	\N	\N	\N
+8551	Weiche Flensburg	TSV Havelse	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219927019	f	\N	\N	\N
+8552	Trans Narva	Nomme Kalju	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219510096	f	\N	\N	\N
+8553	Guangxi Baoyun	Nanjing Fengfan	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219965040	f	\N	\N	\N
+8555	Nantong Zhiyun F.C	Shanghai Shenhua	2023-10-21 12:35:00	https://www.orbitxch.com/customer/sport/1/market/1.219733758	f	\N	\N	\N
+8556	NK Dubrava Zagreb	Zrinski Jurjevac	2023-10-21 12:50:00	https://www.orbitxch.com/customer/sport/1/market/1.219856617	f	\N	\N	\N
+8557	FK Jedinstvo Ub	Indija	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219971536	f	\N	\N	\N
+8558	KTP	IFK Mariehamn	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484698	f	\N	\N	\N
+8559	FSV Frankfurt	Aalen	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923224	f	\N	\N	\N
+8560	Homburg	Hessen Kassel	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923314	f	\N	\N	\N
+8561	Hallescher FC	Jahn Regensburg	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219733593	f	\N	\N	\N
+8562	Lahti	Ilves	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484879	f	\N	\N	\N
+8563	Ternana	Brescia	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219482380	f	\N	\N	\N
+8564	FK Tukums 2000	Rigas Futbola Skola	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219905165	f	\N	\N	\N
+8565	FC Bocholt	Fortuna Koln	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219924562	f	\N	\N	\N
+8566	Sheriff Tiraspol	CSF Spartanii	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219967163	f	\N	\N	\N
+8567	VfB Stuttgart U19	SG E Frankfurt U19	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219965565	f	\N	\N	\N
+8568	Dukla Prague	MFK Chrudim	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219538032	f	\N	\N	\N
+8569	Gnistan	SJK 2	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219852338	f	\N	\N	\N
+8570	FC Astoria Walldorf	SV Steinbach	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923982	f	\N	\N	\N
+8571	FC Dziugas	FK Kauno Zalgiris	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219564372	f	\N	\N	\N
+8572	Tobol Kostanay	FK Kaspyi Aktau	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219939918	f	\N	\N	\N
+8573	Stuttgart II	SV Stuttgarter Kickers	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923044	f	\N	\N	\N
+8574	Ratchaburi	Sukhothai	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219911777	f	\N	\N	\N
+8575	Dynamo Dresden	Preussen Munster	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219738490	f	\N	\N	\N
+8576	Lecco	Ascoli	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219482561	f	\N	\N	\N
+8577	OFK Beograd	FK Mladost Novi Sad	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966031	f	\N	\N	\N
+8578	FC Neptunas Klaipeda	Be1 NFA	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219967073	f	\N	\N	\N
+8579	Radnicki Novi Beograd	Metalac Gornji Milanovac	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966121	f	\N	\N	\N
+8580	TransINVEST Vilnius	FK Babrungas	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966983	f	\N	\N	\N
+8581	Hegelmann Litauen	Panevezys	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219564281	f	\N	\N	\N
+8582	AC Oulu	Haka	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484789	f	\N	\N	\N
+8583	SGV Freiberg	Mainz II	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219926771	f	\N	\N	\N
+8584	Quess East Bengal	FC Goa	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219738384	f	\N	\N	\N
+8585	TSV Schott Mainz	Hoffenheim II	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923134	f	\N	\N	\N
+8554	Liverpool	Everton	2023-10-21 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219119577	t	0	2	2
+10155	Palermo	Spezia	2023-10-23 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219482290	f	\N	\N	\N
+8542	GAIS	Ostersunds FK	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219500754	t	1	3	336
+8545	Paderborn	St Pauli	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219249739	t	1	4	93
+8586	Chernomorets Odesa	FC Minaj	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219466957	f	\N	\N	\N
+8587	Kairat Almaty	FK Aksu Pavlodar	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219940009	f	\N	\N	\N
+8588	Pisa	Cittadella	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219483063	f	\N	\N	\N
+8589	US Cremonese	Sudtirol	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219482020	f	\N	\N	\N
+8590	Skive	Roskilde	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966497	f	\N	\N	\N
+8591	1860 Munich	Freiburg II	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219607211	f	\N	\N	\N
+8592	Rot-Weiss Ahlen	Alemannia Aachen	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923800	f	\N	\N	\N
+8593	Ingolstadt	Unterhaching	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219733503	f	\N	\N	\N
+8594	Lubeck	Viktoria Koln	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219607121	f	\N	\N	\N
+8595	Strommen	Levanger	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219963052	f	\N	\N	\N
+8596	Real Sociedad	Mallorca	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219118373	f	\N	\N	\N
+8597	Zimbru Chisinau	FC Floresti	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219967253	f	\N	\N	\N
+8598	SSD Bari	Modena	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219482200	f	\N	\N	\N
+8599	SC Spelle Venhaus	SV Meppen	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922774	f	\N	\N	\N
+8600	FC Augsburg U19	1. FC Heidenheim U19	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219965655	f	\N	\N	\N
+8601	Sofapaka	Kenya Police FC	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812307	f	\N	\N	\N
+8602	FC Talanta	Posta Rangers	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812487	f	\N	\N	\N
+8603	ADO Den Haag (W)	Twente (W)	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219982625	f	\N	\N	\N
+8604	Liepajas Metalurgs	FK Auda	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219905255	f	\N	\N	\N
+8605	Kieler SV Holstein II	Eimsbutteler	2023-10-21 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922954	f	\N	\N	\N
+8606	FK Spisska Nova Ves	FK Humenne	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219963411	f	\N	\N	\N
+8607	MFk Dolny Kubin	Tatran Lip Mikulas	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219965745	f	\N	\N	\N
+8608	Ksv 1919	FC Dornbirn	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219571791	f	\N	\N	\N
+8609	Tatran Presov	FC Petrzalka	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219963684	f	\N	\N	\N
+8610	SK Sturm Graz II	FC Liefering	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219607302	f	\N	\N	\N
+8611	Bregenz	SV Horn	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219571881	f	\N	\N	\N
+8612	KFC Komarno	Slavoj Trebisov	2023-10-21 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219963504	f	\N	\N	\N
+8613	Zalaegerszeg	Paks	2023-10-21 13:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219502282	f	\N	\N	\N
+8614	Grorud IL	Floy Flekkeroy	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219962692	f	\N	\N	\N
+8617	Tolmin	Ilirija Extra-Lux	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219897697	f	\N	\N	\N
+8618	Birkirkara	Mosta	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219906282	f	\N	\N	\N
+8619	NK Dugopolje	Cibalia Vinkovci	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219856437	f	\N	\N	\N
+8620	Vukovar	NK Solin	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219856527	f	\N	\N	\N
+8621	FC Telavi	Samgurali Tskaltubo	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966587	f	\N	\N	\N
+8622	Hammarby (W)	Linkopings FC (W)	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966391	f	\N	\N	\N
+8623	Fram Larvik	Egersund	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219962602	f	\N	\N	\N
+8625	Puszcza Niepolomice	Cracovia Krakow	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219408663	f	\N	\N	\N
+8626	Ullensaker Kisa	Ullern	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219962782	f	\N	\N	\N
+8627	Zlin	Mlada Boleslav	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219446626	f	\N	\N	\N
+8629	Pardubice	Sigma Olomouc	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219407362	f	\N	\N	\N
+8631	Slovan Liberec	Plzen	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219446716	f	\N	\N	\N
+8633	NK Rogaska	NK Celje	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219505312	f	\N	\N	\N
+8634	Cerrito	Uruguay Montevideo FC	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966211	f	\N	\N	\N
+8635	Helsingborgs	Gefle	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219498485	f	\N	\N	\N
+8636	Floriana	Naxxar Lions	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219906190	f	\N	\N	\N
+8637	Baladeyet Al-Mahalla	Al Ittihad (EGY)	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219982049	f	\N	\N	\N
+8638	Lille (W)	Paris St-G (W)	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219943026	f	\N	\N	\N
+8639	Saint-Etienne (W)	Le Havre AC (W)	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219943233	f	\N	\N	\N
+8640	Stal Rzeszow	Zaglebie Sosnowiec	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219415970	f	\N	\N	\N
+8641	SFC Opava	MAS Taborsko	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219538122	f	\N	\N	\N
+8632	Sandnes Ulf	Fredrikstad	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219551602	t	2	\N	204
+8624	Kristiansund	Asane	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219551938	t	2	\N	204
+8616	Jerv	Kongsvinger	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219551848	t	1	\N	204
+8630	Mjondalen	Start	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219552028	t	1	\N	204
+8628	Hodd	Sogndal	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219551465	t	2	\N	204
+8643	Sakaryaspor	Adanaspor	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219736462	f	\N	\N	\N
+8644	Gaziantep FK	Antalyaspor	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219457377	f	\N	\N	\N
+8645	Konyaspor	Pendikspor	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219200541	f	\N	\N	\N
+8646	MFK Karvina	Hradec Kralove	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219446536	f	\N	\N	\N
+8648	KCB	Ulinzi Stars	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812577	f	\N	\N	\N
+8649	Ihefu SC	Coastal Union	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219966301	f	\N	\N	\N
+8650	Rudar	Dravinja Kostroj	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219896930	f	\N	\N	\N
+8651	EA Guingamp (W)	Bordeaux (W)	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219943132	f	\N	\N	\N
+8652	Degerfors	Kalmar FF	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219914745	f	\N	\N	\N
+8653	Bala Town	Haverfordwest County	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219943696	f	\N	\N	\N
+8655	H Slavia Kromeriz	Varnsdorf	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219540122	f	\N	\N	\N
+9792	Viking	Tromso	2023-10-22 18:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219210336	t	0	7	13
+8658	Barry Town Utd	The New Saints	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219943422	f	\N	\N	\N
+8659	Lokomotiv Sofia	CSKA 1948 Sofia	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219537538	f	\N	\N	\N
+8660	Lisen	Sparta Prague B	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219540393	f	\N	\N	\N
+8662	Caernarfon Town	Cardiff Metropolitan	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219943512	f	\N	\N	\N
+8663	Monastir	Club Sportif Sfaxien	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219982720	f	\N	\N	\N
+8665	Pontypridd Town	Connahs Quay	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219943604	f	\N	\N	\N
+8685	Worthing	Yeovil	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827248	f	\N	\N	\N
+8681	Kortrijk	Club Brugge	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219458649	t	1	\N	68
+8670	FC Cartagena II	CA Antoniano	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899011	f	\N	\N	\N
+8671	Shakhtar	LNZ-Lebedyn	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467137	f	\N	\N	\N
+8672	St Johnstone	Motherwell	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219098382	f	\N	\N	\N
+8666	Ballymena	Coleraine	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219746931	f	\N	\N	\N
+8680	Ariana FC	Oddevold	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864263	f	\N	\N	\N
+8668	Glentoran	Glenavon	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219746841	f	\N	\N	\N
+8693	Honka	FC Inter	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219483558	f	\N	\N	\N
+8683	AFC Fylde	Ebbsfleet Utd	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219347306	f	\N	\N	\N
+8694	Atletico Clube de Portugal	Vizela	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219933867	f	\N	\N	\N
+8699	Maidstone Utd	Farnborough FC	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780865	f	\N	\N	\N
+8696	Barrow	AFC Wimbledon	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492721	f	\N	\N	\N
+8689	Stenhousemuir	Peterhead	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219402487	f	\N	\N	\N
+8682	Bromley	Oxford City	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219346643	f	\N	\N	\N
+8688	Orebro Syrianska	Sandvikens	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219867784	f	\N	\N	\N
+8695	Ross Co	St Mirren	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219098034	f	\N	\N	\N
+8684	Rochdale	Oldham	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219346553	f	\N	\N	\N
+8692	Chester	Scunthorpe	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781405	f	\N	\N	\N
+8690	Rushall Olympic	Chorley	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813044	f	\N	\N	\N
+8691	South Shields	Kings Lynn	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219783492	f	\N	\N	\N
+8667	Dungannon	Crusaders	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219747021	f	\N	\N	\N
+8674	Cheltenham	Cambridge Utd	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637702	f	\N	\N	\N
+8687	Bishops Stortford	Warrington Town	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781495	f	\N	\N	\N
+8686	East Fife	Stranraer	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219401859	f	\N	\N	\N
+8678	Deportivo Alaves C	Lagun Onak	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219975991	f	\N	\N	\N
+8676	CD Nacional Funchal	Mirandela	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219932973	f	\N	\N	\N
+8677	Gillingham	Notts Co	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492361	f	\N	\N	\N
+8675	Eskilsminne	Ahlafors IF	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865526	f	\N	\N	\N
+8673	Arbroath	Raith	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387380	f	\N	\N	\N
+8697	Stoke	Sunderland	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384191	f	\N	\N	\N
+8669	Loughgall	Newry	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219746751	f	\N	\N	\N
+8657	SV Darmstadt	RB Leipzig	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219109200	t	2	\N	1
+8664	Union Berlin	Stuttgart	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219109080	t	1	3	1
+8661	Freiburg	Bochum	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219109320	t	2	\N	1
+8647	Verona	Napoli	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219117653	t	2	\N	4
+8654	Hoffenheim	Eintracht Frankfurt	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219114180	t	2	\N	1
+10088	Atletico Chiriqui	San Francisco FC	2023-10-23 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220102902	f	\N	\N	\N
+8738	Gloucester	Alfreton Town	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813225	f	\N	\N	\N
+8730	Sporting de Huelva (W)	Atletico Madrid (W)	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219788638	f	\N	\N	\N
+8702	Colchester	Harrogate Town	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492811	f	\N	\N	\N
+8717	Barnet	Maidenhead	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219346733	f	\N	\N	\N
+8722	Elgin City FC	Forfar	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219401949	f	\N	\N	\N
+8724	Torns	Vanersborgs IF	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219863530	f	\N	\N	\N
+8746	Weymouth	Eastbourne	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781045	f	\N	\N	\N
+8755	IFK Stocksund	FC Stockholm Internazionale	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219863371	f	\N	\N	\N
+8706	Stockport	Grimsby	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492091	f	\N	\N	\N
+8709	Aveley	Truro City	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827700	f	\N	\N	\N
+8719	Annan	Queen of South	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219393711	f	\N	\N	\N
+8734	Banbury Utd	Darlington	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781585	f	\N	\N	\N
+8727	Leyton Orient	Barnsley	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638122	f	\N	\N	\N
+8754	Oxford Utd	Blackpool	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636880	f	\N	\N	\N
+8728	Shrewsbury	Derby	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636261	f	\N	\N	\N
+8716	Aldershot	Hartlepool	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219347100	f	\N	\N	\N
+8721	Bolton	Northampton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636745	f	\N	\N	\N
+8748	Hermannstadt	Dinamo Bucharest	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219173443	f	\N	\N	\N
+8740	Peterborough Sports FC	Southport	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781225	f	\N	\N	\N
+8732	Huddersfield	QPR	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384625	t	2	\N	77
+8749	FC Astana	FC Zhetysu	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219939828	f	\N	\N	\N
+8704	Dunfermline	Ayr	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387290	f	\N	\N	\N
+8723	Hamilton	Edinburgh City	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219393806	f	\N	\N	\N
+8712	Eastleigh	York City	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219347396	f	\N	\N	\N
+8726	Fleetwood Town	Lincoln	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638446	f	\N	\N	\N
+8753	Rangers	Hibernian	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219098162	f	\N	\N	\N
+8742	Dartford	Havant and W	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827429	f	\N	\N	\N
+8743	Dover	Hemel Hempstead	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827158	f	\N	\N	\N
+8745	Slough Town	Chelmsford	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780955	f	\N	\N	\N
+8752	CSF Balti	FC Milsami-Ursidos	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219967618	f	\N	\N	\N
+8750	Algeciras	AD Ceuta FC	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864624	f	\N	\N	\N
+8725	Southend	Solihull Moors	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219347486	f	\N	\N	\N
+8756	Spartans	Dumbarton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219402577	f	\N	\N	\N
+8729	Crawley Town	Crewe	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492541	f	\N	\N	\N
+8737	West Brom	Plymouth	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384083	f	\N	\N	\N
+8735	Varazdin	Lokomotiva	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219537718	f	\N	\N	\N
+8705	Watford	Sheff Wed	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384299	f	\N	\N	\N
+8739	Hereford FC	Curzon Ashton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781315	f	\N	\N	\N
+8744	CD Cortes	Bidezarra	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219976082	f	\N	\N	\N
+8701	Tonbridge Angels	Bath City	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827610	f	\N	\N	\N
+8711	Torquay	Welling Utd	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827338	f	\N	\N	\N
+8715	Fci Tallinn	Tammeka Tartu	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510276	f	\N	\N	\N
+8708	Chesterfield	Gateshead	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219346463	f	\N	\N	\N
+8720	Dag and Red	Woking	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219347010	f	\N	\N	\N
+8736	Swansea	Leicester	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384515	f	\N	\N	\N
+8700	Accrington	MK Dons	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219491911	f	\N	\N	\N
+8703	Bradford	Wrexham	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492901	f	\N	\N	\N
+8731	Mansfield	Forest Green	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492181	f	\N	\N	\N
+8707	Sutton Utd	Morecambe	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492001	f	\N	\N	\N
+8713	Bournemouth	Wolves	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219122859	t	1	3	2
+8751	Exeter	Wigan	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636493	f	\N	\N	\N
+8718	Morton	Inverness CT	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387200	f	\N	\N	\N
+8747	Nottm Forest	Luton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219148952	f	\N	\N	\N
+8733	Middlesbrough	Birmingham	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384849	t	0	1	77
+10093	UNAN Managua	CD Walter Ferreti	2023-10-23 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220086550	f	\N	\N	\N
+8780	Farsley Celtic	Brackley Town	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219813134	f	\N	\N	\N
+8769	Cove Rangers	Montrose	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219392969	f	\N	\N	\N
+8771	HJK Helsinki	KuPS	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219483648	f	\N	\N	\N
+8774	Charlton	Reading	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219638014	f	\N	\N	\N
+8778	Peterborough	Wycombe	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636992	f	\N	\N	\N
+8781	FC Halifax Town	Kidderminster	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219347216	f	\N	\N	\N
+8698	Braintree	Weston-super-Mare	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781675	f	\N	\N	\N
+8710	Chippenham	St Albans	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827519	f	\N	\N	\N
+8773	Norwich	Leeds	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384741	t	2	\N	77
+8761	Bristol City	Coventry	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384959	f	\N	\N	\N
+8759	SJK	VPS	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219483466	f	\N	\N	\N
+8758	Partick	Dundee Utd	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219387110	f	\N	\N	\N
+8765	Anderlecht B	SL 16 FC	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219749779	f	\N	\N	\N
+8757	Stevenage	Port Vale	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636369	f	\N	\N	\N
+8770	Cottbus	Carl Zeiss Jena	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219921694	f	\N	\N	\N
+8762	Hull	Southampton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219384407	t	2	\N	77
+8766	Kilmarnock	Livingston	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219098274	f	\N	\N	\N
+8775	Alloa	Kelty Hearts	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219393075	f	\N	\N	\N
+8767	Bonnyrigg	Clyde	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219402073	f	\N	\N	\N
+8772	Scarborough Athletic	Buxton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219783186	f	\N	\N	\N
+8779	Portsmouth	Carlisle	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219636621	f	\N	\N	\N
+8789	Pro Vercelli	Pergolettese	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219817185	f	\N	\N	\N
+8763	Union de Salamanca	CA Tarazona	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219788728	f	\N	\N	\N
+8768	Tromsdalen	Baerum	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219962872	f	\N	\N	\N
+8782	Man City	Brighton	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219119154	t	2	\N	2
+8776	Brentford	Burnley	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219149093	f	\N	\N	\N
+8788	Catanzaro	Feralpisalo	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219482110	f	\N	\N	\N
+8792	Lumezzane	Giana Erminio	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219817095	f	\N	\N	\N
+8791	Villarreal B	Mirandes	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219775091	f	\N	\N	\N
+8787	Renate	Aurora Pro Patria 1919	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219817005	f	\N	\N	\N
+8786	Amorebieta	Oviedo	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219775001	f	\N	\N	\N
+8790	Getafe	Betis	2023-10-21 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219118493	f	\N	\N	\N
+8797	Panaitolikos	NFC Volos	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219000907	f	\N	\N	\N
+8793	Pena Balsamaiso	Club Haro Deportivo	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219976352	f	\N	\N	\N
+8794	Vila Mea	Club Football Estrela	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219932823	f	\N	\N	\N
+8795	Kerala Blasters FC	Northeast United	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219749869	f	\N	\N	\N
+8799	CD Villacanas	CD Tarancon	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219976262	f	\N	\N	\N
+8796	Duisburg	Arminia Bielefeld	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219610455	f	\N	\N	\N
+8800	Felanitx	SD Portmany	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219976476	f	\N	\N	\N
+8801	Rabo de Peixe	Casa Pia	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219933333	f	\N	\N	\N
+8808	CLub Rapido de Bouzas	Atletico Arteixo	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219976837	f	\N	\N	\N
+8803	Ujpest	Kecskemeti	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219502372	f	\N	\N	\N
+8810	Nafta Lendava	NK Jadran Dekani	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219897020	f	\N	\N	\N
+8805	CD Basconia	Pasaia Kirol Elkartea	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219976747	f	\N	\N	\N
+8804	Drochtersen-Assel	St Pauli II	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922594	f	\N	\N	\N
+8811	Santa Lucia FC	Gudja United	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219906372	f	\N	\N	\N
+8802	AD San Juan	UD Logrones	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219897393	f	\N	\N	\N
+8812	Dinamo Tbilisi	Gagra	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219967920	f	\N	\N	\N
+8814	FC Jove Espanol	CD Acero	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219976566	f	\N	\N	\N
+8809	SS Reyes	AD Llerenense	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219907292	f	\N	\N	\N
+8806	UD Mutilvera	Athletic Bilbao B	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219897483	f	\N	\N	\N
+8807	Sturm Graz	Hartberg	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219486396	t	2	\N	43
+8813	Al Nassr	Dhamk	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219609154	f	\N	\N	\N
+8760	Blackburn	Cardiff	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219385236	t	0	1	77
+10096	San Diego Loyal SC	Phoenix Rising FC	2023-10-23 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220101348	f	\N	\N	\N
+8818	Al-Hazm (KSA)	Al-Raed (KSA)	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219609784	f	\N	\N	\N
+8819	Paris St-G	Strasbourg	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219116811	t	2	\N	5
+8816	Red Bull Salzburg	LASK Linz	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219486504	f	\N	\N	\N
+8831	Stade Lausanne-Ouchy	Lausanne	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219569364	t	1	4	15
+8821	Hamrun Spartans FC	Sliema Wanderers FC	2023-10-21 16:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219906098	f	\N	\N	\N
+8823	Malveira	AD Marco 09	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219932733	f	\N	\N	\N
+8826	Balsicas Atletico	CD Plus Ultra	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219976927	f	\N	\N	\N
+8822	CF Platges de Calvia	CE Alaior	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219977017	f	\N	\N	\N
+8827	Gjovik-Lyn	Alta	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219962962	f	\N	\N	\N
+8824	Slask Wroclaw	Legia Warsaw	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219408753	f	\N	\N	\N
+8828	GKS Tychy	Podbeskidzie B-B	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219416420	f	\N	\N	\N
+8825	Sirius	Brommapojkarna	2023-10-21 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219483738	t	2	\N	14
+8829	SD Deusto	SCD Durango	2023-10-21 16:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219977107	f	\N	\N	\N
+8830	Treaty United (W)	Galway WFC (W)	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219995106	f	\N	\N	\N
+8843	V de Santa Brigida	CD Tenerife II	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219977197	f	\N	\N	\N
+8834	FC Baden	Sion	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219564823	f	\N	\N	\N
+8871	Sevilla	Real Madrid	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219118613	t	0	\N	3
+8841	Goztepe	Sanliurfaspor	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219754064	f	\N	\N	\N
+8840	FK Dubocica	FK Sloboda Point	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968788	f	\N	\N	\N
+8836	ENPPI	National Bank	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219825768	f	\N	\N	\N
+8838	Torpedo Kutaisi	Samtredia	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219969345	f	\N	\N	\N
+8853	Zilina	Dunajska Streda	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219252937	f	\N	\N	\N
+8837	Pirin Blagoevgrad	CSKA Sofia	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219535042	f	\N	\N	\N
+8850	Sassuolo (W)	Como FC (W)	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983037	f	\N	\N	\N
+8844	CD Teruel	Fuenlabrada	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219788088	f	\N	\N	\N
+8835	Leixoes	Setubal	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219933423	f	\N	\N	\N
+8851	Galatasaray	Besiktas	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219200650	f	\N	\N	\N
+8848	Slavia Prague	Slovacko	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219404197	f	\N	\N	\N
+8832	Podbrezova	Ruzomberok	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219252847	f	\N	\N	\N
+8845	Al Najma (BRN)	East Riffa	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219961448	f	\N	\N	\N
+8847	FC Kosice	DUKLA BANSKA BYSTRICA	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219266310	f	\N	\N	\N
+8846	Merida AD	Real Murcia	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864895	f	\N	\N	\N
+8842	Oleksandria	Kolos Kovalyovka	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467317	f	\N	\N	\N
+8852	Trencin	MFK Skalica	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219266220	f	\N	\N	\N
+8833	Brann	Molde	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219210444	t	1	\N	13
+8839	Zamalek	Smouha	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219804579	f	\N	\N	\N
+8849	Torino	Inter	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219117773	f	\N	\N	\N
+8855	HNK Gorica	Dinamo Zagreb	2023-10-21 17:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219537898	f	\N	\N	\N
+8856	UD Las Palmas II	UD Ibarra	2023-10-21 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219977287	f	\N	\N	\N
+8857	Leicester City (W)	Man City (W)	2023-10-21 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219895546	f	\N	\N	\N
+8858	Molenbeek	Westerlo	2023-10-21 17:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219458955	t	0	2	68
+8867	Mantova	Novara	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219817635	f	\N	\N	\N
+8862	Audace Cerignola	US Latina Calcio	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219818265	f	\N	\N	\N
+8866	Crotone	Foggia	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219817455	f	\N	\N	\N
+8860	Espanyol B	CF Badalona Futur	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219897573	f	\N	\N	\N
+8868	Sorrento	Benevento	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219817275	f	\N	\N	\N
+8863	Wealdstone	Boreham Wood	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219346825	f	\N	\N	\N
+8864	Mainz	Bayern Munich	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219109440	t	2	\N	1
+8861	Nk Posusje	Gosk Gabela	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219856167	f	\N	\N	\N
+8869	Barcelona (W)	Granada (W)	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219862958	f	\N	\N	\N
+8854	Young Boys	FC Zurich	2023-10-21 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219486538	t	0	0	15
+8859	Tenerife	Levante	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219764972	f	\N	\N	\N
+8870	Chelsea	Arsenal	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219119718	f	\N	\N	\N
+8820	FC Copenhagen	Vejle	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219457161	t	0	\N	40
+8878	Vozdovac	FK Backa Topola	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219891996	f	\N	\N	\N
+8885	ESTAC Troyes	Concarneau	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510726	f	\N	\N	\N
+10097	Club Tijuana (W)	FC Juarez (W)	2023-10-23 03:06:00	https://www.orbitxch.com/customer/sport/1/market/1.220102992	f	\N	\N	\N
+8872	FC Giugliano	Potenza	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219818355	f	\N	\N	\N
+8921	Feyenoord	Vitesse Arnhem	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219480661	t	2	\N	196
+8873	RKC Waalwijk	FC Volendam	2023-10-21 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219481094	t	1	3	196
+8875	Xerez CD	CD Utrera	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219977591	f	\N	\N	\N
+8880	Aris	Panserraikos	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219999571	f	\N	\N	\N
+8882	Sabadell	Deportivo	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219787998	f	\N	\N	\N
+8877	AC Ajaccio	Pau	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510996	f	\N	\N	\N
+8887	Guingamp	Quevilly Rouen	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510546	f	\N	\N	\N
+8879	Angers	Bordeaux	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510906	f	\N	\N	\N
+8881	Annecy	Amiens	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510456	f	\N	\N	\N
+8886	Grenoble	Valenciennes	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510816	f	\N	\N	\N
+8888	Rodez	Bastia	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510366	f	\N	\N	\N
+8884	Dunkerque	Paris FC	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219510636	f	\N	\N	\N
+8876	Aberdeen	Dundee	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219098492	f	\N	\N	\N
+8883	SD Revilla	SD Solares-Medio Cudeyo	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219977377	f	\N	\N	\N
+8892	Miedz Legnica	Wisla Plock	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416240	f	\N	\N	\N
+8891	Leonesa	Arenteiro	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219787908	f	\N	\N	\N
+8874	PSV	Fortuna Sittard	2023-10-21 17:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219480986	t	1	4	196
+8896	Felgueiras	Arouca	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219933063	f	\N	\N	\N
+8902	Al-Shabab (KSA)	Al Taee	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219753834	f	\N	\N	\N
+8918	Az Alkmaar	Heerenveen	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219480155	t	1	\N	196
+8903	Alianza Atletico	Deportivo Municipal	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219523929	f	\N	\N	\N
+8897	Cumbaya FC	Tecnico Universitario	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219612650	f	\N	\N	\N
+8893	Lierse	Seraing Utd	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780504	f	\N	\N	\N
+8899	Malaga	Real Madrid Castilla	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865075	f	\N	\N	\N
+8895	NEC Nijmegen	Almere City	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219480553	f	\N	\N	\N
+8901	Pumas UNAM (W)	Atletico San Luis (W)	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219971685	f	\N	\N	\N
+8894	Lech Poznan	LKS Lodz	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219408843	f	\N	\N	\N
+8904	Al Ahli	Al-Wahda (KSA)	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219753660	f	\N	\N	\N
+8905	Domzale	Olimpija	2023-10-21 19:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219505402	f	\N	\N	\N
+8898	Roda JC	Willem II	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219770010	t	1	1	199
+8900	Zulte-Waregem	FC Liege	2023-10-21 19:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219782217	t	0	1	136
+8914	Zeljeznicar	Zvijezda 09 Bijeljina	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219855881	f	\N	\N	\N
+8913	AP Turris Calcio	Juve Stabia	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219817545	f	\N	\N	\N
+8910	Albinoleffe	Alessandria	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219817725	f	\N	\N	\N
+8911	Arzignanochiampo	Padova	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219817365	f	\N	\N	\N
+8907	Fortuna Dusseldorf	Kaiserslautern	2023-10-21 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219174909	t	2	\N	93
+8922	Rampla Juniors	Sud America	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219973525	f	\N	\N	\N
+8906	FC Basel	Servette	2023-10-21 19:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219486628	t	0	1	15
+8912	Sassuolo	Lazio	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219122678	t	2	\N	4
+8916	Academico de Viseu	Leiria	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219933243	f	\N	\N	\N
+8920	Zaragoza	Eibar	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219774911	f	\N	\N	\N
+8908	Charleroi	Antwerp	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219459261	t	0	\N	68
+8917	Sheff Utd	Man Utd	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219149234	f	\N	\N	\N
+8915	Nice	Marseille	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219116931	f	\N	\N	\N
+8923	Olivais e Moscavide	Sporting Lisbon	2023-10-21 20:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219934427	f	\N	\N	\N
+8927	Municipal Santa Ana	Municipal Turrialba	2023-10-21 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219982855	f	\N	\N	\N
+8925	CRB	Criciuma	2023-10-21 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219536886	f	\N	\N	\N
+8924	Botafogo SP	Novorizontino	2023-10-21 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219536994	f	\N	\N	\N
+8926	Cavalry	Pacific	2023-10-21 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812037	f	\N	\N	\N
+8928	Atletico Nacional (W)	SC Internacional (W)	2023-10-21 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220001491	f	\N	\N	\N
+8919	Celta Vigo	Atletico Madrid	2023-10-21 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219118733	t	1	\N	3
+8931	Gavilanes Matamoros	Atletico Saltillo	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219981473	f	\N	\N	\N
+8930	Tauro FC	Arabe Unido	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219994948	f	\N	\N	\N
+8932	Olimpia	Club Sportivo Trinidense	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219900277	f	\N	\N	\N
+8938	Coban Imperial	CSD Municipal	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219924832	f	\N	\N	\N
+8934	Santa Fe	Millonarios	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219819353	f	\N	\N	\N
+8935	Caracas	Deportivo Tachira	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219953405	f	\N	\N	\N
+8933	Alianza Lima	Asociacion Deportiva Tarma	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219523839	f	\N	\N	\N
+8936	Juventude	Londrina	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219537102	f	\N	\N	\N
+8937	Bolivar	Nacional Potosi	2023-10-21 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219924076	f	\N	\N	\N
+8941	Sao Paulo	Gremio	2023-10-21 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219524700	f	\N	\N	\N
+8939	Bahia	Fortaleza EC	2023-10-21 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219525660	f	\N	\N	\N
+8940	Cuiaba	Goias	2023-10-21 22:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219525420	f	\N	\N	\N
+8944	Aguacateros de Peribán F.C	Deportivo Irapuato F	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219999227	f	\N	\N	\N
+8942	Tritones Vallarta MFC	Mexicali FC	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983313	f	\N	\N	\N
+8943	Colima FC	Los Cabos United	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983133	f	\N	\N	\N
+8945	Atlético Pachuca	Caja Oblatos C.FD	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219981293	f	\N	\N	\N
+8947	Columbus	CF Montreal	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219555477	t	2	\N	76
+8946	New England	Philadelphia	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219763339	f	\N	\N	\N
+8960	Inter de Queretaro FC	Deportiva Venados	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983494	f	\N	\N	\N
+8954	Defensor Sporting	Cerro Largo FC	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219921334	f	\N	\N	\N
+8952	Charlotte FC	Inter Miami CF	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219942900	t	1	1	76
+8948	Nashville SC	New York Red Bulls	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219762243	f	\N	\N	\N
+8950	New York City	Chicago Fire	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219555981	f	\N	\N	\N
+8949	Club Oriental de La Paz	Albion FC	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219982445	f	\N	\N	\N
+8955	Club CDM	Ciervos fc	2023-10-21 23:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219981383	f	\N	\N	\N
+8956	Tacuarembo	CA Rentistas	2023-10-21 23:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219982535	f	\N	\N	\N
+8961	Barcelona (Ecu)	Libertad FC	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649581	f	\N	\N	\N
+8967	Palmeiras (W)	Corinthians (W)	2023-10-22 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219985656	f	\N	\N	\N
+8959	Lobos UPNFM	Vida	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952600	f	\N	\N	\N
+8962	CS Cartagines	Deportivo Saprissa	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952330	f	\N	\N	\N
+8963	Sporting San Jose FC	AD Guanacasteca	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952420	f	\N	\N	\N
+8957	Leon	Toluca	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219495486	f	\N	\N	\N
+8964	Escorpiones FC	CD Pioneros de Cancun	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983404	f	\N	\N	\N
+8966	Tampa Bay Rowdies	Birmingham Legion FC	2023-10-22 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219856797	f	\N	\N	\N
+8970	Botafogo	Athletico-PR	2023-10-22 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219525300	f	\N	\N	\N
+8969	Portuguesa FC	Puerto Cabello	2023-10-22 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219953495	f	\N	\N	\N
+8968	Cerro Porteno	Resistencia SC	2023-10-22 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219900367	f	\N	\N	\N
+8977	CF America	Santos Laguna	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219494991	f	\N	\N	\N
+8972	Escorpiones FC	Uruguay de Coronado	2023-10-22 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219985014	f	\N	\N	\N
+8971	Guabira	FC Libertad Gran Mamoré	2023-10-22 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922324	f	\N	\N	\N
+8982	St Louis City SC	Seattle Sounders	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219556305	f	\N	\N	\N
+8978	Colorado	Real Salt Lake	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219765588	t	0	1	76
+8980	Portland Timbers	Houston Dynamo	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219556197	t	2	\N	76
+8951	Toronto FC	Orlando City	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219555873	t	0	2	76
+8953	FC Cincinnati	Atlanta Utd	2023-10-21 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219555585	t	2	\N	76
+8976	Napier City Rovers	Manurewa AFC	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219931027	f	\N	\N	\N
+8973	Kansas City	Minnesota Utd	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219556521	f	\N	\N	\N
+8981	San Jose Earthquakes	Austin FC	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219556413	t	2	\N	76
+8974	Vancouver Whitecaps	Los Angeles FC	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219556089	t	1	2	76
+8979	LA Galaxy	FC Dallas	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219764481	t	2	\N	76
+8965	Union Magdalena	Atletico Bucaramanga	2023-10-22 00:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219819443	f	\N	\N	\N
+8975	Northern Colorado FC	Forward Madison FC	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219985753	f	\N	\N	\N
+8541	Hamburger SV	Greuther Furth	2023-10-21 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219175341	t	2	\N	93
+8615	Bodo Glimt	Sandefjord	2023-10-21 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219210553	t	2	\N	13
+8777	Stirling	Falkirk	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219392863	f	\N	\N	\N
+8764	Taunton Town	Hampton and Richmond	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219781135	f	\N	\N	\N
+8741	Spennymoor Town	Boston Utd	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219783582	f	\N	\N	\N
+9043	Burton Albion	Bristol Rovers	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219637285	f	\N	\N	\N
+9044	Blyth Spartans	Tamworth FC	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812954	f	\N	\N	\N
+8679	Salford City	Swindon	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219492271	f	\N	\N	\N
+8714	Newcastle	Crystal Palace	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219119436	f	\N	\N	\N
+9118	FK Banga Gargzdu	Riteriai	2023-10-21 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219564191	f	\N	\N	\N
+8798	CD La Virgen del Camino	Atletico Astorga CF	2023-10-21 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219976172	f	\N	\N	\N
+8817	Atzeneta UE	Ontinyent CF	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219976656	f	\N	\N	\N
+8865	Crvena Zvezda	FK Javor Ivanjica	2023-10-21 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219892206	f	\N	\N	\N
+9220	Leones Negros Udg	Mineros de Fresnillo FC	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219969533	f	\N	\N	\N
+9221	FC Inter Manacor	UD Poblense	2023-10-21 18:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219977501	f	\N	\N	\N
+8909	Farul Constanta	Universitatea Cluj	2023-10-21 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219173533	f	\N	\N	\N
+8929	Mushuc Runa	Deportivo Cuenca	2023-10-21 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219612740	f	\N	\N	\N
+8988	Junior FC Barranquilla	Once Caldas	2023-10-22 02:20:00	https://www.orbitxch.com/customer/sport/1/market/1.219819533	f	\N	\N	\N
+8989	Xelaju	CSD Tellioz	2023-10-22 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219924922	f	\N	\N	\N
+8991	Eastern Suburbs Auckland	Auckland City	2023-10-22 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219930939	f	\N	\N	\N
+8990	CS Herediano	Puntarenas F.C.	2023-10-22 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219952150	f	\N	\N	\N
+8992	Orange County Blues	El Paso Locomotive FC	2023-10-22 03:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219856887	f	\N	\N	\N
+8993	Tigres	Cruz Azul	2023-10-22 04:10:00	https://www.orbitxch.com/customer/sport/1/market/1.219494901	f	\N	\N	\N
+8994	Renofa Yamaguchi	Okayama	2023-10-22 04:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219475818	f	\N	\N	\N
+8998	Veertien Kuwana	Briobecca Urayasu SC	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011732	f	\N	\N	\N
+8995	Criacao Shinjuku	Kochi Univ	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219991995	f	\N	\N	\N
+8997	Verspah Oita	Okinawa SV	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219992085	f	\N	\N	\N
+8996	Suzuka Unlimited	MIO Biwako Shiga	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219991905	f	\N	\N	\N
+8999	Kumamoto	FC Machida	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478597	f	\N	\N	\N
+9004	Tottori	Toyama	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219833365	f	\N	\N	\N
+9002	Nagano Parceiro	FC Osaka	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219834201	f	\N	\N	\N
+9000	Western Sydney Wanderers	Wellington Phoenix	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219278889	f	\N	\N	\N
+9001	Fukushima Utd	Vanraure Hachinohe	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219833455	f	\N	\N	\N
+9398	Tokushima	Iwata	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478237	f	\N	\N	\N
+9003	Yokohama SCC	Tegevajaro Miyazaki	2023-10-22 05:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219833605	f	\N	\N	\N
+9005	Gimpo Citizen	Jeonnam Dragons	2023-10-22 05:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219750094	f	\N	\N	\N
+9396	Kamatamare Sanuki	Kitakyushu	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219833695	f	\N	\N	\N
+9397	FC Seoul	Gangwon	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219731795	f	\N	\N	\N
+8656	Wolfsburg	Leverkusen	2023-10-21 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219114300	t	2	\N	1
+8815	FC Blau Weiss Linz	SC AUSTRIA LUSTENAU	2023-10-21 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219485249	t	\N	\N	\N
+8958	Cafetaleros de Chiapas II	Inter Playa Del Carmen	2023-10-22 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219983223	f	\N	\N	\N
+8983	Cusco FC	Universitario de Deportes	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219524469	f	\N	\N	\N
+8984	A.D. Cofutpa	PFA Antioquia FC	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219986100	f	\N	\N	\N
+9370	Diriangen FC	Managua FC	2023-10-22 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220053501	f	\N	\N	\N
+8985	Queretaro	Tijuana	2023-10-22 02:06:00	https://www.orbitxch.com/customer/sport/1/market/1.219495666	f	\N	\N	\N
+8986	Herrera FC	UMECIT	2023-10-22 02:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219995320	f	\N	\N	\N
+8987	Atletico Independiente	CD Universitario	2023-10-22 02:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219995196	f	\N	\N	\N
+9399	Western United (W)	Melbourne Victory (W)	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219930039	f	\N	\N	\N
+9400	Azul Claro Numazu	Matsumoto	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219834111	f	\N	\N	\N
+9401	Blaublitz Akita	Sendai	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478778	f	\N	\N	\N
+10100	Nacional (Uru)	Deportivo Maldonado	2023-10-24 00:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219959947	f	\N	\N	\N
+10101	Club Sportivo Ameliano	Tacuary	2023-10-24 00:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220104767	f	\N	\N	\N
+9402	Mito	Thespakusatsu Gunma	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478687	f	\N	\N	\N
+9403	Tokyo-V	Jef Utd Chiba	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478147	f	\N	\N	\N
+9404	Tochigi SC	Oita	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478507	f	\N	\N	\N
+9406	Kanazawa	Yamagata	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219478417	f	\N	\N	\N
+9407	Jeju Utd	Suwon Bluewings	2023-10-22 06:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219731705	f	\N	\N	\N
+9408	Perth Glory (W)	Newcastle Jets (W)	2023-10-22 07:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219930144	f	\N	\N	\N
+9409	Western Sydney (W)	Wellington Phoenix (W)	2023-10-22 07:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219769137	f	\N	\N	\N
+9410	Jiangxi Dark Horse Junior	Hubei Chufeng Heli	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014537	f	\N	\N	\N
+9411	Wuxi Wugou	Heilongjiang Lava Spring	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219998398	f	\N	\N	\N
+9412	Yanbian Longding	Guangzhou FC	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008744	f	\N	\N	\N
+9413	Sham Shui Po	Resources Capital FC	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219998753	f	\N	\N	\N
+9414	Dalian Zhixing	Chongqing Tonglianglong	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009106	f	\N	\N	\N
+9415	Qingdao Red Lions	Guangxi Lanhang	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009016	f	\N	\N	\N
+9416	Cheongju FC	Gyeongnam	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219750184	f	\N	\N	\N
+9417	Yunnan Yukun	Beijing Tech FC	2023-10-22 08:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008836	f	\N	\N	\N
+9418	Yuen Long	South China	2023-10-22 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220012608	f	\N	\N	\N
+9419	Eastern District SA	Citizen AA	2023-10-22 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220012518	f	\N	\N	\N
+9420	Hoi King SA	Wong Tai Sin	2023-10-22 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220012788	f	\N	\N	\N
+9421	Kowloon City FC	Sai Kung	2023-10-22 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220012698	f	\N	\N	\N
+9422	Qingdao Jonoon	Tianjin Jinmen Tiger FC	2023-10-22 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219774821	f	\N	\N	\N
+9423	Wing Yee	Shatin SA	2023-10-22 08:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220012878	f	\N	\N	\N
+9424	Daejeon Citizen	Suwon FC	2023-10-22 08:40:00	https://www.orbitxch.com/customer/sport/1/market/1.219731885	f	\N	\N	\N
+9425	Persita Tangerang	Persis Solo	2023-10-22 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219998867	f	\N	\N	\N
+9426	Madura Utd	Dewa United FC	2023-10-22 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219999317	f	\N	\N	\N
+9427	Kagoshima Utd	Grulla Morioka	2023-10-22 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219834291	f	\N	\N	\N
+9428	FC Hunedoara	Chindia Targoviste	2023-10-22 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219589081	f	\N	\N	\N
+9429	ACS Viitorul Tg Jiu	CS Mioveni	2023-10-22 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219589171	f	\N	\N	\N
+9430	Okzhetpes	FK Aktobe	2023-10-22 09:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219999047	f	\N	\N	\N
+9431	Sigma Olomouc B	FC Sellier & Bellot Vlasim	2023-10-22 09:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219540212	f	\N	\N	\N
+9432	Zizkov	FC Zbrojovka Brno	2023-10-22 09:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219538212	f	\N	\N	\N
+9433	Slovan Bratislava II	Samorin	2023-10-22 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220001581	f	\N	\N	\N
+9434	St Polten	DSV Leoben	2023-10-22 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219353158	f	\N	\N	\N
+9435	Hong Kong FC	Eastern AA	2023-10-22 09:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220001401	f	\N	\N	\N
+9436	Perth Glory	Newcastle Jets	2023-10-22 09:45:00	https://www.orbitxch.com/customer/sport/1/market/1.218897400	f	\N	\N	\N
+9437	FC Schalke U19	Leverkusen U19	2023-10-22 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220001311	f	\N	\N	\N
+9438	Marsaxlokk FC	Valletta	2023-10-22 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219906462	f	\N	\N	\N
+9439	CD Calahorra B	Anguiano	2023-10-22 10:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220017727	f	\N	\N	\N
+9440	Getafe B	CD Illescas	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219907472	f	\N	\N	\N
+9441	Ansan Greeners FC	Gimcheon Sangmu	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219751888	f	\N	\N	\N
+9442	Real Zaragoza II	UD Barbastro	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219907382	f	\N	\N	\N
+9443	Aurrera Ondarroa	CD Padura	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220017908	f	\N	\N	\N
+9444	Sevilla B	Manchego Ciudad Real	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219899192	f	\N	\N	\N
+9445	Arroyo	CD Don Alvaro	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220017998	f	\N	\N	\N
+9446	Club Portugalete	SD Beasain	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220017817	f	\N	\N	\N
+9447	Trival Valderas Alcorcon	CD Leganes II	2023-10-22 10:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220020702	f	\N	\N	\N
+9448	CD Siete Villas	SD Torina	2023-10-22 10:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220018090	f	\N	\N	\N
+9449	Tuv Azarganuud	Khovd	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220053321	f	\N	\N	\N
+9450	Gran Pena FC	Somozas	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220046201	f	\N	\N	\N
+9451	Vihiga Bullets	Coast Stima FC	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220037683	f	\N	\N	\N
+9452	Su Sintrense	Estoril Praia	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219937254	f	\N	\N	\N
+9453	UCAM Murcia	Yeclano Deportivo	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899283	f	\N	\N	\N
+9454	Dong Nai	Dong Thap	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220037593	f	\N	\N	\N
+9455	FC Gifu	Nara Club	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219833875	f	\N	\N	\N
+9456	Athletic Bilbao (W)	Real Sociedad (W)	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219859402	f	\N	\N	\N
+9457	Torrent CF	Centre d'Esports Manresa	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899915	f	\N	\N	\N
+9458	Madrid (W)	UDG Tenerife Sur (W)	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780775	f	\N	\N	\N
+9459	UD San Fernando	Cacereno	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219907562	f	\N	\N	\N
+9460	Melilla UD	Antequera CF	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865255	f	\N	\N	\N
+9461	Malaga CF II	Juventud Torremolinos	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018540	f	\N	\N	\N
+9462	Racing Murcia FC	Alcantarilla FC	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018900	f	\N	\N	\N
+9463	Song Lam Nghe An	Viettel FC	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009752	f	\N	\N	\N
+9464	El Palo	Betis B	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899373	f	\N	\N	\N
+9465	Mar Menor CF	Cadiz B	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899463	f	\N	\N	\N
+9466	AD Union Adarve	UD Montijo	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219907652	f	\N	\N	\N
+9467	AE Prat	UE Castelldefels	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018450	f	\N	\N	\N
+9468	Veres Rivne	Rukh Vynnyky	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219780595	f	\N	\N	\N
+9469	CD Alaves B	CD Izarra	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219898740	f	\N	\N	\N
+9470	SD Logrones	Cornella	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789388	f	\N	\N	\N
+9471	CD Berceo	UD Logrones II	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018810	f	\N	\N	\N
+9472	Intercity Sant Joan C.F	Atletico Baleares	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864714	f	\N	\N	\N
+9473	CF Pozuelo de Alarcon	CD Mostoles	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020792	f	\N	\N	\N
+9474	FK Kauno Zalgiris 2	FK Nevezis	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220012092	f	\N	\N	\N
+9475	Cordoba CF II	Pozoblanco	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019080	f	\N	\N	\N
+9476	FC L'Escala	CF Peralada	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018360	f	\N	\N	\N
+9477	FK Riteriai II	BFA Vilnius	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220012002	f	\N	\N	\N
+9478	Granada B	Ibiza Eivissa	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864534	f	\N	\N	\N
+9479	Valladolid B	CD Covadonga	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219896300	f	\N	\N	\N
+9480	CDE Ursaria	Talavera CF	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219907742	f	\N	\N	\N
+9481	CE Andratx	UD Alzira	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899644	f	\N	\N	\N
+9482	CE Europa	Hercules	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899734	f	\N	\N	\N
+9483	SE Penya Independent	Terrassa	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219900006	f	\N	\N	\N
+9484	Aviles Stadium CF	Barcia	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018720	f	\N	\N	\N
+9485	FS METTA/LU	FK Jelgava	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219905436	f	\N	\N	\N
+9486	CD Llanes	Caudal Deportivo	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018630	f	\N	\N	\N
+9487	CD Llosetense	Manacor	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018990	f	\N	\N	\N
+9488	Girona FC II	Pobla de Mafumet CF	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018270	f	\N	\N	\N
+9489	Rapitenca	Badalona	2023-10-22 11:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220018180	f	\N	\N	\N
+9491	Fortuna Sittard (W)	Ajax (W)	2023-10-22 11:15:00	https://www.orbitxch.com/customer/sport/1/market/1.220037773	f	\N	\N	\N
+9492	CD Rincon	Almeria B	2023-10-22 11:15:00	https://www.orbitxch.com/customer/sport/1/market/1.220019170	f	\N	\N	\N
+9493	Prachuap	Air Force Central	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219912084	f	\N	\N	\N
+9494	AC Milan (W)	Pomigliano (W)	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220032802	f	\N	\N	\N
+9495	Suphanburi	Kasetsart FC	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220011642	f	\N	\N	\N
+9496	Sivasspor	Kasimpasa	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219199387	f	\N	\N	\N
+9498	Belediyesi Bodrumspor	Bandirmaspor	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219914461	f	\N	\N	\N
+9499	Radomiak Radom	Korona Kielce	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219403837	f	\N	\N	\N
+9500	Iskenderunspor	Erzincanspor	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219987880	f	\N	\N	\N
+9501	Polonia Warszawa	Lechia Gdansk	2023-10-22 11:40:00	https://www.orbitxch.com/customer/sport/1/market/1.219415880	f	\N	\N	\N
+9502	OGC Nice (W)	RC Lens (W)	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220054724	f	\N	\N	\N
+9503	FSV Zwickau	Altglienicke	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219921604	f	\N	\N	\N
+9504	Viktoria Berlin	Lokomotiv Leipzig	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923892	f	\N	\N	\N
+9505	Durham (W)	Blackburn Rovers (W)	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009392	f	\N	\N	\N
+9506	Celtic (W)	Rangers (W)	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220032892	f	\N	\N	\N
+9507	Hebar	Slavia Sofia	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219536161	f	\N	\N	\N
+9508	Ilioupoli	Diagoras	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220050150	f	\N	\N	\N
+9509	Nakhon Ratchasima	Chiang Mai	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011462	f	\N	\N	\N
+9510	Karacabey Belediyespor AS	Erokspor A.S	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219987021	f	\N	\N	\N
+9511	Nam Dinh	Quang Nam	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009482	f	\N	\N	\N
+9512	Gyirmot	Csakvar	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219820960	f	\N	\N	\N
+9513	Lewes (W)	Sunderland (W)	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220036896	f	\N	\N	\N
+9497	Roma	AC Monza	2023-10-22 11:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219117893	t	0	1	4
+9514	Reading (W)	Sheffield United (W)	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220036986	f	\N	\N	\N
+9515	Hamburg II	FC Kilia Kiel 1902	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922864	f	\N	\N	\N
+9516	FK Kaisar	FK Atyrau	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219940099	f	\N	\N	\N
+9517	Traeff	Lyn	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010652	f	\N	\N	\N
+9518	Vard Haugesund	Brattvag	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010382	f	\N	\N	\N
+9519	Fremad Amager	Aarhus Fremad	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010832	f	\N	\N	\N
+9520	Police Tero	Muangthong Utd	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219985982	f	\N	\N	\N
+9522	Budafoki	Soroksar	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219820870	f	\N	\N	\N
+9523	Hammarby TFF	United IK Nordic	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219870418	f	\N	\N	\N
+9524	Fortuna Dusseldorf U19	Arminia Bielefeld U19	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220029275	f	\N	\N	\N
+9525	IF Karlstad	Bodens	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219868218	f	\N	\N	\N
+9526	Kazincbarcika	Tiszakecske VSE	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219820780	f	\N	\N	\N
+9527	MTE 1904	Haladas	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219827948	f	\N	\N	\N
+9528	FK Igman Konjic	Sarajevo	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219857598	f	\N	\N	\N
+9529	Koge (W)	Thisted (W)	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010742	f	\N	\N	\N
+9531	MTK Budapest	Puskas Akademia	2023-10-22 12:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219502642	f	\N	\N	\N
+9534	Chanthaburi FC	Nongbua Pitchaya FC	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220011244	f	\N	\N	\N
+9535	Genk	Yellow-Red Mechelen	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219458847	f	\N	\N	\N
+9537	Van Buyuksehir Belediyespor	Diyarbekirspor	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219986817	f	\N	\N	\N
+9538	Karlsruhe	Schalke 04	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219258490	f	\N	\N	\N
+9539	Dongguan Guanlian	Shanghai Jiading	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220008926	f	\N	\N	\N
+9540	Paide Linnameeskond	Kuressaare	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219511086	f	\N	\N	\N
+9541	SV Sandhausen	Verl	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219780685	f	\N	\N	\N
+9542	MCF	Kisumu All Stars	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220037863	f	\N	\N	\N
+9543	Lyngby	AGF	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219458084	f	\N	\N	\N
+9544	London City Lionesses	Southampton (W)	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009302	f	\N	\N	\N
+9545	Hibernian (W)	Hamilton WFC (W)	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033163	f	\N	\N	\N
+9546	Juventus B	Perugia	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219842085	f	\N	\N	\N
+9547	Sassari Torres	Pontedera	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219841993	f	\N	\N	\N
+9548	Bidco United	Muranga Seal	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812217	f	\N	\N	\N
+9549	68 Aksaray Belediyespor	Fethiyespor	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219987971	f	\N	\N	\N
+9550	Duzcespor	Inegolspor	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219988151	f	\N	\N	\N
+9551	PWD Bamenda	AS Fortuna Mfou	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008250	f	\N	\N	\N
+9552	Racing de Ferrol	Eldense	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219783926	f	\N	\N	\N
+9553	Vorskla	Polissya Zhytomyr	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219912628	f	\N	\N	\N
+9554	Brindisi	Casertana	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219818445	f	\N	\N	\N
+9555	Fermana	Entella	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219841713	f	\N	\N	\N
+9556	Ankara Demirspor	Serik Belediyespor	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219987404	f	\N	\N	\N
+9557	Mersin Idman Yurdu	Afjet Afyonspor	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219987202	f	\N	\N	\N
+9558	Schalke 04 II	SV Lippstadt	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219923710	f	\N	\N	\N
+9559	FK Makedonija	FK Struga Trim-Lum	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010022	f	\N	\N	\N
+9560	KF Shkupi	Bregalnica Stip	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009842	f	\N	\N	\N
+9561	Rabotnicki	Vardar Skopje	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009932	f	\N	\N	\N
+9562	Shkendija	Akademija Pandev	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010112	f	\N	\N	\N
+9563	Everton (W)	Man Utd (W)	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895185	f	\N	\N	\N
+9564	Norderstedt	FC Phonix Lubeck	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922684	f	\N	\N	\N
+9565	Aberdeen (W)	Partick Thistle (W)	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220032983	f	\N	\N	\N
+9566	SK Super Nova	Valmieras FK	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219905526	f	\N	\N	\N
+9567	Ankaraspor	1461 Trabzon	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219987508	f	\N	\N	\N
+9568	Las Palmas	Rayo Vallecano	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219165463	f	\N	\N	\N
+9532	Hansa Rostock	Holstein Kiel	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219245381	t	2	\N	93
+9536	Nurnberg	Hertha Berlin	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219175125	t	1	\N	93
+9530	Landskrona	Vasteras SK	2023-10-22 12:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219500934	t	0	1	336
+9533	FCV Dender	KV Oostende	2023-10-22 12:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219852524	t	1	2	136
+9569	Persija Jakarta	RANS Nusantara FC	2023-10-22 13:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220050396	f	\N	\N	\N
+9570	Bellinzona	Schaffhausen	2023-10-22 13:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219564733	f	\N	\N	\N
+9571	Cong An Nhan Dan	Binh Dinh	2023-10-22 13:15:00	https://www.orbitxch.com/customer/sport/1/market/1.220009662	f	\N	\N	\N
+9572	Ho Chi Minh City	Sanna Khanh Hoa	2023-10-22 13:15:00	https://www.orbitxch.com/customer/sport/1/market/1.220009572	f	\N	\N	\N
+9573	FC Vaduz	Aarau	2023-10-22 13:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219564552	f	\N	\N	\N
+9577	Denizlispor	76 Igdir Belediyespor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219988061	f	\N	\N	\N
+9578	Halide Edip Adivarspor	Kirsehir Belediyespor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219986514	f	\N	\N	\N
+9579	SCR Altach	Wolfsberger AC	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219485141	f	\N	\N	\N
+9580	WSG Wattens	Austria Vienna	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219485362	f	\N	\N	\N
+9581	Belediye Derincespor	Arnavutkoy Belediyesi GVS	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219988241	f	\N	\N	\N
+9582	Usakspor	Etimesgut Belediyespor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219988693	f	\N	\N	\N
+9584	Altinordu	Kirklarelispor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219987293	f	\N	\N	\N
+9585	Bursaspor	Adiyamanspor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219987112	f	\N	\N	\N
+9586	Nazilli Belediyespor	Zonguldakspor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219986930	f	\N	\N	\N
+9587	Sariyer G.K.	Kastamonuspor	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219988513	f	\N	\N	\N
+9616	Bryne	Skeid	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219683537	t	0	\N	204
+9589	Kitayosce FC	KMC	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033345	f	\N	\N	\N
+9590	Rodez (W)	Thonon EG Geneve (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220054544	f	\N	\N	\N
+9591	Metz (W)	US Orleans Loiret (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220054634	f	\N	\N	\N
+9592	Torreense	Rio Ave	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219937344	f	\N	\N	\N
+9596	Birmingham (W)	Watford (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220037076	f	\N	\N	\N
+9597	Charlton (W)	Crystal Palace (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220009212	f	\N	\N	\N
+9598	Istanbulspor	Ankaragucu	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219199496	f	\N	\N	\N
+9599	Halmstads	Mjallby	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484098	f	\N	\N	\N
+9600	Lille	Brest	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219117171	f	\N	\N	\N
+9601	Widzew Lodz	Ruch Chorzow	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219413282	f	\N	\N	\N
+9602	Asteras Tripolis	AEK Athens	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219001503	f	\N	\N	\N
+9603	Etihad Al Ramtha	Al Arabi (Jor)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011822	f	\N	\N	\N
+9604	Kifisias FC	OFI	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219001593	f	\N	\N	\N
+9605	Vittsjo (W)	Rosengard (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220012272	f	\N	\N	\N
+9606	Umraniyespor	Manisa FK	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219783366	f	\N	\N	\N
+9607	Haras El Hodood	Aswan FC	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010922	f	\N	\N	\N
+9610	Chelsea (W)	Brighton (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895095	f	\N	\N	\N
+9611	Sparta Prague	Ceske Budejovice	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219446986	f	\N	\N	\N
+9612	Teplice	Banik Ostrava	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219446896	f	\N	\N	\N
+9613	VfB Oldenburg	Hannover II	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219926895	f	\N	\N	\N
+9614	Pitea	Vasalunds IF	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219870724	f	\N	\N	\N
+9615	NK Croatia Zmijavci	HNK Orijent 1919	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219856257	f	\N	\N	\N
+9618	Lyn (W)	Valerenga (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220037969	f	\N	\N	\N
+9619	Odra Opole	Nieciecza	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219446806	f	\N	\N	\N
+9621	Nomme Utd	Kohtla-Jarve	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011192	f	\N	\N	\N
+9622	Al Mokawloon	ZED FC	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011068	f	\N	\N	\N
+9624	Orgryte	Trelleborgs	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219500844	f	\N	\N	\N
+9594	NK Bravo	NK Maribor	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219505493	f	\N	\N	\N
+9593	SSD Fiorentina WFC (W)	Juventus FC (W)	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033253	f	\N	\N	\N
+9595	Tusker FC	Gor Mahia FC	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219812397	f	\N	\N	\N
+9623	IK Brage	AFC Eskilstuna	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219501024	t	2	\N	336
+9608	Moss	Ranheim IL	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219552118	t	0	\N	204
+9617	KFUM Oslo	Raufoss	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219552211	t	0	0	204
+9576	Heracles	FC Twente	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219479756	t	2	\N	196
+9575	Lillestrom	Valerenga	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219210120	t	1	2	13
+9609	AaB	B93 Copenhagen	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219607404	t	1	\N	147
+9583	Excelsior	PEC Zwolle	2023-10-22 13:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219480769	t	1	\N	196
+9574	Winterthur	St Gallen	2023-10-22 13:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219497020	t	0	\N	15
+9625	Salernitana	Cagliari	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219332528	f	\N	\N	\N
+9627	Djurgardens	Hammarby	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219484008	f	\N	\N	\N
+9628	Giresunspor	Boluspor	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219783276	f	\N	\N	\N
+9630	Oskarshamns AIK	Falkenbergs	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865436	f	\N	\N	\N
+9634	Hearts	Celtic	2023-10-22 14:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219098604	f	\N	\N	\N
+9635	Avenir S Marsa	ES Metlaoui	2023-10-22 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220036806	f	\N	\N	\N
+9636	DEBRECENI VSC	MOL Vidi	2023-10-22 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219502192	f	\N	\N	\N
+9637	FC Koln	Mgladbach	2023-10-22 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219114773	f	\N	\N	\N
+9638	IF Sylvia	Umea FC	2023-10-22 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219868524	f	\N	\N	\N
+9639	PFC Levski Sofia	Cherno More	2023-10-22 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219537443	f	\N	\N	\N
+9640	Etoile Sportive Sahel	AS Solimane	2023-10-22 14:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220036715	f	\N	\N	\N
+9647	Cultural Montalegre	Pevidem SC	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219967708	f	\N	\N	\N
+9659	Harju JK Laagri	Tallinna FC Flora	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219509284	f	\N	\N	\N
+9664	West Ham United (W)	Liverpool (W)	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895275	f	\N	\N	\N
+9665	Linares Deportivo	San Fernando CD	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864444	f	\N	\N	\N
+9651	Atletico Levante UD	CD Utiel	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019260	f	\N	\N	\N
+9660	Aigle Royal de la Menoua	Gazelle de Garoua	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008430	f	\N	\N	\N
+9669	B36 Torshavn	Klaksvikar Itrottarfelag	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220011372	f	\N	\N	\N
+9661	Notodden	Arendal	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220010562	f	\N	\N	\N
+9667	Hearts (W)	Motherwell (W)	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033525	f	\N	\N	\N
+9662	HB Koge	Naestved	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219607511	f	\N	\N	\N
+9648	Chemie Leipzig	FC Eilenburg	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219922414	f	\N	\N	\N
+9655	Real Union	Ponferradina	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789205	f	\N	\N	\N
+9653	Aatvidabergs FF	Ljungskile	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864173	f	\N	\N	\N
+9650	Colombe du Dja et Lobo	Les Astres FC de Douala	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008160	f	\N	\N	\N
+9656	Alhashemyya	Samma	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220033435	f	\N	\N	\N
+9641	Maritimo	Mortagua FC	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968460	f	\N	\N	\N
+9670	CS Petrocub	Dacia Buiucani	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220012182	f	\N	\N	\N
+9646	Vilaverdense	Farense	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219995410	f	\N	\N	\N
+9652	Dynamo Kiev	Dnipro-1	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219467227	f	\N	\N	\N
+9649	Mafra	Feirense	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219937164	f	\N	\N	\N
+9666	Ibrachina FC U20	Sao Paulo U20	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008560	f	\N	\N	\N
+9668	Levante Las Planas (W)	Sevilla FC (W)	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219859198	f	\N	\N	\N
+9642	CF Canelas 2010	Chaves	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219937074	f	\N	\N	\N
+9645	Pero Pinheiro	Fc Serpa	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968370	f	\N	\N	\N
+9643	O Elvas CAD	FC Tirsense	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968550	f	\N	\N	\N
+9644	Tondela	1 Dezembro	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968280	f	\N	\N	\N
+9658	Cercle Brugge	Gent	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219459153	f	\N	\N	\N
+9682	Grasshoppers Zurich	Lugano	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219486831	t	0	3	15
+9663	UCD	Cork City	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219695504	f	\N	\N	\N
+9657	Club Brugge B	Waasland-Beveren	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219785135	f	\N	\N	\N
+9675	Catania	Taranto Sport	2023-10-22 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219818797	f	\N	\N	\N
+9676	Junkeren	Brann II	2023-10-22 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.220010292	f	\N	\N	\N
+9671	Gubbio	Olbia	2023-10-22 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219842177	f	\N	\N	\N
+9672	Huesca	Elche	2023-10-22 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219788983	f	\N	\N	\N
+9674	Girona	Almeria	2023-10-22 15:15:00	https://www.orbitxch.com/customer/sport/1/market/1.219122558	t	2	\N	3
+9654	Viborg	FC Nordsjaelland	2023-10-22 15:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219458282	t	0	\N	40
+9681	CDA Navalcarnero	CD Badajoz	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219907832	f	\N	\N	\N
+9679	Jamshedpur FC	Punjab FC	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220038253	f	\N	\N	\N
+9678	Luzern	Yverdon Sport	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219569256	f	\N	\N	\N
+9683	Rot-Weiss Essen	Saarbrucken	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219785270	f	\N	\N	\N
+9677	AD Camacha	Famalicao	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219968190	f	\N	\N	\N
+9680	CD Alesves	CD Subiza	2023-10-22 15:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220019350	f	\N	\N	\N
+9629	Toulouse	Reims	2023-10-22 14:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219117291	t	0	\N	5
+9720	Becerril	CD Palencia	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020972	f	\N	\N	\N
+9713	Stromsgodset	Odds BK	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219210661	t	1	\N	13
+9685	CD Cayon	Marino Luanco	2023-10-22 15:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219896086	f	\N	\N	\N
+9686	VMFD Zalgiris	FK Siauliai	2023-10-22 15:55:00	https://www.orbitxch.com/customer/sport/1/market/1.219564101	f	\N	\N	\N
+9700	CD Paracuellos Antamira	Real Madrid C	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220021062	f	\N	\N	\N
+9687	Union Molinense CF	Lorca Deportiva CF	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019980	f	\N	\N	\N
+9689	Linense	Marbella	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219898830	f	\N	\N	\N
+9724	Olot	LHospitalet	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019440	f	\N	\N	\N
+9688	Rapid Vienna	Austria Klagenfurt	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219486288	t	1	5	43
+9692	FC Trollhattan	Angelholms	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219865346	f	\N	\N	\N
+9706	CD Minera	CD Bullense	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020070	f	\N	\N	\N
+9707	FC Ajka	Kozarmisleny	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219820510	f	\N	\N	\N
+9690	AD Almudevar	CD Fuentes	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019800	f	\N	\N	\N
+9712	Szeged 2011	Gyori	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219820690	f	\N	\N	\N
+9708	Gimnastic	Sociedad B	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789568	f	\N	\N	\N
+9702	Arenas Club de Getxo	CD Brea	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899553	f	\N	\N	\N
+9714	Vasas	Nyiregyhaza	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219820600	f	\N	\N	\N
+9734	Malmo FF	Varbergs BoIS	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219484188	t	1	\N	14
+9697	Sampdoria (W)	AS Roma (W)	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220052094	f	\N	\N	\N
+9705	CF Rayo Majadahonda	Lugo	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789115	f	\N	\N	\N
+9696	Cerdanyola del Valles	La Nucia	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219900097	f	\N	\N	\N
+9693	CD Calahorra	Real Sociedad III	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219908138	f	\N	\N	\N
+9716	Aalesunds	Sarpsborg	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219210769	t	2	\N	13
+9737	Aston Villa	West Ham	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219119295	t	1	\N	2
+9721	CD Belchite 97	CD Carinena	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019710	f	\N	\N	\N
+9699	CD Mirandes II	SD Atletico Tordesillas	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020882	f	\N	\N	\N
+9722	CD Quintanar del Rey	CD Torrijos	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019620	f	\N	\N	\N
+9723	CD Tedeon	CD Alfaro	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019890	f	\N	\N	\N
+9717	Coruxo	Real Aviles	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219896406	f	\N	\N	\N
+9704	Dinamo Tirana	KS Teuta Durres	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220038772	f	\N	\N	\N
+9701	Gzira United FC	Sirens FC	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219905786	f	\N	\N	\N
+9710	Guadalajara	Gimnastica Segoviana CF	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219908230	f	\N	\N	\N
+9719	RS Gimnastica	SD Compostela	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219896176	f	\N	\N	\N
+9698	UP Langreo	Arandina CF	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895994	f	\N	\N	\N
+9703	Pontevedra CF	Real Oviedo II	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895890	f	\N	\N	\N
+9694	CD Binissalem FC	CE Constancia de Inca	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020160	f	\N	\N	\N
+9695	CD Burriana CF	Elche II	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220019530	f	\N	\N	\N
+9715	Velez CF	Aguilas	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899101	f	\N	\N	\N
+9691	Universitatea Craiova	ACS Petrolul 52	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219173263	f	\N	\N	\N
+9711	Rosenborg	Stabaek	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219210012	t	2	\N	13
+9732	San Pedro FC	Asi D'Abengourou	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220011552	f	\N	\N	\N
+9738	Olivenza	CD Calamonte	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220020250	f	\N	\N	\N
+9684	Go Ahead Eagles	Sparta Rotterdam	2023-10-22 15:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219480878	t	0	0	196
+9729	Spartak Trnava	Slovan Bratislava	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219249830	f	\N	\N	\N
+9731	Don Benito	UD Fuente de Cantos	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220043175	f	\N	\N	\N
+9727	NK Aluminij	NK Radomlje	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219505583	f	\N	\N	\N
+9733	Hacken	Norrkoping	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219483828	f	\N	\N	\N
+9735	UE Vilassar de Mar	CFJ Mollerussa	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220021152	f	\N	\N	\N
+9709	Ham-Kam	Haugesund	2023-10-22 16:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219210228	t	1	3	13
+9730	PAOK	Atromitos	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219002073	f	\N	\N	\N
+9726	Monaco	Metz	2023-10-22 16:05:00	https://www.orbitxch.com/customer/sport/1/market/1.219332733	t	2	\N	5
+9739	Diosgyori	Ferencvaros	2023-10-22 16:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219502552	f	\N	\N	\N
+9728	FC Heidenheim	Augsburg	2023-10-22 16:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219114894	t	2	\N	1
+9763	Polideportivo Ejido	UD Ciudad de Torredonjimeno	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020340	f	\N	\N	\N
+9769	Canon Sportif De Yaounde	Union Sportive de Doual	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220008340	f	\N	\N	\N
+9770	Arda	Ludogorets	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219534952	f	\N	\N	\N
+9758	Tudelano	Naxara CD	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219900187	f	\N	\N	\N
+9754	Mladost Lucani	Radnicki Nis	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219927177	f	\N	\N	\N
+9747	Centro Atletico Fenix	Cerro	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219953054	f	\N	\N	\N
+9750	Ismaily	Pharco FC	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219804399	f	\N	\N	\N
+9742	Vojvodina	Radnik Surdulica	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219892086	f	\N	\N	\N
+9741	Cf Os Belenenses	Gil Vicente	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219968010	f	\N	\N	\N
+9767	Al Hidd	Al Hala	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014132	f	\N	\N	\N
+9752	Manama Club	Sitra	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014222	f	\N	\N	\N
+9765	Future FC	Pyramids	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219825858	f	\N	\N	\N
+9768	Orihuela CF	FC La Union Atletico	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219898920	f	\N	\N	\N
+9760	Gornik Leczna	GKS Katowice	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219416150	f	\N	\N	\N
+9762	Tabasalu JK	Viimsi JK	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014665	f	\N	\N	\N
+9744	Hajduk Split	Osijek	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219537353	f	\N	\N	\N
+9771	Recreativo Huelva	Alcoyano	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219864804	f	\N	\N	\N
+9759	Sestao River	Barcelona B	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789478	f	\N	\N	\N
+9756	FK Jablonec	Bohemians 1905	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219404287	f	\N	\N	\N
+9757	Samsunspor	Basaksehir	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219199277	f	\N	\N	\N
+9740	Mexico (W)	Jamaica (W)	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220049786	f	\N	\N	\N
+9753	Amed Sportif Faaliyetler	Ispartaspor	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219988784	f	\N	\N	\N
+9749	UE Sant Andreu	Club Atletico Saguntino	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219899825	f	\N	\N	\N
+9755	Barakaldo	SD Gernika Club	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219895676	f	\N	\N	\N
+9766	Kolubara Lazarevac	FK Radnicki Sremska	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220014755	f	\N	\N	\N
+9748	FK Jezero	FK Buducnost Podgorica	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219984391	f	\N	\N	\N
+9751	Club Atletico Bembibre	CD Leonesa B	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220021242	f	\N	\N	\N
+9772	Club Atletico Espeleno	Puente Genil FC	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220020431	f	\N	\N	\N
+9764	Menemen Belediyespor	Somaspor Spor Kulubu	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219988603	f	\N	\N	\N
+9746	Corum Belediyespor	Eyupspor	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219788268	f	\N	\N	\N
+9745	Randers	Brondby	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219458390	t	2	\N	40
+9761	Atalanta	Genoa	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219332889	f	\N	\N	\N
+9743	Fenerbahce	Hatayspor	2023-10-22 17:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219212705	f	\N	\N	\N
+9776	ASD Pineto Calcio	Cesena	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219841803	f	\N	\N	\N
+10156	Linfield U20	Carrick Rangers U20	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220104279	f	\N	\N	\N
+9774	Albacete	Sporting Gijon	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219788587	f	\N	\N	\N
+9775	Reggiana	Venezia	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219482471	f	\N	\N	\N
+9785	Real Madrid FC (W)	Levante UD (W)	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219859298	f	\N	\N	\N
+9778	CA Pulpileno	CD Cieza	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220020521	f	\N	\N	\N
+9773	Olympiakos	Panathinaikos	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219001683	f	\N	\N	\N
+9777	Racing Santander	Burgos	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219788479	f	\N	\N	\N
+9779	Pesaro	Recanatese	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219842267	f	\N	\N	\N
+9782	Avellino	Nuova Monterosi	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219818535	f	\N	\N	\N
+9784	Lucchese	Pescara	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219841895	f	\N	\N	\N
+9781	Rimini	Ancona	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219842357	f	\N	\N	\N
+9783	Villarreal	Alaves	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219156667	f	\N	\N	\N
+10157	Cliftonville FC U20	Glenavon FC U20	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220104369	f	\N	\N	\N
+10158	Ballymena United FC U20	Crusaders FC U20	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220104459	f	\N	\N	\N
+9780	Standard	Anderlecht	2023-10-22 17:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219457778	t	2	\N	68
+10159	Chelmsford	Dover	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220040175	f	\N	\N	\N
+10160	Arezzo	Spal	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219842537	f	\N	\N	\N
+10161	Laval	St Etienne	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219511176	f	\N	\N	\N
+10105	Real Espana	Genesis Huracan	2023-10-24 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220105942	f	\N	\N	\N
+10162	Hashtag United	Chatham Town	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220099315	f	\N	\N	\N
+10163	Carshalton Athletic FC	Lewes	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.220099225	f	\N	\N	\N
+10164	Fiorentina	Empoli	2023-10-23 19:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219118253	f	\N	\N	\N
+10165	Larne FC U20	Dungannon U20	2023-10-23 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220104189	f	\N	\N	\N
+10166	Alcorcon	FC Cartagena	2023-10-23 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219789829	f	\N	\N	\N
+10167	Valencia	Cadiz	2023-10-23 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219118973	f	\N	\N	\N
+10168	Tottenham	Fulham	2023-10-23 20:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219149375	f	\N	\N	\N
+10169	Torque	Liverpool Montevideo	2023-10-23 21:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219960037	f	\N	\N	\N
+10170	Atletico FC Cali	Cucuta Deportivo	2023-10-23 21:30:00	https://www.orbitxch.com/customer/sport/1/market/1.219928130	f	\N	\N	\N
+10171	Club General Caballero JLM	Libertad	2023-10-23 22:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220104677	f	\N	\N	\N
+10172	Molynes United FC	Vere United FC	2023-10-23 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220081673	f	\N	\N	\N
+10173	Estudiantes	Sarmiento de Junin	2023-10-23 23:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219523569	f	\N	\N	\N
+10174	Llaneros FC	Barranquilla	2023-10-23 23:45:00	https://www.orbitxch.com/customer/sport/1/market/1.219928220	f	\N	\N	\N
+10099	Ponte Preta	Ituano	2023-10-24 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219537318	f	\N	\N	\N
+10098	AA Portuguesa U20	Palmeiras U20	2023-10-24 00:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220088684	f	\N	\N	\N
+10102	Univ Catolica (Ecu)	Delfin	2023-10-24 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219649221	f	\N	\N	\N
+10103	Velez Sarsfield	Banfield	2023-10-24 01:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219523479	f	\N	\N	\N
+10181	Arnett Gardens FC	Dunbeholden FC	2023-10-24 01:30:00	https://www.orbitxch.com/customer/sport/1/market/1.220139593	f	\N	\N	\N
+10104	America de Cali S.A	Atletico Huila	2023-10-24 02:00:00	https://www.orbitxch.com/customer/sport/1/market/1.219833121	f	\N	\N	\N
+10184	Racing FC Porto Palmeiras	Club Sporting Canamy	2023-10-24 03:00:00	https://www.orbitxch.com/customer/sport/1/market/1.220139704	f	\N	\N	\N
 \.
 
 
@@ -4063,7 +6895,7 @@ COPY public.over2p5orbitxch (id, home, away, date_time, url, plaied, ht_goals, f
 -- Name: over2p5bets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5bets_id_seq', 197, true);
+SELECT pg_catalog.setval('public.over2p5bets_id_seq', 275, true);
 
 
 --
@@ -4072,7 +6904,7 @@ SELECT pg_catalog.setval('public.over2p5bets_id_seq', 197, true);
 -- Name: over2p5footballsupertips_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5footballsupertips_id_seq', 1121, true);
+SELECT pg_catalog.setval('public.over2p5footballsupertips_id_seq', 1661, true);
 
 
 --
@@ -4081,7 +6913,7 @@ SELECT pg_catalog.setval('public.over2p5footballsupertips_id_seq', 1121, true);
 -- Name: over2p5goalsnow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5goalsnow_id_seq', 1157, true);
+SELECT pg_catalog.setval('public.over2p5goalsnow_id_seq', 1668, true);
 
 
 --
@@ -4090,7 +6922,7 @@ SELECT pg_catalog.setval('public.over2p5goalsnow_id_seq', 1157, true);
 -- Name: over2p5orbitxch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.over2p5orbitxch_id_seq', 5879, true);
+SELECT pg_catalog.setval('public.over2p5orbitxch_id_seq', 10184, true);
 
 
 --
@@ -4191,7 +7023,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3439 (class 0 OID 0)
--- Dependencies: 228
+-- Dependencies: 226
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -4211,7 +7043,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3441 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 229
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -4221,7 +7053,7 @@ GRANT ALL ON TABLE public."TodaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3442 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 228
 -- Name: TABLE "YesterdaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -4231,7 +7063,7 @@ GRANT ALL ON TABLE public."YesterdaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3443 (class 0 OID 0)
--- Dependencies: 229
+-- Dependencies: 227
 -- Name: TABLE "YesterdaysMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -4248,7 +7080,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-10-09 15:18:22 BST
+-- Completed on 2023-10-24 09:41:52 BST
 
 --
 -- PostgreSQL database dump complete

@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
 -- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
--- Started on 2023-10-09 15:18:22 BST
+-- Started on 2023-10-24 09:41:52 BST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -235,7 +235,7 @@ CREATE VIEW public.orbitxch_today AS
 
 
 --
--- TOC entry 228 (class 1259 OID 16619)
+-- TOC entry 226 (class 1259 OID 16619)
 -- Name: TodayMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -268,9 +268,9 @@ CREATE TABLE public.over2p5bets (
     "BetDateTime" timestamp without time zone NOT NULL,
     "LayBack" public."ActionType" NOT NULL,
     "OverUnder" public."OverUnderType" NOT NULL,
-    "Goals" numeric(3,2) NOT NULL,
-    "Odds" numeric(3,2) NOT NULL,
-    "OddsRecorded" numeric(3,2),
+    "Goals" numeric NOT NULL,
+    "Odds" numeric NOT NULL,
+    "OddsRecorded" numeric,
     "Amount" numeric,
     "BetResult" public."BetResult",
     "BetResultTime" timestamp without time zone
@@ -278,7 +278,7 @@ CREATE TABLE public.over2p5bets (
 
 
 --
--- TOC entry 226 (class 1259 OID 16600)
+-- TOC entry 229 (class 1259 OID 24832)
 -- Name: TodaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -302,7 +302,7 @@ CREATE VIEW public."TodaysBets" AS
 
 
 --
--- TOC entry 227 (class 1259 OID 16604)
+-- TOC entry 228 (class 1259 OID 24827)
 -- Name: YesterdaysBets; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -326,7 +326,7 @@ CREATE VIEW public."YesterdaysBets" AS
 
 
 --
--- TOC entry 229 (class 1259 OID 16624)
+-- TOC entry 227 (class 1259 OID 16624)
 -- Name: YesterdaysMatches; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -564,7 +564,7 @@ GRANT ALL ON TABLE public.orbitxch_today TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3431 (class 0 OID 0)
--- Dependencies: 228
+-- Dependencies: 226
 -- Name: TABLE "TodayMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -584,7 +584,7 @@ GRANT ALL ON TABLE public.over2p5bets TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3433 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 229
 -- Name: TABLE "TodaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -594,7 +594,7 @@ GRANT ALL ON TABLE public."TodaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3434 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 228
 -- Name: TABLE "YesterdaysBets"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -604,7 +604,7 @@ GRANT ALL ON TABLE public."YesterdaysBets" TO postgres WITH GRANT OPTION;
 
 --
 -- TOC entry 3435 (class 0 OID 0)
--- Dependencies: 229
+-- Dependencies: 227
 -- Name: TABLE "YesterdaysMatches"; Type: ACL; Schema: public; Owner: -
 --
 
@@ -621,7 +621,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres REVOKE ALL ON TABLES  FROM postgres;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES  TO postgres WITH GRANT OPTION;
 
 
--- Completed on 2023-10-09 15:18:22 BST
+-- Completed on 2023-10-24 09:41:52 BST
 
 --
 -- PostgreSQL database dump complete
