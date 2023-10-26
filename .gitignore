@@ -5,3 +5,4 @@ core
 env
 nohup.out
 config/*.pid
+env
