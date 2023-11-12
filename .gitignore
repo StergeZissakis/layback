@@ -6,4 +6,4 @@ env
 nohup.out
 config/*.pid
 env
-.idea
+.idea/*
