@@ -193,7 +193,6 @@ def scrapeOrbitxch(dbase):
     if todaysRoot:
         todaysMatches = todaysRoot.find_elements(By.CSS_SELECTOR,    'div.biab_group-markets-table-row.row.rowMarket')
         count = 0
-        randomCount = 0
         for match in todaysMatches:
             row = DailyMatchRow("over2p5orbitxch")
             try:
@@ -214,10 +213,6 @@ def scrapeOrbitxch(dbase):
             row.set("url", 'https://www.orbitxch.com/customer/sport/1/market/' + market.strip())
 
             if row.get("date_time") is not None:
-                randomCount += 1
-                if randomCount > 10:
-                    randomCount = 1
-                row.set("random_order", randomCount)
                 dbase.insert_or_update(row)
                 count += 1
 
@@ -229,7 +224,6 @@ def scrapeOrbitxch(dbase):
     if tommorowsRoot:
         tommorowsMatches = tommorowsRoot.find_elements(By.CSS_SELECTOR, 'div.biab_group-markets-table-row.row.rowMarket')
         tommorowsDate = datetime.today() + timedelta(days=1)
-        randomCount = 0
         for tm in tommorowsMatches:
             row = DailyMatchRow("over2p5orbitxch")
             try:
@@ -252,10 +246,6 @@ def scrapeOrbitxch(dbase):
             row.set("url", 'https://www.orbitxch.com/customer/sport/1/market/' + market.strip())
 
             if row.get("date_time") is not None:
-                randomCount += 1
-                if randomCount > 10:
-                    randomCount = 1
-                row.set("random_order", randomCount)
                 dbase.insert_or_update(row)
                 tommorowsCount += 1
     else:
