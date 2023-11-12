@@ -11,7 +11,6 @@ class DailyMatchRow(DBRow):
                 "away": None,
                 "date_time": None,
                 "league_id": None,
-                "random_order": None,
                 "url": None
                 }
 

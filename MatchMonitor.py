@@ -318,20 +318,20 @@ class MatchMonitor:
 
             reversePlaid = False
             while self.livePage.getTotalGoals() == 0 and self.livePage.getMatchStatus() != 'FT':
-                odds = self.getBackUnder1p5Odds()
-                if odds is not None and odds <= 1.15:
-                    logging.info('Back Under 1.5 @ 1.13 - Odds dropped below 1.15. : %s' % self.match)
-                    self.bet('Back', 'Under', 1.5, 1.13, odds)
-                    reversePlaid = True
-                    break
+                #odds = self.getBackUnder1p5Odds()
+                #if odds is not None and odds <= 1.15:
+                    #logging.info('Back Under 1.5 @ 1.13 - Odds dropped below 1.15. : %s' % self.match)
+                    #self.bet('Back', 'Under', 1.5, 1.13, odds)
+                    #reversePlaid = True
+                    #break
                 self.sleep()
 
             while not reversePlaid and self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
-                odds = self.getBackUnder1p5Odds()
-                if odds is not None and odds <= 1.52:
-                    logging.info('Back Under 1.5 @ 1.5 - Odds dropped below 1.52. : %s' % self.match)
-                    self.bet('Back', 'Under', 1.5, 1.5, odds)
-                    break
+                #odds = self.getBackUnder1p5Odds()
+                #if odds is not None and odds <= 1.52:
+                    #logging.info('Back Under 1.5 @ 1.5 - Odds dropped below 1.52. : %s' % self.match)
+                    #self.bet('Back', 'Under', 1.5, 1.5, odds)
+                    #break
                 self.sleep()
         elif self.livePage.getTotalGoals() == 1:
             logging.info('Initial bet Lay Under 2.5 @ 1.5 : %s' % self.match)
@@ -339,20 +339,20 @@ class MatchMonitor:
 
             reversePlaid = False
             while self.livePage.getTotalGoals() == 1 and self.livePage.getMatchStatus() != 'FT':
-                odds = self.getBackUnder2p5Odds()
-                if odds is not None and odds <= 1.15:
-                    logging.info('Back Under 2.5 @ 1.13 - Odds dropped below 1.15. : %s' % self.match)
-                    self.bet('Back', 'Under', 2.5, 1.13, odds)
-                    reversePlaid = True
-                    break
+                #odds = self.getBackUnder2p5Odds()
+                #if odds is not None and odds <= 1.15:
+                    #logging.info('Back Under 2.5 @ 1.13 - Odds dropped below 1.15. : %s' % self.match)
+                    #self.bet('Back', 'Under', 2.5, 1.13, odds)
+                    #reversePlaid = True
+                    #break
                 self.sleep()
 
             while not reversePlaid and self.livePage.getTotalGoals() == 2 and self.livePage.getMatchStatus() != 'FT':
-                odds = self.getBackUnder2p5Odds()
-                if odds is not None and odds <= 1.52:
-                    logging.info('Back Under 2.5 @ 1.5 - Odds dropped below 1.52. : %s' % self.match)
-                    self.bet('Back', 'Under', 2.5, 1.5, odds)
-                    break
+                #odds = self.getBackUnder2p5Odds()
+                #if odds is not None and odds <= 1.52:
+                    #logging.info('Back Under 2.5 @ 1.5 - Odds dropped below 1.52. : %s' % self.match)
+                    #self.bet('Back', 'Under', 2.5, 1.5, odds)
+                    #break
                 self.sleep()
         else:
             logging.info('2 or more goals scored already. : %s' % self.match)
