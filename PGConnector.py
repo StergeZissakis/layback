@@ -4,7 +4,7 @@ import logging
 
 class PGBase:
 
-    def __init__(self, db, db_host, db_user='postgres', db_pass='p0stgr35', db_port=5432):
+    def __init__(self, db, db_host, db_user='postgres', db_pass='postgres', db_port=5432):  # p0stgr35
         self.pg = psycopg2.connect(database=db, host=db_host, user=db_user, password=db_pass, port=str(db_port))
         if self.pg is None:
             print("Database::CTOR [Failed to connect to database]")

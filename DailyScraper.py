@@ -261,7 +261,7 @@ def scrapeOrbitxch(dbase):
 
 if __name__ == "__main__":
     initialise_logger("DailyScraper")
-    db = PGConnector("postgres", "localhost")
+    db = PGConnector("postgres", "192.168.1.156")
     if not db.is_connected():
         logging.error("Failed to connect to DB")
         exit(-1)
