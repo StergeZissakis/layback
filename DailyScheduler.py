@@ -1,3 +1,5 @@
+import multiprocessing
+import os
 import time
 import logging
 import daemon
@@ -9,14 +11,14 @@ from MatchMonitor import monitor
 from multiprocessing import Process
 
 
-with daemon.DaemonContext():
-    while True:
-        db = PGConnector("postgres", "192.168.1.156")
-        if not db.is_connected():
-            exit(-1)
+def run():
+    db = PGConnector("postgres", "192.168.1.156")
+    if not db.is_connected():
+        exit(-1)
 
-        liveMatches = []
-        select  = ' select id, home, away, date_time, league_id, url '
+    liveMatches = []
+    while True:
+        select = ' select id, home, away, date_time, league_id, url '
         select += ' from "TodayMatches" '
         select += " where plaied = false and (date_time::timestamp, date_time::timestamp) OVERLAPS ((now()::timestamp - interval '45 minutes') , (now()::timestamp - interval '15 minutes'))"
 
@@ -40,3 +42,10 @@ with daemon.DaemonContext():
             time.sleep(5)
 
         Utils.sleep_for_seconds(60)
+
+
+if __name__ == "__main__":
+    daemonProcess = multiprocessing.Process(target=run)
+    daemonProcess.daemon = True
+    daemonProcess.start()
+    daemonProcess.join()

@@ -44,8 +44,8 @@ class Browser:
         if self.headless:
             self.chrome_options.add_argument('--headless=new')
         
-        #service = ChromeService(executable_path="/usr/bin/chromedriver")
-        service = ChromeService(executable_path=".\\chromedriver.exe")
+        service = ChromeService(executable_path="/usr/bin/chromedriver")
+        #service = ChromeService(executable_path=".\\chromedriver.exe")
         self.driver = webdriver.Chrome(service=service, options=self.chrome_options)
 
     def __del__(self):
